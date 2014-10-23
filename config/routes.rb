@@ -8,6 +8,7 @@ WeddingApp::Application.routes.draw do
     match "signout", to: "devise/sessions#destroy", via: 'delete'
     match "signup", to: "devise/registrations#new", via: 'get'
     match "edit_account", to: "devise/registrations#edit", via: 'get'
+    match "delete_user", to: "devise/registrations#destroy", via: 'delete'
   end
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
