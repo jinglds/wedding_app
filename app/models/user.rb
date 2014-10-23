@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     after_create :assign_default_role
 
 	def assign_default_role
-		add_role(:client) if self.roles.blank?
+		self.role = :client if self.role.blank?
 	end
 
 end
