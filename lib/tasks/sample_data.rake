@@ -26,23 +26,23 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
-    users = User.all
+     users = User.all
     2.times do
       name = Faker::Company.name
       phone =  Faker::PhoneNumber.cell_phone
       address = Faker::Address.city
-      details = Faker::Lorem.sentence(2)
+      details = ["auto", "non-auto"]
       email = "shop@abc.com"
-      shop_type = Faker::Lorem.word
+      shop_type = ["Attire", "Photography", "Music", "Invitation Card", "Decoration"]
       description = Faker::Lorem.sentence(3)
       website = Faker::Internet.domain_name
       users.each { |user| user.shops.create!(
                                               name: name,
-                                              shop_type: shop_type,
+                                              shop_type: shop_type.sample,
                                               email: email,
                                               phone: phone,
                                               address: address,
-                                              details: details,
+                                              details: details.sample,
                                               website: website,
                                               description: description
                                               ) }

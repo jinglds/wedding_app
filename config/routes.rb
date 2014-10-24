@@ -1,5 +1,8 @@
 WeddingApp::Application.routes.draw do
-  
+  namespace :api do
+    resources :shops
+  end
+
   devise_for :users
   resources :users
   resources :events
