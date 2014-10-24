@@ -4,4 +4,9 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(shop.created_at) %> ago.
   </span>
+  <% if (current_user==shop.user) %>
+    <%= link_to "delete", shop, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: shop.name %>
+  <% end %>
 </li>

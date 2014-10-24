@@ -15,7 +15,12 @@
       </ol>
       <%= will_paginate @shops %>
     <% end %>
-   
+    <% if @user.events.any? %>
+      <h3>Events (<%= @user.events.count %>)</h3>
+      <ol class="microposts">
+        <%= render @events %>
+      </ol>
+    <% end %>
     <% if @ratings.any? %>
       <h3>My Rated Shop (<%= @ratings.size %>)</h3>
       <ol class="microposts">

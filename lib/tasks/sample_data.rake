@@ -50,6 +50,25 @@ namespace :db do
 
 
     end
+    2.times do
+      name = Faker::Name.name
+      date =  Date.new(2015,4,20)
+      time = Time.new(2.15,4,20,20,00,00, "+07:00")
+      budget = 500000
+      bride_name = Faker::Name.name
+      groom_name = Faker::Name.name
+      event_type = ["Evening Party", "Budhist Ceremory","Christian Ceremony", "Chinese Ceremony"]
+      users.each { |user| user.events.create!(
+                                              name: name,
+                                              date: date,
+                                              time: time,
+                                              budget: budget,
+                                              bride_name: bride_name,
+                                              groom_name: groom_name,
+                                              event_type: event_type.sample
+                                              ) }
+    end
   end
 end
+
 
