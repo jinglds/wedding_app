@@ -15,7 +15,23 @@
       </ol>
       <%= will_paginate @shops %>
     <% end %>
+   
+    <% if @ratings.any? %>
+      <h3>My Rated Shop (<%= @ratings.size %>)</h3>
+      <ol class="microposts">
+        <%= render @ratings %>
+      </ol>
+      <%= will_paginate @ratings %>
+    <% end %>
+    <% if @favorites.any? %>
+      <h3>My Favorite Shop (<%= @favorites.size %>)</h3>
+      <ol class="microposts">
+        <%= render @favorites %>
+      </ol>
+      
+    <% end %>
   </div>
-</div>
 
-  <div class="span8">
+
+
+</div>

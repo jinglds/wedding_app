@@ -18,13 +18,12 @@
     <%= link_to "Up 3", rate_shop_path(@shop, :rating => 3), method: :put %>
     <%= link_to "Up 4", rate_shop_path(@shop, :rating => 4), method: :put %>
     <%= link_to "Up 5", rate_shop_path(@shop, :rating => 5), method: :put %>
-
-
    
 </div>
 
+<%= link_to 'Add to favorites', favorite_shops_path(shop_id: @shop), method: :post %>
 
-
+<%= link_to 'Remove from favorites', favorite_shop_path(@shop), method: :delete %>
 
 <% end %>
 	

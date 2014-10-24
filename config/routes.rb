@@ -2,6 +2,7 @@ WeddingApp::Application.routes.draw do
   get "users/new"
   devise_for :users
   resources :users
+  resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
    member do
       put "rate", to: "shops#rate"

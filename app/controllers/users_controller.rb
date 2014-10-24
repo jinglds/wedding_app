@@ -8,8 +8,11 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		@user = User.find(params[:id])
-		@shops = @user.shops.paginate(page: params[:page])
+	    @user = User.find(params[:id])
+	    @shops = @user.shops.paginate(page: params[:page])
+	    # @events = @user.events.paginate(page: params[:page])
+	    @ratings = (@user.get_up_voted Shop).paginate(page: params[:page])
+	    @favorites = @user.favorite_shops.order('shops.created_at')
 	end
 
 	def destroy
