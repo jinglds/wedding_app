@@ -5,13 +5,13 @@
 	        <%= render 'shared/user_info' %>
 	      </section>
 	      <section>
-	        <%= render 'shared/shop_form' %>
-	      </section>
+	      	<h2>SHOP FORM</h2>
+	      	<%= render 'shared/shop_form' %>
+	     </section>
 	      <section>
+	      	<h2>EVENT FORM</h2>
 	        <%= render 'shared/event_form' %>
 	      </section>
-	    </aside>
-	  </div>
 	    </aside>
 	  </div>
 	
@@ -23,7 +23,8 @@
 
 	  <h2>
 	    This is the home page for the
-	    Wedding Application
+	    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
+	    sample application.
 	  </h2>
 
 	  <%= link_to "Sign up now!",  signup_path, class: "btn btn-large btn-primary" %>

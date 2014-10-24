@@ -1,8 +1,8 @@
 WeddingApp::Application.routes.draw do
-  get "users/new"
+  
   devise_for :users
   resources :users
-  resources :events, only: [:create,:destroy]
+  resources :events
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
    member do
