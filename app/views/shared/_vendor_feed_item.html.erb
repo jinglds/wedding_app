@@ -1,0 +1,9 @@
+<li id="<%= vendor_feed_item.id %>">
+  <span class="user">
+    <%= link_to vendor_feed_item.user.firstname, vendor_feed_item.user %>
+  </span>
+  <span class="content"><%= link_to vendor_feed_item.name, vendor_feed_item %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(vendor_feed_item.created_at) %> ago.
+  </span>
+</li>

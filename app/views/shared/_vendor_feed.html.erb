@@ -1,0 +1,7 @@
+<% if @vendor_feed_items.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/vendor_feed_item', collection: @vendor_feed_items %>
+  </ol>
+  <%= will_paginate @vendor_feed_items %>
+<% end %>
+

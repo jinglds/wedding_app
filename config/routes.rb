@@ -2,7 +2,12 @@ WeddingApp::Application.routes.draw do
   get "users/new"
   devise_for :users
   resources :users
-  resources :shops
+  resources :shops do
+   member do
+      put "rate", to: "shops#rate"
+      put "unrate", to: "shops#unrate"
+    end
+  end
   root  'static_pages#home'
   devise_scope :user do
     match "signin", to: "devise/sessions#new", via: 'get'
@@ -11,6 +16,7 @@ WeddingApp::Application.routes.draw do
     match "edit_account", to: "devise/registrations#edit", via: 'get'
     match "delete_user", to: "devise/registrations#destroy", via: 'delete'
   end
+  match '/vendors',    to: 'static_pages#vendors',    via: 'get'
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
