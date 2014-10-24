@@ -1,0 +1,7 @@
+<li>
+  <span class="content">Name: <%= shop.name %></span>
+  <span class="content">TYPE: <%= shop.shop_type %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(shop.created_at) %> ago.
+  </span>
+</li>

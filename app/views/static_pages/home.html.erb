@@ -1,10 +1,49 @@
-<div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or
-    <%= link_to "Sign in", new_user_session_path %>
-  <% end %>
-</div>
+<% if signed_in? %>
+	 <div class="row">
+	    <aside class="span4">
+	      <section>
+	        <%= render 'shared/user_info' %>
+	      </section>
+	      <section>
+	        <%= render 'shared/shop_form' %>
+	      </section>
+	    </aside>
+	  </div>
+	
 
+<% else %>
+
+	<div class="center hero-unit">
+	  <h1>Welcome to the Sample App</h1>
+
+	  <h2>
+	    This is the home page for the
+	    Wedding Application
+	  </h2>
+
+	  <%= link_to "Sign up now!",  signup_path, class: "btn btn-large btn-primary" %>
+	</div>
+
+	<div>
+		<h2>HOW DOES MARRYME WORK?</h2>
+		<div class="row center tahoma"><h1>
+			<div class="col-md-4">1. Sign Up!</div>
+		 	<div class="col-md-4">2. Search for Vendors! </div>
+		 	<div class="col-md-4">3. Create and Manage your Events!</div></h1>
+		</div>
+	</div>
+<% end %>
+	<div>
+		<h2>DOWNLOAD OUR APP!</h2>
+		<div class="row impact">
+			<div class="col-md-6">
+				<ul class="list-unstyled">
+					<li>FIND US ON YOUT APPSTORE</li>
+					<li>EASY VENDOR SEARCH ON YOUR IPHONE</li>
+					<li>SIMPLE EVENT MANAGEMENT</li>
+					<li>DOWNLOAD NOW!</li>
+				</ul>
+			</div>
+		 	<div class="col-md-6">IOS PHOTO</div>
+		</div>
+	</div>

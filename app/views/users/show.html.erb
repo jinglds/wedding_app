@@ -8,3 +8,14 @@
     </section>
   </aside>
   <div class="span8">
+    <% if @user.shops.any? %>
+      <h3>Shops (<%= @user.shops.count %>)</h3>
+      <ol class="microposts">
+        <%= render @shops %>
+      </ol>
+      <%= will_paginate @shops %>
+    <% end %>
+  </div>
+</div>
+
+  <div class="span8">

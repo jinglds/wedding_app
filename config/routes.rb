@@ -2,6 +2,7 @@ WeddingApp::Application.routes.draw do
   get "users/new"
   devise_for :users
   resources :users
+  resources :shops
   root  'static_pages#home'
   devise_scope :user do
     match "signin", to: "devise/sessions#new", via: 'get'

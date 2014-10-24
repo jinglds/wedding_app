@@ -1,0 +1,31 @@
+<%= form_for(@shop) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :shop_type %>
+    <%= f.text_field :shop_type %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+
+    <%= f.label :details %>
+     <%= f.text_field :details %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
+

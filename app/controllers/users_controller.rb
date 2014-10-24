@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!
 	before_action :user_signed_in?, only: [:index, :edit, :update, :destroy]
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: :destroy
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
+		@shops = @user.shops.paginate(page: params[:page])
 	end
 
 	def destroy
