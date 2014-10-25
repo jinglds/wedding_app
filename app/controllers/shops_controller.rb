@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  before_action :client_user, only: [:new, :create, :destroy]
 
   # def index
   #   if signed_in?
@@ -73,5 +74,10 @@ class ShopsController < ApplicationController
         @shop = current_user.shops.find_by(id: params[:id])
         redirect_to root_url if @shop.nil?
   end
+
+  def client_user
+      redirect_to root_url if (current_user.role =="client")
+  end
+
 end
 

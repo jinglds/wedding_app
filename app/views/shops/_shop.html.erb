@@ -1,6 +1,14 @@
-<li>
+<li id="<%= shop.id %>">
+  <span class="user">
+    <%= link_to shop.user.firstname, shop.user %>
+  </span>
+  <span class="content">
   <span class="content">Name: <%= link_to shop.name, shop %></span>
   <span class="content">TYPE: <%= shop.shop_type %></span>
+  <span class="content">Description: <%= shop.description %></span>
+  <span class="content">Phone: <%= shop.phone %></span>
+  <span class="content">Address: <%= shop.address %></span>
+  <span class="content">Website: <%= shop.website %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(shop.created_at) %> ago.
   </span>
@@ -9,4 +17,5 @@
                                      data: { confirm: "You sure?" },
                                      title: shop.name %>
   <% end %>
+  </span>
 </li>
