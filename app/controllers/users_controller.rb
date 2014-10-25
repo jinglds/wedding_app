@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :user_signed_in?, only: [:index, :edit, :update, :destroy]
 	before_action :correct_user,   only: [:edit, :update]
-	before_action :admin_user,     only: :destroy
+	# before_action :admin_user,     only: [:destroy, :approve]
 	def index
   		@users = User.paginate(page: params[:page])
 	end
@@ -29,6 +29,21 @@ class UsersController < ApplicationController
   		@events = current_user.events
   	end
   	
+  	def pendings
+
+  		@pending_users = User.where(approval: 't').paginate(page: params[:page])
+    end
+
+  	
+
+  	def approve
+  		@user = User.find(params[:id])
+	  	if @user.update_attributes(:approval => "f", :role => "enterprise")
+	  		redirect_to :pendings, notice: "User approved"
+    	else
+      		render :pendings
+   		end
+	end
 
   	private
   	def correct_user

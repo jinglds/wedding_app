@@ -4,7 +4,11 @@ WeddingApp::Application.routes.draw do
   end
 
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      put "approve"
+    end
+  end
   resources :events
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
@@ -30,6 +34,8 @@ WeddingApp::Application.routes.draw do
   match '/vendors',    to: 'static_pages#vendors',    via: 'get'
   match '/myshops', to: 'users#shops', via: 'get'
   match '/myevents', to: 'users#events', via: 'get'
+
+  match '/pendings', to: 'users#pendings', via: 'get'
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -8,25 +8,46 @@ namespace :db do
                 role: "admin",
                  email: "jinpeko@gmail.com",
                  password: "jingjing",
-                 password_confirmation: "jingjing")
-    99.times do |n|
+                 password_confirmation: "jingjing",
+                 approval: "f")
+    66.times do |n|
       firstname  = Faker::Name.first_name
       lastname  = Faker::Name.last_name
       address = Faker::Address.city
       phone = Faker::PhoneNumber.cell_phone
-      role = ["client", "enterprise"]
+      role = "client"
       email = "example-#{n+1}@abc.com"
+      password  = "password"
+      approval = ["f", "t"]
+      User.create!(firstname: firstname,
+                   lastname: lastname,
+                   address: address,
+                   phone: phone,
+                   role: role,
+                   email: email,
+                   password: password,
+                   password_confirmation: password,
+                   approval: approval.sample)
+    end
+    33.times do |n|
+      firstname  = Faker::Name.first_name
+      lastname  = Faker::Name.last_name
+      address = Faker::Address.city
+      phone = Faker::PhoneNumber.cell_phone
+      role = "enterprise"
+      email = "example-#{n+1+66}@abc.com"
       password  = "password"
       User.create!(firstname: firstname,
                    lastname: lastname,
                    address: address,
                    phone: phone,
-                   role: role.sample,
+                   role: role,
                    email: email,
                    password: password,
-                   password_confirmation: password)
+                   password_confirmation: password,
+                   approval: "f")
     end
-     users = User.all
+    users = User.all
     2.times do
       name = Faker::Company.name
       phone =  Faker::PhoneNumber.cell_phone

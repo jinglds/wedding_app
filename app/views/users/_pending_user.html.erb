@@ -1,0 +1,10 @@
+<li>
+  <%= link_to pending_user.firstname, pending_user %>
+   <% if admin?(current_user)  %>
+   	<%= button_to "approve", approve_user_path(pending_user), :method => :put %>
+    | <%= link_to "delete", pending_user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>
+
+
