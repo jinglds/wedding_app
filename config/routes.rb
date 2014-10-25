@@ -28,6 +28,8 @@ WeddingApp::Application.routes.draw do
     match "delete_user", to: "devise/registrations#destroy", via: 'delete'
   end
   match '/vendors',    to: 'static_pages#vendors',    via: 'get'
+  match '/myshops', to: 'users#shops', via: 'get'
+  match '/myevents', to: 'users#events', via: 'get'
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

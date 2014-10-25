@@ -6,14 +6,18 @@ class ShopsController < ApplicationController
   #   if signed_in?
   #     @vendor_feed_items = Shop.all.paginate(page: params[:page])
   #   end
-  # end 
+  # end
+  def new
+    @shop = Shop.new
+  end
+
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
       flash[:success] = "Shop created!"
-      redirect_to root_url
+      redirect_to @shop
     else
-      render'static_pages/home'
+      render 'new'
     end
   end
 

@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+
+  def new
+    @event = Event.new
+  end
+  
   def create
   	@event = current_user.events.build(event_params)
   	if @event.save

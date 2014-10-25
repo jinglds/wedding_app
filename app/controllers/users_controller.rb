@@ -21,6 +21,15 @@ class UsersController < ApplicationController
 	    redirect_to users_url
   	end
 
+  	def shops
+  		@shops = current_user.shops
+  	end
+
+  	def events
+  		@events = current_user.events
+  	end
+  	
+
   	private
   	def correct_user
       	@user = User.find(params[:id])

@@ -20,4 +20,16 @@ class User < ActiveRecord::Base
 		self.role = :client if self.role.blank?
 	end
 
+	def shops
+	    Shop.where("user_id =?", id)
+	end
+
+	def events
+	    Event.where("user_id =?", id)
+	end
+
+	def comments
+	    Comment.where("user_id =?", id)
+	end
+
 end
