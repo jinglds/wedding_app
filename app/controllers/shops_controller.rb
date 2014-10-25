@@ -27,7 +27,7 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
     @comment = Comment.new 
-    @comment_items =  @shop.comment_feed.paginate(page: params[:page], per_page: 10)
+    @comments =  @shop.comment_feed.paginate(page: params[:page])
   end
 
   def rate

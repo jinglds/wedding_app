@@ -17,6 +17,10 @@ class Shop < ActiveRecord::Base
   				format: { with: VALID_EMAIL_REGEX }
   	# 			uniqueness: { case_sensitive: false }
 
+  	def comment_feed
+	    Comment.where("shop_id =?", id)
+	end
+
 end
 
 

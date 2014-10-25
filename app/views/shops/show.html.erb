@@ -28,12 +28,8 @@
 
 
 <%= render 'comments/comment_form' %>
+<%= render @comments %>
 
-	<div class="row">
-	  <ul class="recipes unstyle">
-	  	<div id="comment_item">
-	  		<%= render @comments, comments: @comment_items %>
-	  	</div>
 
 <% end %>
 	

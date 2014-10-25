@@ -12,12 +12,11 @@ class CommentsController < ApplicationController
 	      # respond_to do |format|
 	    if @comment.save
 	       flash[:success] = "Comment created!"
-	       respond_to do |format|
-	        format.html {redirect_to @shop}
-	        format.js
-	      end
+	       redirect_to @shop
+	      
 	    else
-	      render @shop
+	    	flash[:success] = "Error!"
+	        render @shop
 	    end
 	end
 
@@ -39,7 +38,9 @@ class CommentsController < ApplicationController
 	private
 
 	    def comment_params
-	      params.require(:comment).permit(:content)
+	      params.require(:comment).permit(:content,
+	      									:user_id,
+	      									:shop_id)
 	    end
 
 	    # def correct_user
