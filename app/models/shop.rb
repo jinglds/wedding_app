@@ -1,6 +1,7 @@
 class Shop < ActiveRecord::Base
 	acts_as_votable
 	belongs_to :user
+	has_many :comments, dependent: :destroy
 	default_scope -> { order('created_at DESC') }
 	before_save { self.email = email.downcase }
 	validates :user_id, presence: true

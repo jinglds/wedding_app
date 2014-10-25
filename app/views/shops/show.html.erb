@@ -25,5 +25,15 @@
 
 <%= link_to 'Remove from favorites', favorite_shop_path(@shop), method: :delete %>
 
+
+
+<%= render 'comments/comment_form' %>
+
+	<div class="row">
+	  <ul class="recipes unstyle">
+	  	<div id="comment_item">
+	  		<%= render @comments, comments: @comment_items %>
+	  	</div>
+
 <% end %>
 	

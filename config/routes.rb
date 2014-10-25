@@ -8,7 +8,13 @@ WeddingApp::Application.routes.draw do
   resources :events
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
-   member do
+    resources :comments, only: [:create, :destroy] do
+      member do
+        put "like", to: "comments#upvote"
+        put "dislike", to: "comments#downvote"
+      end
+    end
+    member do
       put "rate", to: "shops#rate"
       put "unrate", to: "shops#unrate"
     end
