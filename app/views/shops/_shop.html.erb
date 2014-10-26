@@ -1,21 +1,21 @@
-<li id="<%= shop.id %>">
+
+  <div class="vendors .col-xs-4">
   <span class="user">
     <%= link_to shop.user.firstname, shop.user %>
   </span>
-  <span class="content">
-  <span class="content">Name: <%= link_to shop.name, shop %></span>
-  <span class="content">TYPE: <%= shop.shop_type %></span>
-  <span class="content">Description: <%= shop.description %></span>
-  <span class="content">Phone: <%= shop.phone %></span>
-  <span class="content">Address: <%= shop.address %></span>
-  <span class="content">Website: <%= shop.website %></span>
+  <br>Name: <%= link_to shop.name, shop %>
+  <br>TYPE: <%= shop.shop_type %>
+  <br>Description: <%= shop.description %>
+  <br>Phone: <%= shop.phone %>Address: <%= shop.address %>
+  <br>Website: <%= shop.website %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(shop.created_at) %> ago.
   </span>
   <% if (current_user==shop.user) %>
+    <%= link_to "edit", edit_shop_path(shop.id) %> | 
     <%= link_to "delete", shop, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: shop.name %>
   <% end %>
   </span>
-</li>
+</div>

@@ -3,7 +3,9 @@
   <p class="text-muted">Added by <strong> comment.author </strong> on
     <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
  
-  <blockquote>
     <p><%= comment.content %></p>
-  </blockquote>
+
+  <%= comment.get_likes.size %> Likes |
+  <%= link_to "Like", like_shop_comment_path(@shop, comment), method: :put %>          |
+  	<%= link_to "Unlike", unlike_shop_comment_path(@shop, comment), method: :put %>
 </div>

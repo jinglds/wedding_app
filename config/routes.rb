@@ -14,8 +14,8 @@ WeddingApp::Application.routes.draw do
   resources :shops do
     resources :comments, only: [:create, :destroy] do
       member do
-        put "like", to: "comments#upvote"
-        put "dislike", to: "comments#downvote"
+        put "like", to: "comments#like"
+        put "unlike", to: "comments#unlike"
       end
     end
     member do

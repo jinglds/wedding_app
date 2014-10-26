@@ -22,6 +22,20 @@ class ShopsController < ApplicationController
     end
   end
 
+  def edit
+    @shop = Shop.find(params[:id])
+  end
+
+  def update
+    @shop = Shop.find(params[:id])
+
+    if @shop.update_attributes(shop_params)
+      redirect_to @shop, notice: "Successfully updated shop"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @shop.destroy
     redirect_to root_url
