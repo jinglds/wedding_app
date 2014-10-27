@@ -3,6 +3,10 @@ WeddingApp::Application.routes.draw do
     resources :shops
   end
 
+
+  get 'tags/:tag', to: 'shops#index', as: :tag
+
+
   devise_for :users
   resources :users do
     member do

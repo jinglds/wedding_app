@@ -1,4 +1,7 @@
 class Shop < ActiveRecord::Base
+	acts_as_taggable # Alias for acts_as_taggable_on :tags
+  	# acts_as_taggable_on :skills, :interests
+  	
 	acts_as_votable
 	belongs_to :user
 	has_many :comments, dependent: :destroy

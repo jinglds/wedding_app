@@ -1,5 +1,6 @@
 <% provide(:title, @shop.name) %>
 
+<p>Tags: <%= raw @shop.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <% if signed_in? %>
 <h2><%= @shop.name %></h2>

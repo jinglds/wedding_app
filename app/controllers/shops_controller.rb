@@ -8,8 +8,16 @@ class ShopsController < ApplicationController
       @q = Shop.ransack(params[:q])
       @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
+
+      if params[:tag]
+        @shops = @shops.tagged_with(params[:tag])
+      end
+
     end
   end
+
+
+
   def new
     @shop = Shop.new
   end
@@ -82,7 +90,8 @@ class ShopsController < ApplicationController
                   :address,
                   :primary_contact,
                   :details,
-                  :email)
+                  :email,
+                  :tag_list)
   end
 
 

@@ -14,6 +14,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'devise'
 gem 'cancan'
 gem 'ransack'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
