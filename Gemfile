@@ -13,6 +13,7 @@ gem 'kaminari' # adds pagination to ActiveModels
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'devise'
 gem 'cancan'
+gem 'ransack'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

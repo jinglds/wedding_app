@@ -1,7 +1,8 @@
 <% provide(:title, 'Vendors') %>
 <h1>VENDORS</h1>
     <div class="span8">
+    	<%= render 'shared/search_form' %>
       <h3>Vendor Feed</h3>
-      <%= render 'shared/vendor_feed' %>
+      <%= render @shops %>
     </div>
   </div>

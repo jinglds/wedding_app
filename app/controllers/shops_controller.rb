@@ -3,11 +3,13 @@ class ShopsController < ApplicationController
   before_action :correct_user,   only: :destroy
   before_action :client_user, only: [:new, :create, :destroy]
 
-  # def index
-  #   if signed_in?
-  #     @vendor_feed_items = Shop.all.paginate(page: params[:page])
-  #   end
-  # end
+  def index
+    if signed_in?
+      @q = Shop.ransack(params[:q])
+      @type = Shop.select(:shop_type).map(&:shop_type).uniq
+      @shops = @q.result(distinct: true)
+    end
+  end
   def new
     @shop = Shop.new
   end
