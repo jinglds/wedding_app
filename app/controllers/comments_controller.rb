@@ -2,38 +2,38 @@ class CommentsController < ApplicationController
   # before_action :signed_in_user, only: [:create, :destroy]
 
 
-	def create
-	  	@comment = Comment.find(params[:comment_id])
-	    @comment = @comment.comments.build(comment_params)
-	    @comment.comment = @comment
-	    @comment.user = current_user
-	    @comment_items = @comment.comments
+  def create
+      @shop = Shop.find(params[:shop_id])
+      @comment = @shop.comments.build(comment_params)
+      @comment.shop = @shop
+      @comment.user = current_user
+      @comment_items = @shop.comments
 
-	      # respond_to do |format|
-	    if @comment.save
-	       flash[:success] = "Comment created!"
-	       redirect_to @comment
-	      
-	    else
-	    	flash[:success] = "Error!"
-	        render @comment
-	    end
-	end
+        # respond_to do |format|
+      if @comment.save
+         flash[:success] = "Comment created!"
+         redirect_to @shop
+        
+      else
+        flash[:success] = "Error!"
+          render @shop
+      end
+  end
 
-	def new
-	    @comment = @comment.comments.build(comment_params)
-	end
+  def new
+      @comment = @shop.comments.build(comment_params)
+  end
 
-	def destroy
-	    @comment= Comment.find(params[:comment_id])
-	    @comment = @comment.comments.find(params[:id])
-	    @comment.destroy
+  def destroy
+      @shop= Shop.find(params[:shop_id])
+      @comment = @shop.comments.find(params[:id])
+      @comment.destroy
 
 
 
-	    flash[:success] = "Comment deleted!"
-	       redirect_to @comment
-	end
+      flash[:success] = "Comment deleted!"
+         redirect_to @comment
+  end
 
 	def like
     @comment = Comment.find(params[:id])

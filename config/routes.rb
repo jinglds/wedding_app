@@ -13,7 +13,9 @@ WeddingApp::Application.routes.draw do
       put "approve"
     end
   end
-  resources :events
+  resources :events do
+    resources :expenses
+  end
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
     resources :comments, only: [:create, :destroy] do

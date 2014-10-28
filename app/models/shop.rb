@@ -24,6 +24,18 @@ class Shop < ActiveRecord::Base
 	    Comment.where("shop_id =?", id)
 	end
 
+	def decoration
+		Shop.where(shop_type: 'Decoration')
+	end
+
+	def photography
+		Shop.where(shop_type: 'Photography')
+	end
+
+	def self.music
+		Shop.where("shop_type = 'Music'")
+	end
+
 end
 
 

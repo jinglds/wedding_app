@@ -1,0 +1,22 @@
+<%= form_for(@expense) do |h| %>
+  <%= render 'shared/error_messages', object: h.object %>
+  <div class="field">
+    <%= h.label :title %>
+    <%= h.text_field :title %>
+
+    <%= h.label :expense_type %>
+    <%= h.text_field :expense_type %>
+
+    <%= h.label :amount %>
+    <%= h.text_field :amount %>
+
+    <%= h.label :receiver %>
+    <%= h.text_field :receiver %>
+
+    <%= h.label :status %>
+    <%= h.text_field :status %>
+     <%= h.text_field :groom_name %>
+  </div>
+  <%= h.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
+

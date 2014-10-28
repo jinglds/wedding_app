@@ -6,7 +6,9 @@ module Api
 
     end
 
-    
+    def music
+      @shops = Shop.all
+    end
 
 
 
