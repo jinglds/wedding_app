@@ -1,6 +1,8 @@
 WeddingApp::Application.routes.draw do
-  namespace :api do
+  namespace :api, defaults: {format: 'json'}  do
     resources :shops
+     devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
+    
   end
 
 

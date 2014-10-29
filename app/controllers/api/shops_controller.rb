@@ -1,5 +1,9 @@
 module Api
   class ShopsController < Api::BaseController
+    # before_filter :authenticate_user!
+    # acts_as_token_authenticatable
+     load_and_authorize_resource
+     before_filter :verify_token
 
     def index
       @shops = Shop.all

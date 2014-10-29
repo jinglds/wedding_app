@@ -15,6 +15,7 @@ gem 'devise'
 gem 'cancan'
 gem 'ransack'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'simple_token_authentication'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
