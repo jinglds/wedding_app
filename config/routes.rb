@@ -1,4 +1,6 @@
 WeddingApp::Application.routes.draw do
+
+  root  'static_pages#home'
   namespace :api, defaults: {format: 'json'}  do
     resources :shops
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
@@ -32,7 +34,8 @@ WeddingApp::Application.routes.draw do
       put "unrate", to: "shops#unrate"
     end
   end
-  root  'static_pages#home'
+  
+
   devise_scope :user do
     match "signin", to: "devise/sessions#new", via: 'get'
     match "signout", to: "devise/sessions#destroy", via: 'delete'
