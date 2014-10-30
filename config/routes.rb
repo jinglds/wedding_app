@@ -9,7 +9,8 @@ WeddingApp::Application.routes.draw do
   get 'tags/:tag', to: 'shops#index', as: :tag
 
 
-  devise_for :users
+  devise_for :users #, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+    
   resources :users do
     member do
       put "approve"
