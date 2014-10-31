@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031143251) do
+ActiveRecord::Schema.define(version: 20141031152736) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20141031143251) do
 
   add_index "favorites", ["favorited_id", "favorited_type"], name: "index_favorites_on_favorited_id_and_favorited_type"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+
+  create_table "photos", force: true do |t|
+    t.integer  "shop_id"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shops", force: true do |t|
     t.integer  "user_id"

@@ -1,3 +1,9 @@
 <h3><%= link_to expense.title, event_expense_path(expense.event, expense) %></h3>
 Amount: <%= expense.amount %><p>
 Status: <%= expense.status %>
+<% if (current_user==@event.user) %>
+  <%= link_to "edit", edit_event_expense_path(@event, @expense.id) %> | 
+    <%= link_to "delete", event_expense_path(@event, @expense.id), method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: @expense.title %>
+  <% end %>

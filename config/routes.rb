@@ -24,6 +24,7 @@ WeddingApp::Application.routes.draw do
   end
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
+    resources :photos
     resources :comments, only: [:create, :destroy] do
       member do
         put "like", to: "comments#like"

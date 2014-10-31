@@ -1,5 +1,10 @@
 <% provide(:title, @shop.name) %>
 
+
+
+<%= render @photos %>
+
+
 <p>Tags: <%= raw @shop.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <% if signed_in? %>

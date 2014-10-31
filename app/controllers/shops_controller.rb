@@ -20,11 +20,15 @@ class ShopsController < ApplicationController
 
   def new
     @shop = Shop.new
+    @photo = @shop.photos.build
   end
 
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
+      params[:photos]['image'].each do |a|
+      @photo = @shop.photos.create!(:image => a, :shop_id => @shop.id)
+       end
       flash[:success] = "Shop created!"
       redirect_to @shop
     else
@@ -57,6 +61,8 @@ class ShopsController < ApplicationController
     @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
     @comment = Comment.new 
     @comments =  @shop.comment_feed.paginate(page: params[:page])
+
+    @photos = @shop.photos.all
   end
 
   def rate
@@ -91,7 +97,8 @@ class ShopsController < ApplicationController
                   :primary_contact,
                   :details,
                   :email,
-                  :tag_list)
+                  :tag_list,
+                  photos_attributes: [:id, :shop_id, :image])
   end
 
 

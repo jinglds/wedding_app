@@ -4,6 +4,8 @@ class Shop < ActiveRecord::Base
   	# acts_as_token_authenticatable
   	
 	acts_as_votable
+	has_many :photos, dependent: :destroy
+	accepts_nested_attributes_for :photos
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	default_scope -> { order('created_at DESC') }
