@@ -1,0 +1,21 @@
+<%= form_for([@event, @expense]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :expense_type %>
+    <%= f.text_field :expense_type %>
+
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+
+    <%= f.label :receiver %>
+    <%= f.text_field :receiver %>
+
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
+

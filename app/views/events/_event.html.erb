@@ -4,6 +4,10 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(event.created_at) %> ago.
   </span>
+
+
+
+  
   <% if (current_user==event.user) %>
   <%= link_to "edit", edit_event_path(event.id) %> |
     <%= link_to "delete", event, method: :delete,

@@ -35,6 +35,7 @@ class EventsController < ApplicationController
     @user = current_user
     @event = Event.find(params[:id])
     @expenses = @event.expenses
+    @total = @event.expenses.sum(:amount)
   end
 
   def destroy

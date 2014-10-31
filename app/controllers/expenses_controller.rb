@@ -42,10 +42,23 @@ class ExpensesController < ApplicationController
       @expense = @event.expenses.find(params[:id])
       @expense.destroy
 
-
-
       flash[:success] = "Expense deleted!"
-         redirect_to @expense
+         redirect_to @event
+  end
+
+  def edit
+    @expense = Expense.find(params[:id])
+    @event = Event.find(params[:event_id])
+  end
+
+  def update
+    @expense = Expense.find(params[:id])
+
+    if @expense.update_attributes(expense_params)
+      redirect_to event_expense_path(@expense.event, @expense), notice: "Successfully updated event"
+    else
+      render :edit
+    end
   end
 
   private
