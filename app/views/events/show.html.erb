@@ -2,4 +2,6 @@
 <% if signed_in? %>
 <h2><%= @event.name %></h2>
 <%= link_to "New Expense", new_event_expense_path(@event) %>
+<h3>MY Expenses</h3>
+<%= render @expenses %>
 <% end %>

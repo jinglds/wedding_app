@@ -2,6 +2,16 @@ class ExpensesController < ApplicationController
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def index
+    @event = Event.find(params[:event_id])
+    @expenses = @event.expenses
+    
+  end
+
+  def show
+    @event = Event.find(params[:event_id])
+    @expense = Expense.find(params[:id])
+  end
 
  def create
       @event = Event.find(params[:event_id])
@@ -44,7 +54,8 @@ class ExpensesController < ApplicationController
   								:expense_type,
   								:receiver,
   								:title,
-  								:status)
+  								:status,
+                  :user_id)
 
 
   end

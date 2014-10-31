@@ -1,9 +1,6 @@
 module Api
   class ShopsController < Api::BaseController
     before_filter :verify_authenticity_token
-    # acts_as_token_authentication_handler_for Shop
-    # acts_as_token_authenticatable
-    # acts_as_token_authentication_handler_for User
      load_and_authorize_resource
      before_filter :verify_token
 
@@ -36,8 +33,9 @@ module Api
         token = request.headers['X-User-Token'].to_s
         
         # token_user = User.find_by_authentication_token(token)
+          return render :json=> {:error=>"Error with your email"} unless user
         
-          return render :json=> {:error=>"Error with your authentication headers"} unless (user.authentication_token==token)
+          return render :json=> {:error=>"Error with your authentication token"} unless (user.authentication_token==token)
         
       end
 
