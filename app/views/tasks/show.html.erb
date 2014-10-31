@@ -1,0 +1,10 @@
+<h3><%= @task.title %></h3>
+Note: <%= @task.note %><p>
+Status: <%= @task.status %>
+
+<% if (current_user==@event.user) %>
+  <%= link_to "edit", edit_event_task_path(@event, @task.id) %> | 
+    <%= link_to "delete", event_task_path(@event, @task.id), method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: @task.title %>
+  <% end %>

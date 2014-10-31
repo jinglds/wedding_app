@@ -20,6 +20,7 @@ WeddingApp::Application.routes.draw do
   end
   resources :events do
     resources :expenses
+    resources :tasks
   end
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do

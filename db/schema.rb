@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031074528) do
+ActiveRecord::Schema.define(version: 20141031143251) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(version: 20141031074528) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "tasks", force: true do |t|
+    t.integer  "event_id"
+    t.string   "title"
+    t.datetime "deadline"
+    t.boolean  "status"
+    t.string   "note"
+    t.datetime "reminder"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "firstname"
