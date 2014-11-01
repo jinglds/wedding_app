@@ -19,6 +19,7 @@ html {
 
 body {
   padding-top: 60px;
+  background-color: #FBF5EF;
 }
 
 section {
@@ -44,24 +45,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 5em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  font-family: Perpetua;
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 3.5em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: black;
+  font-family: Perpetua;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+
 }
 
 /* header */
@@ -292,4 +299,46 @@ aside {
 
 #home-block {
   background-image: url(image-path('flower_bg.jpg'));
+  background-size: cover;
+
+  &:hover {
+    -webkit-filter: sepia;
+  }
+}
+#home-block-title {
+  color:white;
+  font-size: 5em;
+  /*font-family: Perpetua;*/
+  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+}
+#home-block-subtitle{
+  color:white;
+  font-size: 2.8em;
+  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+
+}
+#home-block-subtitle2{
+  color:white;
+  font-size: 3em;
+  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+
+}
+#home-iphone{
+  font-family: 'Book Antiqua';
+  color:white;
+  /*font-family: 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;*/
+
+  font-size: 2.8em;
+}
+.transparent-s {
+  color: transparent;
+  font-size: 1em;
+}
+.transparent {
+  color: transparent;
+  font-size: 3em;
+}
+
+.grey {
+  background-color: #2E2E2E;
 }
