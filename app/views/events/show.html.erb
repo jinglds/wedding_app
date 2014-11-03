@@ -5,12 +5,14 @@
 <p>
     Current Total : <%= @total %>
 
-<%= link_to "New Expense", new_event_expense_path(@event) %>
-<%= link_to "New Task", new_event_task_path(@event) %>
+
+
 <h3>MY Expenses</h3>
+<p><%= link_to "New Expense", new_event_expense_path(@event) %>
 <%= render @expenses %>
 
 <h3>MY Tasks</h3>
+<p><%= link_to "New Task", new_event_task_path(@event) %>
 <%= render @tasks %>
 
 <% end %>

@@ -5,15 +5,17 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    if user.role? == :admin
+    if user.role == "admin"
             can :read, :all
             can :manage, :all
-        elseif user.role? == :client 
+        end
+    if user.role == "client"
             can :read, :all
             can :manage, Event do |event|
                 event.try(:owner) == user
             end
-        elseif user.role? == :enterprise
+        end
+    if user.role == "enterprise"
             can :read, :all
             can :manage, Shop do |shop|
                 shop.try(:owner) == user
@@ -21,12 +23,13 @@ class Ability
             can :manage, Event do |event|
                 event.try(:owner) == user
             end
-    end
+        end
+    
 
-    can [:index, :create], Shop
-    can [:show, :update, :destroy], Shop do |shop|
-      shop.user == user
-    end
+    # can [:index, :create], Shop
+    # can [:show, :update, :destroy], Shop do |shop|
+    #   shop.user == user
+    # end
 
     
     #

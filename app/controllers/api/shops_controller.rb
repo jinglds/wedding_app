@@ -1,8 +1,8 @@
 module Api
   class ShopsController < Api::BaseController
-    before_filter :verify_authenticity_token
-     load_and_authorize_resource
-     before_filter :verify_token, only: [:index]
+    # before_filter :verify_authenticity_token
+     # load_and_authorize_resource
+     before_filter :verify_token, only: [:index, :show, :rate]
 
     def index
       @shops = Shop.all
@@ -17,7 +17,26 @@ module Api
       @photos = @shop.photos.all
     end
 
+#     def rate
+#       @shop = Shop.find(params[:id])
+      
+#       @shop.liked_by current_user, :vote_weight => params[:rating][:weight])
+# # respond_to format.js
+#       # return render :json=> {:message => "shop rated successfully"}
+    
+#     end
 
+
+# # curl -i -H "Accept: application/json" -H "Content-type: application/json" -H "X-User-Email: jinpeko@gmail.com" -H "X-User-Token: d-zzPmoTtPS9GBYtxeoP" -X PUT http://localhost:3000/api/shops/205/rate -d '{"rating": {"weight": "3"}}' 
+
+
+
+#     def unrate
+#       @shop = Shop.find(params[:id])
+#       @shop.unliked_by current_user
+     
+
+#     end
 
     private
 

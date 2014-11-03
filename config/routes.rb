@@ -2,7 +2,12 @@ WeddingApp::Application.routes.draw do
 
   root  'static_pages#home'
   namespace :api, defaults: {format: 'json'}  do
-    resources :shops
+    resources :shops  do   
+      member do
+        put "rate", to: "shops#rate"
+        put "unrate", to: "shops#unrate"
+      end
+    end
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
   end
