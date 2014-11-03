@@ -2,15 +2,19 @@ module Api
   class ShopsController < Api::BaseController
     before_filter :verify_authenticity_token
      load_and_authorize_resource
-     before_filter :verify_token
+     before_filter :verify_token, only: [:index]
 
     def index
       @shops = Shop.all
 
     end
 
-    def music
-      @shops = Shop.all
+    def show
+      @shop = Shop.find(params[:id])
+      @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
+      # @comment = Comment.new 
+      @comments =  @shop.comment_feed
+      @photos = @shop.photos.all
     end
 
 
