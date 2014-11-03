@@ -1,14 +1,19 @@
+<div class="container">
 <% provide(:title, @shop.name) %>
 
+
+
+
+
+
+<% if signed_in? %>
+<h2><%= @shop.name %></h2>
 
 
 <%= render @photos %>
 
 
 <p>Tags: <%= raw @shop.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-
-<% if signed_in? %>
-<h2><%= @shop.name %></h2>
 <%= @shop.get_upvotes.size %> Likes
 <p><%= @shop.find_votes_for.sum(:vote_weight) %>Votes For
 
@@ -38,4 +43,4 @@
 
 
 <% end %>
-	
+	</div>

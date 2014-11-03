@@ -1,5 +1,4 @@
 
-		<div class="row transparent-s" > x</div>
 <div id="home-block">
 	<div class="container-fluid">
 		<div class="row transparent" > x</div>
@@ -31,48 +30,48 @@
 	</div>
 </div>
 
-<!-- 
-	<div class="container">
-	<% if signed_in? %>
-		 <div class="row">
-		    <aside class="span4">
-		      <section>
-		        <%= render 'shared/user_info' %>
-		      </section>
-		      
-		    </aside>
-		  </div>
-		
 
-	<% else %> -->
+
+
+<div class="gold">
+	<div class="container-fluid">
+		<div class="row transparent" > x</div>
+		<div class="row transparent-s" > x</div>
+		<div class="row center light-enhanced-text">
+		<%= link_to image_tag("logo_gold.png", :border => 0, :alt => "home image", :width => 280, :height => 100, :title => "The Wedding Enchanter"), root_path %>  
+			aims to provide you with all the help you need for your Wedding Celebration preparation!
+		</div>
+		<div class="row transparent-s" > x</div>
+		<div class="row transparent" > x</div>
+	</div>
+</div>
+
+
 <div class="container-fluid">
 	<div class="row transparent" > x</div>
 	<div class="row transparent" > x</div>
 	<div class="row transparent" > x</div>
-	<div class="row transparent" > x</div>
 	<div class="row center">
-
 	  	<h1>Allow us be your Fairy Godmother </h1>
 	  	<h2>for your <i>Happily Ever After Wedding Day!</i><h2>
-
-	  	
-	
 	</div>
+
+	
+	<div class="row transparent" > x</div>
 	<div class="row ">
-		<div id="home-about-step">
-			<div class="col-md-3 col-md-offset-1">1. Sign Up!</div>
-		 	<div class="col-md-3">2. Search for Vendors! </div>
-		 	<div class="col-md-3">3. Create and Manage your Events!</div>
-		 </div>
-		
-	</div>
+		<div class="center">
+			<ul class="list-inline enhanced-text">
+				<li><%= link_to image_tag("search_icon.png", :border => 0, :alt => "search icon"), '#' %> Easy Vendor search</li>
+				<li><%= link_to image_tag("event_icon.png", :border => 0, :alt => "event icon", :width =>48, :height =>48), '#' %>Event Management System</li>
+				<li><%= link_to image_tag("budget_icon.png", :border => 0, :alt => "budget icon", :width =>48, :height =>48), '#' %>Budget Management System</li>
+			</ul>
+		</div>
+	</div>	
 
-		<div class="row transparent" > x</div>
-		<div class="row transparent" > x</div>
-		<div class="row transparent" > x</div>
-		<div class="row transparent" > x</div>
-		<div class="row transparent" > x</div>
-	
+	<div class="row transparent" > x</div>
+	<div class="row transparent" > x</div>
+	<div class="row transparent" > x</div>
+	<div class="row transparent" > x</div>	
 </div>
 
 
@@ -81,26 +80,32 @@
 		<div class="row transparent" > x</div>
 		<div class="row transparent-s" > x</div>
 		<div class="row ">
-			<div id="home-iphone" class="col-md-10 col-md-offset-2">
-			Join us now and let the magic begins!   <%= link_to "Sign up now!",  signup_path, class: "btn btn-large btn-signup"  %>
-		</div>
+			<div class="col-md-10 col-md-offset-2 white-enhanced-text">
+			Join us now and let your story begins!   <%= link_to "Sign up now!",  signup_path, class: "btn btn-large btn-signup"  %>
 			</div>
 		</div>
 		<div class="row transparent-s" > x</div>
 		<div class="row transparent" > x</div>
 	</div>
+		
 </div>
 
 
 <div class="row transparent" > x</div>
-		<div class="row transparent" > x</div>
 
-<div class="grey">
+
+
+
+
+
+
+
+<div >
 	<div class="container-fluid">
 		<div class="row transparent" > x</div>
 		<div class="row transparent-s" > x</div>
 		<div class="row ">
-			<div id="home-iphone" class="col-md-6 col-md-offset-2">
+			<div class="col-md-6 col-md-offset-2 white-enhanced-text">
 			Find us on your IPHONE:
 			</div>
 		</div>
@@ -113,22 +118,8 @@
 
 
 
-
-
-<div class="container-fluid">
-	<div class="row transparent" > x</div>
-	<div class="row transparent" > x</div>
-	<div class="row center">
-
-		  <%= link_to "Sign up now!",  signup_path, class: "btn btn-large btn-primary" %>
-		</div>
-
-		<div>
-			<h3>Make you day even more special!</h3>
-			
-		</div>
-	<% end %>
-		<div>
+<div >
+	<div class="container">
 			<h2>DOWNLOAD OUR APP!</h2>
 			<div class="row impact">
 				<div class="col-md-6">
@@ -143,24 +134,26 @@
 			</div>
 		</div>
 	</div>
-	<p>d
-
-	</div>
-	</div>
+	
 
 
-<div class="container-fluid">
+<div class="container-fluid grey white-font">
 	<div class="row transparent" > x</div>
 	<div class="row transparent" > x</div>
 	<div class="row center">
-	  	<h1>Interested to be a fairy yourself?</h1>
-		<h2>It's as easy as a flick of a wand!</h2>
-	  	<h2>Sign up </h2>
-	
+	  	<h1>Interested to be an Enchanter yourself?</h1>
+		<h2 class="white-font">It's as easy as a flick of a wand!</h2>
+		<ul class="list-inline light-enhanced-text">
+			<li>Connect to your customers</li>
+			<li>Showcase your work in Galleries</li>
+			<li>Real feedback from customers</li>
+		</ul>
+		<div class="row transparent-s" > x</div>
+		<div class="white-enhanced-text">
+	  	<%= link_to "Sign up as a Vendor",  signup_path, class: "btn btn-large btn-signup enhanced-text"  %>
+	  	</div>
 	</div>
-	<div class="row">
-	 	<div class="col-md-3 col-md-offset-2">Search for vendors</div>
-	 	<div class="col-md-3">a</div>
-	 	<div class="col-md-3">a</div>
-	</div>
+	<div class="row transparent" > x</div>
+	<div class="row transparent" > x</div>
 </div>
+

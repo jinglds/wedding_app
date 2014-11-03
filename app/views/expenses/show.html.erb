@@ -1,4 +1,5 @@
-<h3><%= @expense.title %></h3>
+<div class="container">
+	<h3><%= @expense.title %></h3>
 Amount: <%= @expense.amount %><p>
 Status: <%= @expense.status %>
 
@@ -8,3 +9,4 @@ Status: <%= @expense.status %>
                                      data: { confirm: "You sure?" },
                                      title: @expense.title %>
   <% end %>
+  </div>

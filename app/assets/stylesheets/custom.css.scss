@@ -7,6 +7,7 @@ $grayMediumLight: #eaeaea;
 $grayLighter: #808080;
 $grayLight: #707772;
 $grey: #2E2E2E;
+$softGrey: #cdcdcd;
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -20,7 +21,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 80px;
   background-color: #FBF5EF;
 }
 
@@ -118,7 +119,7 @@ p {
 .navbar-custom {
     background-color: #000000;
     padding: 3px;
-    opacity: 0.93;
+    opacity: 0.92;
 }
   
 
@@ -133,22 +134,33 @@ p {
   }
 
 }
+#signup-btn{
+  color: gray;
+  border: 1px gray solid;
+  &:hover{
+    background-color: gray;
+  color: black;
+  }
+}
 
 /* footer */
 
 footer {
-  margin-top: 45px;
+  /*margin-top: 45px;*/
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  /*border-top: 1px solid #eaeaea;*/
   color: #999;
+  background-color: black;
 }
 
 footer a {
-  color: #555;
+  /*color: #555;*/
+  color: white;
 }
 
 footer a:hover {
-  color: #222;
+  /*color: #222;*/
+  color: $softGrey;
 }
 
 footer small {
@@ -231,11 +243,16 @@ aside {
 
 /* forms */
 
+.form-field{
+  font-family: 'Book Antiqua';
+  font-size: 1.1em;
+}
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+
 }
 
 input {
@@ -340,28 +357,36 @@ aside {
 
 }
 
-#home-about-step{
+.enhanced-text{
   font-size: 2em;
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
   font-family: 'Book Antiqua';
+  color: gray;
 }
-#home-iphone{
+.white-enhanced-text{
   font-family: 'Book Antiqua';
-  color:white;
+  color: $softGrey;
   /*font-family: 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;*/
 
   font-size: 2.8em;
 }
+.light-enhanced-text{
+  font-family: 'Book Antiqua';
+  color: $softGrey;
+  /*font-family: 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;*/
+
+  font-size: 2em;
+}
 
 .btn-signup{
-  background-color: $softGold;
-  color: white;
+  color: $softGold;
+  border: 1px $softGold solid;
+  background-color: $grey;
   font-size: 1em;
   margin-left: 30px;
   &:hover{
-    color: $softGold;
-    border: 1px $softGold solid;
-    background-color: $grey;
+    background-color: $softGold;
+  color: black;
   }
 }
 .transparent-s {
@@ -380,4 +405,16 @@ aside {
 .grey {
   background-color: $grey;
   /*background-color: black;  */
+}
+
+.black {
+  /*background-color: $grey;*/
+  background-color: black;  
+}
+
+.gold {
+  background-color: $darkGold;
+}
+.white-font{
+  color: white;
 }

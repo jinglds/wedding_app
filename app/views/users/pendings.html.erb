@@ -1,6 +1,8 @@
+<div class="container">
 <% provide(:title, "Approve Vendors") %>
 <% if @pending_users.any? %>
 <ol>
 <%= render partial: 'users/pending_user', collection: @pending_users %>
 </ol>
 <% end %>
+</div>

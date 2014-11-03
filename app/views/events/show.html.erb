@@ -1,3 +1,4 @@
+<div class="container">
 <% provide(:title, @event.name) %>
 <% if signed_in? %>
 <h2><%= @event.name %></h2>
@@ -13,3 +14,4 @@
 <%= render @tasks %>
 
 <% end %>
+</div>
