@@ -16,6 +16,7 @@ WeddingApp::Application.routes.draw do
   resources :users do
     member do
       put "approve"
+      put "set_admin"
     end
   end
   resources :events do

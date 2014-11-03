@@ -2,10 +2,18 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :user_signed_in?, only: [:index, :edit, :update, :destroy]
 	before_action :correct_user,   only: [:edit, :update]
-	before_action :admin_user,     only: [:destroy, :approve]
+	before_action :admin_user,     only: [:destroy, :approve, :set_admin]
 	def index
   		@users = User.paginate(page: params[:page])
 	end
+  def set_admin 
+      @user = User.find(params[:id])
+      if @user.update_attributes(:role => "admin")
+        redirect_to :users, notice: "User set as admin"
+      else
+          render :users
+      end
+  end
 	
 	def show
 	    @user = User.find(params[:id])
@@ -14,6 +22,7 @@ class UsersController < ApplicationController
 	    @ratings = (@user.get_up_voted Shop).paginate(page: params[:page])
 	    @favorites = @user.favorite_shops.order('shops.created_at')
 	end
+
 
 	def destroy
 	    User.find(params[:id]).destroy
