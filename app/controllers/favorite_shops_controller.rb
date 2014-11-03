@@ -17,6 +17,6 @@ class FavoriteShopsController < ApplicationController
   private
   
   def set_shop
-    @shop = Shop.find(params[:shop_id] || params[:id])
+    @shop = Shop.find(params[:shop_id])
   end
 end

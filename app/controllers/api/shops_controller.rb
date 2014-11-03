@@ -1,8 +1,9 @@
 module Api
   class ShopsController < Api::BaseController
     # before_filter :verify_authenticity_token
+    # skip_before_filter :verify_authenticity_token
      load_and_authorize_resource
-     before_filter :verify_token, only: [:index, :show, :rate]
+     before_filter :verify_token, only: [:index, :show]
 
     def index
       @shops = Shop.all
@@ -17,26 +18,42 @@ module Api
       # @photos = @shop.photos.all
     end
 
-#     def rate
-#       @shop = Shop.find(params[:id])
-      
-#       @shop.liked_by current_user, :vote_weight => params[:rating][:weight])
-# # respond_to format.js
-#       # return render :json=> {:message => "shop rated successfully"}
-    
-#     end
+    # def update
+    #   @shop = Shop.find(params[:id])
+
+    #   if @shop.update_attributes(shop_params)
+    #     return render :json=> {:success => true, :message => "shop rated successfully"}
+    #   else
+    #     return render :json=> {:success => false, :message => "shop rated unsuccessfully"}
+    #   end
+    # end
+
+    # def destroy
+    #   @shop.destroy
+    #   redirect_to root_url
+    # end
+
+    def rate
+      @shop = Shop.find(params[:id])
+      if (@shop.liked_by app_user, :vote_weight => (params[:rating][:weight]).to_s)
+# respond_to format.js
+        return render :json=> {:success => true, :message => "shop rated successfully"}
+      else
+        return render :json=> {:success => false, :message => "shop rated unsuccessfully"}
+      end
+    end
 
 
-# # curl -i -H "Accept: application/json" -H "Content-type: application/json" -H "X-User-Email: jinpeko@gmail.com" -H "X-User-Token: d-zzPmoTtPS9GBYtxeoP" -X PUT http://localhost:3000/api/shops/205/rate -d '{"rating": {"weight": "3"}}' 
 
+    def unrate
+      @shop = Shop.find(params[:id])
+      if (@shop.unliked_by app_user)
+        return render :json=> {:success => true, :message => "shop unrated successfully"}
+      else
+        return render :json=> {:success => false, :message => "shop unrated unsuccessfully"}
+      end
 
-
-#     def unrate
-#       @shop = Shop.find(params[:id])
-#       @shop.unliked_by current_user
-     
-
-#     end
+    end
 
     private
 
@@ -60,6 +77,11 @@ module Api
         
           return render :json=> {:error=>"Error with your authentication token"} unless (user.authentication_token==token)
         
+      end
+
+      def app_user
+        email =request.headers['X-User-Email'].to_s
+        user = User.find_by_email(email)
       end
 
 
