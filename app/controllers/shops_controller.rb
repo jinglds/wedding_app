@@ -94,7 +94,6 @@ class ShopsController < ApplicationController
                   :description,
                   :phone,
                   :address,
-                  :primary_contact,
                   :details,
                   :email,
                   :tag_list,

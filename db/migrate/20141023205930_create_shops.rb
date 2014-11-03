@@ -2,7 +2,6 @@ class CreateShops < ActiveRecord::Migration
   def change
     create_table :shops do |t|
       t.integer :user_id
-      t.string :type
       t.string :name
       t.string :price_range
       t.string :description

@@ -1,9 +1,19 @@
 module Api
   class ShopsController < Api::BaseController
     # before_filter :verify_authenticity_token
-    # skip_before_filter :verify_authenticity_token
-     load_and_authorize_resource
-     before_filter :verify_token, only: [:index, :show]
+    skip_before_filter :verify_authenticity_token, only: [:create]
+     # load_and_authorize_resource
+     before_filter :verify_token, only: [:index, :show, :create]
+     before_filter :correct_user, only: [:destroy, :update]
+
+    def create
+      @shop = app_user.shops.build(shop_params)
+      if @shop.save
+        return render :json=> {:success => true, :shop => @shop}
+      else
+        return render :json=> {:success => false, :message => "shop not created"}
+      end
+    end
 
     def index
       @shops = Shop.all
@@ -18,25 +28,25 @@ module Api
       # @photos = @shop.photos.all
     end
 
-    # def update
-    #   @shop = Shop.find(params[:id])
+    def update
+      if @shop.update_attributes(shop_params)
+        return render :json=> {:success => true, :shop => @shop}
+      else
+        return render :json=> {:success => false, :message => "error updating shop"}
+      end
+    end
 
-    #   if @shop.update_attributes(shop_params)
-    #     return render :json=> {:success => true, :message => "shop rated successfully"}
-    #   else
-    #     return render :json=> {:success => false, :message => "shop rated unsuccessfully"}
-    #   end
-    # end
-
-    # def destroy
-    #   @shop.destroy
-    #   redirect_to root_url
-    # end
+    def destroy
+      if @shop.destroy
+         return render :json=> {:success => true, :message => "shop deleted"}
+      else
+        return render :json=> {:success => false, :message => "error deleting shop"}
+      end
+    end
 
     def rate
       @shop = Shop.find(params[:id])
       if (@shop.liked_by app_user, :vote_weight => (params[:rating][:weight]).to_s)
-# respond_to format.js
         return render :json=> {:success => true, :message => "shop rated successfully"}
       else
         return render :json=> {:success => false, :message => "shop rated unsuccessfully"}
@@ -58,7 +68,15 @@ module Api
     private
 
       def shop_params
-        params.require(:shop).permit(:name)
+        params.require(:shop).permit(:shop_type,
+                  :name,
+                  :description,
+                  :phone,
+                  :address,
+                  :details,
+                  :email,
+                  :website,
+                  :price_range)
       end
 
       def query_params
@@ -84,6 +102,10 @@ module Api
         user = User.find_by_email(email)
       end
 
+      def correct_user
+        @shop = app_user.shops.find_by(id: params[:id])
+        return render :json=> {:error=>"You are not the shop owner"} if @shop.nil?
+      end
 
 
 
