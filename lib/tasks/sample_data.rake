@@ -63,12 +63,14 @@ namespace :db do
       address = Faker::Address.city
       details = ["auto", "non-auto"]
       email = "shop@abc.com"
-      shop_type = ["Attire", "Photography", "Music", "Invitation Card", "Decoration"]
+      category_list = ["attire, music", "photography, card", "music, decoration, photography", "decoration, attire", "photography"]
+      style_list =["vintage, beauty, classic", "luxury, classic", "vintage", "modern, pop", "modern, luxury", "beauty, modern", "pastel, light", "beauty, modern, creative"]
       description = Faker::Lorem.sentence(3)
       website = Faker::Internet.domain_name
       users.each { |user| user.shops.create!(
                                               name: name,
-                                              shop_type: shop_type.sample,
+                                              category_list: category_list.sample,
+                                              style_list: style_list.sample,
                                               email: email,
                                               phone: phone,
                                               address: address,

@@ -4,7 +4,10 @@
     <%= link_to shop.user.firstname, shop.user %>
   </span>
   <br>Name: <%= link_to shop.name, shop %>
-  <br>TYPE: <%= shop.shop_type %>
+<p>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
+<p>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
   <br>Description: <%= shop.description %>
   <br>Phone: <%= shop.phone %>Address: <%= shop.address %>
   <br>Website: <%= shop.website %>

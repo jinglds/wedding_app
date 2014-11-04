@@ -3,7 +3,7 @@ module Api
     # before_filter :verify_authenticity_token
     skip_before_filter :verify_authenticity_token, only: [:create]
      # load_and_authorize_resource
-     before_filter :verify_token, only: [:index, :show, :create]
+     # before_filter :verify_token, only: [:index, :show, :create]
      before_filter :correct_user, only: [:destroy, :update]
 
     def create
@@ -17,7 +17,15 @@ module Api
 
     def index
       @shops = Shop.all
-
+      # @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
+      # @categories = params[:tags][:categories]
+      # @styles = params[:tags][:styles]
+      # if @categories=="" && @styles ==""
+      #   @shops = Shop.all
+      # else
+      #   @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+      #   return render :json=> {:message => "No match found"} if @shops.blank?
+      # end
     end
 
     def show
@@ -68,8 +76,7 @@ module Api
     private
 
       def shop_params
-        params.require(:shop).permit(:shop_type,
-                  :name,
+        params.require(:shop).permit(:name,
                   :description,
                   :phone,
                   :address,
@@ -82,7 +89,7 @@ module Api
       def query_params
         # this assumes that an album belongs to an artist and has an :artist_id
         # allowing us to filter by this
-        params.permit(:user_id, :name)
+        params.permit(:category_list, :style_list)
       end
 
       def verify_token

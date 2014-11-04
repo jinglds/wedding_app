@@ -4,9 +4,6 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.label :shop_type %>
-    <%= f.text_field :shop_type %>
-
     <%= f.label :description %>
     <%= f.text_field :description %>
 
@@ -37,8 +34,12 @@
 
 
 
-  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-  <%= f.text_field :tag_list %>
+  <%= f.label :category_list, "Category Tags (separated by commas)" %><br />
+  <%= f.text_field :category_list %>
+
+
+  <%= f.label :style_list, "Style Tags (separated by commas)" %><br />
+  <%= f.text_field :style_list %>
 
 
   </div>

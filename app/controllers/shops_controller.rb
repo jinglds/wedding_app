@@ -6,7 +6,7 @@ class ShopsController < ApplicationController
   def index
     if signed_in?
       @q = Shop.ransack(params[:q])
-      @type = Shop.select(:shop_type).map(&:shop_type).uniq
+      # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
 
       if params[:tag]
@@ -26,9 +26,11 @@ class ShopsController < ApplicationController
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
-      params[:photos]['image'].each do |a|
-      @photo = @shop.photos.create!(:image => a, :shop_id => @shop.id)
-       end
+      if (params[:photos] != nil)
+        params[:photos]['image'].each do |a|
+          @photo = @shop.photos.create!(:image => a, :shop_id => @shop.id)
+        end
+      end
       flash[:success] = "Shop created!"
       redirect_to @shop
     else
@@ -63,6 +65,9 @@ class ShopsController < ApplicationController
     @comments =  @shop.comment_feed.paginate(page: params[:page])
 
     @photos = @shop.photos.all
+
+    @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
+   
   end
 
   def rate
@@ -97,6 +102,8 @@ class ShopsController < ApplicationController
                   :details,
                   :email,
                   :tag_list,
+                  :category_list,
+                  :style_list,
                   photos_attributes: [:id, :shop_id, :image])
   end
 
