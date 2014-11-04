@@ -1,27 +1,28 @@
+<div class="form-all container-fluid">
 <%= form_for(@shop) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-field" %>
 
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, class: "form-field" %>
 
     <%= f.label :address %>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class: "form-field" %>
 
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= f.label :phone, "Contact Number" %>
+    <%= f.text_field :phone, class: "form-field" %>
 
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: "form-field" %>
 
 
     <%= f.label :website %>
-    <%= f.text_field :website %>
+    <%= f.text_field :website, class: "form-field" %>
 
     <%= f.label :details %>
-     <%= f.text_field :details %>
+     <%= f.text_field :details, class: "form-field" %>
 
 
       <%= f.fields_for :photos do |p| %>
@@ -45,4 +46,6 @@
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
+
+</div>
 

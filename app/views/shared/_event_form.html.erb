@@ -1,3 +1,4 @@
+<div class=" form-all container-fluid">
 <%= form_for(@event) do |h| %>
   <%= render 'shared/error_messages', object: h.object %>
   <div class="field">
@@ -24,4 +25,4 @@
   </div>
   <%= h.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
-
+</div>

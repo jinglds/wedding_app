@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
-	# validates :firstname, presence: true
-	# validates :lastname, presence: true
+	validates :firstname, presence: true
+	validates :lastname, presence: true
 	# validates :address, presence: true
 	# validates :phone, presence: true
     after_create :assign_default_role
