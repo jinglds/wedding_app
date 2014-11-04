@@ -18,6 +18,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'simple_token_authentication'
 gem 'carrierwave'
 gem "rmagick"
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

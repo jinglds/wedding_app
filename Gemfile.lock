@@ -33,6 +33,7 @@ GEM
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap_form (2.2.0)
     builder (3.1.4)
     cancan (1.6.10)
     capybara (2.1.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 3.2.0.2)
+  bootstrap_form
   cancan
   capybara (= 2.1.0)
   carrierwave
