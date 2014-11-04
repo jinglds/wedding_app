@@ -1,19 +1,30 @@
 class ShopsController < ApplicationController
-  before_action :user_signed_in?, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_filter :store_location, only: [:create, :destroy, :index, :show, :edit]
+  before_filter :authenticate_user!, only: [:create, :destroy, :index, :show, :edit]
+  before_action :correct_user,   only: [:destroy, :edit]
   before_action :client_user, only: [:new, :create, :destroy]
+  # before_filter :set_search, only: :index
+
 
   def index
-    if signed_in?
+    # if user_signed_in?
+      # if params[:q]
       @q = Shop.ransack(params[:q])
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
+      
+      # else
+        # @shops = Shop.all
+      # end
 
       if params[:tag]
         @shops = @shops.tagged_with(params[:tag])
       end
+    # else
+    #   flash[:success] = "Shop created!"
+    #   redirect_to signin_path
+    # end
 
-    end
   end
 
 
@@ -115,6 +126,11 @@ class ShopsController < ApplicationController
 
   def client_user
       redirect_to root_url if (current_user.role =="client")
+  end
+
+
+  def set_search
+    @q=Shop.ransack(params[:q])
   end
 
 end

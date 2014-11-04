@@ -6,6 +6,7 @@ $softGold: #886A08;
 $grayMediumLight: #eaeaea;
 $grayLighter: #808080;
 $grayLight: #707772;
+$lightGrey: #D8D8D8;
 $grey: #2E2E2E;
 $softGrey: #cdcdcd;
 @mixin box_sizing {
@@ -22,7 +23,7 @@ html {
 
 body {
   padding-top: 80px;
-  background-color: #FBF5EF;
+  background-color: white;
 }
 
 section {
@@ -53,6 +54,7 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
   font-family: Perpetua;
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
 }
 
 h2 {
@@ -63,6 +65,7 @@ h2 {
   font-weight: normal;
   color: black;
   font-family: Perpetua;
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
 
 }
@@ -99,10 +102,11 @@ p {
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
   /*font-family: Perpetua;*/
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
   font-size: 1.5em;
-  color:  white;
+  color:  gray;
   /*border-radius: 2px;*/
   margin-top: 25px;
   margin-left:6px;
@@ -110,19 +114,27 @@ p {
 
     &:hover{
     color:    #5F4C0B;
-    background-color: black;
+    background-color: white;
     
   }
 }
 
 
 .navbar-custom {
-    background-color: #000000;
+    background-color: white;
     padding: 3px;
     opacity: 0.92;
+    border-bottom: 1px $lightGrey solid;
 }
   
+.left-nav{
+  
+}
 
+.right-nav{
+  padding-right: 30px;
+  font-size: 0.8em;
+}
 
 #signin-btn{
   border-style: solid ;
@@ -138,24 +150,24 @@ p {
   color: gray;
   border: 1px gray solid;
   &:hover{
-    background-color: gray;
-  color: black;
+    background-color: $softGold;
+  color: white;
   }
 }
 
 /* footer */
 
 footer {
-  /*margin-top: 45px;*/
+  margin-top: 45px;
   padding-top: 5px;
-  /*border-top: 1px solid #eaeaea;*/
+  border-top: 1px solid $lightGrey;
   color: #999;
-  background-color: black;
+  /*background-color: black;*/
 }
 
 footer a {
   /*color: #555;*/
-  color: white;
+  color: gray;
 }
 
 footer a:hover {
@@ -244,8 +256,12 @@ aside {
 /* forms */
 
 .form-field{
-  font-family: 'Book Antiqua';
+  /*font-family: 'Book Antiqua';*/
+
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   font-size: 1.1em;
+  padding:7px;
 }
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -331,7 +347,7 @@ aside {
 }
 
 #home-block {
-  background-image: url(image-path('flower_bg.jpg'));
+  background-image: url(image-path('flower-bg-light.jpg'));
   background-size: cover;
 
   &:hover {
@@ -421,4 +437,27 @@ aside {
 
 .inline-field{
   display: inline;
+}
+
+
+
+.user-form{
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  width: 270px;
+}
+
+
+
+.user-submit-btn{
+  width: 160px;
+  font-size: 1.2em;
+  background-color: $softGold;
+  text-transform: uppercase;
+  color: white;
+  &:hover{
+    background-color: $darkGold;
+    color: white;
+  }
 }

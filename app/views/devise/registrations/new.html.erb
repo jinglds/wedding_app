@@ -1,38 +1,31 @@
 <div class="container">
   <h2>Sign up</h2>
-
+<div class=" user-form container-fluid">
   <%= form_for(resource, as: resource_name, :class => "form-horizontal",  url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-    <div class="field form-field">
-      <%= f.label "I want to sign up as Vendor" %> <br />
-      <%= f.check_box :approval %> <br />
- 
+    <div class="field">
+      
 
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %></div>
-
-    <div><%= f.label :firstname %><br />
-        <%= f.text_field :firstname %></div>
-
-        <div><%= f.label :lastname %><br />
-        <%= f.text_field :lastname %></div>
-
-        <div><%= f.label :address%><br />
-        <%= f.text_field :address %></div>
-
-        <div><%= f.label :phone %>
-        <%= f.text_field :phone %></div>
-
-
-    <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+      
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname, placeholder:"Firstname", class: "form-field" %>
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname, placeholder:"Lastname", class: "form-field" %>
+      <%= f.label :email, "E-mail address" %>
+      <%= f.email_field :email, autofocus: true, placeholder:"Email", class: "form-field" %>
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off", placeholder:"Password (8 characters min)", class: "form-field" %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password", class: "form-field" %>
+      <%= f.check_box :approval %>
+      <%= f.label :approval, "I want to sign up as Vendor" %>
 
   </div>
-    <div><%= f.submit "Sign up" %></div>
+    <div class="center">
+      <%= f.submit "Sign up", class: "btn btn-default user-submit-btn" %> or <%= link_to "Log in", new_session_path(resource_name) %><br />
+    </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
+  
+  
+</div>
 </div>

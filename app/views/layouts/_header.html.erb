@@ -1,69 +1,79 @@
 <header class="navbar navbar-fixed-top navbar-custom" >
   <div class="navbar-inner" >
-    <div >
-      <i><%= link_to image_tag("logo.png", :border => 0, :alt => "home image", :width => 180, :height => 70, :title => "The Wedding Enchanter"), root_path, id: "logo" %></i>
-      <nav>
-        <ul class="nav navbar-left navbar-nav nav-header">
-          <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "About",    '#about' %></li>
-          <% if signed_in? %>
 
-            <li><%= link_to "Vendors",    shops_path %></li>
-              <li id="fat-menu" class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    My Events <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "New Event", new_event_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Manage Events", myevents_path %></li>
-                    <li>
+    <div class="left-nav">
+      <%= link_to image_tag("logo-tp.png", :border => 0, :alt => "home image", :width => 180, :height => 60, :title => "The Wedding Enchanter"), root_path, id: "logo" %>
+      <ul class="nav navbar-left navbar-nav nav-header">
+        <li><%= link_to "Home",    root_path %></li>
+        <li><%= link_to "About",    '#about' %></li>
+        <li><%= link_to "Information",    '#' %></li>
+
+        <li><%= link_to "Vendors",    shops_path %></li>
+        </ul> 
+      </div>
+
+      <div class="right-nav">
+        <% if signed_in? %>
+
         
-                      <%= link_to "Event Settings", "#" %>
-                    </li>
-                  </ul>
+
+
+          <ul class="nav navbar-right navbar-nav nav-header">
+
+
+
+
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My Events <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "New Event", new_event_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Manage Events", myevents_path %></li>
+              <li><%= link_to "Event Settings", "#" %></li>
+            </ul>
+          </li>
+
+          <% if enterprise?(current_user) || admin?(current_user) %>
+
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                My Shops <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "New Shop", new_shop_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Manage Shops", myshops_path %></li>
+                <li>
+                  <%= link_to "Shop Settings", "#" %>
                 </li>
+              </ul>
+            </li>
 
-              <% if enterprise?(current_user) || admin?(current_user) %>
+          <% end %>
 
-                <li id="fat-menu" class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    My Shops <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "New Shop", new_shop_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Manage Shops", myshops_path %></li>
-                    <li>
-                      <%= link_to "Shop Settings", "#" %>
-                    </li>
-                  </ul>
+
+          <% if admin?(current_user) %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Manage Users <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "All Users",    users_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Pending Users", pendings_path %></li>
+                <li>
+                  <%= link_to "Event Settings", "#" %>
                 </li>
+              </ul>
+            </li>
+          <% end %>
 
-              <% end %>
-
-
-              <% if admin?(current_user) %>
-                <li id="fat-menu" class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Manage Users <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "All Users",    users_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to "Pending Users", pendings_path %></li>
-                    <li>
-                      <%= link_to "Event Settings", "#" %>
-                    </li>
-                  </ul>
-                </li>
-              <% end %>
 
 
             <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Account <b class="caret"></b>
-                </a>
+                  Account <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Profile", current_user %></li>
                   <li><%= link_to "Settings", edit_account_path(current_user) %></li>
@@ -73,13 +83,16 @@
                   </li>
                 </ul>
             </li>
-          <% else %>
-            <li><%= link_to "Signin",    signin_path, id: "signin-btn" %></li>
-            <!-- <li><a>or</a></li> -->
-            <li><%= link_to "Signup",    signup_path, id: "signup-btn" %></li>
-          <% end %>
-        </ul>
-      </nav>
+          </ul>
+
+          
+        <% else %>
+          <ul class="nav navbar-right navbar-nav nav-header">
+              <li><%= link_to "Log In",    signin_path, id: "signin-btn" %></li>
+              <li><%= link_to "Register",    signup_path, id: "signup-btn" %></li>
+          </ul>
+        <% end %>
+    
+      </div>
     </div>
-  </div>
 </header>
