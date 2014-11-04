@@ -16,16 +16,16 @@ module Api
     end
 
     def index
-      @shops = Shop.all
+      # @shops = Shop.all
       # @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
-      # @categories = params[:tags][:categories]
-      # @styles = params[:tags][:styles]
-      # if @categories=="" && @styles ==""
-      #   @shops = Shop.all
-      # else
-      #   @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
-      #   return render :json=> {:message => "No match found"} if @shops.blank?
-      # end
+      @categories = params[:tags][:categories]
+      @styles = params[:tags][:styles]
+      if @categories=="" && @styles ==""
+        @shops = Shop.all
+      else
+        @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+        return render :json=> {:message => "No match found"} if @shops.blank?
+      end
     end
 
     def show
