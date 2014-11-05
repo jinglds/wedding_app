@@ -15,6 +15,7 @@ class TasksController < ApplicationController
 
  def create
       @event = Event.find(params[:event_id])
+      @event_day = @event.date
       @task = @event.tasks.build(task_params)
       @task.event = @event
       @task.user = current_user

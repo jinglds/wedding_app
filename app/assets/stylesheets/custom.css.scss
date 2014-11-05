@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
 $softGold: #886A08;
@@ -267,6 +268,10 @@ aside {
 
 }
 
+.event-form{
+
+}
+
 .user-form-container {
   border: 1px $softGold solid;
   padding-bottom: 40px;
@@ -465,7 +470,7 @@ aside {
 .user-form{
   /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
 
-  width: 280px;
+  width: 70%;
 }
 
 
@@ -545,4 +550,8 @@ border-radius: 5px;
   a{
     /*color: white;*/
   }
+}
+
+.fifty-percent {
+  width: 50%;
 }

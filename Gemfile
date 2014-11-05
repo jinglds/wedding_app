@@ -19,6 +19,8 @@ gem 'simple_token_authentication'
 gem 'carrierwave'
 gem "rmagick"
 gem 'bootstrap_form'
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

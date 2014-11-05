@@ -84,8 +84,8 @@ namespace :db do
     end
     2.times do
       name = Faker::Name.name
-      date =  Date.new(2015,4,20)
-      time = Time.new(2.15,4,20,20,00,00, "+07:00")
+      date =  DateTime.new(2014, 11, 30, 18, 30, 00)
+      time = DateTime.new(2014, 11, 30, 18, 30, 00)
       budget = 500000
       bride_name = Faker::Name.name
       groom_name = Faker::Name.name

@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_filter :store_location, only: [:create, :destroy, :index, :show, :edit]
-  before_filter :authenticate_user!, only: [:create, :destroy, :index, :show, :edit]
+  before_filter :authenticate_user!
   before_action :correct_user,   only: [:destroy, :edit]
   before_action :client_user, only: [:new, :create, :destroy]
   # before_filter :set_search, only: :index

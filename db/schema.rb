@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20141104102130) do
     t.integer  "user_id"
     t.string   "event_type"
     t.string   "name"
-    t.datetime "date"
-    t.datetime "time"
     t.float    "budget"
     t.string   "bride_name"
     t.string   "groom_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date"
+    t.datetime "time"
   end
 
   create_table "expenses", force: true do |t|
