@@ -61,11 +61,11 @@
           <div class="col-md-4">
             <%= f.text_field :role, disabled: "disabled", id: "role-field", class: "form-field pull-left" %>
           </div>
-          <div class="col-md-1 col-md-offset-1">
-            <%= f.check_box :approval %> 
+          <div class="col-md-7 col-md-offset-1">
+            <div class="checkbox">
+            <%= f.check_box :approval %>
+            <i><b><%= f.label :approval, "I want to sign up as Vendor" %></b></i>
           </div>
-          <div class="col-md-6">
-            <p><i><b>I want to sign up as Vendor </b></i>
           </div>
         </div>
       </div>

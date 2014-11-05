@@ -1,16 +1,67 @@
-<div class="container">
-  <% provide(:title, 'Vendors') %>
-<h1>VENDORS</h1>
-    <div class="span8">
-    	<%= render 'shared/search_form' %>
-    	<div id="tag_cloud">
-  <% tag_cloud Shop.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
+<% provide(:title, 'Vendors') %>
+
+
+
+  <h1>VENDORS</h1>
+
+<div class="filter-block">
+  <ul class="nav navbar-nav navbar-right filter-search filter-nav">
+    <li>Filter</li>
+    <li>
+      <div class="nav-form">
+      <%= search_form_for @q do |f| %> 
+        <%= f.search_field :name_cont %>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      
+      <% end %>
+      </div>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-left filter-category filter-nav">
+    <li>All</li>
+      <% @categories.each do |tag| %>
+      <li>
+        <%= link_to tag_path(tag.name) do %>
+          <%= tag.name %> (<%= tag.taggings_count %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 
 </div>
-      <h3>Vendor Feed</h3>
-      <%= render @shops %>
+
+<div class="container-fluid">
+
+  
+  <div class="span8">
+
+   
+    <% @categories.each do |tag| %>
+      <%= link_to tag_path(tag.name), class: "tag-item" do %>
+          <%= tag.name %> (<%= tag.taggings_count %>)
+        <% end %>
+    <% end %>
+
+<div class="transparent-s">x</div>
+    
+    <div id="tag_cloud">
+      <% tag_cloud Shop.category_counts, %w{s m l} do |tag, css_class| %>
+        <%= link_to tag_path(tag.name), class: css_class do %>
+          <%= tag.name %>(<%= tag.taggings_count %>)
+        <% end %>
+      <% end %>
     </div>
+<div class="transparent-s">x</div>
+
+    <div id="tag_cloud">
+      <% tag_cloud Shop.style_counts, %w{s m l} do |tag, css_class| %>
+        <%= link_to  tag_path(tag.name), class:  css_class  do %>
+          <%= tag.name %><span class="badge"><%= tag.taggings_count %></span>
+        <% end %>
+      <% end %>
+    </div>
+    <h3>Vendor Feed</h3>
+    <%= render @shops %>
   </div>
-  </div>
+
+</div>

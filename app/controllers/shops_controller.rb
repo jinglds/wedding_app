@@ -7,6 +7,15 @@ class ShopsController < ApplicationController
 
 
   def index
+
+    # if @categories=="" && @styles ==""
+    #     @shops = Shop.all
+    #   else
+    #     @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+    #     return render :json=> {:message => "No match found"} if @shops.blank?
+    #   end
+
+
     # if user_signed_in?
       # if params[:q]
       @q = Shop.ransack(params[:q])
@@ -18,12 +27,16 @@ class ShopsController < ApplicationController
       # end
 
       if params[:tag]
-        @shops = @shops.tagged_with(params[:tag])
+        @shops = Shop.tagged_with(params[:tag])
+      else
+        @shops = Shop.all
       end
+
     # else
     #   flash[:success] = "Shop created!"
     #   redirect_to signin_path
     # end
+    @categories = Shop.category_counts
 
   end
 

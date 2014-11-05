@@ -267,6 +267,15 @@ aside {
 
 }
 
+.user-form-container {
+  border: 1px $softGold solid;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  width: 25%;
+  margin-top: 20px;
+
+}
+
 .form-field{
   /*font-family: 'Book Antiqua';*/
 
@@ -474,5 +483,66 @@ aside {
     background-color: white; 
     color: $softGold;
     border: 1px $softGold solid;
+  }
+}
+
+.filter-block{
+  /*background-color: $lightGrey;*/
+  border-top: 1px $lightGrey solid;
+  border-bottom: 1px $lightGrey solid;
+  
+  height:41px;
+  padding-right: 20px;
+  
+  
+}
+.filter-nav > li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+
+}
+
+.filter-search   >li {
+  /*padding: 20px;*/
+  
+  border-left: 1px $lightGrey solid;
+  font-size: 1.5em;
+  color: $grayLight;
+}
+
+
+.filter-category >li {
+/*  padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;*/
+    color: $grayLight;
+    border-right: 1px $lightGrey solid;
+    font-size: 1.5em;
+    >a{
+    padding: 0;
+    color: $grayLight;
+    margin: 0;
+    text-transform: capitalize;
+    }
+
+}
+
+.tag-item {
+  background-color: $lightGrey;
+  margin: 5px;
+  color: black;
+  padding-top: 4px;
+  padding-bottom: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
+  -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+  a{
+    /*color: white;*/
   }
 }

@@ -3,25 +3,25 @@
   <%= render 'shared/error_messages', object: h.object %>
   <div class="field">
     <%= h.label :name %>
-    <%= h.text_field :name %>
+    <%= h.text_field :name, class: "form-field" %>
 
     <%= h.label :event_type %>
-    <%= h.text_field :event_type %>
+    <%= h.text_field :event_type, class: "form-field" %>
 
     <%= h.label :date %>
-    <%= h.text_field :date %>
+    <%= h.text_field :date, class: "form-field" %>
 
     <%= h.label :time %>
-    <%= h.text_field :time %>
+    <%= h.text_field :time, class: "form-field" %>
 
     <%= h.label :budget %>
-    <%= h.text_field :budget %>
+    <%= h.text_field :budget, class: "form-field" %>
 
     <%= h.label :bride_name %>
-    <%= h.text_field :bride_name %>
+    <%= h.text_field :bride_name, class: "form-field" %>
 
     <%= h.label :groom_name %>
-     <%= h.text_field :groom_name %>
+     <%= h.text_field :groom_name, class: "form-field" %>
   </div>
   <%= h.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
