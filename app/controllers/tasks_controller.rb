@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :user_signed_in?, only: [:create, :destroy]
+  before_filter :authenticate_user!
   before_action :correct_user,   only: :destroy
 
   def index
@@ -64,12 +64,16 @@ class TasksController < ApplicationController
 
   private
   def task_params
-  	params.require(:task).permit(:amount,
-  								:task_type,
-  								:receiver,
-  								:title,
-  								:status,
-                  :user_id)
+  	params.require(:task).permit(:title,
+                                :due_date,
+                                :rank,
+                                :parent_id,
+                                :completed,
+                                :redo,
+                                :reminder,
+                                :optional,
+                                :note,
+                                :tag_list)
 
 
   end

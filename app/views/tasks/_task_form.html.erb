@@ -1,19 +1,28 @@
 <div class=" form-all container-fluid col-md-4 col-md-offset-4">
- 
+
 <%= form_for([@event, @task]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-field" %>
 
-    <%= f.label :deadline %>
+    <%= f.label :due_date %>
     <div class="input-group date" id="datetimepicker5">
-      <%= f.text_field :deadline, class: 'form-control form-field' %>
+      <%= f.text_field :due_date, class: 'form-control form-field' %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 
-    <%= f.label :status %>
-    <%= f.text_field :status, class: "form-field" %>
+    <%= f.label :redo %>
+    <%= f.text_field :redo, class: "form-field" %>
+
+    <%= f.label :rank %>
+    <%= f.text_field :rank, class: "form-field" %>
+
+    <%= f.label :optional %>
+    <%= f.text_field :optional, class: "form-field" %>
+
+    <%= f.label :completed %>
+    <%= f.text_field :completed, class: "form-field" %>
 
     <%= f.label :note %>
     <%= f.text_area :note, class: "form-field" %>
@@ -24,6 +33,11 @@
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 
+    <%= f.label :importance %>
+    <%= f.text_field :importance, class: "form-field" %>
+
+  <%= f.label :tag_list, "Style Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list %>
 
 
   </div></br>

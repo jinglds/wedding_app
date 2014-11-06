@@ -1,7 +1,8 @@
 <div class="container">
 <h3><%= @task.title %></h3>
+
 Note: <%= @task.note %><p>
-Status: <%= @task.status %>
+Note: <%= @task.due_date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M") %><p>
 
 <% if (current_user==@event.user) %>
   <%= link_to "edit", edit_event_task_path(@event, @task.id) %> | 
