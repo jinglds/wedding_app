@@ -16,8 +16,16 @@
 <p><%= link_to "New Expense", new_event_expense_path(@event) %>
 <%= render @expenses %>
 
-<h3>MY Tasks</h3>
+<h3><%= link_to "MY Tasks", event_tasks_path(@event) %></h3>
+<b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
+
 <p><%= link_to "New Task", new_event_task_path(@event) %>
+
+<h2>Now</h2>
+<%= render @now %>
+<h2>Root</h2>
 <%= render @tasks %>
+<h2>Completed</h2>
+<%= render @completed %>
 
 </div>

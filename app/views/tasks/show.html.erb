@@ -2,7 +2,10 @@
 <h3><%= @task.title %></h3>
 
 Note: <%= @task.note %><p>
+
+rank: <%= @task.rank %><p>
 Note: <%= @task.due_date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M") %><p>
+Completed?: <%= @task.completed %><p>
 
 <% if (current_user==@event.user) %>
   <%= link_to "edit", edit_event_task_path(@event, @task.id) %> | 
@@ -11,3 +14,5 @@ Note: <%= @task.due_date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M") %><p>
                                      title: @task.title %>
   <% end %>
   </div>
+
+  <%= render @child %>

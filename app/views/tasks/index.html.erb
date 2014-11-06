@@ -1,0 +1,6 @@
+<% provide(:title, @event.name) %>
+
+<h2><%= @event.name %> 's Tasks</h2>
+
+
+<%= nested_tasks @tasks.arrange(:order => :created_at) %>

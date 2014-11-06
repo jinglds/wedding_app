@@ -27,8 +27,12 @@ WeddingApp::Application.routes.draw do
     end
   end
   resources :events do
+    post "default_tasks", to: "events#create_default_tasks"
     resources :expenses
-    resources :tasks
+    resources :tasks do
+      put "complete", to: "tasks#complete"
+      put "decomplete", to: "tasks#decomplete"
+    end
   end
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do

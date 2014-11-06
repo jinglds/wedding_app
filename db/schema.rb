@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106072307) do
+ActiveRecord::Schema.define(version: 20141106101322) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -109,17 +109,21 @@ ActiveRecord::Schema.define(version: 20141106072307) do
   create_table "tasks", force: true do |t|
     t.string   "title"
     t.datetime "due_date"
-    t.integer  "rank",       default: 0
-    t.integer  "parent_id",  default: 0
     t.boolean  "completed",  default: false
     t.boolean  "redo",       default: false
     t.datetime "reminder"
     t.boolean  "optional",   default: false
-    t.integer  "importance", default: 1
+    t.integer  "importance", default: 2
     t.string   "note"
     t.integer  "event_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+    t.integer  "rank",       default: 0
   end
+
+  add_index "tasks", ["ancestry"], name: "index_tasks_on_ancestry"
 
   create_table "users", force: true do |t|
     t.string   "firstname"

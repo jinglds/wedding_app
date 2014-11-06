@@ -11,15 +11,22 @@ class TasksController < ApplicationController
   def show
     @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
+    @child = @task.children 
   end
 
  def create
       @event = Event.find(params[:event_id])
-      @event_day = @event.date
+
+      if params[:task][:parent_id]!=""
+        @parent = Task.find(params[:task][:parent_id])
+        params[:task][:rank] = 1
+      end
+      # @event_day = @event.date
+      
       @task = @event.tasks.build(task_params)
       @task.event = @event
       @task.user = current_user
-      @task_items = @event.tasks
+      # @task_items = @event.tasks
 
         # respond_to do |format|
       if @task.save
@@ -34,8 +41,10 @@ class TasksController < ApplicationController
 
   def new
       @event = Event.find(params[:event_id])
-      @task = @event.tasks.new
-      @task = Task.new
+      # @task = @event.tasks.new
+      # @task = Task.new(:parent_id => params[:parent_id])
+
+      @task = @event.tasks.new(:parent_id => params[:parent_id])
   end
 
   def destroy
@@ -62,18 +71,71 @@ class TasksController < ApplicationController
     end
   end
 
+
+
+  def complete
+    @event = Event.find(params[:event_id])
+    @task = Task.find(params[:task_id])
+    
+    # @task.toggle!(:completed)
+    @task.update_attributes(:completed => true, :rank => (@task.rank)) 
+    # @task.descendants.each do |d|
+    #   d.update_attribute(:rank, (d.rank - 1))
+    # end
+    @task.children.each do |c|
+      c.update_attribute(:rank, 0)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.js
+    end
+  end
+
+  def decomplete
+    @event = Event.find(params[:event_id])
+    @task = Task.find(params[:task_id])
+    
+
+    @task.update_attribute(:completed,false)
+
+    if params[:cascade]=="true"
+      @task.descendants.each do |c|
+        c.update_attributes(:rank => 1, :completed => 'f')
+      end
+    # else
+    #   @task.descendants.each do |c|
+    #     c.update_attribute(:rank, 1)
+    #   end
+    end
+    # @task.toggle!(:completed)
+    # @task.descendants.each do |d|
+    #   d.update_attribute(:rank, (d.rank + 1))
+    # end
+
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.js
+    end
+    
+  end
+
+
+
+
   private
   def task_params
   	params.require(:task).permit(:title,
                                 :due_date,
-                                :rank,
-                                :parent_id,
                                 :completed,
                                 :redo,
                                 :reminder,
                                 :optional,
                                 :note,
-                                :tag_list)
+                                :tag_list,
+                                :parent_id,
+                                :importance,
+                                :rank)
 
 
   end

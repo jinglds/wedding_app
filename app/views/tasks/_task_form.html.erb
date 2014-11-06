@@ -3,6 +3,10 @@
 <%= form_for([@event, @task]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <%= f.hidden_field :parent_id %>
+
+    <%= f.hidden_field :rank, :value =>0 %>
+
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-field" %>
 
@@ -15,8 +19,6 @@
     <%= f.label :redo %>
     <%= f.text_field :redo, class: "form-field" %>
 
-    <%= f.label :rank %>
-    <%= f.text_field :rank, class: "form-field" %>
 
     <%= f.label :optional %>
     <%= f.text_field :optional, class: "form-field" %>

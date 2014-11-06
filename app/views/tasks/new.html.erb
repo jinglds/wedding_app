@@ -1,4 +1,5 @@
 <div class="container">
 <h2>New Task</h2>
+<%= render @task.parent if @task.parent %>
 <%= render 'tasks/task_form' %>
 </div>
