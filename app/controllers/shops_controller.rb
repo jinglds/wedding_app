@@ -6,6 +6,19 @@ class ShopsController < ApplicationController
   # before_filter :set_search, only: :index
 
 
+  def category
+    if params[:category]==""
+      @shops = Shop.all
+    else
+      @shops = Shop.tagged_with(params[:category])
+    end
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+    
+  end
+
   def index
 
     # if @categories=="" && @styles ==""
@@ -32,11 +45,9 @@ class ShopsController < ApplicationController
         @shops = Shop.all
       end
 
-    # else
-    #   flash[:success] = "Shop created!"
-    #   redirect_to signin_path
-    # end
+
     @categories = Shop.category_counts
+
 
   end
 

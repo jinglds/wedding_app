@@ -36,6 +36,7 @@ WeddingApp::Application.routes.draw do
   end
   resources :favorite_shops, only: [:create, :destroy]
   resources :shops do
+
     resources :photos
     resources :comments, only: [:create, :destroy] do
       member do
@@ -62,6 +63,8 @@ WeddingApp::Application.routes.draw do
   match '/myevents', to: 'users#events', via: 'get'
 
   match '/pendings', to: 'users#pendings', via: 'get'
+  match "category", to: "shops#category", via: 'get'
+  match "my_tasks", to: "events#my_tasks", via: 'get'
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

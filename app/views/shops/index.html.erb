@@ -5,6 +5,18 @@
   <h1>VENDORS</h1>
 
 <div class="filter-block">
+  <ul class="nav navbar-nav navbar-left filter-category filter-nav">
+    <li><%= link_to 'ALL', category_path(:category => ""), method: :get, remote: true %></li>
+    <li><%= link_to 'MUSIC', category_path(:category => "music"), method: :get, remote: true %></li>
+    <li><%= link_to 'PHOTO', category_path(:category => "photography"), method: :get, remote: true %></li>
+      <% @categories.each do |tag| %>
+      <li>
+        <%= link_to tag_path(tag.name) do %>
+          <%= tag.name %> (<%= tag.taggings_count %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
   <ul class="nav navbar-nav navbar-right filter-search filter-nav">
     <li>Filter</li>
     <li>
@@ -17,16 +29,7 @@
       </div>
     </li>
   </ul>
-  <ul class="nav navbar-nav navbar-left filter-category filter-nav">
-    <li>All</li>
-      <% @categories.each do |tag| %>
-      <li>
-        <%= link_to tag_path(tag.name) do %>
-          <%= tag.name %> (<%= tag.taggings_count %>)
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  
 
 </div>
 
@@ -61,7 +64,9 @@
       <% end %>
     </div>
     <h3>Vendor Feed</h3>
-    <%= render @shops %>
+    <div id="shop-feed">
+      <%= render @shops %>
+    </div>
   </div>
 
 </div>

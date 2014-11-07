@@ -5,6 +5,7 @@
 <h2><%= @event.name %></h2>
 
 
+
 <div id="calendar"></div>
 <script type="text/javascript"> 
 $(document).ready(function() {
@@ -17,12 +18,10 @@ $(document).ready(function() {
 
         alert('Clicked on: ' + date.format());
 
-        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
         alert('Current view: ' + view.name);
 
         // change the day's background color just for fun
-        $(this).css('background-color', 'red');
+        $(this).css('background-color', 'gray');
 
     }
     })
@@ -46,11 +45,20 @@ $(document).ready(function() {
 <p><%= link_to "New Expense", new_event_expense_path(@event) %>
 <%= render @expenses %>
 
-<h3><%= link_to "MY Tasks", event_tasks_path(@event) %></h3>
+<h2><%= link_to "MY Tasks", event_tasks_path(@event) %></h2>
+
+
+
 <b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
 
 <p><%= link_to "New Task", new_event_task_path(@event) %>
 
+<h2>Task by schedule</h2>
+<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
+<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
+<div id="my-task">
+<%= render @tasks %>
+</div>
 <h2>Now</h2>
 <%= render @now %>
 <h2>Completed</h2>

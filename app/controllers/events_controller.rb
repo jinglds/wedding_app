@@ -4,9 +4,26 @@ class EventsController < ApplicationController
   before_action :correct_user,   only: :destroy
   before_filter :set_date, only: [:create, :update]
 
+  def my_tasks
+    @event = Event.find(params[:event_id])
+    if params[:filter] =="week"
+      @tasks= @event.tasks.this_week
+    elsif params[:filter] == "month"
+      @tasks= @event.tasks.this_month
+    else
+      @tasks = @event.tasks
+    end
+
+    respond_to do |format|
+      format.html {render :nothing => true}
+      format.js
+    end
+    
+  end
 
   def new
     @event = Event.new
+    
   end
   
   def create
@@ -45,6 +62,10 @@ class EventsController < ApplicationController
     # @now = @event.tasks.now
     @now = @event.tasks.this_week
     # @days = @event.date + @event.time
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   def destroy
