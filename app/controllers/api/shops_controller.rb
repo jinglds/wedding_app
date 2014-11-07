@@ -22,10 +22,14 @@ module Api
       @styles = params[:tags][:styles]
       if @categories=="" && @styles ==""
         @shops = Shop.all
+      elsif @categories!="" && @styles ==""
+        @shops = Shop.tagged_with([@categories], :on => :categories, :any => true)
+      elsif @categories=="" && @styles !=""
+        @shops = Shop.tagged_with([@styles], :on => :styles, :any => true)
       else
         @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
-        return render :json=> {:message => "No match found"} if @shops.blank?
       end
+      return render :json=> {:message => "No match found"} if @shops.blank?
     end
 
     def show
