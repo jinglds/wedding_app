@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
 	# validates :phone, presence: true
     after_create :assign_default_role
 
+
+    scope :client_users, -> { where(role: 'client') }
+    scope :enterprise_users, -> { where(role: 'enterprise') }
+    scope :admin_users, -> { where(role: 'admin') }
+    
 	def assign_default_role
 		self.role = :client if self.role.blank?
 	end

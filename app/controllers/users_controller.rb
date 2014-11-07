@@ -4,7 +4,17 @@ class UsersController < ApplicationController
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:destroy, :approve, :set_admin]
 	def index
-  		@users = User.paginate(page: params[:page])
+    if params[:filter]=="enterprise"
+  		@users = User.enterprise_users
+    elsif params[:filter]=="client"
+      @users = User.client_users
+    else
+      @users = User.paginate(page: params[:page])
+    end
+    respond_to do |format|
+      format.html 
+      format.js
+    end
 	end
   def set_admin 
       @user = User.find(params[:id])

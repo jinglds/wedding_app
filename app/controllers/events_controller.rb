@@ -7,9 +7,9 @@ class EventsController < ApplicationController
   def my_tasks
     @event = Event.find(params[:event_id])
     if params[:filter] =="week"
-      @tasks= @event.tasks.this_week
+      @tasks= @event.tasks.this_week.order(due_date: :asc)
     elsif params[:filter] == "month"
-      @tasks= @event.tasks.this_month
+      @tasks= @event.tasks.this_month.order(due_date: :desc)
     else
       @tasks = @event.tasks
     end

@@ -54,6 +54,7 @@ $(document).ready(function() {
 <p><%= link_to "New Task", new_event_task_path(@event) %>
 
 <h2>Task by schedule</h2>
+<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
 <%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
 <%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
 <div id="my-task">

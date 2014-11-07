@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+ 
 	has_ancestry
 	acts_as_taggable
 	belongs_to :event
