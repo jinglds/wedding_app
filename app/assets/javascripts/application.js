@@ -18,3 +18,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require fullcalendar
+//= require jquery-ui
+//= require jquery-ui/effect.all

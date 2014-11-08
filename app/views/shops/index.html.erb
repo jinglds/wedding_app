@@ -7,7 +7,7 @@
 <div class="filter-block">
   <ul class="nav navbar-nav navbar-left filter-category filter-nav">
     <li><%= link_to 'ALL', category_path(:category => ""), method: :get, remote: true %></li>
-    <li><%= link_to 'MUSIC', category_path(:category => "music"), method: :get, remote: true %></li>
+    <li><%= link_to 'MUSIC', :category => "music" %></li>
     <li><%= link_to 'PHOTO', category_path(:category => "photography"), method: :get, remote: true %></li>
       <% @categories.each do |tag| %>
       <li>

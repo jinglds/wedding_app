@@ -1,0 +1,27 @@
+<div id="calendar">
+<h2 id="month">
+    <%= link_to "<", calendar_path(:event_id => @event.id, :month => (@date.beginning_of_month-1).strftime("%Y-%m-01"), :week => (@date.beginning_of_month-1).strftime("%Y-%m-%d")), method: :get, remote: true %>
+    <%= h @date.strftime("%B %Y") %>
+    <%= link_to ">", calendar_path(:event_id => @event.id,:month => (@date.end_of_month+1).strftime("%Y-%m-01"), :week => (@date.end_of_month+1).strftime("%Y-%m-%d")), method: :get, remote: true %>
+  </h2>
+
+<%= calendar_for(@tasks, :year => @date.year, :month => @date.month) do |t| %>
+   <%= t.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')%>
+  <%= t.day(:day_method => :due_date) do |date, tasks| %>
+    <% if tasks.nil? %>
+      <%= date.cweek %>
+    <% else %>
+      <%= date.day %>
+      <% if (tasks.count < 2) %>
+	      <% tasks.each do |task| %>
+	        <li><%= link_to h(task.title), event_tasks_path(task.id) %></li>
+	      <% end %>
+      <% else %>
+      	<li><%= link_to h(tasks.first.title), event_tasks_path(tasks.first.id) %></li>
+      	<li><%= link_to h(tasks.second.title), event_tasks_path(tasks.second.id) %></li>
+      	See <%= tasks.count %> more
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>

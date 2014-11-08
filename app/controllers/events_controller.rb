@@ -56,7 +56,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @expenses = @event.expenses
     @total = @event.expenses.sum(:amount)
-    @tasks = @event.tasks.roots
+    @tasks = @event.tasks
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
 
     @completed = @event.tasks.done
     # @now = @event.tasks.now

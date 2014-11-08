@@ -44,9 +44,9 @@ class ShopsController < ApplicationController
       else
         @shops = Shop.all
       end
+@categories = Shop.category_counts
 
-
-    @categories = Shop.category_counts
+    
 
 
   end

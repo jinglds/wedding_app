@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:destroy, :approve, :set_admin]
 	def index
+
+    # @q = Shop.ransack(params[:q])
+    #   # @type = Shop.select(:shop_type).map(&:shop_type).uniq
+    # @shops = @q.result(distinct: true)
+    
     if params[:filter]=="enterprise"
   		@users = User.enterprise_users
     elsif params[:filter]=="client"

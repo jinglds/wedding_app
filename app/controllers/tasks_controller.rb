@@ -5,6 +5,30 @@ class TasksController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
+
+    @today = @event.tasks.today(:date=>Date.today)
+    @done = @event.tasks.done
+    @now = @event.tasks.now
+
+    # @today = params[:date] ? Task.today(param[:date]) : nil
+    # @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)
+   
+  end
+  def calendar
+    @event = Event.find(params[:event_id])
+    @tasks = @event.tasks
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
+    respond_to do |format|
+      format.html {render :nothing => true}
+      format.js
+    end
+    
+  
     
   end
 
@@ -12,6 +36,10 @@ class TasksController < ApplicationController
     @event = Event.find(params[:event_id])
     @task = Task.find(params[:id])
     @child = @task.children 
+
+
+
+
   end
 
  def create
@@ -86,8 +114,12 @@ class TasksController < ApplicationController
       c.update_attribute(:rank, 0)
     end
 
+    @child = @task.children.first
+    @done = @event.tasks.done
+    @now = @event.tasks.now
+
     respond_to do |format|
-      format.html { redirect_to @event }
+      format.html { render :layout => false }
       format.js
     end
   end
@@ -112,9 +144,11 @@ class TasksController < ApplicationController
     # @task.descendants.each do |d|
     #   d.update_attribute(:rank, (d.rank + 1))
     # end
+ @done = @event.tasks.done
+    @now = @event.tasks.now
 
     respond_to do |format|
-      format.html { redirect_to @event }
+      format.html { render :layout => false }
       format.js
     end
     

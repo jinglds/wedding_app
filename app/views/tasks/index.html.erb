@@ -1,6 +1,38 @@
 <% provide(:title, @event.name) %>
-
+<div class="container">
 <h2><%= @event.name %> 's Tasks</h2>
+
+<% @week_dates.each do |d| %>
+  <%= d.day %><%= d.strftime("%A") %>
+<% end %>
+
+
+<h3>Today</h3>
+<div id "today-div">
+<%= render @today %>
+
+</div>
+
+<h3>This Week</h3>
+<div id="week-div">
+<%= render 'tasks/week' %>
+</div>
+
+<div id="calendar-div">
+<%= render 'shared/calendar' %>
+</div>
+
+<h2>now</h2>
+<div id="uncomplete-tasks-div">
+  <%= render @now %>
+</div>
+
+<h2>done</h2>
+<div id="complete-tasks-div">
+  <%= render @done %>
+</div>
 
 
 <%= nested_tasks @tasks.arrange(:order => :created_at) %>
+
+</div>

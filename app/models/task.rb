@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   	validates :event_id, presence: true
   	# validates :due_date, presence: true
 
+
   	scope :done, -> { where(completed: 't') }
   	scope :not_done, -> { where(completed: 'f') }
   	scope :now, -> { where(rank: '0', completed: 'f') }
@@ -18,8 +19,16 @@ class Task < ActiveRecord::Base
 
   	scope :this_week, -> { where("due_date >= ? AND due_date <= ?", 
   Time.zone.now.beginning_of_week, Time.zone.now.end_of_week)}
+
+    # scope :today, -> { where(:created_at => (date.beginning_of_day..date.end_of_day))}
   	# def self.this_month
   	# 	where("EXTRACT(MONTH FROM due_date)) = ?", Date.today.month )
   	# end
+
+    def self.today(params)
+      @date = params[:date]
+      @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)
+      
+    end
 
 end

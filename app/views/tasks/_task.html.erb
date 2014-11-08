@@ -1,10 +1,15 @@
+<div id="task-item<%= task.id %>">
 <h3><%= link_to task.title, event_task_path(task.event, task) %></h3>
 note: <%= task.note %><p>
 rank: <%= task.rank %><p>
 
+date: <%= task.due_date %><p>
+
 Completed?: <%= task.completed %><p>
 
-<%= link_to "Completed", event_task_complete_path(@event, task), method: :put %> |
-<%= link_to "DeCompleted::cascade:true", event_task_decomplete_path(@event, task, :cascade => true), method: :put %> |
-<%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put %> |
-<%= link_to "Add child task", new_event_task_path(@event, :parent_id => task) %> 
+<%= link_to "Completed", event_task_complete_path(@event, task), method: :put, remote: true %> |
+<%= link_to "DeCompleted::cascade:true", event_task_decomplete_path(@event, task, :cascade => true), method: :put, remote: true %> |
+<%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put, remote: true %> |
+<%= link_to "Add child task", new_event_task_path(@event, :parent_id => task) %>  | 
+<%= link_to "Edit task", edit_event_task_path(@event, task)%>  |
+</div>

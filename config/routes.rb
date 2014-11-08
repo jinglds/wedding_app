@@ -31,6 +31,8 @@ WeddingApp::Application.routes.draw do
     resources :expenses
     resources :tasks do
       put "complete", to: "tasks#complete"
+      
+  # match "complete", to: "tasks#complete", via: 'get'
       put "decomplete", to: "tasks#decomplete"
     end
   end
@@ -65,6 +67,7 @@ WeddingApp::Application.routes.draw do
   match '/pendings', to: 'users#pendings', via: 'get'
   match "category", to: "shops#category", via: 'get'
   match "my_tasks", to: "events#my_tasks", via: 'get'
+  match "calendar", to: "tasks#calendar", via: 'get'
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

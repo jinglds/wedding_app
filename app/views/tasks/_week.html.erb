@@ -1,0 +1,30 @@
+<%= link_to "<", calendar_path(:event_id => @event.id, :week => (@week_date - 1.week).strftime("%Y-%m-%d"), :month => (@week_date - 1.week).strftime("%Y-%m-%d")), method: :get, remote: true %>
+
+<%= link_to "Today", calendar_path(:event_id => @event.id, :week => (Date.today).strftime("%Y-%m-%d"), :month => (Date.today).strftime("%Y-%m-%d")), method: :get, remote: true %>
+
+<%= link_to ">", calendar_path(:event_id => @event.id, :week => (@week_date + 1.week).strftime("%Y-%m-%d"), :month => (@week_date + 1.week).strftime("%Y-%m-%d")), method: :get, remote: true %>
+<%= table_for(@week_dates, :html => { :id => 'weekly-table', :class => 'table table-striped'}) do |t| %>
+  <%= t.head do %>
+    <%= t.r do %>
+      <%= t.h('Date') %>
+      <%= t.h('Day') %>
+      <%= t.h('Task') %>
+    <% end %>
+  <% end %>
+  <%= t.body(:class => 'row') do |week_date| %>
+    <%= t.r do %>
+
+      <%= t.d(h(week_date.day.ordinalize)) %>
+    	<%= t.d(h(week_date.strftime("%B"))) %>
+      <%= t.d(h(week_date.strftime("%A"))) %>
+      <%= t.d(:class => 'abc') do %>
+      <ul>
+        <% @event.tasks.today(:date => week_date).each do |s| %>
+        <li class="weekly-task-item"><%= s.title %> | <%= s.completed %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
