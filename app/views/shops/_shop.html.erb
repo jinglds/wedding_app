@@ -1,19 +1,16 @@
+<div class="well">
+<div class="item">
+  <div class="vendors ">
+  <div class="center">
+   <%= image_tag shop.cover_url %>
+   </div>
+   <hr>
+  Name: <%= link_to shop.name, shop %>
+<br>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 
-  <div class="vendors .col-xs-4">
-  <span class="user">
-    <%= link_to shop.user.firstname, shop.user %>
-  </span>
-  <br>Name: <%= link_to shop.name, shop %>
-<p>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+<br>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 
-<p>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-
-  <br>Description: <%= shop.description %>
-  <br>Phone: <%= shop.phone %>Address: <%= shop.address %>
-  <br>Website: <%= shop.website %>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(shop.created_at) %> ago.
-  </span>
+  
   <% if (current_user==shop.user) %>
     <%= link_to "edit", edit_shop_path(shop.id) %> | 
     <%= link_to "delete", shop, method: :delete,
@@ -21,4 +18,6 @@
                                      title: shop.name %>
   <% end %>
   </span>
+</div>
+</div>
 </div>

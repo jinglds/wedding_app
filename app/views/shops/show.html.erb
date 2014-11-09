@@ -8,16 +8,29 @@
 
 <% if signed_in? %>
 <h2><%= @shop.name %></h2>
+sdfasd
+<%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
 
-
+ <div class="row">
 <%= render @photos %>
 
-
+</div>
+ <div class="row">
 <p>Tags: <%= raw @shop.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
 <p>Categories: <%= raw @shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-
-<%= render @related %>
+</div>
+ <div class="row">
+<h3>You might be interested in...</h3>
+<% if @recommendations.any? %>
+  <ol class="recipes">
+  	<ul >
+    	<%= render partial: 'shops/recommendation', collection: @recommendations %>
+	</ul>
+  </ol>
+  <% end %>
+</div>
+ <div class="row">
 <p>Style: <%= raw @shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 <%= @shop.get_upvotes.size %> Likes
 <p><%= @shop.find_votes_for.sum(:vote_weight) %>Votes For
@@ -40,8 +53,8 @@
 <%= link_to 'Add to favorites', favorite_shops_path(shop_id: @shop), method: :post %>
 
 <%= link_to 'Remove from favorites', favorite_shop_path(@shop), method: :delete %>
-
-
+</div>
+ <div class="row">
 
 <%= render 'comments/comment_form' %>
 <%= render @comments %>
@@ -49,3 +62,4 @@
 
 <% end %>
 	</div>
+  </div>

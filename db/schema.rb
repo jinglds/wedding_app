@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109153602) do
+ActiveRecord::Schema.define(version: 20141109193257) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141109153602) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "cover",      default: false
   end
 
   create_table "shop_tags", force: true do |t|
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 20141109153602) do
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cover_url",   default: "default.png"
   end
 
   add_index "shops", ["user_id", "created_at"], name: "index_shops_on_user_id_and_created_at"

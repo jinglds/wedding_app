@@ -1,5 +1,5 @@
 class AddChangeToTask < ActiveRecord::Migration
   def change
-  	change_column :tasks, :importance, :integern, default: "2"
+  	change_column :tasks, :importance, :integer, default: "2"
   end
 end

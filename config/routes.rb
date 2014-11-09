@@ -40,6 +40,8 @@ WeddingApp::Application.routes.draw do
   resources :shops do
 
     resources :photos
+      get "edit_gallery", to: "photos#edit_gallery"
+      put "set_cover", to: "photos#set_as_cover"
     resources :comments, only: [:create, :destroy] do
       member do
         put "like", to: "comments#like"

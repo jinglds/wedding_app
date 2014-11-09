@@ -1,0 +1,22 @@
+ 
+
+ 	<div class="col-md-10">
+<div class="thumbnail">
+   <%= image_tag recommendation.cover_url %>
+   
+ <div class="caption"> Name: <%= link_to recommendation.name, recommendation %>
+<br>Style: <%= raw recommendation.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+<br>Categories: <%= raw recommendation.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+  
+  <% if (current_user==recommendation.user) %>
+    <%= link_to "edit", edit_recommendation_path(recommendation.id) %> | 
+    <%= link_to "delete", recommendation, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: recommendation.name %>
+  <% end %>
+  </span>
+  </div>
+</div>
+  </div>

@@ -35,8 +35,10 @@ if !params.has_key?(:category) || params[:category]==""
   end
   @results = ActiveRecord::Base.connection.execute(sql)
 
-    @c=params[:category]
-    @s=params[:styles].to_s
+    @c = "All Vendors"
+    @s = ""
+    @c=params[:category].to_s if params[:category] && params[:category]!=""
+    @s=params[:styles].to_s if params[:styles]
     respond_to do |format|
       format.html 
       format.js
@@ -97,8 +99,9 @@ end
    # @styles = Shop.find(records_array)
    # @styles = ActsAsTaggableOn.find(:conditions=> "select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where tag_id=1) and context like 'styles')")
     @c = "All Vendors"
+    @s = ""
     @c=params[:category].to_s if params[:category]
-    @s=params[:styles]
+    @s=params[:styles].to_s if params[:styles]
 
 respond_to do |format|
       format.html 
@@ -157,7 +160,7 @@ respond_to do |format|
 
     @photos = @shop.photos.all
 
-    @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
+    @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
    
   end
 
@@ -192,10 +195,11 @@ respond_to do |format|
                   :address,
                   :details,
                   :email,
+                  :cover_url,
                   :tag_list,
                   :category_list,
                   :style_list,
-                  photos_attributes: [:id, :shop_id, :image])
+                  photos_attributes: [:id, :shop_id, :image, :cover])
   end
 
 

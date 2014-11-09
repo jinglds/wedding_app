@@ -1,8 +1,5 @@
 <% provide(:title, 'Vendors') %>
 
-<% (0..@results.length-1).each do |i|  %>
-    <%= @results[i]['name'] %><%=@results[i]['count'] %>
-<% end %>
 
   <h1>VENDORS</h1>
 
@@ -23,10 +20,17 @@
       <div class="transparent-s">x</div>
 
     
-      
+      <div class="container">
       <div id="shop-feed">
-      <h3><%= @c.capitalize %></h3>  
+      <h3><%= @c.capitalize %></h3> 
+      
+      <div class="row">
+    
         <%= render @shops %>
+        </div>
+        </div> 
+
+
       </div>
     </div>
   </div>

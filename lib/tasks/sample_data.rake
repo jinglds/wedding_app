@@ -63,6 +63,7 @@ namespace :db do
       address = Faker::Address.city
       details = ["auto", "non-auto"]
       email = "shop@abc.com"
+      cover_url = ["default-s.jpg", "default-w.jpg", "default-l.jpg", "default-m.jpg", "default.jpg"]
       category_list = ["attire, music", "photography, card", "music, decoration, photography", "decoration, attire", "photography"]
       style_list =["vintage, beauty, classic", "luxury, classic", "vintage", "modern, pop", "modern, luxury", "beauty, modern", "pastel, light", "beauty, modern, creative"]
       description = Faker::Lorem.sentence(3)
@@ -74,6 +75,7 @@ namespace :db do
                                               email: email,
                                               phone: phone,
                                               address: address,
+                                              cover_url: cover_url.sample,
                                               details: details.sample,
                                               website: website,
                                               description: description
