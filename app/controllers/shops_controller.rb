@@ -24,6 +24,16 @@ class ShopsController < ApplicationController
       end
 
       @styles = @shops.tag_counts_on(:styles)
+      @cat = params[:category]
+      @cat = @cat.intern
+sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@cat}')) and context like 'styles'))"
+
+if !params.has_key?(:category) || params[:category]==""
+  
+  sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
+
+  end
+  @results = ActiveRecord::Base.connection.execute(sql)
 
     @c=params[:category]
     @s=params[:styles].to_s
@@ -67,12 +77,20 @@ class ShopsController < ApplicationController
       # else
         # @shops = Shop.all
       # end
+
   @categories = Shop.category_counts
-@s = Shop.tagged_with("music")
-sql = "select name as name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where tag_id=1) and context like 'styles'))"
-results = ActiveRecord::Base.connection.execute(sql)
-@r = results.as_json
-   @styles = @r.to_json
+# @s = Shop.tagged_with("music")
+sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
+if params.has_key?(:category) 
+  @cat = params[:category]
+  sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@cat}')) and context like 'styles'))"
+end
+  @results = ActiveRecord::Base.connection.execute(sql)
+# @r = @results.as_json
+#    @styles = @r.to_json
+# @t = Tag.new 
+# @t = Tag.from_json(@styles)
+
    # @s = ShopTag.new
    # @s = @styles.map{|a| a.slice(:name, :count) }
    # @s.from_json(@styles)

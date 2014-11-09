@@ -1,5 +1,8 @@
 <% provide(:title, 'Vendors') %>
 
+<% (0..@results.length-1).each do |i|  %>
+    <%= @results[i]['name'] %><%=@results[i]['count'] %>
+<% end %>
 
   <h1>VENDORS</h1>
 
@@ -15,6 +18,7 @@
       <div id ="tag-div" class="center">
        <%= render 'shops/style_tags' %>
       </div>
+      
       <div class="transparent-s">x</div> 
       <div class="transparent-s">x</div>
 
