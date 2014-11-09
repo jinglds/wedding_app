@@ -1,1 +1,2 @@
-$("#shop-feed").html("<%= escape_javascript(render @shops ) %>")
+$("#shop-feed").html("<h3><%= @c.capitalize %></h3><%= escape_javascript(render @shops ) %>")
+$("#tag-div").html("<%= escape_javascript(render :partial =>'shops/style_tags', :collection => @styles, :locals => {:c => @c}) %>")

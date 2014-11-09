@@ -7,11 +7,26 @@ class ShopsController < ApplicationController
 
 
   def category
-    if params[:category]==""
-      @shops = Shop.all
-    else
-      @shops = Shop.tagged_with(params[:category])
-    end
+    
+    @categories = Shop.category_counts
+
+   
+    # @cat = params[:category] ? params[:category] : "all"
+      if params[:category]=="" && params[:styles] ==""
+        @shops = Shop.all
+      elsif params[:category]!="" && params[:styles] ==""
+        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
+        
+      elsif params[:category]=="" && params[:styles]!=""
+        @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
+      else
+        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
+      end
+
+      @styles = @shops.tag_counts_on(:styles)
+
+    @c=params[:category]
+    @s=params[:styles].to_s
     respond_to do |format|
       format.html 
       format.js
@@ -21,6 +36,7 @@ class ShopsController < ApplicationController
 
   def index
 
+
     # if @categories=="" && @styles ==""
     #     @shops = Shop.all
     #   else
@@ -28,26 +44,48 @@ class ShopsController < ApplicationController
     #     return render :json=> {:message => "No match found"} if @shops.blank?
     #   end
 
-
     # if user_signed_in?
       # if params[:q]
+      # @cat = params[:category]
+      if params[:category]=="" && params[:styles] ==""
+        @shops = Shop.all
+      elsif params[:category]!="" && params[:styles] ==""
+        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
+
+      elsif params[:category]=="" && params[:styles]!=""
+        @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
+      else
+        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
+      end
+
+    #     return render :json=> {:message => "No match found"} if @shops.blank?
+    #   end
       @q = Shop.ransack(params[:q])
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
-      
+
       # else
         # @shops = Shop.all
       # end
+  @categories = Shop.category_counts
+@s = Shop.tagged_with("music")
+sql = "select name as name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where tag_id=1) and context like 'styles'))"
+results = ActiveRecord::Base.connection.execute(sql)
+@r = results.as_json
+   @styles = @r.to_json
+   # @s = ShopTag.new
+   # @s = @styles.map{|a| a.slice(:name, :count) }
+   # @s.from_json(@styles)
+   # @styles = Shop.find(records_array)
+   # @styles = ActsAsTaggableOn.find(:conditions=> "select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where tag_id=1) and context like 'styles')")
+    @c = "All Vendors"
+    @c=params[:category].to_s if params[:category]
+    @s=params[:styles]
 
-      if params[:tag]
-        @shops = Shop.tagged_with(params[:tag])
-      else
-        @shops = Shop.all
-      end
-@categories = Shop.category_counts
-
-    
-
+respond_to do |format|
+      format.html 
+      format.js
+    end
 
   end
 

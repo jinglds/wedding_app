@@ -2,15 +2,10 @@
 <div class="container">
 <h2><%= @event.name %> 's Tasks</h2>
 
-<% @week_dates.each do |d| %>
-  <%= d.day %><%= d.strftime("%A") %>
-<% end %>
-
 
 <h3>Today</h3>
-<div id "today-div">
-<%= render @today %>
-
+<div id="today-div">
+<%= render 'tasks/today' %>
 </div>
 
 <h3>This Week</h3>

@@ -1,0 +1,7 @@
+<%= link_to "<", calendar_path(:event_id => @event.id, :day => (@date - 1.day), :week => (@date - 1.day).strftime("%Y-%m-%d"), :month => (@date - 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
+
+<%= @date.strftime("%Y-%m-%d") %>
+
+<%= link_to ">", calendar_path(:event_id => @event.id, :day => (@date + 1.day), :week => (@date + 1.day).strftime("%Y-%m-%d"), :month => (@date + 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
+
+<%= render @today %>

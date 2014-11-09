@@ -5,11 +5,12 @@ class TasksController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
     @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @date = params[:day] ? Date.parse(params[:day]) : Date.today
     @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
-
-    @today = @event.tasks.today(:date=>Date.today)
+    
+    @today = @event.tasks.today(:date=>@date)
     @done = @event.tasks.done
     @now = @event.tasks.now
 
@@ -20,9 +21,11 @@ class TasksController < ApplicationController
   def calendar
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
-    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
     @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @date = params[:day] ? Date.parse(params[:day]) : Date.today
     @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
+    @today = @event.tasks.today(:date=>@date)
     respond_to do |format|
       format.html {render :nothing => true}
       format.js

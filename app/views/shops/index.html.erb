@@ -1,72 +1,28 @@
 <% provide(:title, 'Vendors') %>
 
 
-
   <h1>VENDORS</h1>
 
-<div class="filter-block">
-  <ul class="nav navbar-nav navbar-left filter-category filter-nav">
-    <li><%= link_to 'ALL', category_path(:category => ""), method: :get, remote: true %></li>
-    <li><%= link_to 'MUSIC', :category => "music" %></li>
-    <li><%= link_to 'PHOTO', category_path(:category => "photography"), method: :get, remote: true %></li>
-      <% @categories.each do |tag| %>
-      <li>
-        <%= link_to tag_path(tag.name) do %>
-          <%= tag.name %> (<%= tag.taggings_count %>)
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <ul class="nav navbar-nav navbar-right filter-search filter-nav">
-    <li>Filter</li>
-    <li>
-      <div class="nav-form">
-      <%= search_form_for @q do |f| %> 
-        <%= f.search_field :name_cont %>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-      
-      <% end %>
-      </div>
-    </li>
-  </ul>
-  
-
-</div>
-
-<div class="container-fluid">
-
-  
-  <div class="span8">
-
-   
-    <% @categories.each do |tag| %>
-      <%= link_to tag_path(tag.name), class: "tag-item" do %>
-          <%= tag.name %> (<%= tag.taggings_count %>)
-        <% end %>
-    <% end %>
-
-<div class="transparent-s">x</div>
-    
-    <div id="tag_cloud">
-      <% tag_cloud Shop.category_counts, %w{s m l} do |tag, css_class| %>
-        <%= link_to tag_path(tag.name), class: css_class do %>
-          <%= tag.name %>(<%= tag.taggings_count %>)
-        <% end %>
-      <% end %>
-    </div>
-<div class="transparent-s">x</div>
-
-    <div id="tag_cloud">
-      <% tag_cloud Shop.style_counts, %w{s m l} do |tag, css_class| %>
-        <%= link_to  tag_path(tag.name), class:  css_class  do %>
-          <%= tag.name %><span class="badge"><%= tag.taggings_count %></span>
-        <% end %>
-      <% end %>
-    </div>
-    <h3>Vendor Feed</h3>
-    <div id="shop-feed">
-      <%= render @shops %>
-    </div>
+  <div class="filter-block" id="category-block">
+    <%= render 'shops/category_filter' %>
   </div>
 
-</div>
+  <div class="container-fluid">
+    <div class="span8">
+
+      <div class="transparent-s">x</div> 
+    
+      <div id ="tag-div" class="center">
+       <%= render 'shops/style_tags' %>
+      </div>
+      <div class="transparent-s">x</div> 
+      <div class="transparent-s">x</div>
+
+    
+      
+      <div id="shop-feed">
+      <h3><%= @c.capitalize %></h3>  
+        <%= render @shops %>
+      </div>
+    </div>
+  </div>

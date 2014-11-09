@@ -1,0 +1,27 @@
+$(function() {
+	var show = false;
+	$('#tag-div').hide();
+  	$('a#tag-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    if(show == true){
+	    	show = false
+	    	$('#tag-div').fadeOut();
+	    }
+		else{
+			show = true
+			$('#tag-div').fadeIn();
+		}
+	
+    });
+  	$('.category-btn').click(function (e) {
+	    $('li.active-category').removeClass('active-category')
+	    $(this).parent('li').addClass('active-category')
+
+    e.preventDefault();
+})
+
+
+
+});
+

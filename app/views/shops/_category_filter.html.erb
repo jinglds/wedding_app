@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav navbar-left filter-category filter-nav">
+    <li ><%= link_to 'ALL', category_path(:category => "", :styles => ""), class: "category-btn", method: :get, remote: true %></li>
+      <% @categories.each do |tag| %>
+      <li >
+        <%= link_to (tag.name), category_path(:category => tag.name, :styles => ""), class: "category-btn",method: :get, remote: true %>
+      </li>
+    <% end %>
+  </ul>
+  <ul class="nav navbar-nav navbar-right filter-search filter-nav">
+    <li><%= link_to "Filter", '#', id: "tag-btn" %></li>
+    <li>
+      <div class="nav-form">
+      <%= search_form_for @q do |f| %> 
+        <%= f.search_field :name_cont %>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      
+      <% end %>
+      </div>
+    </li>
+  </ul>
+
+  

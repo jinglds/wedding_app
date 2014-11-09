@@ -1,0 +1,13 @@
+<% @styles.each do |s| %>
+  	<%= link_to category_path(:category => @c, :styles => s.name), class: "tag-item", method: :get, remote: true do %>
+      <%= s.name %> (<%= s.taggings_count %>)
+    <% end %>
+<% end %>
+
+<% for column in @styles.content_columns %>
+    <%= column.name %>
+    <% end %>
+
+     <% results.each do |row|%>
+<% puts row[0]%>
+<% end %>

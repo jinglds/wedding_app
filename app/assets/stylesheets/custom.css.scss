@@ -1,16 +1,18 @@
-@import "fullcalendar";
+
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
 $softGold: #886A08;
-$grayMediumLight: #eaeaea;
-$grayLighter: #808080;
-$grayLight: #707772;
+$lighterGrey: #eaeaea;
 $lightGrey: #D8D8D8;
-$grey: #2E2E2E;
 $softGrey: #cdcdcd;
+$mediumGrey: #808080;
+$grey: #666666;
+
+$darkerGrey: #414141;
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -323,9 +325,9 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $mediumGrey;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $mediumGrey;
     }
   }
 }
@@ -345,7 +347,7 @@ input {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: $grey;
 }
 .gravatar {
   float: left;
@@ -424,7 +426,7 @@ aside {
 .btn-signup{
   color: $softGold;
   border: 1px $softGold solid;
-  background-color: $grey;
+  background-color: $darkerGrey;
   font-size: 1em;
   margin-left: 30px;
   &:hover{
@@ -446,12 +448,12 @@ aside {
 }
 
 .grey {
-  background-color: $grey;
+  background-color: $darkerGrey;
   /*background-color: black;  */
 }
 
 .black {
-  /*background-color: $grey;*/
+  /*background-color: $darkerGrey;*/
   background-color: black;  
 }
 
@@ -516,7 +518,7 @@ aside {
   
   border-left: 1px $lightGrey solid;
   font-size: 1.5em;
-  color: $grayLight;
+  color: $grey;
 }
 
 
@@ -525,12 +527,12 @@ aside {
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;*/
-    color: $grayLight;
+    color: $grey;
     border-right: 1px $lightGrey solid;
     font-size: 1.5em;
     >a{
     padding: 0;
-    color: $grayLight;
+    color: $grey;
     margin: 0;
     text-transform: capitalize;
     }
@@ -540,7 +542,7 @@ aside {
 .tag-item {
   background-color: $lightGrey;
   margin: 5px;
-  color: black;
+  color: $darkerGrey;
   padding-top: 4px;
   padding-bottom: 5px;
   padding-right: 7px;
@@ -627,4 +629,12 @@ border-radius: 5px;
 
 #weekly-table{
   
+}
+
+div.hidden { 
+  display: none; 
+}
+.active-category > a{
+  background-color: $lightGrey;
+  color: red;
 }
