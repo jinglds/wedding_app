@@ -36,6 +36,25 @@ module Api
       end
     end
 
+    def get_shop
+      if params[:tags].nil?
+        return render :json=> {:message => "No tag params"} 
+      else
+        @categories = params[:tags][:categories]
+        @styles = params[:tags][:styles]
+        if @categories=="" && @styles ==""
+          @shops = Shop.all
+        elsif @categories!="" && @styles ==""
+          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true)
+        elsif @categories=="" && @styles !=""
+          @shops = Shop.tagged_with([@styles], :on => :styles, :any => true)
+        else
+          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+        end
+        return render :json=> {:message => "No match found"} if @shops.blank?
+      end
+    end
+
     def show
       @shop = Shop.find(params[:id])
       @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
