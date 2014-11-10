@@ -21,8 +21,8 @@ module Api
       if !params[:tags]?
         return render :json=> {:message => "No tag params"} 
       else
-        @categories = params[:tags][:categories]? params[:tags][:categories] : ""
-        @styles = params[:tags][:styles]? params[:tags][:styles] : ""
+        @categories = params[:tags][:categories]
+        @styles = params[:tags][:styles]
         if @categories=="" && @styles ==""
           @shops = Shop.all
         elsif @categories!="" && @styles ==""
