@@ -5,6 +5,7 @@
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
 $softGold: #886A08;
+$evenLighterGrey: #fcfcfc;
 $lighterGrey: #eaeaea;
 $lightGrey: #D8D8D8;
 $softGrey: #cdcdcd;
@@ -27,7 +28,7 @@ html {
 
 body {
   padding-top: 80px;
-  background-color: white;
+  background-color: $evenLighterGrey;
 }
 
 section {
@@ -384,6 +385,15 @@ aside {
     -webkit-filter: sepia;
   }
 }
+
+#vendor-block {
+  background-image: url(image-path('vendor-header.png'));
+  background-size: cover;
+
+  &:hover {
+    -webkit-filter: sepia;
+  }
+}
 #home-block-title {
   color:white;
   font-size: 5em;
@@ -637,9 +647,9 @@ div.hidden {
 *, *:before, *:after {box-sizing:  border-box !important;}
 
 
-.row {
- -moz-column-width: 18em;
- -webkit-column-width: 18em;
+.pin-row {
+ -moz-column-width: 250px;
+ -webkit-column-width: 250px;
  -moz-column-gap: 1em;
  -webkit-column-gap:1em; 
   
@@ -647,16 +657,17 @@ div.hidden {
 
 .item {
  display: inline-block;
- padding:  .2rem;
+ /*padding:  .2rem;*/
  width:  100%; 
 }
 
-.well {
+.shop-block {
  position:relative;
  display: block;
  background-color: white;
  border:1px $lighterGrey solid;
-  border-radius: 2px;
-  padding: 1rem;
+  /*border-radius: 2px;*/
+  padding: 0;
+  margin-bottom: 2em;
 }
 

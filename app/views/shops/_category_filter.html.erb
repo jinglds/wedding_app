@@ -1,3 +1,4 @@
+<div class="container">
 <ul class="nav navbar-nav navbar-left filter-category filter-nav">
     <li ><%= link_to 'ALL', category_path(:category => "", :styles => ""), class: "category-btn", method: :get, remote: true %></li>
       <% @categories.each do |tag| %>
@@ -18,5 +19,4 @@
       </div>
     </li>
   </ul>
-
-  
+</div>

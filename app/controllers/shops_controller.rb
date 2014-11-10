@@ -79,6 +79,7 @@ if !params.has_key?(:category) || params[:category]==""
       # else
         # @shops = Shop.all
       # end
+      @shops = @shops.paginate(page: params[:page])
 
   @categories = Shop.category_counts
 # @s = Shop.tagged_with("music")
@@ -160,7 +161,7 @@ respond_to do |format|
 
     @photos = @shop.photos.all
 
-    @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
+    @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
    
   end
 

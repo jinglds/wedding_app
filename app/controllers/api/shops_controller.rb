@@ -18,18 +18,22 @@ module Api
     def index
       # @shops = Shop.all
       # @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
-      @categories = params[:tags][:categories]
-      @styles = params[:tags][:styles]
-      if @categories=="" && @styles ==""
-        @shops = Shop.all
-      elsif @categories!="" && @styles ==""
-        @shops = Shop.tagged_with([@categories], :on => :categories, :any => true)
-      elsif @categories=="" && @styles !=""
-        @shops = Shop.tagged_with([@styles], :on => :styles, :any => true)
+      if !params[:tags]?
+        return render :json=> {:message => "No tag params"} 
       else
-        @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+        @categories = params[:tags][:categories]? params[:tags][:categories] : ""
+        @styles = params[:tags][:styles]? params[:tags][:styles] : ""
+        if @categories=="" && @styles ==""
+          @shops = Shop.all
+        elsif @categories!="" && @styles ==""
+          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true)
+        elsif @categories=="" && @styles !=""
+          @shops = Shop.tagged_with([@styles], :on => :styles, :any => true)
+        else
+          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+        end
+        return render :json=> {:message => "No match found"} if @shops.blank?
       end
-      return render :json=> {:message => "No match found"} if @shops.blank?
     end
 
     def show
