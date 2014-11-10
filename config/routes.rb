@@ -11,6 +11,7 @@ WeddingApp::Application.routes.draw do
         put "unrate", to: "shops#unrate"
       end
     end
+    resources :events
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
   end

@@ -72,6 +72,7 @@ module Api
     end
 
     def destroy
+      @shop = Shop.find(params[:id])
       if @shop.destroy
          return render :json=> {:success => true, :message => "shop deleted"}
       else
