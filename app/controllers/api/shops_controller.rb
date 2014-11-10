@@ -18,7 +18,7 @@ module Api
     def index
       # @shops = Shop.all
       # @related = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
-      if !params[:tags]?
+      if params[:tags].nil?
         return render :json=> {:message => "No tag params"} 
       else
         @categories = params[:tags][:categories]
