@@ -2,7 +2,7 @@ WeddingApp::Application.routes.draw do
 
   root  'static_pages#home'
   namespace :api, defaults: {format: 'json'}  do
-    match "get_shop", to: "shops#get_shop", via: 'get'
+    match "get_shop", to: "shops#get_shop", via: 'post'
     resources :favorite_shops, only: [:create, :destroy, :unfav]
     resources :favorites, only: [:destroy]
     resources :shops  do   
