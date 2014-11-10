@@ -9,36 +9,37 @@ class ShopsController < ApplicationController
   def category
     
     @categories = Shop.category_counts
+      
 
-   
-    # @cat = params[:category] ? params[:category] : "all"
-      if params[:category]=="" && params[:styles] ==""
+    @c=params[:category].to_s if params[:category]
+    @s=params[:styles].to_s if params[:styles]
+    
+    sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+    
+    if params[:category]=="" && params[:styles] ==""
         @shops = Shop.all
+        @c = ""
+        @s = ""
+        @cat_title = "All"
+        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
       elsif params[:category]!="" && params[:styles] ==""
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
-        
-      elsif params[:category]=="" && params[:styles]!=""
+        @cat_title = params[:category]
+      elsif (params[:category]=="") && params[:styles]!=""
         @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
+        @c = ""
+        @cat_title = "All"
+        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
+
       else
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
+        @cat_title = params[:category]
       end
 
-      @styles = @shops.tag_counts_on(:styles)
-      @cat = params[:category]
-      @cat = @cat.intern
-sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@cat}')) and context like 'styles'))"
+    @styles = @shops.tag_counts_on(:styles)
+      
+    @results = ActiveRecord::Base.connection.execute(sql)
 
-if !params.has_key?(:category) || params[:category]==""
-  
-  sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-
-  end
-  @results = ActiveRecord::Base.connection.execute(sql)
-
-    @c = "All Vendors"
-    @s = ""
-    @c=params[:category].to_s if params[:category] && params[:category]!=""
-    @s=params[:styles].to_s if params[:styles]
     respond_to do |format|
       format.html 
       format.js
@@ -47,62 +48,50 @@ if !params.has_key?(:category) || params[:category]==""
   end
 
   def index
+    @categories = Shop.category_counts
+      
 
-
-    # if @categories=="" && @styles ==""
-    #     @shops = Shop.all
-    #   else
-    #     @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
-    #     return render :json=> {:message => "No match found"} if @shops.blank?
-    #   end
-
-    # if user_signed_in?
-      # if params[:q]
-      # @cat = params[:category]
-      if params[:category]=="" && params[:styles] ==""
+    @cat_title = "All Vendors"
+    @c=params[:category].to_s if params[:category] 
+    @s=params[:styles].to_s if params[:styles]
+    
+    sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+    
+    if params[:category]=="" && params[:styles] ==""
         @shops = Shop.all
+        @c = ""
+        @s = ""
+        @cat_title = "All"
+        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
       elsif params[:category]!="" && params[:styles] ==""
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
-
-      elsif params[:category]=="" && params[:styles]!=""
+        @cat_title = params[:category].to_s
+      elsif (params[:category]=="") && params[:styles]!=""
         @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
+        @c = ""
+        @cat_title = "All"
+        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
+
       else
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
+        @cat_title = params[:category].to_s
       end
 
-    #     return render :json=> {:message => "No match found"} if @shops.blank?
-    #   end
+      
+      @cat_title = @cat_title.intern
+    @results = ActiveRecord::Base.connection.execute(sql)
+
       @q = Shop.ransack(params[:q])
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
 
+    @styles = @shops.tag_counts_on(:styles)
       # else
         # @shops = Shop.all
       # end
       @shops = @shops.paginate(page: params[:page])
 
   @categories = Shop.category_counts
-# @s = Shop.tagged_with("music")
-sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-if params.has_key?(:category) 
-  @cat = params[:category]
-  sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@cat}')) and context like 'styles'))"
-end
-  @results = ActiveRecord::Base.connection.execute(sql)
-# @r = @results.as_json
-#    @styles = @r.to_json
-# @t = Tag.new 
-# @t = Tag.from_json(@styles)
-
-   # @s = ShopTag.new
-   # @s = @styles.map{|a| a.slice(:name, :count) }
-   # @s.from_json(@styles)
-   # @styles = Shop.find(records_array)
-   # @styles = ActsAsTaggableOn.find(:conditions=> "select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where tag_id=1) and context like 'styles')")
-    @c = "All Vendors"
-    @s = ""
-    @c=params[:category].to_s if params[:category]
-    @s=params[:styles].to_s if params[:styles]
 
 respond_to do |format|
       format.html 

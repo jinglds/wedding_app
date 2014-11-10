@@ -65,7 +65,7 @@ module Api
         # if resource.authentication_token.blank?
         #   resource.authentication_token = generate_authentication_token
         # end
-        render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email}
+        render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email, :role=>resource.role}
         return
       end
       invalid_login_attempt
