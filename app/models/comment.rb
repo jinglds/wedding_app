@@ -16,4 +16,7 @@ class Comment < ActiveRecord::Base
     where("id = :shop_id",
           shop_id: shop.id)
   end
+  # def self.user_shop_vote(params)
+  #   self.user.votes.find_by(:votable_id => params[:shop_id]).vote_weight
+  # end
 end

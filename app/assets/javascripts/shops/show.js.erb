@@ -1,0 +1,23 @@
+$(function() {
+	var show = false;
+	$('#request-div').hide();
+  	$('#request-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    if(show == true){
+	    	show = false
+	    	$('#request-div').fadeOut();
+	    }
+		else{
+			show = true
+			$('#request-div').fadeIn();
+		}
+	
+    });
+
+    
+
+
+
+});
+

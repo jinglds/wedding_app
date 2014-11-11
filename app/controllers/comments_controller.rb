@@ -3,24 +3,35 @@ class CommentsController < ApplicationController
 
 
   def create
+    @user = current_user
       @shop = Shop.find(params[:shop_id])
       @comment = @shop.comments.build(comment_params)
       @comment.shop = @shop
       @comment.user = current_user
       @comment_items = @shop.comments
-
+      @comment.save
+      @comments =  @shop.comment_feed
+      @new = Comment.new
         # respond_to do |format|
-      if @comment.save
-         flash[:success] = "Comment created!"
-         redirect_to @shop
+      # if @comment.save
+      #    flash[:success] = "Comment created!"
+      #    redirect_to @shop
         
-      else
-        flash[:success] = "Error!"
-          render @shop
-      end
+      # else
+      #   flash[:success] = "Error!"
+      #     render @shop
+      # end
+      respond_to do |format|
+      format.html {render nothing: true}
+      format.js
+    end
   end
 
   def new
+    @user = current_user
+    @shop = Shop.find(params[:shop_id])
+      @comments =  @shop.comment_feed.paginate(page: params[:page])
+
       @comment = @shop.comments.build(comment_params)
   end
 
@@ -36,24 +47,30 @@ class CommentsController < ApplicationController
   end
 
 	def like
+    @user = current_user
     @comment = Comment.find(params[:id])
+    comment = @comment
     @shop = @comment.shop
+    @comments =  @shop.comment_feed.paginate(page: params[:page])
+
     @comment.liked_by current_user
     respond_to do |format|
-      format.html { redirect_to @shop }
+      format.html {render layout: false}
       format.js
     end
   end
 
 
   def unlike
+    @user = current_user
     @comment = Comment.find(params[:id])
     @shop = @comment.shop
+    @comments =  @shop.comment_feed.paginate(page: params[:page])
     @comment.unliked_by current_user
    
 
     respond_to do |format|
-      format.html { redirect_to @shop }
+      format.html {render layout: false}
       format.js
     end
   end
@@ -63,7 +80,8 @@ class CommentsController < ApplicationController
 	    def comment_params
 	      params.require(:comment).permit(:content,
 	      									:user_id,
-	      									:comment_id)
+	      									:comment_id,
+                          :title)
 	    end
 
 	    # def correct_user

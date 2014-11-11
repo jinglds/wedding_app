@@ -1,11 +1,33 @@
-<div class="well">
-  <h2><%= comment.title %></h2>
-  <p class="text-muted">Added by <strong> comment.author </strong> on
-    <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
- 
-    <p><%= comment.content %></p>
-
-  <%= comment.get_likes.size %> Likes |
-  <%= link_to "Like", like_shop_comment_path(@shop, comment), method: :put %>          |
-  	<%= link_to "Unlike", unlike_shop_comment_path(@shop, comment), method: :put %>
+<div class="comment-item">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <b><%= comment.user.firstname %> <%= comment.user.lastname %></b>
+      <% if comment.title!="" %>
+        <i>"<%= comment.title %>"</i>
+      <% end %>
+      <br>
+      <div class="shop-comment-rating-<%= comment.user.id %>">
+        <%= render 'shops/rating_form', :locals => {:user => comment.user, :shop => @shop, :h => 10, :w=> 10} %>
+      </div>
+      <p><%= comment.content %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <span id="like-comment-div" >
+      	<%= comment.get_likes.size %> <%= image_tag('like_icon_grey.png', :border => 0,  :alt => 'like icon') %> | 
+      	<% if @user.voted_up_on? comment %>
+          	<%= link_to "Unlike", unlike_shop_comment_path(@shop, comment), method: :put, id: "unlike-btn", remote: true %> 
+          	<%= link_to "Like", like_shop_comment_path(@shop, comment), id: "like-btn", class: "hidden", method: :put, remote: true %>
+       	<% else %>
+        		<%= link_to "Like", like_shop_comment_path(@shop, comment), id: "like-btn", class: "", method: :put, remote: true %> 
+        		<%= link_to "Unlike", unlike_shop_comment_path(@shop, comment), method: :put, id: "unlike-btn", class: "hidden", remote: true %>  
+        	<% end %>
+      </span>
+      <span >
+      | Posted <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
+    </div>
+  </div>
 </div>

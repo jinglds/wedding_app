@@ -1,5 +1,6 @@
+<% provide(:title, "My Shops") %>
 <div class="container">
-	<% provide(:title, "My Shops") %>
-<h2>My Shops</h2>
-<%= render @shops %>
+
+	<h2>My Shops</h2>
+	<%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
 </div>

@@ -1,22 +1,31 @@
+<%= link_to shop do %> 
 <div class="shop-block">
-<div class="item">
-  <div class="vendors ">
-  <div class="center">
-   <%= image_tag shop.cover_url %>
-   </div>
-  Name: <%= link_to shop.name, shop %>
-<br>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-
-<br>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-
   
-  <% if (current_user==shop.user) %>
-    <%= link_to "edit", edit_shop_path(shop.id) %> | 
-    <%= link_to "delete", shop, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: shop.name %>
-  <% end %>
-  </span>
+  <div class="item">
+   
+    <div class="vendors ">
+    <div class="center">
+      <%= image_tag shop.cover_url %>
+    </div>
+
+    <div class="shop-block-content">
+      <span class="shop-block-title"><%= link_to shop.name, shop %></span>
+      <br>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+      <br>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+      
+      <% if (current_user==shop.user) %>
+        <%= link_to "edit", edit_shop_path(shop.id) %> | 
+        <%= link_to "delete", shop, method: :delete,
+                                         data: { confirm: "You sure?" },
+                                         title: shop.name %>
+      <% end %>
+      </div>
+
+    </div>
+
+  </div>
+  
 </div>
-</div>
-</div>
+<% end %>

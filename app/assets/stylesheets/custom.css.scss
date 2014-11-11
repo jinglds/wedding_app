@@ -58,7 +58,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
-  font-family: Perpetua;
+  /*font-family: Perpetua;*/
   font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
 }
 
@@ -505,6 +505,24 @@ aside {
   }
 }
 
+.all-btn{
+
+  background-color: white; 
+  color: $softGold;
+  border: 1px $softGold solid;
+  font-size: 1.2em; 
+  width: 160px;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0;
+  &:hover{
+    
+  background-color: $darkGold;
+  color: white;
+  }
+}
+
 .filter-block{
   /*background-color: $lightGrey;*/
   border-top: 1px $lightGrey solid;
@@ -518,7 +536,8 @@ aside {
 .filter-nav > li {
 
   font-size: 1.3em;
-  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+   font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
   >a {
 
   color: $grey;
@@ -669,5 +688,42 @@ div.hidden {
   /*border-radius: 2px;*/
   padding: 0;
   margin-bottom: 2em;
+ font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
 }
 
+.shop-block-content{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+.shop-block-title{
+  font-size: 1.3em;
+  font-style: bold;
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+
+}
+
+.shop-contact-block{
+  font-size: 1.1em;
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+}
+.shop-title{
+    font-size: 2.3em;
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+
+}
+.comment-item{
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+
+  /*padding: 12px;*/
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 10px;
+  border: 1px $softGold solid;
+  /*min-height: 10rem;*/
+  color: $grey;
+}

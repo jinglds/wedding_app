@@ -25,7 +25,8 @@ class ShopsController < ApplicationController
       elsif params[:category]!="" && params[:styles] ==""
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
         @cat_title = params[:category]
-      elsif (params[:category]=="") && params[:styles]!=""
+        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+      elsif (params[:category]=="" || params[:category].nil?) && params[:styles]!=""
         @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
         @c = ""
         @cat_title = "All"
@@ -34,6 +35,8 @@ class ShopsController < ApplicationController
       else
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
         @cat_title = params[:category]
+        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+    
       end
 
     @styles = @shops.tag_counts_on(:styles)
@@ -52,12 +55,12 @@ class ShopsController < ApplicationController
       
 
     @cat_title = "All Vendors"
-    @c=params[:category].to_s if params[:category] 
+    @c=""
     @s=params[:styles].to_s if params[:styles]
     
-    sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
-    
-    if params[:category]=="" && params[:styles] ==""
+    sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
+      
+    if (params[:category]=="" || params[:category].nil?) && (params[:styles] =="" || params[:styles].nil?) 
         @shops = Shop.all
         @c = ""
         @s = ""
@@ -66,7 +69,9 @@ class ShopsController < ApplicationController
       elsif params[:category]!="" && params[:styles] ==""
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
         @cat_title = params[:category].to_s
-      elsif (params[:category]=="") && params[:styles]!=""
+        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+    
+      elsif (params[:category]=="" || params[:category].nil?) && params[:styles]!=""
         @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
         @c = ""
         @cat_title = "All"
@@ -75,11 +80,13 @@ class ShopsController < ApplicationController
       else
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
         @cat_title = params[:category].to_s
+        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
+    
       end
 
       
       @cat_title = @cat_title.intern
-    @results = ActiveRecord::Base.connection.execute(sql)
+      @results = ActiveRecord::Base.connection.execute(sql)
 
       @q = Shop.ransack(params[:q])
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
@@ -145,22 +152,31 @@ respond_to do |format|
     @user = current_user
     @shop = Shop.find(params[:id])
     @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
+    if @ratings.nan?
+      @ratings = 0.0
+    end
     @comment = Comment.new 
     @comments =  @shop.comment_feed.paginate(page: params[:page])
 
     @photos = @shop.photos.all
 
     @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
-   
+    @favorite = @user.favorites.find_by(favorited_id: @shop.id)
   end
 
   def rate
+    @user = current_user
     @shop = Shop.find(params[:id])
     
     @shop.liked_by current_user, :vote_weight => params[:rating]
 
+    @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
+    if @ratings.nan?
+      @ratings = 0.0
+    end
+
     respond_to do |format|
-      format.html { redirect_to @shop }
+      format.html { render nothing: true }
       format.js
     end
   end

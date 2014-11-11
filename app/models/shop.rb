@@ -26,6 +26,18 @@ class Shop < ActiveRecord::Base
 	    Comment.where("shop_id =?", id)
 	end
 
+
+	def rate(params)
+	    @shop = Shop.find(params[:shop_id])
+	    
+	    @shop.liked_by current_user, :vote_weight => params[:rating]
+
+	    respond_to do |format|
+	      format.html { redirect_to @shop }
+	      format.js
+    end
+  end
+
 end
 
 

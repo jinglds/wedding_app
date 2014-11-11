@@ -1,5 +1,5 @@
 <% (0..@results.length-1).each do |i|  %>  	
 	<%= link_to category_path(:category => @c.intern, :styles =>  @results[i]['name'] ), class: "tag-item", method: :get, remote: true do %>
-     	<%=@results[i]['name'] %> (<%=@results[i]['count'] %>)
+     	<%=@results[i]['name'] %>
     <% end %>
 <% end %>

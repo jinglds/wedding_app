@@ -1,0 +1,3 @@
+$("#shop-main-rating").html("<%= j render 'shops/main_rating', :locals => {:ratings => @ratings} %>");
+$("#shop-rating-form").html("<%= j render 'shops/rating_form', :locals => {:user => @user, :shop => @shop, :w => 20, :h => 20} %>");
+$(".shop-comment-rating-<%= @user.id %>").html("<%= j render 'shops/rating_form', :locals => {:user => @user, :shop => @shop,:w => 10, :h => 10} %>");

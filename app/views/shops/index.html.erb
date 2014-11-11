@@ -43,16 +43,17 @@
 
     
       <div class="container">
-        <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
         <div id="shop-feed">
+          <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
+        
           <h3>All Vendors</h3> 
           
           <div class="pin-row">
             <%= render @shops %>
           </div>
+        
+         <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
         </div> 
-        <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
-
       </div>
     </div>
   </div>

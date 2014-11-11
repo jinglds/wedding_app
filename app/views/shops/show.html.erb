@@ -1,65 +1,89 @@
 <div class="container">
 <% provide(:title, @shop.name) %>
+<div class="transparent">x</div>
+  <div class="row">
+    <div class ="col-md-4 col-md-offset-1"> 
+      <%= image_tag @shop.cover_url %>
+    </div>
+    <div class="col-md-5">
+      <h3 class = "shop-title"><%= @shop.name %>
+        <% if @favorite.nil? %>
+            <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), favorite_shops_path(shop_id: @shop), method: :post, remote: true %>
+        <% else %>
+          <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true %>
+        <% end %> 
+      </h3>
+      <span id="shop-main-rating">
+        <%= render 'shops/main_rating' %>
+      </span>
+      <%= link_to '#reviews' do %>
+        <%= @comments.count %> Reviews
+      <% end %>
+    
+      <p class="lead"><%= @shop.description %><p>
+      <div class="shop-contact-block">
+        <h3>Contact</h3>
+        <%= image_tag("phone_icon.png", :border => 0, :alt => "phone icon") %><%= @shop.phone %>
+        <br><%= image_tag("location_icon.png", :border => 0, :alt => "location icon") %><%= @shop.address %>
+        <br><%= image_tag("email_icon.png", :border => 0, :alt => "email icon") %><%= @shop.email %>
+        <br><%= image_tag("location_icon.png", :border => 0, :alt => "location icon") %><%= @shop.website %>
+        <br>Style: <%= raw @shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 
-
-
-
-
-
-<% if signed_in? %>
-<h2><%= @shop.name %></h2>
-sdfasd
-<%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
-
- <div class="row">
-<%= render @photos %>
-
-</div>
- <div class="row">
-<p>Tags: <%= raw @shop.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-
-<p>Categories: <%= raw @shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-</div>
- <div class="row">
-<h3>You might be interested in...</h3>
-<% if @recommendations.any? %>
-  <ol class="recipes">
-  	<ul >
-    	<%= render partial: 'shops/recommendation', collection: @recommendations %>
-	</ul>
-  </ol>
-  <% end %>
-</div>
- <div class="row">
-<p>Style: <%= raw @shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
-<%= @shop.get_upvotes.size %> Likes
-<p><%= @shop.find_votes_for.sum(:vote_weight) %>Votes For
-
-<p><%= @shop.get_upvotes.sum(:vote_weight) %> UpVotes
-<p><%= @shop.get_downvotes.sum(:vote_weight) %> DownVotes
-	<p> <%= @ratings %> Avg Rating
-		<p>
-<div id="like_form">
-  
-    <%= link_to "UnRate", unrate_shop_path(@shop), method: :put %>          
-  	<%= link_to "Up 1", rate_shop_path(@shop, :rating => 1), method: :put %>
-    <%= link_to "Up 2", rate_shop_path(@shop, :rating => 2), method: :put %>
-    <%= link_to "Up 3", rate_shop_path(@shop, :rating => 3), method: :put %>
-    <%= link_to "Up 4", rate_shop_path(@shop, :rating => 4), method: :put %>
-    <%= link_to "Up 5", rate_shop_path(@shop, :rating => 5), method: :put %>
-   
-</div>
-
-<%= link_to 'Add to favorites', favorite_shops_path(shop_id: @shop), method: :post %>
-
-<%= link_to 'Remove from favorites', favorite_shop_path(@shop), method: :delete %>
-</div>
- <div class="row">
-
-<%= render 'comments/comment_form' %>
-<%= render @comments %>
-
-
-<% end %>
-	</div>
+        <br>Categories: <%= raw @shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        <p>
+          <div class="center">
+            <%= button_to "Packages", '#', id: "request-btn", class: "all-btn" %>
+          </div>
+        <div id="request-div">
+          <%= @shop.details %>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
+
+
+  <div class="row">
+    <%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
+    <%= render @photos %>
+  </div>
+  <div class="row">
+    <h3>You might be interested in...</h3>
+    <% if @recommendations.any? %>
+      <ul >
+        	<%= render partial: 'shops/recommendation', collection: @recommendations %>
+    	</ul>
+    <% end %>
+  </div>
+
+  
+  <div class="row">
+    <div name = "reviews">a</div>
+    <%= @shop.get_upvotes.size %> Likes
+    <p><%= @shop.find_votes_for.sum(:vote_weight) %>Votes For
+
+    <p><%= @shop.get_upvotes.sum(:vote_weight) %> UpVotes
+    <p><%= @shop.get_downvotes.sum(:vote_weight) %> DownVotes
+    <p> <%= @ratings %> Avg Rating
+    <p>
+    <%= link_to "UnRate", unrate_shop_path(@shop), method: :put %>          
+
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="comment-div">
+        <%= render @comments %>
+      </div>
+      <h3>Rate this shop
+        <span id="shop-rating-form">
+            <%= render 'shops/rating_form', :locals => {:user => @user, :shop => @shop, :h => 15, :w=> 15} %>
+        </span>
+      </h3>
+      <div id="comment-form-div">
+        <%= render 'comments/comment_form' %>
+      </div>
+    </div>
+  </div>
+</div>

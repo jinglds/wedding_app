@@ -1,9 +1,18 @@
-<%= form_for([@shop, @comment]) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :content %>
-  </div>
-  <button class="btn" type="submit">
-    Comment
-  </button>
-<% end %>
+<div class="comment-item">
+  <h3>Commenting as <%= @user.firstname %> <%= @user.lastname %></h3>
+  <%= form_for([@shop, @comment], remote: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+  	<div class="field">
+      <%= f.text_field :title, placeholder: "Comment Title" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Comment Content" %>
+    </div>
+    <button class="btn all-btn pull-right" type="submit">
+      Comment
+    </button>
+  <% end %>
+  <div class="transparent-s">s</div>
+  
+  <div class="transparent-s">s</div>
+</div>

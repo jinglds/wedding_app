@@ -1,0 +1,32 @@
+<% @shops.each do |s| %>
+<div class="col-md-6">
+  <%= link_to s do %> 
+    <div class="shop-block">
+      <div class="item">
+          <div class="center">
+            <%= image_tag s.cover_url %>
+          </div>
+          <div class="shop-block-content">
+            <span class="shop-block-title"><%= link_to s.name, s %></span>
+            <br>Description: <%= s.description %>
+            <br>Phone: <%= s.phone %>
+            <br>Address: <%= s.address %>
+            <br>Details: <%= s.details %>
+
+            <br>Style: <%= raw s.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+            <br>Categories: <%= raw s.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+            
+            <% if (current_user==s.user) %>
+              <%= link_to "edit", edit_shop_path(s.id) %> | 
+              <%= link_to "delete", s, method: :delete,
+                                               data: { confirm: "You sure?" },
+                                               title: s.name %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+<% end %>

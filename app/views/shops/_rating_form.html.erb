@@ -1,0 +1,12 @@
+<% if @user.voted_up_on? @shop %>
+	<% @user.votes.find_by(:votable_id => @shop.id).vote_weight.to_i.times do |i| %>
+	  <%= link_to image_tag('star_icon.png', :border => 0,  :height=>@h, :width=>@w, :alt => 'star icon'), rate_shop_path(@shop, :rating => i+1), method: :put, remote: true %>
+	<% end %>
+	<% (5-@user.votes.find_by(:votable_id => @shop.id).vote_weight).to_i.times do |i| %>
+	  <%= link_to image_tag('star_outline_icon.png', :border => 0, :height=>@h, :width=>@w,  :alt => 'star icon'), rate_shop_path(@shop, :rating => i + 1+ @user.votes.find_by(:votable_id => @shop.id).vote_weight.to_i), method: :put, remote: true %>
+	<% end %>
+<% else %>
+	<% 5.times do |i| %>
+	  <%= link_to image_tag('star_outline_icon.png', :border => 0, :height=>@h, :width=>@w,  :alt => 'star icon'), rate_shop_path(@shop, :rating => i + 1), method: :put, remote: true %>
+	<% end %>
+<% end %>

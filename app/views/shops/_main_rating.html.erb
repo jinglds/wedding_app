@@ -1,0 +1,13 @@
+<% @ratings.to_i.times do |i| %>
+  <%= image_tag('star_icon.png', :border => 0,  :alt => 'star icon') %>
+<% end %>
+<% if @ratings!=0 && @ratings.modulo(@ratings.to_i) != 0 %>
+  <%= image_tag('star_half_icon.png', :border => 0,  :alt => 'star icon') %>
+  <% (4-@ratings.to_i).times do |i| %>
+    <%= image_tag('star_outline_icon.png', :border => 0,  :alt => 'star icon') %>
+  <% end %>
+<% else %>
+  <% (5-@ratings).to_i.times do |i| %>
+    <%= image_tag('star_outline_icon.png', :border => 0,  :alt => 'star icon') %>
+  <% end %>
+<% end %>

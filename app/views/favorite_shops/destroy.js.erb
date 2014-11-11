@@ -1,0 +1,1 @@
+$("#unfav-btn").replaceWith("<%= j link_to image_tag('fav_icon_outline.png', :border => 0, :width => 30, :height => 30, :alt => 'fav icon', :id => 'fav-btn'), favorite_shops_path(shop_id: @shop), method: :post, remote: true %>")
