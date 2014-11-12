@@ -25,6 +25,7 @@ gem 'ancestry'
 gem "watu_table_builder", :require => "table_builder"
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
+gem 'dragonfly', '~> 1.0.7'
 
 
 group :development, :test do

@@ -116,18 +116,20 @@ respond_to do |format|
 
   def create
     @shop = current_user.shops.build(shop_params)
+    # unless params[:photos].nil?
+    #   params[:photos].each do |a|
+    #     @photo = @shop.photos.create!(:image => a, :shop_id => @shop.id)
+    #   end
+    # end
     if @shop.save
-      if (params[:photos] != nil)
-        params[:photos]['image'].each do |a|
-          @photo = @shop.photos.create!(:image => a, :shop_id => @shop.id)
-        end
-      end
       flash[:success] = "Shop created!"
       redirect_to @shop
     else
       render 'new'
     end
   end
+
+
 
   def edit
     @shop = Shop.find(params[:id])
@@ -158,7 +160,7 @@ respond_to do |format|
     @comment = Comment.new 
     @comments =  @shop.comment_feed.paginate(page: params[:page])
 
-    @photos = @shop.photos.all
+    # @photos = @shop.photos.all
 
     @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
     @favorite = @user.favorites.find_by(favorited_id: @shop.id)
@@ -204,8 +206,8 @@ respond_to do |format|
                   :cover_url,
                   :tag_list,
                   :category_list,
-                  :style_list,
-                  photos_attributes: [:id, :shop_id, :image, :cover])
+                  :style_list)
+                  # photos_attributes: [:shop_id, :image])
   end
 
 

@@ -28,6 +28,7 @@ GEM
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
+    addressable (2.3.6)
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
@@ -68,6 +69,10 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dragonfly (1.0.7)
+      addressable (~> 2.3)
+      multi_json (~> 1.0)
+      rack
     erubis (2.7.0)
     execjs (2.2.2)
     faker (1.1.2)
@@ -216,6 +221,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (= 4.0.1)
   devise
+  dragonfly (~> 1.0.7)
   faker (= 1.1.2)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)

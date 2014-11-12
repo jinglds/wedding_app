@@ -11,7 +11,7 @@
 
   
   <% if (current_user==recommendation.user) %>
-    <%= link_to "edit", edit_recommendation_path(recommendation.id) %> | 
+    <%= link_to "edit", edit_shop_path(recommendation.id) %> | 
     <%= link_to "delete", recommendation, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: recommendation.name %>

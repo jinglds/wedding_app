@@ -21,7 +21,7 @@ WeddingApp::Application.routes.draw do
 
 
   devise_for :users #, :controllers => { :registrations => "registrations", :sessions => "sessions" }
-    
+
   resources :users do
     member do
       put "approve"
@@ -39,8 +39,10 @@ WeddingApp::Application.routes.draw do
     end
   end
   resources :favorite_shops, only: [:create, :destroy]
+  # resources :photos
   resources :shops do
-    resources :photos
+      resources :photos
+      get "new_gallery", to: "photos#new_gallery"
       get "edit_gallery", to: "photos#edit_gallery"
       put "set_cover", to: "photos#set_as_cover"
     resources :comments, only: [:create, :destroy] do

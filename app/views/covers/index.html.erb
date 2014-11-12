@@ -1,0 +1,13 @@
+<h1>List of covers</h1>
+ 
+<%= link_to 'Add your cover', new_cover_path, class: 'btn btn-lg btn-primary' %>
+ 
+<ul class="row" id="covers-list">
+  <% @covers.each do |cover| %>
+    <li class="col-xs-3">
+      <%= link_to image_tag(cover.image.thumb('300x300#ne').url, alt: cover.title, class: 'img-thumbnail'),
+                  cover.image.url, target: '_blank' %>
+      <p><%= cover.title %></p>
+    </li>
+  <% end %>
+</ul>
