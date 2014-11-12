@@ -1,0 +1,11 @@
+
+<%= form_for [@shop, @photo] do |f| %>
+	<%= render 'shared/error_messages', object: @photo %>
+	<div class="form-group">
+		<%= f.label :images, "You can upload multiple photos at a time" %>
+	<%= f.file_field :images, :name => 'images[]', :multiple => true, required: true, class: "form-field"  %>
+	</div>
+  	<div class="actions">
+    	<%= f.submit 'Upload', class: 'btn all-btn pull-right' %>
+  	</div>
+<% end %>

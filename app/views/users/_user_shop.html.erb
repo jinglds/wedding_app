@@ -4,23 +4,27 @@
     <div class="shop-block">
       <div class="item">
           <div class="center">
-            <%= image_tag s.cover_url %>
+            <% if s.photos.is_cover(:shop_id => s.id)%>
+            <%= link_to image_tag(s.photos.is_cover(:shop_id => s.id).image.thumb('600x400#').url, alt: s.photos.is_cover(:shop_id => s.id).title, class: 'img-thumbnail'), s %>
+            <% else %>
+              <%= link_to image_tag("default-thumb.jpg", alt: "cover photo", class: 'img-thumbnail'), s %>
+            <% end %>
           </div>
           <div class="shop-block-content">
             <span class="shop-block-title"><%= link_to s.name, s %></span>
-            <br>Description: <%= s.description %>
-            <br>Phone: <%= s.phone %>
-            <br>Address: <%= s.address %>
-            <br>Details: <%= s.details %>
+            <br> Favorites: <%= Favorite.where(:favorited_id =>s.id).count %>
+            <br> Rating: 
+              <% if (s.get_upvotes.sum(:vote_weight).to_f / s.get_upvotes.size).nan? %> 
+              n/a
+              <% else %>
+                <%= (s.get_upvotes.sum(:vote_weight).to_f / s.get_upvotes.size)%>
+              <% end %>
 
-            <br>Style: <%= raw s.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-
-            <br>Categories: <%= raw s.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-
-            
+            <br>
             <% if (current_user==s.user) %>
-              <%= link_to "edit", edit_shop_path(s.id) %> | 
-              <%= link_to "delete", s, method: :delete,
+              <%= link_to "Edit Photos", shop_edit_gallery_path(s) %> |
+              <%= link_to "Edit", edit_shop_path(s.id) %> | 
+              <%= link_to "Delete", s, method: :delete,
                                                data: { confirm: "You sure?" },
                                                title: s.name %>
             <% end %>

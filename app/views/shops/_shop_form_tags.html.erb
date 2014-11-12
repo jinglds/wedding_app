@@ -1,0 +1,15 @@
+
+<h3>3. Categories and Styles</h3>
+    <hr>
+  <%= f.label :category_list, "Shop Categories (separated by commas)" %><br />
+  <%= f.text_area :category_list, class: "form-field",placeholder: "E.g. photography, music, venue..." %>
+
+
+  <%= f.label :style_list, "Shop Stlyes (separated by commas)" %><br />
+  <%= f.text_area :style_list, class: "form-field", placeholder: "E.g. vintage, modern, classic..." %>
+
+<span class="pull-left"><%= button_to "< Previous", '#', id: "shop-back-btn2", class: "all-btn btn", remote:true %></span>
+    <span class="pull-right">
+  <%= f.submit "Create Shop", class: "btn btn-large all-btn", id:"shop-submit-btn", name:"mysubmit", remote:true %></span>
+
+

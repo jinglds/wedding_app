@@ -2,8 +2,14 @@
 <% provide(:title, @shop.name) %>
 <div class="transparent">x</div>
   <div class="row">
-    <div class ="col-md-4 col-md-offset-1"> 
-      <%= image_tag @shop.cover_url %>
+    <div class ="col-md-4 col-md-offset-1">
+      <% if !@cover.nil? %> 
+      <%= link_to image_tag(@cover.image.thumb('600x400#').url, alt: @cover.title, class: 'img-thumbnail'),
+                  @cover.image.url, target: '_blank' %>
+
+      <% else %>
+              <%= image_tag("default-thumb.jpg", alt: "cover photo", class: 'img-thumbnail') %>
+      <% end %>
     </div>
     <div class="col-md-5">
       <h3 class = "shop-title"><%= @shop.name %>
@@ -12,7 +18,13 @@
         <% else %>
           <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true %>
         <% end %> 
-      </h3>
+        </h3>
+        <% if @shop.user == current_user %>
+          <span class="pull-right">
+            <%= link_to "Edit Shop Info", edit_shop_path(@shop) %>
+          </span>
+        <% end %>
+      
       <span id="shop-main-rating">
         <%= render 'shops/main_rating' %>
       </span>
@@ -46,10 +58,13 @@
 
 
   <div class="row">
-    <%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
-    <%= render @photos %>
+    <% if @shop.user == current_user %>
+      <%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
+    <% end %>
+    <%= render 'photos/gallery', object: @photos %>
   </div>
   <div class="row">
+    <div class="transparent">x</div>
     <h3>You might be interested in...</h3>
     <% if @recommendations.any? %>
       <ul >
@@ -60,14 +75,7 @@
 
   
   <div class="row">
-    <div name = "reviews">a</div>
-    <%= @shop.get_upvotes.size %> Likes
-    <p><%= @shop.find_votes_for.sum(:vote_weight) %>Votes For
-
-    <p><%= @shop.get_upvotes.sum(:vote_weight) %> UpVotes
-    <p><%= @shop.get_downvotes.sum(:vote_weight) %> DownVotes
-    <p> <%= @ratings %> Avg Rating
-    <p>
+    
     <%= link_to "UnRate", unrate_shop_path(@shop), method: :put %>          
 
   

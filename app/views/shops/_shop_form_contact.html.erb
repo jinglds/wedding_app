@@ -1,0 +1,17 @@
+<h3>2. Contact Information</h3>
+    <hr>
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-field",  placeholder:"Address" %>
+
+    <%= f.label :phone, "Contact Number" %>
+    <%= f.text_field :phone, class: "form-field",  placeholder:"Contact Number" %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-field",  placeholder:"Your main email address" %>
+
+
+    <%= f.label :website %>
+    <%= f.text_field :website, class: "form-field",  placeholder:"Your shop website or page" %>
+	
+	<span class="pull-left"><%= button_to "< Previous", '#', id: "shop-back-btn1", class: "all-btn btn", remote:true %></span>
+    <span class="pull-right"><%= button_to "Next >", '#', id: "shop-next-btn2", class: "all-btn btn", remote:true %></span>

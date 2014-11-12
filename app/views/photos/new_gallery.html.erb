@@ -1,8 +1,13 @@
+<% provide(:title, "New Shop") %>
+<div class="container">
 
-<%= form_for(@shop) do |f| %>
-<%= f.file_field :trip_images, :name => 'images[]', :multiple => true %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-<% end %>
+	<h2>Photos for <%= @shop.name %></h2>
+	<h3 class="center">4. Upload photos for your shop!</h3>
+		
+	<div class=" form-all container col-md-4 col-md-offset-4">
 
+		<hr>
+		<%= render 'photos/photo_form' %>
+
+	</div>
 </div>

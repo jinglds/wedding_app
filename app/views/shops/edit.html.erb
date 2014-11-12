@@ -1,5 +1,53 @@
 <div class="container">
 <% provide(:title, "Edit Shop") %>
 <h2>Edit <%= @shop.name %></h2>
-        <%= render 'shared/shop_form' %>
+    <div class=" form-all container col-md-4 col-md-offset-4">
+		<%= form_for @shop do |f| %>
+		  	<%= render 'shared/error_messages', object: f.object %>
+		  	<div class="field ">
+			    <h3>Basic Information</h3>
+			    <hr>
+			      <%= f.label :name %>
+			      <%= f.text_field :name, class: "form-field",  placeholder:"Shop Name" %>
+
+			      <%= f.label :description %>
+			      <%= f.text_area :description, class: "form-field",  placeholder:"Some description for your shop.." %>
+
+			      <%= f.label :details %>
+			      <%= f.text_area :details, class: "form-field",  placeholder:"Packages you provide" %>
+
+			    <h3>Contact Information</h3>
+			    <hr>
+			    <%= f.label :address %>
+			    <%= f.text_field :address, class: "form-field",  placeholder:"Address" %>
+
+			    <%= f.label :phone, "Contact Number" %>
+			    <%= f.text_field :phone, class: "form-field",  placeholder:"Contact Number" %>
+
+			    <%= f.label :email %>
+			    <%= f.text_field :email, class: "form-field",  placeholder:"Your main email address" %>
+
+
+			    <%= f.label :website %>
+			    <%= f.text_field :website, class: "form-field",  placeholder:"Your shop website or page" %>
+		
+		
+				<h3>Categories and Styles</h3>
+				<hr>
+			 	<%= f.label :category_list, "Shop Categories (separated by commas)" %><br />
+			 	<%= f.text_area :category_list, class: "form-field",placeholder: "E.g. photography, music, venue..." %>
+
+
+			 	<%= f.label :style_list, "Shop Stlyes (separated by commas)" %><br />
+			 	<%= f.text_area :style_list, class: "form-field", placeholder: "E.g. vintage, modern, classic..." %>
+
+	  			<%= f.submit "Submit", class: "btn btn-large all-btn pull-right"%></span>
+	  		</div>
+
+		<% end %>
+
+
+	</div>
+
+
 </div>

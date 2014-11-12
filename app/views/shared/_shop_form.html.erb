@@ -1,54 +1,37 @@
-<div class=" form-all container-fluid col-md-4 col-md-offset-4">
-<%= form_for(@shop) do |f| %>
+<div class=" form-all container col-md-4 col-md-offset-4">
+<%= form_for @shop, :method => :post, :html=>{:id=>"shop-form"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-field" %>
+  <div class="field ">
+  <div id="shop-form-basic-div">
+    <h3>1. Basic Information</h3>
+    <hr>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-field",  placeholder:"Shop Name" %>
 
-    <%= f.label :description %>
-    <%= f.text_field :description, class: "form-field" %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-field",  placeholder:"Some description for your shop.." %>
 
-    <%= f.label :address %>
-    <%= f.text_field :address, class: "form-field" %>
+      <%= f.label :details %>
+      <%= f.text_area :details, class: "form-field",  placeholder:"Packages you provide" %>
 
-    <%= f.label :phone, "Contact Number" %>
-    <%= f.text_field :phone, class: "form-field" %>
-
-    <%= f.label :email %>
-    <%= f.text_field :email, class: "form-field" %>
-
-
-    <%= f.label :website %>
-    <%= f.text_field :website, class: "form-field" %>
-
-    <%= f.label :details %>
-     <%= f.text_field :details, class: "form-field" %>
-
-
-      <%= f.fields_for :photos do |p| %>
-     <div class="field">
-       <%= p.label :image %><br>
-       <%= p.file_field :image, :multiple => true, name: "photos[image][]" %>
-       
-     </div>
-
-
-   <% end %>
-
-
-
-
-  <%= f.label :category_list, "Category Tags (separated by commas)" %><br />
-  <%= f.text_field :category_list %>
-
-
-  <%= f.label :style_list, "Style Tags (separated by commas)" %><br />
-  <%= f.text_field :style_list %>
-
+      <%= button_to "Next >", '#', id: "shop-next-btn1", class: "all-btn btn pull-right", remote:true %>
 
   </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+
+  <div id="shop-form-contact-div">
+    <%= render partial: 'shops/shop_form_contact', locals: { f: f }%>
+  </div>
+
+  <div id="shop-form-tags-div">
+    <%= render partial: 'shops/shop_form_tags', locals: { f: f }%>
+  </div>
+
+  
+
+</div>
+  
 <% end %>
+
 
 </div>
 

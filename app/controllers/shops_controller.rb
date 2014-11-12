@@ -111,7 +111,12 @@ respond_to do |format|
 
   def new
     @shop = Shop.new
-    @photo = @shop.photos.build
+    # @photo = @shop.photos.build
+
+    # respond_to do |format|
+    #   format.html 
+    #   format.js
+    # end
   end
 
   def create
@@ -122,10 +127,15 @@ respond_to do |format|
     #   end
     # end
     if @shop.save
-      flash[:success] = "Shop created!"
-      redirect_to @shop
+      respond_to do |format|
+      format.html {redirect_to shop_new_gallery_path(@shop)}
+      format.js
+      end
     else
-      render 'new'
+      respond_to do |format|
+      format.html {render 'new'}
+      format.js
+      end 
     end
   end
 
@@ -160,8 +170,8 @@ respond_to do |format|
     @comment = Comment.new 
     @comments =  @shop.comment_feed.paginate(page: params[:page])
 
-    # @photos = @shop.photos.all
-
+    @photos = @shop.photos.all
+    @cover = Photo.is_cover(:shop_id => @shop.id)
     @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
     @favorite = @user.favorites.find_by(favorited_id: @shop.id)
   end

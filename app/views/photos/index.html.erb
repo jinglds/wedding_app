@@ -1,13 +1,10 @@
-<h1>List of photos</h1>
- 
-<%= link_to 'Add your photo', new_shop_photo_path(:shop_id => @shop.id), class: 'btn btn-lg btn-primary' %>
+<div class="container">
+<h1><%= @shop.name %>'s Gallery</h1>
+<%= link_to 'Back to Shop', shop_path(@shop), class: 'btn all-btn pull-left' %>
+
+<%= link_to 'Add photos', new_shop_photo_path(:shop_id => @shop.id), class: 'btn all-btn pull-right' %>
  
 <ul class="row" id="photos-list">
-  <% @photos.each do |photo| %>
-    <li class="col-xs-3">
-      <%= link_to image_tag(photo.image.thumb('180x180#').url, alt: photo.title, class: 'img-thumbnail'),
-                  photo.image.url, target: '_blank' %>
-      <p><%= photo.title %></p>
-    </li>
-  <% end %>
+  <%= render partial: "photos/photo_item", collection: @photos, as: :photo, locals: {:shop => @shop} %>
 </ul>
+</div>

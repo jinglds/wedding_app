@@ -49,6 +49,10 @@ textarea {
 
 /* typography */
 
+a {
+  color: $softGold;
+}
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -58,6 +62,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: $darkerGrey;
   /*font-family: Perpetua;*/
   font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
 }
@@ -68,8 +73,20 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: black;
-  font-family: Perpetua;
+  color: $darkerGrey;
+  /*font-family: Perpetua;*/
+  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+
+}
+
+h3 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: $grey;
+  margin-bottom: 10px;
+  /*font-family: Perpetua;*/
   font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
 
@@ -266,6 +283,68 @@ aside {
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 }
 
+.form-field{
+  /*font-family: 'Book Antiqua';*/
+
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  font-size: 1.1em;
+  padding:5px;
+}
+
+
+
+.all-btn{
+
+  background-color: white; 
+  color: $softGold;
+  border: 1px $softGold solid;
+  font-size: 1.2em; 
+  width: 160px;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0;
+  &:hover{
+    
+  background-color: $darkGold;
+  color: white;
+  }
+}
+/* user-form*/
+.user-form-container {
+  border: 1px $softGold solid;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  width: 25%;
+  margin-top: 20px;
+
+}
+
+.user-form{
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+
+  width: 70%;
+}
+
+
+
+.user-submit-btn{
+  width: 160px;
+  font-size: 1.2em;
+  background-color: $darkGold;
+  color: white;
+  text-transform: uppercase;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  &:hover{
+    
+    background-color: white; 
+    color: $softGold;
+    border: 1px $softGold solid;
+  }
+}
+
 #role-field{
   background-color: $lightGrey;
   /*width: 30%;*/
@@ -276,23 +355,9 @@ aside {
 
 }
 
-.user-form-container {
-  border: 1px $softGold solid;
-  padding-bottom: 40px;
-  padding-top: 10px;
-  width: 25%;
-  margin-top: 20px;
 
-}
 
-.form-field{
-  /*font-family: 'Book Antiqua';*/
 
-  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
-  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
-  font-size: 1.1em;
-  padding:5px;
-}
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -481,47 +546,7 @@ aside {
 
 
 
-.user-form{
-  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
 
-  width: 70%;
-}
-
-
-
-.user-submit-btn{
-  width: 160px;
-  font-size: 1.2em;
-  background-color: $darkGold;
-  color: white;
-  text-transform: uppercase;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  &:hover{
-    
-    background-color: white; 
-    color: $softGold;
-    border: 1px $softGold solid;
-  }
-}
-
-.all-btn{
-
-  background-color: white; 
-  color: $softGold;
-  border: 1px $softGold solid;
-  font-size: 1.2em; 
-  width: 160px;
-  text-transform: uppercase;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 0;
-  &:hover{
-    
-  background-color: $darkGold;
-  color: white;
-  }
-}
 
 .filter-block{
   /*background-color: $lightGrey;*/
@@ -738,12 +763,12 @@ div.hidden {
     padding: 0;
     margin: 0;
     max-height: 250px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-align: center;
     p {
       margin: 0;
-      margin-top: 10px;
-      height: 40px;
+      /*margin-top: 10px;*/
+      /*height: 40px;*/
       overflow: hidden;
     }
   }
