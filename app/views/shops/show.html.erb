@@ -1,8 +1,8 @@
 <div class="container">
 <% provide(:title, @shop.name) %>
 <div class="transparent">x</div>
-  <div class="row">
-    <div class ="col-md-4 col-md-offset-1">
+  <div class="row all-block">
+    <div class ="col-md-6 col-md-offset-1 ">
       <% if !@cover.nil? %> 
       <%= link_to image_tag(@cover.image.thumb('600x400#').url, alt: @cover.title, class: 'img-thumbnail'),
                   @cover.image.url, target: '_blank' %>
@@ -11,7 +11,7 @@
               <%= image_tag("default-thumb.jpg", alt: "cover photo", class: 'img-thumbnail') %>
       <% end %>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
       <h3 class = "shop-title"><%= @shop.name %>
         <% if @favorite.nil? %>
             <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), favorite_shops_path(shop_id: @shop), method: :post, remote: true %>
@@ -33,22 +33,25 @@
       <% end %>
     
       <p class="lead"><%= @shop.description %><p>
+
+      <%= button_to "Packages", '#', id: "request-btn", class: "all-btn" %>
+      
+      <div id="request-div">
+        <%= @shop.details %>
+      </div>
+
       <div class="shop-contact-block">
         <h3>Contact</h3>
         <%= image_tag("phone_icon.png", :border => 0, :alt => "phone icon") %><%= @shop.phone %>
         <br><%= image_tag("location_icon.png", :border => 0, :alt => "location icon") %><%= @shop.address %>
         <br><%= image_tag("email_icon.png", :border => 0, :alt => "email icon") %><%= @shop.email %>
         <br><%= image_tag("location_icon.png", :border => 0, :alt => "location icon") %><%= @shop.website %>
+        <br>
         <br>Style: <%= raw @shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 
         <br>Categories: <%= raw @shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
         <p>
-          <div class="center">
-            <%= button_to "Packages", '#', id: "request-btn", class: "all-btn" %>
-          </div>
-        <div id="request-div">
-          <%= @shop.details %>
-        </div>
+          
       </div>
     </div>
   </div>

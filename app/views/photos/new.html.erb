@@ -2,8 +2,11 @@
 <div class="container">
 
 	<h2>Photos for <%= @shop.name %></h2>
+	<% if @shop.photos.nil? %>
 	<h3 class="center">4. Upload photos for your shop!</h3>
-		
+	<% else %>
+	<h3 class="center">Upload photos for your shop</h3>
+	<% end %>
 	<div class=" form-all container col-md-4 col-md-offset-4">
 
 		<hr>

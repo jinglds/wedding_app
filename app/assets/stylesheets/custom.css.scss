@@ -712,7 +712,9 @@ div.hidden {
  position:relative;
  display: block;
  background-color: white;
- border:1px $lighterGrey solid;
+ /*border:1px $lighterGrey solid;*/
+
+  box-shadow: 1px 1px 2px $lighterGrey;
   /*border-radius: 2px;*/
   padding: 0;
   margin-bottom: 2em;
@@ -751,7 +753,10 @@ div.hidden {
   padding-top: 8px;
   padding-bottom: 8px;
   margin: 10px;
-  border: 1px $gold solid;
+  border: 1px $softerGold solid;
+  background-color: white;
+  border-radius: 2px;
+  /*box-shadow: 1px 1px 2px $gold;*/
   /*min-height: 10rem;*/
   color: $grey;
 }
@@ -792,5 +797,17 @@ div.hidden {
   padding-top: 10px;
   border-radius: 5px;
   margin-top: 10px;
-  box-shadow: 1px 1px 3px $softerGold;
+  box-shadow: 1px 1px 2px $lighterGrey;
+}
+
+.all-block{
+  /*border: 1px $softerGold solid;*/
+  background-color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  border-radius: 1px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 2px $lighterGrey;
 }

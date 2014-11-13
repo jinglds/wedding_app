@@ -22,7 +22,7 @@
 
             <br>
             <% if (current_user==s.user) %>
-              <%= link_to "Edit Photos", shop_edit_gallery_path(s) %> |
+              <%= link_to "Edit Photos", shop_photos_path(s) %> |
               <%= link_to "Edit", edit_shop_path(s.id) %> | 
               <%= link_to "Delete", s, method: :delete,
                                                data: { confirm: "You sure?" },

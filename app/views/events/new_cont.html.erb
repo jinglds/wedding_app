@@ -1,101 +1,11 @@
 <% provide(:title, @event.name) %>
 <div class="container">
-	<h2><%= @event.name %></h2>
-
-
-<%= form_for @event,:method => :patch, :html=>{:id=>"event-cont-form"} do |f| %>
-	<div class="field ">
-		<div class="hidden">
-			<%= render partial:'events/event_form_type', locals: {:f => f} %>
-			<%= render partial:'events/event_form_name', locals: {:f => f} %>
-			<%= render partial:'events/event_form_couple', locals: {:f => f} %>
-			<%= render partial:'events/event_form_budget', locals: {:f => f} %>
-		</div>
-	<% if @event.date.nil? %>
-		<div class="row">
-			<div id="event-no-date-div">
-				<div class="panel col-md-6 col-md-offset-3">
-					<h3 class="center">You haven't chosen the date for the event yet.</h3>
-					<div class="panel-body">
-						<p>The earlier you decided on a date, the earlier you can book your vendors</p>
-						<div class="row">
-							<div class="col-md-6">
-							    <%= f.label :date %>
-							    <div class="input-group date" id="datetimepicker5">
-							      <%= f.text_field :date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }%>
-							      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							    </div>
-						  	</div>
-						  	<div class="col-md-6">
-						    	<%= f.label :time %>
-							    <div class="input-group date" id="datetimepicker4">
-							      <%= f.text_field :time, class: 'form-control form-field' %>
-							      <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-							    </div>
-						  	</div>
-						  	
-						</div>
-						<br><i>Need help on choosing a date? Click Here</i>
-					
-						<span class="pull-right"><%= button_to "Next >", '#', id: "event-cont-next-btn1", class: "btn", remote:true %></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	<% else %>
-		<div class="hidden">
-			<%= render partial:'events/event_form_datetime', locals: {:f => f} %>
-		</div>
-	<% end %>
-
 	<div class="row">
-		<div id="event-no-guest-div" class="hidden">
-			<div class="panel col-md-6 col-md-offset-3">
-				<h3 class="center">
-						You haven't set the number of Guest yet.</h3>
-				<div class="panel-body">
-					<p>The number of guests coming to your event will help you in choosing the location and many other things.
-					</p>
-					<%= f.label :guest_amt, "Approximate number of Guests" %>
-    				<%= f.text_field :guest_amt, class: "form-field", placeholder: "E.g. 100, 150, 200 etc." %>
-					<br><i>Need help on create a guestlist? Click Here</i>
-					<div class="pull-right">
-						<%= f.submit "Done", class: "btn", id:"event-cont-submit-btn", name:"mysubmit", remote:true %>
-					</div>
-					
-				</div>
-			</div>
+		<h2><%= @event.name %></h2>
+		<div class="all-block col-md-6 col-md-offset-3">
+			<h3>Do you want to create a Default tasklist for your event?</h3>
+			<%= button_to "Create", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+				<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %>
+
 		</div>
 	</div>
-
-					
-
-<% end %>
-
-
-	
-
-<script type="text/javascript">
-            $(function () {
-                $('#datetimepicker4').datetimepicker({
-                    pickDate: false
-
-                });
-            });
-        </script>
-
-   
-    <script type="text/javascript">
-      $(function () {
-        $('#datetimepicker5').datetimepicker({
-          minDate: '0d',
-          // startDate: '-2d',
-          // endDate: '+2d',
-          pickTime: false
-
-        });
-
-        // var curDate = Date.current.strftime('%M %d %Y');
-        // $('#datetimepicker5').data("DateTimePicker").setMinDate('0d');
-      });
-    </script>
