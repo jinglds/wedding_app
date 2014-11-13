@@ -213,7 +213,6 @@ respond_to do |format|
                   :address,
                   :details,
                   :email,
-                  :cover_url,
                   :tag_list,
                   :category_list,
                   :style_list)
