@@ -1,0 +1,117 @@
+$(function() {
+	// $('#event-form-type-div').hide();
+	$('#event-form-datetime-div').hide();
+	$('#event-form-budget-div').hide();
+	$('#event-form-name-div').hide();
+	$('#event-form-couple-div').hide();
+	$('#event-form-guest-div').hide();
+
+  	$('#event-next-btn1').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-type-div').hide();
+	    
+		$('#event-form-name-div').fadeIn();
+		
+	
+    });
+    $('#event-back-btn1').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-type-div').fadeIn();
+	    
+		$('#event-form-name-div').hide();
+		
+	
+    });
+
+    $('#event-next-btn2').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-name-div').hide();
+	    
+		$('#event-form-couple-div').fadeIn();
+		
+    });
+
+    $('#event-back-btn2').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-name-div').fadeIn();
+	    
+		$('#event-form-couple-div').hide();
+		
+	
+    });
+
+    $('#event-next-btn3').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-couple-div').hide();
+	    
+		$('#event-form-datetime-div').fadeIn();
+		
+    });
+
+    $('#event-back-btn3').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-couple-div').fadeIn();
+	    
+		$('#event-form-datetime-div').hide();
+		
+	
+    });
+
+    $('#event-next-btn4').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-datetime-div').hide();
+	    
+		$('#event-form-budget-div').fadeIn();
+		
+    });
+
+    $('#event-back-btn4').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-datetime-div').fadeIn();
+	    
+		$('#event-form-budget-div').hide();
+		
+	
+    });
+	$('#event-next-btn5').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-budget-div').hide();
+	    
+		$('#event-form-guest-div').fadeIn();
+		
+    });
+
+    $('#event-back-btn5').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form-budget-div').fadeIn();
+	    
+		$('#event-form-guest-div').hide();
+		
+	
+    });
+
+    $('#event-submit-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-form').submit();
+	    
+		
+	
+    });
+
+    
+
+
+
+});
+

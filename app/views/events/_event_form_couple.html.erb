@@ -1,0 +1,9 @@
+<div class="col-md-8 col-md-offset-2">
+        <%= f.label :bride_name %>
+        <%= f.text_field :bride_name, class: "form-field", placeholder:"" %>
+
+        <%= f.label :groom_name %>
+       <%= f.text_field :groom_name, class: "form-field" %>
+       <span class="pull-left"><%= button_to "< Previous", '#', id: "event-back-btn2", class: "all-btn btn", remote:true %></span>
+    <span class="pull-right"><%= button_to "Next >", '#', id: "event-next-btn3", class: "all-btn btn", remote:true %></span>
+  </div>

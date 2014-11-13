@@ -4,7 +4,10 @@
 @import 'bootstrap-datetimepicker';
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
-$softGold: #886A08;
+$gold: #886A08;
+$softerGold: #e8e1cb;
+$softGold: #c8b984;
+
 $evenLighterGrey: #fcfcfc;
 $lighterGrey: #eaeaea;
 $lightGrey: #D8D8D8;
@@ -50,7 +53,7 @@ textarea {
 /* typography */
 
 a {
-  color: $softGold;
+  color: $gold;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -174,7 +177,7 @@ p {
   color: gray;
   border: 1px gray solid;
   &:hover{
-    background-color: $softGold;
+    background-color: $gold;
   color: white;
   }
 }
@@ -297,8 +300,8 @@ aside {
 .all-btn{
 
   background-color: white; 
-  color: $softGold;
-  border: 1px $softGold solid;
+  color: $gold;
+  border: 1px $gold solid;
   font-size: 1.2em; 
   width: 160px;
   text-transform: uppercase;
@@ -307,13 +310,13 @@ aside {
   border-radius: 0;
   &:hover{
     
-  background-color: $darkGold;
+  background-color: $gold;
   color: white;
   }
 }
 /* user-form*/
 .user-form-container {
-  border: 1px $softGold solid;
+  border: 1px $gold solid;
   padding-bottom: 40px;
   padding-top: 10px;
   width: 25%;
@@ -340,8 +343,8 @@ aside {
   &:hover{
     
     background-color: white; 
-    color: $softGold;
-    border: 1px $softGold solid;
+    color: $gold;
+    border: 1px $gold solid;
   }
 }
 
@@ -500,13 +503,13 @@ aside {
 }
 
 .btn-signup{
-  color: $softGold;
-  border: 1px $softGold solid;
+  color: $gold;
+  border: 1px $gold solid;
   background-color: $darkerGrey;
   font-size: 1em;
   margin-left: 30px;
   &:hover{
-    background-color: $softGold;
+    background-color: $gold;
   color: black;
   }
 }
@@ -748,7 +751,7 @@ div.hidden {
   padding-top: 8px;
   padding-bottom: 8px;
   margin: 10px;
-  border: 1px $softGold solid;
+  border: 1px $gold solid;
   /*min-height: 10rem;*/
   color: $grey;
 }
@@ -772,4 +775,22 @@ div.hidden {
       overflow: hidden;
     }
   }
+}
+
+/* Task */
+
+.imp-task-item{
+  p{
+
+  }
+}
+
+.form-block{
+  /*border: 1px $softerGold solid;*/
+  background-color: white;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 3px $softerGold;
 }

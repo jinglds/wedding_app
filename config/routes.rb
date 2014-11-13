@@ -30,6 +30,7 @@ WeddingApp::Application.routes.draw do
   end
   resources :events do
     post "default_tasks", to: "events#create_default_tasks"
+    get "new_cont", to: "events#new_cont"
     resources :expenses
     resources :tasks do
       put "complete", to: "tasks#complete"

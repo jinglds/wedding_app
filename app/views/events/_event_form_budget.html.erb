@@ -1,0 +1,7 @@
+<div class="col-md-8 col-md-offset-2">
+    <%= f.label :budget, "Budget (amount only, no comma)" %>
+    <%= f.text_field :budget, class: "form-field", placeholder: "E.g. 100000, 250000, etc." %>
+    <span class="pull-left"><%= button_to "< Previous", '#', id: "event-back-btn4", class: "all-btn btn", remote:true %></span>
+
+    <span class="pull-right"><%= button_to "Next >", '#', id: "event-next-btn5", class: "all-btn btn", remote:true %></span>
+</div>

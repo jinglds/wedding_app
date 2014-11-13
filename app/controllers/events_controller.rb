@@ -32,11 +32,22 @@ class EventsController < ApplicationController
     # @event.date = @event.date.change(hour: @event.time.hour, min: @event.time.min, sec: @event.time.sec)
   	if @event.save
   		flash[:success] = "Event created!"
-  		redirect_to @event
+  		redirect_to event_new_cont_path(@event)
   	else
   		render 'new'
   	end
   end
+
+  def new_cont
+    
+    @user = current_user
+    @event = Event.find(params[:event_id])
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+  end
+
 
   def edit
     @event = Event.find(params[:id])
@@ -669,9 +680,19 @@ class EventsController < ApplicationController
   end
 
   def set_date
-    @date = DateTime.parse(params[:event][:date])
-    @time = DateTime.parse(params[:event][:time])
-    @date = @date.change(hour: @time.hour, min: @time.min, sec: @time.sec)
-    params[:event][:date] =@date
+    unless (params[:event][:date]=="" && params[:event][:time]=="")
+      if (params[:event][:time]=="")
+
+        @date = DateTime.parse(params[:event][:date])
+      elsif (params[:event][:date]=="")
+        @time = DateTime.parse(params[:event][:time])
+      else
+        @date = DateTime.parse(params[:event][:date])
+        @time = DateTime.parse(params[:event][:time])
+        @date = @date.change(hour: @time.hour, min: @time.min, sec: @time.sec)
+        params[:event][:date] =@date
+      end
+
+    end
   end
 end

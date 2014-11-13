@@ -1,0 +1,7 @@
+<div class="col-md-8 col-md-offset-2">
+    <%= f.label :name, "Event Name" %>
+    <%= f.text_field :name, class: "form-field", placeholder: "E.g. My Wedding Ceremory, P & P Wedding, etc." %>
+	
+    <span class="pull-left"><%= button_to "< Previous", '#', id: "event-back-btn1", class: "all-btn btn", remote:true %></span>
+    <span class="pull-right"><%= button_to "Next >", '#', id: "event-next-btn2", class: "all-btn btn", remote:true %></span>
+</div>

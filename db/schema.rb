@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112075704) do
+ActiveRecord::Schema.define(version: 20141113085246) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141112075704) do
     t.datetime "updated_at"
     t.datetime "date"
     t.datetime "time"
+    t.integer  "guest_amt"
   end
 
   create_table "expenses", force: true do |t|

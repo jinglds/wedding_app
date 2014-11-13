@@ -91,12 +91,14 @@ namespace :db do
       budget = 500000
       bride_name = Faker::Name.name
       groom_name = Faker::Name.name
+      guest_amt = [100, 200, 150, 250, 300]
       event_type = ["Evening Party", "Budhist Ceremory","Christian Ceremony", "Chinese Ceremony"]
       users.each { |user| user.events.create!(
                                               name: name,
                                               date: date,
                                               time: time,
                                               budget: budget,
+                                              guest_amt: guest_amt.sample,
                                               bride_name: bride_name,
                                               groom_name: groom_name,
                                               event_type: event_type.sample

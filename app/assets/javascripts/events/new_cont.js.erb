@@ -1,0 +1,27 @@
+$(function() {
+	// $('#event-no-guest-div').hide();
+
+  	$('#event-cont-next-btn1').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-no-date-div').hide();
+	    
+		$('#event-no-guest-div').fadeIn();
+	
+    });
+    
+    $('#event-cont-submit-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-cont-form').submit();
+	    
+		
+	
+    });
+
+    
+
+
+
+});
+
