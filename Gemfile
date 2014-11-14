@@ -26,6 +26,8 @@ gem "watu_table_builder", :require => "table_builder"
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'dragonfly', '~> 1.0.7'
+gem "chartkick"
+gem 'countdown'
 
 
 group :development, :test do

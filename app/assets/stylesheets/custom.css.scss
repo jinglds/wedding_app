@@ -811,3 +811,10 @@ div.hidden {
   margin-top: 10px;
   box-shadow: 1px 1px 2px $lighterGrey;
 }
+
+.task-late{
+  border: 1px red solid;
+}
+.task-ok{
+  border: 1px green solid;
+}

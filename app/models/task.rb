@@ -31,4 +31,13 @@ class Task < ActiveRecord::Base
       
     end
 
+    def self.status(params)
+      if Task.find(params[:task_id]).due_date < Date.today
+        return "late"
+      else
+        return "ok"
+      end
+
+    end
+
 end
