@@ -807,9 +807,10 @@ div.hidden {
   padding-left: 20px;
   padding-bottom: 30px;
   padding-top: 10px;
-  border-radius: 1px;
+  border-radius: 3px;
   margin-top: 10px;
-  box-shadow: 1px 1px 2px $lighterGrey;
+  margin: 5px;
+  box-shadow: 1px 1px 2px $lightGrey;
 }
 
 .task-late{
@@ -817,4 +818,19 @@ div.hidden {
 }
 .task-ok{
   border: 1px green solid;
+}
+
+.container{
+}
+
+.gallery-thumb{
+  background-color: white;
+  box-shadow: 1px 1px 2px $lighterGrey;
+  padding: 5px;
+  &:hover{
+
+  box-shadow: 2px 2px 3px $softerGold;
+
+  }
+
 }

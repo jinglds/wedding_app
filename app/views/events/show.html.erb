@@ -6,11 +6,17 @@
 <h2><%= @event.name %></h2>
 
 <div class="row">
-	<p>Date: <%= @event.date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M")%>
-	<p>Time: <%= @event.time.strftime('%H:%M') %>
-	<p><%= @event.time.to_time%>
+	<div id="no-date-div">
+		<% if @event.date.nil? %>
+			<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
+		<% else %> 
+			<div class="countdown-div">
+				<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+			</div>
+			
+		<% end %>
+	</div>
 
-	<p> Days Til : 
     Current Total : <%= @total %>
 </div>
 
