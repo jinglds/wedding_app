@@ -6,15 +6,13 @@
 <h2><%= @event.name %></h2>
 
 <div class="row">
-	<div id="no-date-div">
-		<% if @event.date.nil? %>
-			<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
-		<% else %> 
-			<div class="countdown-div">
-				<%= render partial: 'events/countdown', locals:{:event=> @event } %>
-			</div>
+	<div id="event-date-div">
+		
+		<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
+		<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+		
 			
-		<% end %>
+		
 	</div>
 
     Current Total : <%= @total %>

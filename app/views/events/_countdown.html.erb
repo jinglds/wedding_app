@@ -1,4 +1,6 @@
-<p>Date: <%= @event.date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M")%>
-<p>Time: <%= @event.time.strftime('%H:%M') %>
-<p><%= @event.time.to_time%>
-<p> Days Til :
+<% unless @event.date.nil? %>
+	<p>Date: <%= @event.date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M")%>
+	<p>Time: <%= @event.time.strftime('%H:%M') %>
+	<p><%= @event.time.to_time%>
+	<p> Days Til :
+<% end %>

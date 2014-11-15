@@ -1,3 +1,4 @@
+<% unless !@event.date.nil? %>
 <%= form_for @event,:method => :patch, remote:true, :html=>{:id=>"event-datetime-form"} do |f| %>
 	<div class="field ">
 		<div class="hidden">
@@ -15,14 +16,14 @@
 						<div class="col-md-6">
 						    <%= f.label :date %>
 						    <div class="input-group date" id="datetimepicker5">
-						      <%= f.text_field :date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }%>
+						      <%= f.text_field :date, class: 'form-control form-field', required:true, data: { date_format: 'YYYY/MM/DD' }%>
 						      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 						    </div>
 					  	</div>
 					  	<div class="col-md-6">
 					    	<%= f.label :time %>
 						    <div class="input-group date" id="datetimepicker4">
-						      <%= f.text_field :time, class: 'form-control form-field' %>
+						      <%= f.text_field :time, class: 'form-control form-field',required:true %>
 						      <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 						    </div>
 					  	</div>
@@ -39,7 +40,7 @@
 	</div>
 <% end %>
 
-
+<% end %>
 <script type="text/javascript">
             $(function () {
                 $('#datetimepicker4').datetimepicker({

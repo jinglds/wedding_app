@@ -1,0 +1,25 @@
+$(function() {
+	// $('#event-no-guest-div').hide();
+
+    // $('#countdown-div').hide();
+    $('#event-datetime-submit-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#event-datetime-form').submit();
+	    // $('#no-date-div').html("<%= j render partial: 'events/countdown', locals:{:event=> @event } %>");
+	
+	 //    $('#no-date-div').hide();
+		// $('#countdown-div').fadeIn();
+		
+    });
+
+    $('#event-datetime-form').on('ajax:success',function(e) {
+
+    	$('#event-date-div').html("<%= j render partial: 'events/countdown', locals:{:event=> @event } %>");
+	
+	});
+
+});
+
+
+
