@@ -1,6 +1,6 @@
 <div class="col-md-3">
   <div class="all-block">
-    <%= image_tag recommendation.cover_url %>
+    <%= image_tag ("rec-default.png") %>
      
       <br> Name: <%= link_to recommendation.name, recommendation %>
       <br>Style: <%= raw recommendation.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
