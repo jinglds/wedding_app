@@ -8,17 +8,22 @@ class UsersController < ApplicationController
     # @q = Shop.ransack(params[:q])
     #   # @type = Shop.select(:shop_type).map(&:shop_type).uniq
     # @shops = @q.result(distinct: true)
-    
+    @filter = params[:filter]
+    @e = User.enterprise_users
+    @u = User.client_users
+    @a = User.admin_users
+    @p =User.pending_users
     if params[:filter]=="enterprise"
-  		@users = User.enterprise_users
+  		@users = @e
     elsif params[:filter]=="client"
-      @users = User.client_users
+      @users = @u
     elsif params[:filter]=="admin"
-      @users = User.admin_users
+      @users = @a
     elsif params[:filter]=="pending"
-      @users =  User.pending_users
+      @users =  @p
     else
-      @users = User.paginate(page: params[:page])
+      # @users = User.paginate(page: params[:page])
+      @users = User.all
     end
 
     @users = @users.order(params[:sort])

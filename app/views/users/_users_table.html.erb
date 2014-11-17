@@ -2,8 +2,8 @@
   <%= t.head do %>
     <%= t.r do %>
       <%= t.h do %>
-        <%= link_to "Name", users_path(:sort => "firstname"), :class=>"sort-btn",remote:true %>
-        <%= link_to "Name", users_path(:sort => "firstname desc"), :class=>"sort-btn",remote:true %>
+        <%= link_to "Name", users_path(:sort => "firstname", :filter =>@filter), :class=>"sort-btn",remote:true %>
+        <%= link_to "Name", users_path(:sort => "firstname desc", :filter =>@filter), :class=>"sort-btn",remote:true %>
       <% end %>
       <%= t.h('Role') %>
       <%= t.h('Shops') %>
@@ -70,10 +70,10 @@
    		  <%= t.d(:class => 'name') do %>
 	   		<% if admin?(current_user)  %>
 			   
-			   <% if !admin?(user) %> |
-			   <%= link_to "set as admin", set_admin_user_path(user), :method => :put %> 
+			   <% if !admin?(user) %> 
+			   <%= link_to "set as admin", set_admin_user_path(user), :method => :put %> | 
 			   <% end %>
-			    | <%= link_to "delete", user, method: :delete,
+			    <%= link_to "delete", user, method: :delete,
 			                                  data: { confirm: "You sure?" } %>
   			<% end %>
       	<% end %>

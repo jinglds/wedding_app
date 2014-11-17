@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113085246) do
+ActiveRecord::Schema.define(version: 20141117120245) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20141113085246) do
     t.integer  "guest_amt"
   end
 
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
+
   create_table "expenses", force: true do |t|
     t.integer  "event_id"
     t.integer  "vendor_id"
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141113085246) do
   end
 
   add_index "expenses", ["event_id", "created_at"], name: "index_expenses_on_event_id_and_created_at"
+  add_index "expenses", ["event_id"], name: "index_expenses_on_event_id"
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -71,6 +74,8 @@ ActiveRecord::Schema.define(version: 20141113085246) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "photos", ["shop_id"], name: "index_photos_on_shop_id"
 
   create_table "shop_tags", force: true do |t|
     t.string   "name"
@@ -96,6 +101,7 @@ ActiveRecord::Schema.define(version: 20141113085246) do
   end
 
   add_index "shops", ["user_id", "created_at"], name: "index_shops_on_user_id_and_created_at"
+  add_index "shops", ["user_id"], name: "index_shops_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -135,6 +141,7 @@ ActiveRecord::Schema.define(version: 20141113085246) do
   end
 
   add_index "tasks", ["ancestry"], name: "index_tasks_on_ancestry"
+  add_index "tasks", ["event_id"], name: "index_tasks_on_event_id"
 
   create_table "users", force: true do |t|
     t.string   "firstname"
@@ -161,6 +168,7 @@ ActiveRecord::Schema.define(version: 20141113085246) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["role"], name: "index_users_on_role"
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"
