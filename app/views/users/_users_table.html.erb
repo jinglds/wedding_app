@@ -1,0 +1,82 @@
+<%= table_for @users,:html=>{:class=>"table table-hover "} do |t| %>
+  <%= t.head do %>
+    <%= t.r do %>
+      <%= t.h do %>
+        <%= link_to "Name", users_path(:sort => "firstname"), :class=>"sort-btn",remote:true %>
+        <%= link_to "Name", users_path(:sort => "firstname desc"), :class=>"sort-btn",remote:true %>
+      <% end %>
+      <%= t.h('Role') %>
+      <%= t.h('Shops') %>
+      <%= t.h('Comments') %>
+      <%= t.h('Rated Shops') %>
+      <%= t.h('Favorites') %>
+      <%= t.h('Approval') %>
+      <%= t.h('Actions') %>
+    <% end %>
+  <% end %>
+  <%= t.body do |user| %>
+    <%= t.r do %>
+   		<%= t.d(:class => 'name') do %>
+      		<%= link_to  user do %>
+      			<%= user.firstname %> <%= user.lastname %>
+      		<% end %>
+    	<% end %>
+    	<%= t.d(h(user.role)) %>
+      <%= t.d(:class => 'name') do %>
+          <% if (user.role=="enterprise" || admin?(user)) && user.shops.any?%>
+            <%= link_to  '#' do %>
+            <%= user.shops.count %>
+           <% end %>
+          <% else %>
+          n/a
+          <% end %>
+      <% end %>
+      <%= t.d(:class => 'name') do %>
+          <% if  user.comments.any? %>
+            <%= link_to  '#' do %>
+            <%= user.comments.count %>
+           <% end %>
+          <% else %>
+          n/a
+          <% end %>
+      <% end %>
+      <%= t.d(:class => 'name') do %>
+          <% if  user.find_voted_items.any? %>
+            <%= link_to  '#' do %>
+            <%= user.find_voted_items.count %>
+           <% end %>
+          <% else %>
+          n/a
+          <% end %>
+      <% end %>
+
+      <%= t.d(:class => 'name') do %>
+          <% if  user.favorites.any? %>
+            <%= link_to  '#' do %>
+            <%= user.favorites.count %>
+           <% end %>
+          <% else %>
+          n/a
+          <% end %>
+      <% end %>
+
+      <%= t.d(:class => 'name') do %>
+      		<% if user.approval==true %>
+			     <%= link_to "approve", approve_user_path(user), :method => :put %>
+    			<% else %>
+    			 n/a
+			    <% end %>
+      <% end %>
+   		  <%= t.d(:class => 'name') do %>
+	   		<% if admin?(current_user)  %>
+			   
+			   <% if !admin?(user) %> |
+			   <%= link_to "set as admin", set_admin_user_path(user), :method => :put %> 
+			   <% end %>
+			    | <%= link_to "delete", user, method: :delete,
+			                                  data: { confirm: "You sure?" } %>
+  			<% end %>
+      	<% end %>
+    <% end %>
+  <% end %>
+<% end %>

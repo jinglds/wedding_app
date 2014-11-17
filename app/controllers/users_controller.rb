@@ -13,14 +13,40 @@ class UsersController < ApplicationController
   		@users = User.enterprise_users
     elsif params[:filter]=="client"
       @users = User.client_users
+    elsif params[:filter]=="admin"
+      @users = User.admin_users
+    elsif params[:filter]=="pending"
+      @users =  User.pending_users
     else
       @users = User.paginate(page: params[:page])
     end
+
+    @users = @users.order(params[:sort])
+
     respond_to do |format|
       format.html 
       format.js
     end
 	end
+
+  def category
+    if params[:filter]=="enterprise"
+      @users = User.enterprise_users
+    elsif params[:filter]=="client"
+      @users = User.client_users
+    elsif params[:filter]=="pending"
+      @users =  User.where(approval: 't').paginate(page: params[:page])
+    else
+      @users = User.all
+    end
+
+
+    respond_to do |format|
+      format.html {render nothing:true}
+      format.js
+    end
+  end
+
   def set_admin 
       @user = User.find(params[:id])
       if @user.update_attributes(:role => "admin")

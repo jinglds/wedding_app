@@ -1,0 +1,49 @@
+$(function() {
+  	$('#pending-users-btn').click(function(event){
+	    event.preventDefault();
+	    $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    });
+    $('#enterprise-users-btn').click(function(event){
+	    event.preventDefault();
+	    $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    
+    });
+    $('#admin-users-btn').click(function(event){
+	    event.preventDefault();
+	    $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    
+    });
+    $('#client-users-btn').click(function(event){
+	    event.preventDefault();
+	    $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    
+    });
+    $('#all-users-btn').click(function(event){
+	    event.preventDefault();
+	    $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    
+    });
+
+    $('#user-nav li').click(function(e) {
+	    $('#user-nav li.active').removeClass('active');
+	    var $this = $(this);
+	    if (!$this.hasClass('active')) {
+	        $this.addClass('active');
+	    }
+	    e.preventDefault();
+	});
+
+	$('.sort-btn').click(function(e) {
+		e.preventDefault();
+	    $('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    
+	    
+	});
+
+});
+

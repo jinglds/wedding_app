@@ -75,7 +75,8 @@ WeddingApp::Application.routes.draw do
   match "my_tasks", to: "events#my_tasks", via: 'get'
   match "calendar", to: "tasks#calendar", via: 'get'
   get "/style_tags" => 'shops#style_tags', as: 'style_tags'
-
+  match "user_category", to: "users#category", via: 'get'
+  
   
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

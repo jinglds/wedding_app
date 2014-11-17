@@ -1,6 +1,9 @@
 <li>
   <%= link_to user.firstname, user %>
    <% if admin?(current_user)  %>
+   <% if user.approval==true %>
+   | <%= link_to "approve", approve_user_path(user), :method => :put %>
+   <% end %>
    <% if !admin?(user) %> |
    <%= link_to "set as admin", set_admin_user_path(user), :method => :put %> 
    <% end %>

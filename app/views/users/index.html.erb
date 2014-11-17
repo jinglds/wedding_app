@@ -1,16 +1,36 @@
 <div class="container">
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
+<h1>Manage Users</h1>
+<b><ul class="nav nav-tabs" id="user-nav">
+	<li role="presentation" class="active">
+		<%= link_to  users_path(:filter => ""), method: :get, remote: true, id:"all-users-btn" do %>
+		All (<%= User.all.count %>)
+		<% end %>
+	</li>
+	<li role="presentation">
+		<%= link_to  users_path(:filter => "enterprise"), method: :get, remote: true, id:"enterprise-users-btn" do %>
+		Enterprise (<%= User.enterprise_users.count %>)
+		<% end %>
+	</li>
+	<li role="presentation">
+		<%= link_to  users_path(:filter => "client"), method: :get, remote:true, id:"client-users-btn" do %>
+		Client (<%= User.client_users.count %>)
+	<% end %>
+	<li role="presentation">
+		<%= link_to  users_path(:filter => "admin"), remote: true, id:"admin-users-btn" do %>
+		Admin (<%= User.admin_users.count %>)
+		<% end %>
+	</li>
+	<li role="presentation">
+		<%= link_to users_path(:filter => "pending"), remote: true, id:"pending-users-btn" do %>
+		Pending (<%= User.pending_users.count %>)
+		<% end %>
+	</li>
 
-
-
-<%= link_to 'enterprise', users_path(:filter => "enterprise"), method: :get, remote: true %>
-<%= link_to 'client', users_path(:filter => "client"), method: :get, remote: true %>
-<%= will_paginate @users, renderer: BootstrapPagination::Rails  %>
-<ul class="users">
-	<div id="user-list">
-  		<%= render @users %>
-  	</div>
 </ul>
-<%= will_paginate @users, renderer: BootstrapPagination::Rails  %>
+</b>
+<div id="user-table-div">
+	<%= render partial:'users/users_table', locals:{:users=>@users} %>
+</div>
+
 </div>

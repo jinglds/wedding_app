@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     scope :client_users, -> { where(role: 'client') }
     scope :enterprise_users, -> { where(role: 'enterprise') }
     scope :admin_users, -> { where(role: 'admin') }
-    
+    scope :pending_users, -> {where(approval: 't')}
 	def assign_default_role
 		self.role = :client if self.role.blank?
 	end
