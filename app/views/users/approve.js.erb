@@ -1,0 +1,5 @@
+// $('#approve-btn').click(function(e){
+// 	    e.preventDefault();
+	    // $('#user-list-div').html("<%= j render @users %>");
+		$('#user-table-div').html("<%= j render partial:'users/users_table', locals:{:users=>@users} %>");
+    // });

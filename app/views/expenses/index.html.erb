@@ -1,4 +1,14 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 <div class="container">
 	<%= render @expenses %>
-	</div>
-	
+<%= pie_chart @expense_chart, library: {backgroundColor: "transparent"} %>
+<%= bar_chart @ex, library: {backgroundColor: "transparent"}  %>
+
+<% (0..(@ex.size-1)).each do |i| %>
+		<p><%= @ex.keys[i].upcase %> <%= @ex[@ex.keys[i]] %><br>
+		<% @expenses.where(:expense_type => @ex.keys[i]).each do |t| %>
+			<%= t.title.capitalize %> : <%= t.amount %><br>
+		<% end %>
+	<% end %>
+</div>

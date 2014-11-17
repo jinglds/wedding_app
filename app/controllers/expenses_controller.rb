@@ -5,6 +5,12 @@ class ExpensesController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @expenses = @event.expenses
+
+    @ex = @event.expenses.group(:expense_type).sum(:amount)
+    @expense_chart = {}
+    @expense_chart["Used"]= @expenses.sum(:amount)
+    @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
+    
     
   end
 

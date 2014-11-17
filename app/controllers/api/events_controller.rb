@@ -49,26 +49,7 @@ module Api
       end
     end
 
-    def rate
-      @event = Event.find(params[:id])
-      if (@event.liked_by app_user, :vote_weight => (params[:rating][:weight]).to_s)
-        return render :json=> {:success => true, :message => "event rated successfully"}
-      else
-        return render :json=> {:success => false, :message => "event rated unsuccessfully"}
-      end
-    end
-
-
-
-    def unrate
-      @event = Event.find(params[:id])
-      if (@event.unliked_by app_user)
-        return render :json=> {:success => true, :message => "event unrated successfully"}
-      else
-        return render :json=> {:success => false, :message => "event unrated unsuccessfully"}
-      end
-
-    end
+    
 
     private
 

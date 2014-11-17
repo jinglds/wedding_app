@@ -2,7 +2,7 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <div class="container">
-	<h2><%= @event.name %></h2>
+	<h1><%= @event.name.titleize %></h1>
 	<%= link_to "Edit event", edit_event_path(@event) %>
 
 	<div class="row">
@@ -19,23 +19,12 @@
 
 
 	<div class="row">
-		<h2>MY Expenses</h2>
-	    Current Total : <%= @total %>
-		<p><%= link_to "New Expense", new_event_expense_path(@event) %>
-		<div class="col-md-6">
-			<div id="expense-chart">
-				
-			<%= pie_chart @ex %>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<%= render @expenses %>	
-		</div>
-
+		<h3><%= link_to "Expenses", event_expenses_path(@event) %></h3>
+	   <%= render partial: 'events/expenses', locals:{:expenses=>@expenses} %>
 	</div>
 
 
-	<h2><%= link_to "MY Tasks", event_tasks_path(@event) %></h2>
+	<h3><%= link_to "To do", event_tasks_path(@event) %></h3>
 
 
 
@@ -43,16 +32,16 @@
 
 	<p><%= link_to "New Task", new_event_task_path(@event) %>
 
-	<h2>Task by schedule</h2>
+	<h3>Task by schedule</h3>
 	<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
 	<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
 	<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
 	<div id="my-task">
 	<%= render @tasks %>
 	</div>
-	<h2>Now</h2>
+	<h3>Now</h3>
 	<%= render @now %>
-	<h2>Completed</h2>
+	<h3>Completed</h3>
 	<%= render @completed %>
 
 </div>

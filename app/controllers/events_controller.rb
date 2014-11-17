@@ -65,7 +65,7 @@ class EventsController < ApplicationController
   def show
     @user = current_user
     @event = Event.find(params[:id])
-    @expenses = @event.expenses
+    @expenses = @event.expenses;
     @total = @event.expenses.sum(:amount)
     @tasks = @event.tasks
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
@@ -79,8 +79,15 @@ class EventsController < ApplicationController
     # @expenses.all.each do |e|
     #   hash[e.expense_type] = e.amount
     # end
-
-    @ex = @expenses.group(:expense_type).sum(:amount)
+    @ex = @event.expenses.group(:expense_type).sum(:amount)
+    
+    @expense_chart = {}
+    @expense_chart["Used"]= @expenses.sum(:amount)
+    @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
+    
+    # @expense_chart = @event.expenses.group(:expense_type).sum(:amount)
+    
+    # @expense_chart[:all] = @event.budget - @expenses.sum(:amount)
     # @ex.each do |e|
     #   hash[e.expense_type] = e.amount
     # end

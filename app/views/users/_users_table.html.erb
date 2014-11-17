@@ -62,7 +62,7 @@
 
       <%= t.d(:class => 'name') do %>
       		<% if user.approval==true %>
-			     <%= link_to "approve", approve_user_path(user), :method => :put %>
+			     <%= link_to "approve", approve_user_path(user, :filter => @filter), :id=>"approve-btn", remote:true, :method => :put %>
     			<% else %>
     			 n/a
 			    <% end %>

@@ -157,7 +157,7 @@ respond_to do |format|
 
   def destroy
     @shop.destroy
-    redirect_to root_url
+    redirect_to myshops_path
   end
 
   def show

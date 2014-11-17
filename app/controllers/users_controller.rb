@@ -3,28 +3,9 @@ class UsersController < ApplicationController
 	before_action :user_signed_in?, only: [:index, :edit, :update, :destroy]
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:destroy, :approve, :set_admin]
-	def index
+	before_action :set_users, only:[:index, :approve, :set_admin]
+  def index
 
-    # @q = Shop.ransack(params[:q])
-    #   # @type = Shop.select(:shop_type).map(&:shop_type).uniq
-    # @shops = @q.result(distinct: true)
-    @filter = params[:filter]
-    @e = User.enterprise_users
-    @u = User.client_users
-    @a = User.admin_users
-    @p =User.pending_users
-    if params[:filter]=="enterprise"
-  		@users = @e
-    elsif params[:filter]=="client"
-      @users = @u
-    elsif params[:filter]=="admin"
-      @users = @a
-    elsif params[:filter]=="pending"
-      @users =  @p
-    else
-      # @users = User.paginate(page: params[:page])
-      @users = User.all
-    end
 
     @users = @users.order(params[:sort])
 
@@ -34,28 +15,29 @@ class UsersController < ApplicationController
     end
 	end
 
-  def category
-    if params[:filter]=="enterprise"
-      @users = User.enterprise_users
-    elsif params[:filter]=="client"
-      @users = User.client_users
-    elsif params[:filter]=="pending"
-      @users =  User.where(approval: 't').paginate(page: params[:page])
-    else
-      @users = User.all
-    end
+  # def category
+  #   if params[:filter]=="enterprise"
+  #     @users = User.enterprise_users
+  #   elsif params[:filter]=="client"
+  #     @users = User.client_users
+  #   elsif params[:filter]=="pending"
+  #     @users =  User.where(approval: 't').paginate(page: params[:page])
+  #   else
+  #     @users = User.all
+  #   end
 
 
-    respond_to do |format|
-      format.html {render nothing:true}
-      format.js
-    end
-  end
+  #   respond_to do |format|
+  #     format.html {render nothing:true}
+  #     format.js
+  #   end
+  # end
 
   def set_admin 
       @user = User.find(params[:id])
       if @user.update_attributes(:role => "admin")
-        redirect_to :users, notice: "User set as admin"
+        flash[:success] ="User set as admin"
+        redirect_to :users
       else
           render :users
       end
@@ -95,11 +77,17 @@ class UsersController < ApplicationController
 
   	def approve
   		@user = User.find(params[:id])
-	  	if @user.update_attributes(:approval => "f", :role => "enterprise")
-	  		redirect_to :pendings, notice: "User approved"
-    	else
-      		render :pendings
-   		end
+	  	@user.update_attributes(:approval => "f", :role => "enterprise")
+	  	
+      	# redirect_to :pendings, notice: "User approved"
+    	# else
+     #  		render :pendings
+   		# end
+
+      respond_to do |format|
+        format.html {render nothing:true}
+        format.js
+      end
 	end
 
   	private
@@ -112,4 +100,24 @@ class UsersController < ApplicationController
     end
 
 
+    def set_users
+      @filter = params[:filter]
+      @e = User.enterprise_users
+      @u = User.client_users
+      @a = User.admin_users
+      @p =User.pending_users
+      if params[:filter]=="enterprise"
+        @users = @e
+      elsif params[:filter]=="client"
+        @users = @u
+      elsif params[:filter]=="admin"
+        @users = @a
+      elsif params[:filter]=="pending"
+        @users =  @p
+      else
+        # @users = User.paginate(page: params[:page])
+        @users = User.all
+      end
+      
+    end
 end
