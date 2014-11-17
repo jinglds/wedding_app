@@ -27,6 +27,8 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'dragonfly', '~> 1.0.7'
 gem "chartkick"
+gem 'jquery-countdown-rails'
+gem 'chronic'
 
 
 group :development, :test do

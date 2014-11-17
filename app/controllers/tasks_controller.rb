@@ -52,6 +52,10 @@ class TasksController < ApplicationController
         @parent = Task.find(params[:task][:parent_id])
         params[:task][:rank] = 1
       end
+
+      @date = Chronic.parse(params[:task][:due_date])
+      # params[:task][:due_date] = Date.today
+      params[:task][:due_date] = @date
       # @event_day = @event.date
       
       @task = @event.tasks.build(task_params)
@@ -66,7 +70,7 @@ class TasksController < ApplicationController
         
       else
         flash[:success] = "Error!"
-          render @event
+          render 'new'
       end
   end
 

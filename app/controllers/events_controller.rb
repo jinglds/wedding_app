@@ -69,11 +69,28 @@ class EventsController < ApplicationController
     @total = @event.expenses.sum(:amount)
     @tasks = @event.tasks
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
-
+    # @amount = @
     @completed = @event.tasks.done
     # @now = @event.tasks.now
     @now = @event.tasks.this_week
     # @days = @event.date + @event.time
+
+    # hash = {}
+    # @expenses.all.each do |e|
+    #   hash[e.expense_type] = e.amount
+    # end
+
+    @ex = @expenses.group(:expense_type).sum(:amount)
+    # @ex.each do |e|
+    #   hash[e.expense_type] = e.amount
+    # end
+
+
+
+# Table.where(:type => 1).sum(:price)
+
+
+
     respond_to do |format|
       format.html 
       format.js

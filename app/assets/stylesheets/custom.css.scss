@@ -1,4 +1,4 @@
-
+@import "jquery.countdown.css";
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
@@ -833,4 +833,19 @@ div.hidden {
 
   }
 
+}
+
+.countdown{
+  background-color: transparent;
+  border: 0;
+  font-size: 1.8em;
+  color: $gold;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  /*font-family: Perpetua;*/
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+
+}
+#chart-1 >{
+  background-color: transparent;
 }

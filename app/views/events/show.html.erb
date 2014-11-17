@@ -1,56 +1,58 @@
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-<div class="container">
 <% provide(:title, @event.name) %>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
+<div class="container">
+	<h2><%= @event.name %></h2>
+	<%= link_to "Edit event", edit_event_path(@event) %>
 
-<h2><%= @event.name %></h2>
-
-<div class="row">
-	<div id="event-date-div">
-		
-		<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
-		<%= render partial: 'events/countdown', locals:{:event=> @event } %>
-		
-			
-		
+	<div class="row">
+		<div id="event-date-div">
+			<% if Date.today <= @event.date %>
+				<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
+				<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+			<% else %>
+				<%= render 'events/lift_off' %>
+			<% end %>	
+		</div>
 	</div>
 
-    Current Total : <%= @total %>
-</div>
 
 
+	<div class="row">
+		<h2>MY Expenses</h2>
+	    Current Total : <%= @total %>
+		<p><%= link_to "New Expense", new_event_expense_path(@event) %>
+		<div class="col-md-6">
+			<div id="expense-chart">
+				
+			<%= pie_chart @ex %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<%= render @expenses %>	
+		</div>
 
-<div class="row">
-	<h2>MY Expenses</h2>
-	<p><%= link_to "New Expense", new_event_expense_path(@event) %>
-	<div class="all-block col-md-6">
-		<%= pie_chart @expenses.group(:expense_type).count %>
 	</div>
-	<div class="col-md-6">
-		<%= render @expenses %>	
+
+
+	<h2><%= link_to "MY Tasks", event_tasks_path(@event) %></h2>
+
+
+
+	<b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
+
+	<p><%= link_to "New Task", new_event_task_path(@event) %>
+
+	<h2>Task by schedule</h2>
+	<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
+	<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
+	<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
+	<div id="my-task">
+	<%= render @tasks %>
 	</div>
-
-</div>
-
-
-<h2><%= link_to "MY Tasks", event_tasks_path(@event) %></h2>
-
-
-
-<b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
-
-<p><%= link_to "New Task", new_event_task_path(@event) %>
-
-<h2>Task by schedule</h2>
-<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
-<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
-<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
-<div id="my-task">
-<%= render @tasks %>
-</div>
-<h2>Now</h2>
-<%= render @now %>
-<h2>Completed</h2>
-<%= render @completed %>
+	<h2>Now</h2>
+	<%= render @now %>
+	<h2>Completed</h2>
+	<%= render @completed %>
 
 </div>

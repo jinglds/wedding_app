@@ -1,4 +1,4 @@
-<div id="task-item<%= task.id %>" class="task-<%= Task.status(:task_id => task.id) %>" >
+<div  >
 <h3><%= link_to task.title, event_task_path(task.event, task) %></h3>
 note: <%= task.note %><p>
 rank: <%= task.rank %><p>
@@ -11,5 +11,8 @@ Completed?: <%= task.completed %><p>
 <%= link_to "DeCompleted::cascade:true", event_task_decomplete_path(@event, task, :cascade => true), method: :put, remote: true %> |
 <%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put, remote: true %> |
 <%= link_to "Add child task", new_event_task_path(@event, :parent_id => task) %>  | 
-<%= link_to "Edit task", edit_event_task_path(@event, task)%>  |
+<%= link_to "Edit", edit_event_task_path(@event, task)%>  |
+<%= link_to "Delete", event_task_path(@event, task), method: :delete,
+                                         data: { confirm: "You sure?" },
+                                         title: task.title %>
 </div>

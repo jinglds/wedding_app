@@ -1,6 +1,25 @@
 <% unless @event.date.nil? %>
+	
+<div class="col-md-6 col-md-offset-3">
 	<p>Date: <%= @event.date.strftime("%A %B %d %Y  ||  %m/%d/%Y  || %H:%M")%>
-	<p>Time: <%= @event.time.strftime('%H:%M') %>
-	<p><%= @event.time.to_time%>
-	<p> Days Til :
+	<div id="timer" class="countdown"></div>
+</div>
+	<%= javascript_tag do %>
+	  event_date = '<%= j @event.date.strftime('%Y,%m,%d') %>';
+	  day = '<%= j @event.date.strftime('%d') %>';
+	  month = '<%= j @event.date.strftime('%m') %>';
+	  year = '<%= j @event.date.strftime('%Y') %>';
+	<% end %>
+
+
+
+	<script type="text/javascript">
+	  $(function() { 
+	      $('#timer').countdown({until: new Date(year, month-1, day), onExpiry: liftOff});
+	      // $('#timer').countdown({until: new Date(2014,10,16,17,9,30), onExpiry: liftOff});
+	      function liftOff() { 
+    		$('#event-date-div').html("<%= j render 'events/lift_off' %>");
+			}
+		});
+	</script>
 <% end %>
