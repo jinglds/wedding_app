@@ -87,7 +87,7 @@ class ShopsController < ApplicationController
       
       @cat_title = @cat_title.intern
       @results = ActiveRecord::Base.connection.execute(sql)
-      @results = @results.values 
+      @results = @results
       @q = Shop.ransack(params[:q])
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
