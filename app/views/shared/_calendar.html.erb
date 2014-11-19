@@ -1,4 +1,4 @@
-<div id="calendar">
+<div id="my-calendar">
 <h2 id="month">
     <%= link_to "<", calendar_path(:event_id => @event.id, :month => (@month_date.beginning_of_month-1).strftime("%Y-%m-01"), :week => (@month_date.beginning_of_month-1).strftime("%Y-%m-%d")), method: :get, remote: true %>
     <%= h @month_date.strftime("%B %Y") %>
@@ -7,7 +7,12 @@
 
 <%= calendar_for(@tasks, :year => @month_date.year, :month => @month_date.month) do |t| %>
    <%= t.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')%>
-  <%= t.day(:day_method => :due_date) do |date, tasks| %>
+  <%= t.day(:day_method => :due_date, :id => 'day_%d') do |date, tasks| %>
+
+ 
+  <%= link_to  calendar_path(:event_id => @event.id, :day => (date), :week => date, :month => date), method: :get, remote: true do %>
+
+    <div class="day-block">
     <% if tasks.nil? %>
       <%= date.cweek %>
     <% else %>
@@ -29,6 +34,9 @@
       	
       <% end %>
     <% end %>
+  </div>
+  <% end %>
+
   <% end %>
 <% end %>
 </div>

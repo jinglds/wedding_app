@@ -29,6 +29,7 @@ gem 'dragonfly', '~> 1.0.7'
 gem "chartkick"
 gem 'jquery-countdown-rails'
 gem 'chronic'
+gem 'fullcalendar-rails' 
 
 
 group :development, :test do

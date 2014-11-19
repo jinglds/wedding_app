@@ -45,6 +45,7 @@ WeddingApp::Application.routes.draw do
 
       get "add_vendor", to: "tasks#add_vendor"
       put "remove_vendor", to: "tasks#remove_vendor"
+      get "js_tasks", to: "tasks#js_tasks" 
     end
   end
   resources :favorite_shops, only: [:create, :destroy]

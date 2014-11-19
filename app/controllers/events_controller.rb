@@ -4,6 +4,15 @@ class EventsController < ApplicationController
   before_action :correct_user,   only: :destroy
   before_filter :set_date, only: [:create, :update]
 
+  
+  def js_tasks
+    @events = current_user.events.all
+    respond_to do |format|
+      format.html {render :nothing => true}
+      format.js
+    end
+  end
+
   def my_tasks
     @event = Event.find(params[:event_id])
     if params[:filter] =="week"

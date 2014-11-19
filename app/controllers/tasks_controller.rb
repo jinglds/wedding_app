@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @event = Event.find(params[:event_id])
     @vendors =@event.vendors
-    
+
     respond_to do |format|
       format.html { render :layout => false }
       format.js
@@ -38,7 +38,10 @@ class TasksController < ApplicationController
 
     # @today = params[:date] ? Task.today(param[:date]) : nil
     # @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)
-   
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
   def calendar
     @event = Event.find(params[:event_id])
@@ -53,8 +56,7 @@ class TasksController < ApplicationController
       format.js
     end
     
-  
-    
+   
   end
 
   def show

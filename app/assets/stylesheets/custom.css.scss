@@ -2,6 +2,7 @@
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
 $gold: #886A08;
@@ -16,6 +17,12 @@ $mediumGrey: #808080;
 $grey: #666666;
 
 $darkerGrey: #414141;
+
+$lightPink: #FBEFF5;
+$lightYellow: #FBFBEF;
+$lightMint: #EFFBF5;
+$lightPurple: #E6E0F8;
+$notepadYellow:#F7F8E0;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -628,28 +635,28 @@ border-radius: 5px;
 }
 
 /* calendar */
-#calendar table {
+#my-calendar table {
   border-collapse: collapse;
   width: 100%;
   height:80%;
 }
 
-#calendar td,
-#calendar th {
+#my-calendar td,
+#my-calendar th {
   font-family: "Lucida Grande",arial,helvetica,sans-serif;
   font-size: 10px;
   padding: 6px;
   border: 1px solid #999;
 }
 
-#calendar th {
+#my-calendar th {
   background: #DDD;
   color: #666;
   text-align: center;
   width: 14.2857142857143%;
 }
 
-#calendar td {
+#my-calendar td {
   background: #FFF;
   color: #777;
   height: 80px;
@@ -657,35 +664,44 @@ border-radius: 5px;
   font-size: 16px;
 }
 
-#calendar .notmonth {
+#my-calendar .day-block{
+  height: 100%;
+  width: 100%;
+}
+
+#my-calendar .notmonth {
   color: #CCC;
 }
 
-#calendar #month {
+#my-calendar #month {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
 
-#calendar #month a, #calendar #month a:hover {
+#my-calendar #month a, #calendar #month a:hover {
   text-decoration: none;
   padding: 0 10px;
   color: #999;
 }
 
-#calendar .today {
+#my-calendar .today {
   background-color: #D7F2FF;
 }
 
-#calendar ul {
+#my-calendar .selected {
+  background-color: $lightPurple;
+}
+
+#my-calendar ul {
   margin: 0;
   margin-top: 5px;
   padding: 0;
   list-style: none;
 }
 
-#calendar li {
+#my-calendar li {
   margin: 0;
   padding: 0;
   font-size: 11px;
@@ -849,16 +865,16 @@ div.hidden {
 }
 .task-late{
   /*border: 1px #F8E0E6 solid;*/
-  background-color: #FBEFF5;
+  background-color: $lightPink;
 }
 
 .task-warning{
   /*border: 1px #F7F8E0 solid;*/
-  background-color: #FBFBEF;
+  background-color: $lightYellow;
 }
 .task-ok{
   /*border: 1px green solid;*/
-  background-color: #EFFBF5;
+  background-color: $lightMint;
 }
 
 .container{
@@ -898,10 +914,9 @@ div.hidden {
   margin-top: 10px;
   box-shadow: 1px 1px 2px $lightGrey;
 }
-
 .vendor-block{
   margin-top: 10px;
-  background-color: #F7F8E0;
+  background-color: $notepadYellow;
   padding-right: 12px;
   padding-left: 12px;
   padding-top: 8px;

@@ -1,3 +1,5 @@
 $("#calendar-div").html("<%= escape_javascript(render 'shared/calendar' ) %>")
 $("#week-div").html("<%= escape_javascript(render 'tasks/week' ) %>")
 $("#today-div").html("<%= escape_javascript(render 'tasks/today' ) %>")
+$("#day_<%= @date.strftime('%d') %>").not(".notmonth").addClass('selected');
+// $("[id=day_<%= @date.strftime('%d') %>][class!='notmonth']").addClass('selected');
