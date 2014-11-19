@@ -13,13 +13,20 @@
     <% else %>
       <%= date.day %>
       <% if (tasks.count < 2) %>
-	      <% tasks.each do |task| %>
-	        <li><%= link_to h(task.title), event_tasks_path(task.id) %></li>
-	      <% end %>
+	      
+        <ul class="list-unstyled">
+          <% tasks.each do |task| %>
+          <li><%= link_to h(task.title), event_tasks_path(task.id) %></li>
+        <% end %>
+        </ul>
+	        
       <% else %>
-      	<li><%= link_to h(tasks.first.title), event_tasks_path(tasks.first.id) %></li>
-      	<li><%= link_to h(tasks.second.title), event_tasks_path(tasks.second.id) %></li>
-      	See <%= tasks.count %> more
+      <ul class="list-unstyled">
+      	<li><%= link_to h(tasks.first.title.capitalize.truncate(18, :omission => "...")), event_tasks_path(tasks.first.id) %></li>
+      	<li><%= link_to h(tasks.second.title.capitalize.truncate(18, :omission => "...")), event_tasks_path(tasks.second.id) %></li>
+        <li>See <%= tasks.count %> more</li>
+      </ul>
+      	
       <% end %>
     <% end %>
   <% end %>
