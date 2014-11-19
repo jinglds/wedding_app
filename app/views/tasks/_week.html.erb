@@ -1,3 +1,4 @@
+<h3>This Week</h3>
 <%= link_to "<", calendar_path(:event_id => @event.id, :week => (@week_date - 1.week).strftime("%Y-%m-%d"), :month => (@week_date - 1.week).strftime("%Y-%m-%d")), method: :get, remote: true %>
 
 <%= link_to "Today", calendar_path(:event_id => @event.id, :week => (Date.today).strftime("%Y-%m-%d"), :month => (Date.today).strftime("%Y-%m-%d")), method: :get, remote: true %>

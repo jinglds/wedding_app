@@ -1,6 +1,31 @@
 <% provide(:title, @event.name) %>
 <div class="container">
-<h2><%= @event.name %> 's Tasks</h2>
+<h2><%= @event.name.titleize %> 's Tasks</h2>
+
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>
+			<% if @lates.any? %>
+				<%= link_to '#', id:"late-task-btn" do %>
+					See <%= @lates.count %> Late Tasks
+				<%end%>
+				
+			<%else %>
+				No Late task
+			<%end%>
+
+		</h3>
+		<div id="late-tasks-div">
+			<% if @lates.any? %>
+			<%= render @lates %> 
+			<% else %>
+				No late tasks
+			<% end %>
+		</div>
+</div>
+
+</div>
 
 
 <div class="row">
@@ -10,7 +35,7 @@
 		</div>
 	</div>
 	<div class="col-md-5">
-		
+		<div class="transparent">x</div>
 		<div id="today-div">
 			<%= render 'tasks/today' %>
 		</div>
@@ -19,25 +44,49 @@
 </div>
 
 
-
-<h3>This Week</h3>
 <div id="week-div">
 <%= render 'tasks/week' %>
 </div>
 
+<div class="transparent">x</div>
 
 
-<h2>now</h2>
-<div id="uncomplete-tasks-div">
-  <%= render @now %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+	<h3 class="pull-right"><%= @completed.count %> / <%= @tasks.count %> tasks completed!</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+	<div class="progress">
+	  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
+	    <%= @progress %>%
+	  </div>
+	</div>
+</div>
 </div>
 
-<h2>done</h2>
-<div id="complete-tasks-div">
-  <%= render @done %>
+
+<div class="col-md-6">
+	<h3>
+		<%= link_to '#', id:"all-task-btn" do %>
+			See <%= @tasks.count %> All Tasks
+		<%end%>
+	</h3>
+	<div id="all-tasks-div">
+	  <%= render @tasks %>
+	</div>
 </div>
 
-
-<%= nested_tasks @tasks.arrange(:order => :created_at) %>
+<div class="col-md-6">
+	<h3>
+		<%= link_to '#', id:"completed-task-btn" do %>
+			See <%= @done.count %> Completed Tasks
+		<%end%>
+	</h3>
+	<div id="complete-tasks-div">
+	  <%= render @done %>
+	</div>
+</div>
 
 </div>

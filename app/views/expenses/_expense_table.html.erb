@@ -1,0 +1,90 @@
+<table class="table table-condensed">
+	<tr>
+		<th>Title</th>
+		<th>Amount</th>
+		<th>Balance</th>
+		<th>Receiver</th>
+		<th>Status</th>
+		<th>Action</th>
+	</tr>
+	<tr class="success">
+		<td><h4>Budget</h4></td>
+		<td></td>
+		<td><%= @event.budget%></td>
+		<td></td>
+		<td></td>
+		<td><%= link_to "Edit Budget", edit_event_path(@event) %> </td>
+	</tr>
+	<% @@b = @event.budget%>
+	<% (0..(@ex.size-1)).each do |i| %>
+		<tr class="active">
+			<td>
+				<h4><%= @ex.keys[i].upcase %></h4>
+			</td>
+			<td>
+				<%#= @ex[@ex.keys[i]] %>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+
+			
+		</tr>
+
+		<% @expenses.where(:expense_type => @ex.keys[i]).each do |t| %>
+
+		<tr class="<%= 'warning' if t.paid==false %>">
+			<td style="padding-left:35px;">
+				<%= link_to t.title.capitalize, event_expense_path(@event, t) %>
+			</td>
+			<td>
+				<%= t.amount %>
+				
+			</td>
+			<td>
+				<%= @@b = @@b-t.amount %>
+			</td>
+			<td>
+				<% if t.receiver=="" %>
+					n/a
+				<%else%>
+					<%= t.receiver  %>
+				<%end%>
+			</td>
+			<td>
+					<% if t.paid==true %>
+						Paid
+					<%else %>
+						Unpaid
+					<%end%>
+				
+			</td>
+
+			<td>
+				<% if t.paid==true %>
+						<%= link_to "unpay", event_expense_unpay_path(@event, t.id), method: :put, remote: true %>
+					<%else %>
+						<%= link_to "pay", event_expense_pay_path(@event, t.id), method: :put, remote: true %>
+					<%end%>
+				| <%= link_to "edit", edit_event_expense_path(@event, t.id) %> | 
+    			<%= link_to "delete", event_expense_path(@event, t.id), method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: t.title %>
+			</td>
+		</tr>
+		<% end %>
+	<% end %>
+	<tr class="danger">
+		<td>
+			<h4>Total:</h4>
+		</td>
+		<td><%= @total %></td>
+		<td>
+			<b><%= @@b %></b>
+		</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>

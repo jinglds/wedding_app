@@ -63,8 +63,12 @@ a {
   color: $gold;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
   line-height: 1;
+}
+
+h3, h4, h5, h6 {
+  line-height: 0.8;
 }
 
 h1 {
@@ -306,6 +310,9 @@ aside {
 /* forms */
 
 .form-all{
+  /*border: 1px $gold solid;*/
+  padding: 15px;
+  /*background-color: white;*/
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 }
 
@@ -934,4 +941,10 @@ div.hidden {
 
 .vendor-index{
   margin: 5px;
+}
+
+.small-link{
+  font-size: 0.4em;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
 }

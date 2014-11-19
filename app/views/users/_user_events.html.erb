@@ -1,0 +1,24 @@
+<% @events.each do |s| %>
+<div class="col-md-6">
+  <%= link_to s do %> 
+    <div class="event-block">
+      <div class="item">
+          <div class="center">
+            
+          </div>
+          <div class="event-block-content">
+            <span class="event-block-title"><%= link_to s.name, s %></span>
+            
+            <br>
+            <% if (current_user==s.user) %>
+              <%= link_to "Edit", edit_event_path(s.id) %> | 
+              <%= link_to "Delete", s, method: :delete,
+                                               data: { confirm: "You sure?" },
+                                               title: s.name %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+<% end %>

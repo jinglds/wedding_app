@@ -25,6 +25,7 @@ class TasksController < ApplicationController
     
   end
   def index
+    @task = Task.new
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
     @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
@@ -35,6 +36,19 @@ class TasksController < ApplicationController
     @today = @event.tasks.today(:date=>@date)
     @done = @event.tasks.done
     @now = @event.tasks.now
+
+
+    @completed = @event.tasks.done
+
+    if (@completed.count==0 || @tasks.count==0)
+      @progress = 0
+    else
+      @progress = ((@completed.count.to_f/@tasks.count.to_f)*100).to_i
+    end
+    # @now = @event.tasks.this_week
+    @lates = @tasks.lates.not_done.limit(2)
+    # @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
+    @upcoming = @tasks.upcomings.not_done.limit(4)
 
     # @today = params[:date] ? Task.today(param[:date]) : nil
     # @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)

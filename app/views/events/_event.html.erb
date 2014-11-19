@@ -1,11 +1,9 @@
-<li>
-  <span class="content">Name: <%= link_to event.name, event %></span>
+<div class="all-block">
+   <span class="content">Name: <%= link_to event.name, event %></span>
   <span class="content">TYPE: <%= event.event_type %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(event.created_at) %> ago.
   </span>
-
-
 
   
   <% if (current_user==event.user) %>
@@ -14,4 +12,6 @@
                                      data: { confirm: "You sure?" },
                                      title: event.name %>
   <% end %>
-</li>
+</div>
+ 
+

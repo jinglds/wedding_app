@@ -1,0 +1,50 @@
+$(function() {
+	$('#week-div').hide();
+	$('#late-tasks-div').hide();
+	$('#complete-tasks-div').hide();
+	$('#all-tasks-div').hide();
+	var show = false;
+	$('#completed-task-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    if(show == true){
+	    	show = false
+	    	$('#complete-tasks-div').fadeOut();
+	    }
+		else{
+			show = true
+			$('#complete-tasks-div').fadeIn();
+		}
+	
+    });
+	var showl = false;
+    $('#late-task-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    if(showl == true){
+	    	showl = false
+	    	$('#late-tasks-div').fadeOut();
+	    }
+		else{
+			showl = true
+			$('#late-tasks-div').fadeIn();
+		}
+	
+    });
+
+
+    var showa = false;
+    $('#all-task-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    if(showa == true){
+	    	showa = false
+	    	$('#all-tasks-div').fadeOut();
+	    }
+		else{
+			showa = true
+			$('#all-tasks-div').fadeIn();
+		}
+	
+    });
+});

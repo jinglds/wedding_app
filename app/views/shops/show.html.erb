@@ -18,7 +18,7 @@
         <% else %>
           <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true %>
         <% end %> 
-        <%= link_to "Add to Vendor", new_vendor_path(:shop_id => @shop.id) %>
+        <span class="small-link"><%= link_to "add vendor", new_vendor_path(:shop_id => @shop.id) %></span>
         </h3>
         <% if @shop.user == current_user %>
           <span class="pull-right">
@@ -81,18 +81,7 @@
   </div>
 
   
-  <div class="row">
-    
-    <%= link_to "UnRate", unrate_shop_path(@shop), method: :put %>          
-
   
-
-  
-
-
-
-
-  </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div id="comment-div">
@@ -102,6 +91,7 @@
         <span id="shop-rating-form">
             <%= render 'shops/rating_form', :locals => {:user => @user, :shop => @shop, :h => 15, :w=> 15} %>
         </span>
+        <span class="small-link"><%= link_to "unrate", unrate_shop_path(@shop), method: :put %>    </span>
       </h3>
       <div id="comment-form-div">
         <%= render 'comments/comment_form' %>

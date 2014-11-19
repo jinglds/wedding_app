@@ -2,16 +2,47 @@ class ExpensesController < ApplicationController
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def pay
+    @event = Event.find(params[:event_id])
+    @expense = Expense.find(params[:expense_id])
+    @expense.update_attributes(:paid => true) 
+    @expenses = @event.expenses
+    @total = @event.expenses.sum(:amount)
+    @ex = @event.expenses.group(:expense_type).sum(:amount)
+    
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.js
+    end
+  end
+
+  def unpay 
+    @event = Event.find(params[:event_id])
+    @expense = Expense.find(params[:expense_id])
+    @expenses = @event.expenses
+    @total = @event.expenses.sum(:amount)
+    @ex = @event.expenses.group(:expense_type).sum(:amount)
+    
+    @expense.update_attributes(:paid => false)
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.js
+    end 
+    
+  end
+
   def index
     @event = Event.find(params[:event_id])
     @expenses = @event.expenses
-
+    @expense = Expense.new
     @ex = @event.expenses.group(:expense_type).sum(:amount)
     @expense_chart = {}
     @expense_chart["Used"]= @expenses.sum(:amount)
     @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
     
-    
+    @total = @event.expenses.sum(:amount)
+    # @x =@event.budget
+    # @@x = @x
   end
 
   def show
@@ -29,11 +60,11 @@ class ExpensesController < ApplicationController
         # respond_to do |format|
       if @expense.save
          flash[:success] = "Expense created!"
-         redirect_to @event
+         redirect_to event_expenses_path(@event)
         
       else
         flash[:success] = "Error!"
-          render @event
+          render event_expenses_path(@event)
       end
   end
 
@@ -49,7 +80,7 @@ class ExpensesController < ApplicationController
       @expense.destroy
 
       flash[:success] = "Expense deleted!"
-         redirect_to @event
+         redirect_to event_expenses_path(@event)
   end
 
   def edit
@@ -59,9 +90,10 @@ class ExpensesController < ApplicationController
 
   def update
     @expense = Expense.find(params[:id])
-
+    @event = Event.find(params[:event_id])
     if @expense.update_attributes(expense_params)
-      redirect_to event_expense_path(@expense.event, @expense), notice: "Successfully updated event"
+      flash[:success] = "Successfully updated expense"
+      redirect_to event_expenses_path(@event)
     else
       render :edit
     end
