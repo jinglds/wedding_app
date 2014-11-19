@@ -38,16 +38,17 @@ class TasksController < ApplicationController
 
     # @today = params[:date] ? Task.today(param[:date]) : nil
     # @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)
-    respond_to do |format|
-      format.html 
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html 
+    #   format.js
+    # end
   end
   def calendar
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
     @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
     @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    # @date = params[:day] ? Date.parse(params[:day]) : Date.today
     @date = params[:day] ? Date.parse(params[:day]) : Date.today
     @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
     @today = @event.tasks.today(:date=>@date)
@@ -100,6 +101,9 @@ class TasksController < ApplicationController
 
   def new
       @event = Event.find(params[:event_id])
+      unless params[:date].nil?
+        @date= Chronic.parse(params[:date])
+      end
       # @task = @event.tasks.new
       # @task = Task.new(:parent_id => params[:parent_id])
       @vendors = @event.vendors

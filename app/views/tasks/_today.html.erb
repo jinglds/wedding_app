@@ -1,7 +1,15 @@
+<h3><%= @date.to_formatted_s(:long) %> (<%= @today.count %> tasks)</h3>
 <%= link_to "<", calendar_path(:event_id => @event.id, :day => (@date - 1.day), :week => (@date - 1.day).strftime("%Y-%m-%d"), :month => (@date - 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
 
+<% if @date == Date.today %>
+	Today
+<%else %>
 <%= @date.strftime("%Y-%m-%d") %>
-
+<% end %>
 <%= link_to ">", calendar_path(:event_id => @event.id, :day => (@date + 1.day), :week => (@date + 1.day).strftime("%Y-%m-%d"), :month => (@date + 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
-
-<%= render @today %>
+<%= link_to "New Task", new_event_task_path(@event, :date => @date) %>
+<% if @today.any? %>
+	<%= render @today %>
+<% else %>
+	<p> No Task
+<% end %>

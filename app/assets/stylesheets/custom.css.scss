@@ -644,7 +644,7 @@ border-radius: 5px;
 #my-calendar td,
 #my-calendar th {
   font-family: "Lucida Grande",arial,helvetica,sans-serif;
-  font-size: 10px;
+  font-size: 0.8;
   padding: 6px;
   border: 1px solid #999;
 }
@@ -661,7 +661,10 @@ border-radius: 5px;
   color: #777;
   height: 80px;
   vertical-align: top;
-  font-size: 16px;
+  font-size: 1em;
+  &:hover {
+    background-color: $lightPurple;
+  }
 }
 
 #my-calendar .day-block{
@@ -696,7 +699,6 @@ border-radius: 5px;
 
 #my-calendar ul {
   margin: 0;
-  margin-top: 5px;
   padding: 0;
   list-style: none;
 }
@@ -704,7 +706,7 @@ border-radius: 5px;
 #my-calendar li {
   margin: 0;
   padding: 0;
-  font-size: 11px;
+  font-size: 0.7em;
   text-align: center;
 }
 
@@ -848,6 +850,8 @@ div.hidden {
 }
 
 .block-content{
+  /*font-family: "Lucida Grande",arial,helvetica,sans-serif;*/
+  
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   /*font-family:Century Gothic;*/
   font-size: 1.1em;

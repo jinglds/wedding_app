@@ -12,7 +12,7 @@
 
     <%= f.label :due_date %>
     <div class="input-group date" id="datetimepicker5">
-      <%= f.text_field :due_date, class: 'form-control form-field' %>
+      <%= f.text_field :due_date, class: 'form-control form-field', value: (@date ? @date.strftime('%m/%d/%Y %I:%M %p') : nil) %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 
