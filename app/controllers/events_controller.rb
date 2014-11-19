@@ -73,6 +73,15 @@ class EventsController < ApplicationController
     @completed = @event.tasks.done
     # @now = @event.tasks.now
     @now = @event.tasks.this_week
+    @lates = @tasks.lates.not_done.limit(2)
+    @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
+    @upcoming = @tasks.upcomings.not_done.limit(4)
+
+    if (@completed.count==0 || @tasks.count==0)
+      @progress = 0
+    else
+      @progress = ((@completed.count.to_f/@tasks.count.to_f)*100).to_i
+    end
     # @days = @event.date + @event.time
 
     # hash = {}

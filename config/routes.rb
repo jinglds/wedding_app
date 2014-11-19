@@ -30,15 +30,21 @@ WeddingApp::Application.routes.draw do
       put "set_admin"
     end
   end
+  resources :vendors
+  resources :event_vendors
   resources :events do
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"
+    
     resources :expenses
     resources :tasks do
       put "complete", to: "tasks#complete"
       
   # match "complete", to: "tasks#complete", via: 'get'
       put "decomplete", to: "tasks#decomplete"
+
+      get "add_vendor", to: "tasks#add_vendor"
+      put "remove_vendor", to: "tasks#remove_vendor"
     end
   end
   resources :favorite_shops, only: [:create, :destroy]

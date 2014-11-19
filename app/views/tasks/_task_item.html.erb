@@ -1,0 +1,13 @@
+
+
+<h3>Task by schedule</h3>
+	<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
+	<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
+	<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
+	<div id="my-task">
+	<%= render @tasks %>
+	</div>
+	<h3>Now</h3>
+	<%= render @now %>
+	<h3>Completed</h3>
+	<%= render @completed %>

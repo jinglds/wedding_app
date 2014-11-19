@@ -1,0 +1,28 @@
+<div class="col-md-6">
+	<%= link_to event_tasks_path(@event) do %>
+			<h3>Late (+ <%= @tasks.lates.not_done.count - @lates.count %> more)</h3>
+		<% end %>
+		<% if @lates.any? %>
+		<%= render @lates %> 
+		<% else %>
+			No late tasks
+		<% end %>
+		<%= link_to event_tasks_path(@event) do %>
+			<h3>Today (+ <%= @tasks.today(:date=>Time.zone.now).not_done.count - @today.count %> more)</h3>
+		<% end %>
+		<% if @today.any? %>
+		<%= render @today %> 
+		<% else %>
+			No task due today
+		<% end %>
+	</div>
+	<div class="col-md-6">
+		<%= link_to event_tasks_path(@event) do %>
+			<h3>Upcoming (+ <%= @tasks.upcomings.not_done.count - @upcoming.count %> more)</h3>
+		<% end %>
+		<% if @upcoming.any? %>
+		<%= render @upcoming %> 
+		<% else %>
+			No upcoming task
+		<% end %>
+	</div>

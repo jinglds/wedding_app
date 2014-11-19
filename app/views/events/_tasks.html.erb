@@ -1,0 +1,18 @@
+<div class="row">
+	<b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
+
+	<p><%= link_to "New Task", new_event_task_path(@event) %>
+</div>
+<div class="row">
+	<div class="progress">
+	  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
+	    <%= @completed.count %> / <%= @tasks.count %> tasks completed
+	  </div>
+	</div>
+</div>
+<div class="row">
+		<div id="event-task-block">
+			<%= render partial:'events/task_details', locals:{:task=>@task, :lates=>@lates, :today=>@today, :upcoming=>@upcoming} %>
+		</div>
+		
+</div>

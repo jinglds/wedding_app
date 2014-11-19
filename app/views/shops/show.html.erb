@@ -18,6 +18,7 @@
         <% else %>
           <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true %>
         <% end %> 
+        <%= link_to "Add to Vendor", new_vendor_path(:shop_id => @shop.id) %>
         </h3>
         <% if @shop.user == current_user %>
           <span class="pull-right">

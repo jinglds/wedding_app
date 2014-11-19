@@ -1,0 +1,40 @@
+
+<div class=" form-all container-fluid col-md-4 col-md-offset-4">
+
+<%= form_for(@vendor) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <% unless @shop.nil? %>
+      <%= f.hidden_field :shop_id, :value => @shop.id%>
+    <%end%>
+
+    <%= f.label :event_id, "Event" %> 
+    <%= f.collection_select :event_id, @events, :id, :name, :prompt => "Please select an event", :selected => (@event ? @event.id : nil) %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-field", value: @shop ? @shop.name : nil %>
+
+    <%= f.label :contact, "Contact Person" %>
+    <%= f.text_field :contact, class: "form-field" %>
+
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: "form-field", value: @shop ? @shop.phone : nil %>
+
+
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-field", value: @shop ? @shop.address : nil %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-field", value: @shop ? @shop.email : nil %>
+
+    <%= f.label :note %>
+    <%= f.text_area :note, class: "form-field" %>
+
+  </div></br>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
+
+
+
+</div>

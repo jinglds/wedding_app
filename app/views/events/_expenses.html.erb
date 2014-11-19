@@ -1,17 +1,21 @@
-Current Total : <%= @total.to_i %>
-Budget : <%= @event.budget.to_i %>
-<p><%= link_to "New Expense", new_event_expense_path(@event) %>
-
-<div class="col-md-6">
-	<div id="expense-chart">
-		<%= pie_chart @expense_chart, library: {backgroundColor: "transparent"} %>
+<div class="all-block">
+	<div class="row">
+		Current Total : <%= @total.to_i %>
+		Budget : <%= @event.budget.to_i %>
+		<p><%= link_to "New Expense", new_event_expense_path(@event) %>
 	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div id="expense-chart">
+				<%= pie_chart @expense_chart %>
+			</div>
 
+		</div>
+		<div class="col-md-6">
+			<%= bar_chart @ex %>
+			<p>	
+			
+		</div>
+	</div>
 </div>
-<div class="col-md-6">
-	<%= bar_chart @ex, library: {backgroundColor: "transparent"}  %>
-	<p>	
-	
-</div>
-
 <%= yield :charts_js %> 

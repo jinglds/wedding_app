@@ -1,47 +1,56 @@
 <% provide(:title, @event.name) %>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-<div class="container">
+<div class="container-fluid">
 	<h1><%= @event.name.titleize %></h1>
 	<%= link_to "Edit event", edit_event_path(@event) %>
 
+	<%= link_to "new vendor", new_vendor_path %>
 	<div class="row">
+		<div class="container">
 		<div id="event-date-div">
-			<% if Date.today <= @event.date %>
-				<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>
-				<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+			<% if @event.date.nil? %>
+				<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>	
 			<% else %>
-				<%= render 'events/lift_off' %>
-			<% end %>	
+				<% if Date.today <= @event.date %>
+					<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+				<% else %>
+					<%= render 'events/lift_off' %>
+				<% end %>
+			<% end %>
+		</div>
 		</div>
 	</div>
 
+	<div class="transparent">x</div>
+	<div class="row event-task-block">
+		<div class="container">		<hr>
+		<h2><%= link_to "To do", event_tasks_path(@event) %></h2>
+		<%= render 'events/tasks' %>
+		</div>
 
+	</div>
 
+	<div class="transparent">x</div>
 	<div class="row">
-		<h3><%= link_to "Expenses", event_expenses_path(@event) %></h3>
-	   <%= render partial: 'events/expenses', locals:{:expenses=>@expenses} %>
+		<div class="container">
+		<hr>
+		<h2><%= link_to "Expenses", event_expenses_path(@event) %></h2>
+	   		<%= render partial: 'events/expenses', locals:{:expenses=>@expenses} %>
+		</div>
 	</div>
 
-
-	<h3><%= link_to "To do", event_tasks_path(@event) %></h3>
-
-
-
-	<b><%= link_to "default task", event_default_tasks_path(@event), method: :post %>
-
-	<p><%= link_to "New Task", new_event_task_path(@event) %>
-
-	<h3>Task by schedule</h3>
-	<%= link_to 'ALL', my_tasks_path(:event_id => @event.id, :filter => ""), method: :get, remote: true %>
-	<%= link_to 'this week', my_tasks_path(:event_id => @event.id, :filter => "week"), method: :get, remote: true %>
-	<%= link_to 'this month', my_tasks_path(:event_id => @event.id, :filter => "month"), method: :get, remote: true %>
-	<div id="my-task">
-	<%= render @tasks %>
+	<div class="transparent">x</div>
+	<div class="row">
+		<div class="container">
+		<hr>
+		<h3>Vendors</h3>
+		<%= link_to "New Vendor", new_vendor_path(:event_id=>@event.id) %>
+		<div class="">
+			<%= render partial: 'events/vendor', collection: @event.vendors, as: :vendor %>
+		</div>
+		</div>
 	</div>
-	<h3>Now</h3>
-	<%= render @now %>
-	<h3>Completed</h3>
-	<%= render @completed %>
+
 
 </div>

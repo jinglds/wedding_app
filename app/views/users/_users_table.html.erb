@@ -9,7 +9,6 @@
       <%= t.h('Shops') %>
       <%= t.h('Comments') %>
       <%= t.h('Rated Shops') %>
-      <%= t.h('Favorites') %>
       <%= t.h('Approval') %>
       <%= t.h('Actions') %>
     <% end %>
@@ -44,16 +43,6 @@
           <% if  user.find_voted_items.any? %>
             <%= link_to  '#' do %>
             <%= user.find_voted_items.count %>
-           <% end %>
-          <% else %>
-          n/a
-          <% end %>
-      <% end %>
-
-      <%= t.d(:class => 'name') do %>
-          <% if  user.favorites.any? %>
-            <%= link_to  '#' do %>
-            <%= user.favorites.count %>
            <% end %>
           <% else %>
           n/a

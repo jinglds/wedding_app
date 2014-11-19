@@ -1,0 +1,9 @@
+<div class="vendor-block vendor-index col-md-2">
+	<%= render partial:'vendors/vendor_item', locals:{:vendor=>vendor} %>
+	<div class="block-action">
+		<%= link_to "edit", edit_vendor_path(vendor) %> |
+		<%= link_to "remove from event", event_vendor_path(:event_id=>@event.id, :vendor_id=>vendor), method: :delete,
+		                                         data: { confirm: "You sure?" },
+		                                         title: vendor.name %>
+	</div> 
+</div> 

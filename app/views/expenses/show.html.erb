@@ -1,3 +1,6 @@
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 <div class="container">
 	<h3><%= @expense.title %></h3>
 Amount: <%= @expense.amount %><p>
@@ -10,3 +13,5 @@ Status: <%= @expense.status %>
                                      title: @expense.title %>
   <% end %>
   </div>
+
+<%= yield :charts_js %> 

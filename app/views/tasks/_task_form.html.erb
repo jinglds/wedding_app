@@ -41,6 +41,10 @@
   <%= f.label :tag_list, "Style Tags (separated by commas)" %><br />
   <%= f.text_field :tag_list %>
 
+  <% unless @vendors.nil? %>
+   <%= f.collection_select :vendor_id, @vendors, :id, :name, {:prompt => "Please select a vendor" } %>
+  <% end %>
+
 
   </div></br>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>

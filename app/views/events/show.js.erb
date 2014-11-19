@@ -1,15 +1,10 @@
 $(function() {
-	// $('#event-no-guest-div').hide();
 
-    // $('#countdown-div').hide();
+
     $('#event-datetime-submit-btn').click(function(event){
 	    event.preventDefault();
 	    
 	    $('#event-datetime-form').submit();
-	    // $('#no-date-div').html("<%= j render partial: 'events/countdown', locals:{:event=> @event } %>");
-	
-	 //    $('#no-date-div').hide();
-		// $('#countdown-div').fadeIn();
 		
     });
 
@@ -17,6 +12,20 @@ $(function() {
 
     	$('#event-date-div').html("<%= j render partial: 'events/countdown', locals:{:event=> @event } %>");
 	
+	});
+
+
+	$('#submit-task-vendor-btn').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#add-task-vendor-form').submit();
+		alert("Sdfs");
+    });
+
+    $('#add-task-vendor-form').on('ajax:success',function(e) {
+    	alert("Sdfs");
+    	// $('#event-task-block').html('<%= j render partial:'events/task_details', locals:{:task=>@task, :lates=>@lates, :today=>@today, :upcoming=>@upcoming} %>')
+
 	});
 
 	

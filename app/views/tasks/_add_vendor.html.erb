@@ -1,0 +1,9 @@
+<%= form_for [@event, @task], :method => :patch, :remote =>true, :html=>{:id=>"add-task-vendor-form"} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.collection_select :vendor_id, @vendors, :id, :name, {:prompt => "Please select a vendor" } %>
+
+      <%= f.submit "Post", remote: true, class: "btn btn-large btn-primary", id:"submit-task-vendor-btn" %>
+
+	</div>
+<% end %>

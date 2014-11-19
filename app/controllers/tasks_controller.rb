@@ -2,6 +2,28 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
   before_action :correct_user,   only: :destroy
 
+
+  def add_vendor
+    @task = Task.find(params[:task_id])
+    @event = Event.find(params[:event_id])
+    @vendors =@event.vendors
+    
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.js
+    end
+  end
+
+  def remove_vendor
+    @task = Task.find(params[:task_id])
+
+    if @task.update_attributes(:vendor_id=>nil)
+      redirect_to event_task_path(@task.event, @task), notice: "Successfully remove vendor"
+    else
+      render :edit
+    end
+    
+  end
   def index
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
@@ -78,7 +100,7 @@ class TasksController < ApplicationController
       @event = Event.find(params[:event_id])
       # @task = @event.tasks.new
       # @task = Task.new(:parent_id => params[:parent_id])
-
+      @vendors = @event.vendors
       @task = @event.tasks.new(:parent_id => params[:parent_id])
   end
 
@@ -117,18 +139,25 @@ class TasksController < ApplicationController
     # @task.descendants.each do |d|
     #   d.update_attribute(:rank, (d.rank - 1))
     # end
-    @task.children.each do |c|
-      c.update_attribute(:rank, 0)
-    end
+    # @task.children.each do |c|
+    #   c.update_attribute(:rank, 0)
+    # end
 
-    @child = @task.children.first
-    @done = @event.tasks.done
-    @now = @event.tasks.now
+    # @child = @task.children.first
+    # @done = @event.tasks.done
+    # @now = @event.tasks.now
+    @tasks = @event.tasks
+    @lates = @tasks.lates.not_done.limit(2)
+    @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
+    @upcoming = @tasks.upcomings.not_done.limit(4)
 
     respond_to do |format|
       format.html { render :layout => false }
       format.js
     end
+    # flash[:success] = "Task completed!"
+    #      redirect_to @event
+    #    end
   end
 
   def decomplete
@@ -176,7 +205,8 @@ class TasksController < ApplicationController
                                 :tag_list,
                                 :parent_id,
                                 :importance,
-                                :rank)
+                                :rank,
+                                :vendor_id)
 
 
   end

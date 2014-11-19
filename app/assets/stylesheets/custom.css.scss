@@ -95,6 +95,22 @@ h3 {
 
 }
 
+h4 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: $grey;
+  margin-bottom: 5px;
+  line-height: 0.8;
+  /*font-family: Perpetua;*/
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
+}
+
+
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -811,13 +827,37 @@ div.hidden {
   margin-top: 10px;
   margin: 5px;
   box-shadow: 1px 1px 2px $lightGrey;
+
 }
 
+.block-content{
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  /*font-family:Century Gothic;*/
+  font-size: 1.1em;
+  color: $darkerGrey;
+  
+}
+.date{
+  color: $mediumGrey;
+}
+
+.block-action{
+  margin-top: 10px;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  font-size: 0.9em;
+}
 .task-late{
-  border: 1px red solid;
+  /*border: 1px #F8E0E6 solid;*/
+  background-color: #FBEFF5;
+}
+
+.task-warning{
+  /*border: 1px #F7F8E0 solid;*/
+  background-color: #FBFBEF;
 }
 .task-ok{
-  border: 1px green solid;
+  /*border: 1px green solid;*/
+  background-color: #EFFBF5;
 }
 
 .container{
@@ -846,15 +886,32 @@ div.hidden {
   font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 
 }
-#chart-1 >{
-  background-color: transparent;
+
+.task-block{
+  /*border: 1px $softerGold solid;*/
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-radius: 3px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 2px $lightGrey;
 }
 
-#expense-chart >div{
-  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
+.vendor-block{
+  margin-top: 10px;
+  background-color: #F7F8E0;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 0.9em;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  margin-top: 10px;
 
+  box-shadow: 1px 1px 2px $lightGrey;
 }
-#expense-chart >div >div{
-  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 
+.vendor-index{
+  margin: 5px;
 }

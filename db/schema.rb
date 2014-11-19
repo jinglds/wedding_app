@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117120245) do
+ActiveRecord::Schema.define(version: 20141118142045) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20141117120245) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "event_vendors", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "vendor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_vendors", ["event_id", "vendor_id"], name: "index_event_vendors_on_event_id_and_vendor_id"
 
   create_table "events", force: true do |t|
     t.integer  "user_id"
@@ -114,6 +125,7 @@ ActiveRecord::Schema.define(version: 20141117120245) do
   end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["tag_id", "taggable_id"], name: "index_taggings_on_tag_id_and_taggable_id"
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", force: true do |t|
@@ -138,10 +150,12 @@ ActiveRecord::Schema.define(version: 20141117120245) do
     t.datetime "updated_at"
     t.string   "ancestry"
     t.integer  "rank",       default: 0
+    t.integer  "vendor_id"
   end
 
   add_index "tasks", ["ancestry"], name: "index_tasks_on_ancestry"
   add_index "tasks", ["event_id"], name: "index_tasks_on_event_id"
+  add_index "tasks", ["vendor_id"], name: "index_tasks_on_vendor_id"
 
   create_table "users", force: true do |t|
     t.string   "firstname"
@@ -170,6 +184,26 @@ ActiveRecord::Schema.define(version: 20141117120245) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["role"], name: "index_users_on_role"
 
+  create_table "vendors", force: true do |t|
+    t.integer  "task_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "contact"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shop_id"
+    t.string   "note"
+    t.integer  "event_id"
+    t.integer  "user_id"
+  end
+
+  add_index "vendors", ["event_id"], name: "index_vendors_on_event_id"
+  add_index "vendors", ["shop_id"], name: "index_vendors_on_shop_id"
+  add_index "vendors", ["task_id"], name: "index_vendors_on_task_id"
+  add_index "vendors", ["user_id"], name: "index_vendors_on_user_id"
+
   create_table "votes", force: true do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
@@ -183,6 +217,8 @@ ActiveRecord::Schema.define(version: 20141117120245) do
   end
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id"
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id"
 
 end

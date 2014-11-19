@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :events, dependent: :destroy
 	has_many :shops, dependent: :destroy
+	has_many :vendors, dependent: :destroy
 	has_many :favorites
 	has_many :favorite_shops, through: :favorites, source: :favorited, source_type: 'Shop'
 
