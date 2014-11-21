@@ -35,6 +35,22 @@ class CommentsController < ApplicationController
       @comment = @shop.comments.build(comment_params)
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @shop = @comment.shop
+    if @comment.update_attributes(comment_params)
+      flash[:success] = "Successfully updated comment"
+      redirect_to @shop
+    else
+      render :edit
+    end
+  end
+
+
   def destroy
       @shop= Shop.find(params[:shop_id])
       @comment = @shop.comments.find(params[:id])

@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
 
     if @task.update_attributes(:vendor_id=>nil)
-      redirect_to event_task_path(@task.event, @task), notice: "Successfully remove vendor"
+      redirect_to @task.event notice: "Successfully remove vendor"
     else
       render :edit
     end

@@ -3,7 +3,7 @@ module Api
     # before_filter :verify_authenticity_token
     skip_before_filter :verify_authenticity_token, only: [:create]
      # load_and_authorize_resource
-     # before_filter :verify_token, only: [:index, :show, :create]
+     before_filter :verify_token, only: [:index, :show, :create]
      before_filter :correct_user, only: [:destroy, :update]
 
      def tags
@@ -63,7 +63,7 @@ module Api
     def show
       @shop = Shop.find(params[:id])
       @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
-      # @comment = Comment.new 
+      @favorite = app_user.favorites.find_by(favorited_id: @shop.id)
       @comments =  @shop.comment_feed
       # @photos = @shop.photos.all
     end

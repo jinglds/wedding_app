@@ -8,13 +8,9 @@ json.shop do
   json.address @shop.address
   json.details @shop.details
   json.rating @ratings
-  json.user_id @shop.user ? @shop.user.id : nil
+  json.favorite @favorite ? true : false
   json.category_list @shop.category_list
   json.style_list @shop.style_list
 
-  json.comments @comments do |comment|
-  	json.content comment.content
-  	json.commenter comment.user.firstname
-  end
 
 end

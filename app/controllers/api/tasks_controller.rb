@@ -26,7 +26,7 @@ module Api
     #     c.update_attribute(:rank, 1)
     #   end
     end
-      if (@task.update_attributes(:paid => false))
+      if (@task.update_attributes(:completed => false))
         return render :json=> {:success => true, :message => "task unpaid  successfully"}
       else
         return render :json=> {:success => false, :message => "task unpaid  unsuccessfully"}
@@ -42,16 +42,11 @@ module Api
       end
 
       @date = Chronic.parse(params[:task][:due_date])
-      # params[:task][:due_date] = Date.today
       params[:task][:due_date] = @date
-      # @event_day = @event.date
       
       @task = @event.tasks.build(task_params)
       @task.event = @event
       @task.user = app_user
-      # @task_items = @event.tasks
-
-        # respond_to do |format|
       if @task.save
           return render :json=> {:success => true, :task => @task}
         else
@@ -62,13 +57,12 @@ module Api
       def index
         @event = Event.find(params[:event_id])
         @tasks = @event.tasks
-        @total = @event.tasks.sum(:amount)
       end
 
       def show
         @event = Event.find(params[:event_id])
         @task = Task.find(params[:id])
-        
+        @vendor = @task.vendor
       end
 
       def update

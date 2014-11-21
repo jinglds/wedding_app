@@ -5,7 +5,9 @@ WeddingApp::Application.routes.draw do
     match "get_shop", to: "shops#get_shop", via: 'post'
     resources :favorite_shops, only: [:create, :destroy, :unfav]
     resources :favorites, only: [:destroy]
-    resources :shops  do   
+    
+    resources :shops  do 
+      resources :comments  
       member do
         put "rate", to: "shops#rate"
         put "unrate", to: "shops#unrate"
@@ -14,6 +16,10 @@ WeddingApp::Application.routes.draw do
     end
     get "tags", to: "shops#tags"
     resources :events do
+      resources :tasks do
+        put "complete", to: "tasks#complete"
+        put "decomplete", to: "tasks#decomplete"
+      end
       resources :expenses do
         put "pay", to: "expenses#pay"
         put "unpay", to: "expenses#unpay"
@@ -64,7 +70,7 @@ WeddingApp::Application.routes.draw do
       get "new_gallery", to: "photos#new_gallery"
       get "edit_gallery", to: "photos#edit_gallery"
       put "set_cover", to: "photos#set_as_cover"
-    resources :comments, only: [:create, :destroy] do
+    resources :comments do
       member do
         put "like", to: "comments#like"
         put "unlike", to: "comments#unlike"
