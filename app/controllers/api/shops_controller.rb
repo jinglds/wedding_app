@@ -6,6 +6,11 @@ module Api
      # before_filter :verify_token, only: [:index, :show, :create]
      before_filter :correct_user, only: [:destroy, :update]
 
+     def tags
+       
+      @styles = Shop.style_counts
+      @categories = Shop.category_counts
+     end
     def create
       @shop = app_user.shops.build(shop_params)
       if @shop.save

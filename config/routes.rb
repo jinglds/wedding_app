@@ -10,7 +10,9 @@ WeddingApp::Application.routes.draw do
         put "rate", to: "shops#rate"
         put "unrate", to: "shops#unrate"
       end
+
     end
+    get "tags", to: "shops#tags"
     resources :events do
       resources :expenses do
         put "pay", to: "expenses#pay"

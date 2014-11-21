@@ -4,18 +4,26 @@
       <div class="all-block">
         <h4><%= e.bride_name.titleize %>'s & <%= e.groom_name.titleize %>'s</h4>
         <h3>"<%= link_to e.name, e %>"</h3> 
-        <i><%= e.date.to_formatted_s(:long_ordinal) %></i><br>
-        <br>
-        <%= e.tasks.done.count %>/<%= e.tasks.count %> tasks completed
+        <% if e.date=="" || e.date.nil? %>
+          <i>Date Note Set</i><br>
+        <% else %> 
+          <i><%= e.date.to_formatted_s(:long_ordinal) %></i><br>
+          <br>
+        <% end %>
+          <%= e.tasks.done.count %>/<%= e.tasks.count %> tasks completed
+          <br>
+          
+          <%= e.guest_amt %> Guests
         
-              <% if (current_user==e.user) %>
-              <div class="block-action pull-right"> <%= link_to "Edit", edit_event_path(e.id) %> | 
-                <%= link_to "Delete", e, method: :delete,
-                                                 data: { confirm: "You sure?" },
-                                                 title: e.name %></div>
-               
-              <% end %>
-            
+          <% if (current_user==e.user) %>
+            <div class="block-action pull-right"> <%= link_to "Edit", edit_event_path(e.id) %> | 
+              <%= link_to "Delete", e, method: :delete,
+                                               data: { confirm: "You sure?" },
+                                               title: e.name %>
+            </div>
+           
+          <% end %>
+        
       </div>
     <% end %>
   </div>
