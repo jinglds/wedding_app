@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
-  before_filter :set_date, only: [:create, :update]
+  # before_filter :set_date, only: [:create, :update]
 
   
   def js_tasks
@@ -36,10 +36,9 @@ class EventsController < ApplicationController
   end
   
   def create
-    
+    params[:event][:date] = Chronic.parse(params[:event][:date])
   	@event = current_user.events.build(event_params)
-    # @event.date = @event.date.change(hour: @event.time.hour, min: @event.time.min, sec: @event.time.sec)
-  	if @event.save
+    if @event.save
   		flash[:success] = "Event created!"
   		redirect_to event_new_cont_path(@event)
   	else
@@ -48,7 +47,8 @@ class EventsController < ApplicationController
   end
 
   def new_cont
-    
+    @shops = Shop.all
+    @new = Event.new
     @user = current_user
     @event = Event.find(params[:event_id])
     respond_to do |format|
@@ -101,8 +101,11 @@ class EventsController < ApplicationController
     
     @expense_chart = {}
     @expense_chart["Used"]= @expenses.sum(:amount)
-    @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
-    
+    if @expenses.sum(:amount) >= @event.budget
+      @expense_chart["Current Balance"]=0
+    else
+      @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
+    end
     # @expense_chart = @event.expenses.group(:expense_type).sum(:amount)
     
     # @expense_chart[:all] = @event.budget - @expenses.sum(:amount)
@@ -710,10 +713,11 @@ class EventsController < ApplicationController
   	params.require(:event).permit(:event_type,
   								:name,
   								:date,
-                  :time,
+                  # :time,
   								:budget,
   								:bride_name,
-  								:groom_name)
+  								:groom_name,
+                  :guest_amt)
   end
 
   def correct_user

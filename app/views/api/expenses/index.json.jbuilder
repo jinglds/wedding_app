@@ -4,6 +4,6 @@ json.expenses @expenses do |expense|
   json.expense_type expense.expense_type
   json.amount expense.amount
   json.receiver expense.receiver
-  json.status expense.status
+  json.paid expense.paid
   json.event_id  expense.event_id
 end

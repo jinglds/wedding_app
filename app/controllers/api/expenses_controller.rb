@@ -1,7 +1,27 @@
 module Api
   class ExpensesController < Api::BaseController
     skip_before_filter :verify_authenticity_token, only: [:create]
-    before_filter :correct_user, only: [:destroy, :update]
+    before_filter :correct_user, only: [:destroy, :update, :pay, :unpay]
+
+    def pay
+      @expense = Expense.find(params[:expense_id])
+      
+      if (@expense.update_attributes(:paid => true))
+        return render :json=> {:success => true, :message => "expense paid successfully"}
+      else
+        return render :json=> {:success => false, :message => "expense paid  unsuccessfully"}
+      end
+    end
+
+    def unpay 
+      @expense = Expense.find(params[:expense_id])
+      if (@expense.update_attributes(:paid => false))
+        return render :json=> {:success => true, :message => "expense unpaid  successfully"}
+      else
+        return render :json=> {:success => false, :message => "expense unpaid  unsuccessfully"}
+      end
+      
+    end
    def create
       @event = Event.find(params[:event_id])
       @expense = @event.expenses.build(expense_params)

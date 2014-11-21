@@ -1,11 +1,117 @@
 <% provide(:title, @event.name) %>
 <div class="container">
+	<h2><%= @event.name %></h2>
 	<div class="row">
-		<h2><%= @event.name %></h2>
-		<div class="all-block col-md-6 col-md-offset-3">
-			<h3>Do you want to create a Default tasklist for your event?</h3>
-			<%= button_to "Create", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
-				<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %>
+		<div class="col-md-6 col-md-offset-3">
+			<div class="all-block" id="guideline-div">
+				<h3 class="center">Do you need some guideline for organizing an event?</h3><br>
+				<%= button_to "Yes", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+				<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %><br><br>
+			</div>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="all-block" id="guideline-div">
+				<h3 class="center">First of all, you need to decided on a date</h3>
+				<% if @event.date=="" || @event.date.nil? %>
+					<h4>Date will play a big part in helping you organize your event.</h4>
+					<br><i>Need help on deciding on a date? Click here</i><br><br>
+					<%= button_to "Yes", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+					<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %><br>
+				<% else %>
+					<h4>Great! I see you have already decided on it! It's happening on <%= @event.date.to_date.to_formatted_s(:long_ordinal)%> which is in..</h4>
+					<%= render 'events/countdown' %><p>
+					<%= button_to "Next", event_path(@event.id), class:"all-btn pull-right", method: :get %><br><br>
+<br><br>
+<br>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		<% unless !@event.date.nil? %>
+			<%= form_for @event,:method => :patch, remote:true, :html=>{:id=>"event-datetime-form"} do |f| %>
+				<div class="field ">
+					<div class="hidden">
+						<%= render partial:'events/event_form_type', locals: {:f => f} %>
+						<%= render partial:'events/event_form_name', locals: {:f => f} %>
+						<%= render partial:'events/event_form_couple', locals: {:f => f} %>
+						<%= render partial:'events/event_form_budget', locals: {:f => f} %>
+					</div>
+						<div class="all-block">
+							<h3 class="center">You haven't chosen the date for the event yet.</h3>
+							<div class="panel-body">
+								<p>The earlier you decided on a date, the earlier you can book your vendors</p>
+								<div class="row">
+									<div class="col-md-6">
+									    <%= f.label :date %>
+									    <div class="input-group date" id="datetimepicker5">
+									      <%= f.text_field :date, class: 'form-control form-field', required:true, data: { date_format: 'YYYY/MM/DD' }%>
+									      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+									    </div>
+								  	</div>
+								  	
+								  	
+								</div>
+								<br><i>Need help on choosing a date? Click Here</i>
+								<br>
+								<%= f.submit "Set Date", class: "btn all-btn pull-left", id:"event-datetime-submit-btn", name:"mysubmit", remote:true %>
+								<%= button_to "Skip", event_default_tasks_path(@event), class:"all-btn pull-right", method: :post %>
+								
+							</div>
+						
+						</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="all-block" id="default-task-div">
+				<h3 class="center">Next, you have to create a guestlist for approximate the number of guest coming to your event?</h3><br>
+				<h4>Do you have already know the number?</h4>
+
+				<h4>Or do you want to create a guestlist now?</h4>
+				<%= button_to "Create", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+					<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %><br><br>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="all-block" id="default-task-div">
+				<h3 class="center">An event would be dull without a theme.</h3><br>
+				<h4>Do you have a theme in mind?</h4>
+				<p>Here are some of the styles of the shops we have:</p>
+				<% Shop.style_counts.each do |tag| %>
+			      <li >
+			        <%= tag.name %>
+			      </li>
+			    <% end %>
+				<%= button_to "BACK", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+					<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %><br><br>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="all-block" id="default-task-div">
+				<h3 class="center">Do you want to create a Default tasklist for your event?</h3><br>
+				<%= button_to "Create", event_default_tasks_path(@event), class:"all-btn pull-left", method: :post %>
+					<%= button_to "Skip", event_path(@event.id), class:"all-btn pull-right", method: :get %><br><br>
+			</div>
 		</div>
 	</div>

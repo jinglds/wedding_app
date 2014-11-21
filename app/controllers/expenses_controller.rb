@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :user_signed_in?, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :correct_user,   only: [:destroy, :update, :pay, :unpay]
 
   def pay
     @event = Event.find(params[:event_id])
@@ -38,8 +38,11 @@ class ExpensesController < ApplicationController
     @ex = @event.expenses.group(:expense_type).sum(:amount)
     @expense_chart = {}
     @expense_chart["Used"]= @expenses.sum(:amount)
-    @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
-    
+    if @expenses.sum(:amount) >= @event.budget
+      @expense_chart["Current Balance"]=0
+    else
+      @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
+    end
     @total = @event.expenses.sum(:amount)
     # @x =@event.budget
     # @@x = @x
@@ -106,7 +109,8 @@ class ExpensesController < ApplicationController
   								:receiver,
   								:title,
   								:status,
-                  :user_id)
+                  :user_id,
+                  :paid)
 
 
   end

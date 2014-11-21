@@ -1,18 +1,18 @@
 <div class="col-md-8 col-md-offset-2">
-  <div class="col-md-6">
+  <div >
     <%= f.label :date %>
     <div class="input-group date" id="datetimepicker5">
       <%= f.text_field :date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }%>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
   </div>
-  <div class="col-md-6">
+ <!--  <div class="col-md-6">
     <%= f.label :time %>
     <div class="input-group date" id="datetimepicker4">
       <%= f.text_field :time, class: 'form-control form-field' %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
     </div>
-  </div>
+  </div> -->
   <div class="transparent-s">x</div>
   <span class="pull-left"><%= button_to "< Previous", '#', id: "event-back-btn3", class: "all-btn btn", remote:true %></span>
   <span class="pull-right"><%= button_to "Next >", '#', id: "event-next-btn4", class: "all-btn btn", remote:true %></span>

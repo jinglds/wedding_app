@@ -1,24 +1,22 @@
-<% @events.each do |s| %>
-<div class="col-md-6">
-  <%= link_to s do %> 
-    <div class="event-block">
-      <div class="item">
-          <div class="center">
+<% @events.each do |e| %>
+  <div class="col-md-4">
+    <%= link_to e do %> 
+      <div class="all-block">
+        <h4><%= e.bride_name.titleize %>'s & <%= e.groom_name.titleize %>'s</h4>
+        <h3>"<%= link_to e.name, e %>"</h3> 
+        <i><%= e.date.to_formatted_s(:long_ordinal) %></i><br>
+        <br>
+        <%= e.tasks.done.count %>/<%= e.tasks.count %> tasks completed
+        
+              <% if (current_user==e.user) %>
+              <div class="block-action pull-right"> <%= link_to "Edit", edit_event_path(e.id) %> | 
+                <%= link_to "Delete", e, method: :delete,
+                                                 data: { confirm: "You sure?" },
+                                                 title: e.name %></div>
+               
+              <% end %>
             
-          </div>
-          <div class="event-block-content">
-            <span class="event-block-title"><%= link_to s.name, s %></span>
-            
-            <br>
-            <% if (current_user==s.user) %>
-              <%= link_to "Edit", edit_event_path(s.id) %> | 
-              <%= link_to "Delete", s, method: :delete,
-                                               data: { confirm: "You sure?" },
-                                               title: s.name %>
-            <% end %>
-          </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
   </div>
 <% end %>

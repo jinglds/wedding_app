@@ -12,7 +12,10 @@ WeddingApp::Application.routes.draw do
       end
     end
     resources :events do
-      resources :expenses
+      resources :expenses do
+        put "pay", to: "expenses#pay"
+        put "unpay", to: "expenses#unpay"
+      end
     end
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
