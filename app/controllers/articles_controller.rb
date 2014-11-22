@@ -21,7 +21,34 @@ class ArticlesController < ApplicationController
 		
 	end
 
-	
+	def show
+	    @article = Article.find(params[:id])
+	end
+
+	def destroy
+	  	@article = current_user.articles.find(params[:id])
+	  	@article.destroy
+
+	  	flash[:success] = "Article deleted!"
+	    redirect_to articles_path
+  	end
+
+	def edit
+	    @article = Article.find(params[:id])
+	end
+
+  	def update
+    	@article = Article.find(params[:id])
+
+	    if @article.update_attributes(article_params)
+	      redirect_to articles_path, notice: "Successfully updated event"
+	    else
+	      render :edit
+	    end
+  	end
+
+
+
 
 	private
   	def article_params
@@ -32,7 +59,7 @@ class ArticlesController < ApplicationController
   	end
 
   	def admin_user
-  		current_user.admin?
+  		redirect_to root_path unless current_user.role =="admin"
   	end
 
 end

@@ -5,7 +5,7 @@ WeddingApp::Application.routes.draw do
     match "get_shop", to: "shops#get_shop", via: 'post'
     resources :favorite_shops, only: [:create, :destroy, :unfav]
     resources :favorites, only: [:destroy]
-    
+    resources :articles
     resources :shops  do 
       resources :photos
       resources :comments  
@@ -43,6 +43,7 @@ WeddingApp::Application.routes.draw do
       put "set_admin"
     end
   end
+  resources :articles
   resources :vendors
   resources :event_vendors
   resources :events do
