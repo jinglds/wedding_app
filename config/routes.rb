@@ -7,6 +7,7 @@ WeddingApp::Application.routes.draw do
     resources :favorites, only: [:destroy]
     
     resources :shops  do 
+      resources :photos
       resources :comments  
       member do
         put "rate", to: "shops#rate"

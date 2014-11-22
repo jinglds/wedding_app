@@ -64,7 +64,7 @@
   <div class="row">
     <div class="transparent">x</div>
     <% if @shop.user == current_user %>
-      <%= link_to "Edit Photos", shop_edit_gallery_path(@shop) %>
+      <%= link_to "Edit Photos", shop_photos_path(@shop) %>
     <% end %>
     <h3> <%= @shop.name %>'s Gallery</h3>
     <%= render 'photos/gallery', object: @photos %>
