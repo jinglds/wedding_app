@@ -1,0 +1,9 @@
+<li>
+	<%= guest.prefix %> <%= guest.name %><br>
+	<%= guest.side %><br>
+	<%= link_to "edit", edit_event_guest_path(@event, guest) %> | 
+	<%= link_to "Delete", event_guest_path(@event, guest), method: :delete,
+			                                         data: { confirm: "You sure?" },
+			                                         title: guest.name%>
+
+</li>

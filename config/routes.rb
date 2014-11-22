@@ -25,6 +25,7 @@ WeddingApp::Application.routes.draw do
         put "pay", to: "expenses#pay"
         put "unpay", to: "expenses#unpay"
       end
+      resources :guests
     end
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
@@ -63,6 +64,7 @@ WeddingApp::Application.routes.draw do
       put "remove_vendor", to: "tasks#remove_vendor"
       get "js_tasks", to: "tasks#js_tasks" 
     end
+    resources :guests
   end
   resources :favorite_shops, only: [:create, :destroy]
   # resources :photos

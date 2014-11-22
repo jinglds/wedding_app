@@ -1,0 +1,43 @@
+<%= form_for([@event, @guest]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+
+    <%= f.label :prefix %>
+    <%= f.text_field :prefix %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :side %>
+    <%= f.text_field :side %>
+
+    <%= f.label :adults %>
+    <%= f.text_field :adults %>
+
+    <%= f.label :children %>
+    <%= f.text_field :children %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+
+    <%= f.label :group %>
+    <%= f.text_field :group %>
+
+    <%= f.label :table_no %>
+    <%= f.text_field :table_no %>
+
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+  <%= f.submit "Submit", class: "btn all-btn btn-large" %>
+<% end %>
+

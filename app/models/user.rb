@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	has_many :vendors, dependent: :destroy
 	has_many :favorites
 	has_many :favorite_shops, through: :favorites, source: :favorited, source_type: 'Shop'
-
+	has_many :guests
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 	validates :firstname, presence: true

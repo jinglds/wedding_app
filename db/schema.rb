@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119154303) do
+ActiveRecord::Schema.define(version: 20141122091539) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -77,6 +77,30 @@ ActiveRecord::Schema.define(version: 20141119154303) do
 
   add_index "favorites", ["favorited_id", "favorited_type"], name: "index_favorites_on_favorited_id_and_favorited_type"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+
+  create_table "guests", force: true do |t|
+    t.integer  "event_id"
+    t.string   "side"
+    t.string   "name"
+    t.string   "prefix"
+    t.integer  "adults"
+    t.integer  "children"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "gender"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "group"
+    t.integer  "table_no"
+    t.string   "note"
+  end
+
+  add_index "guests", ["event_id"], name: "index_guests_on_event_id"
+  add_index "guests", ["group", "event_id"], name: "index_guests_on_group_and_event_id"
+  add_index "guests", ["side", "event_id"], name: "index_guests_on_side_and_event_id"
+  add_index "guests", ["user_id"], name: "index_guests_on_user_id"
 
   create_table "photos", force: true do |t|
     t.string   "image_uid"
