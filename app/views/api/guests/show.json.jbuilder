@@ -10,6 +10,7 @@ json.guest  do
   json.phone @guest.phone
   json.address  @guest.address
   json.gender  @guest.gender
-  json.status  @guest.status
+  json.invitation_sent  @guest.invitation_sent
+  json.attending  @guest.attending
   json.note  @guest.note
 end

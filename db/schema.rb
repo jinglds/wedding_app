@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122091539) do
+ActiveRecord::Schema.define(version: 20141122125531) do
+
+  create_table "articles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "content"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "published",  default: false
+  end
+
+  add_index "articles", ["published", "category"], name: "index_articles_on_published_and_category"
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -88,13 +101,14 @@ ActiveRecord::Schema.define(version: 20141122091539) do
     t.string   "phone"
     t.string   "address"
     t.string   "gender"
-    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "group"
+    t.string   "group",           default: "none"
     t.integer  "table_no"
     t.string   "note"
+    t.boolean  "attending",       default: false
+    t.boolean  "invitation_sent", default: false
   end
 
   add_index "guests", ["event_id"], name: "index_guests_on_event_id"
