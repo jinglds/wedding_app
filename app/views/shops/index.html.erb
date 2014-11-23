@@ -1,35 +1,29 @@
 <% provide(:title, 'Vendors') %>
+
 <%= image_tag("shops_heading.png", alt: "home heading", class: "heading-img full-width") %>
 
 
+<div class="container">
+<div class="row">
+  <a data-toggle="collapse" href="#filter-block" aria-expanded="true" aria-controls="filter-block">
+  <%= image_tag("filter_icon.png", alt: "home heading") %> FILTER
+  </a>
+</div>
 
-
-<a data-toggle="collapse" href="#filter-block" aria-expanded="true" aria-controls="filter-block">
-<%= image_tag("filter_icon.png", alt: "home heading") %>
-</a>
-
-
-<div id="filter-block" class="collapse">
+<div class="row">
+  <div id="filter-block" class="collapse full-width">
   <div class="col-md-3">
     category
     
     <ul class="list-unstyled">
+      <li class="toggle">
+        <%= radio_button_tag 'tag',"all", @cat == "all" %>
+        <%= label_tag "tag_all", "all", :class=>"label" %>
+      </li>
       <% @categories.each do |tag| %>
         <li class="toggle">
-          <label class="label">
-            <input type="radio" name="toggle"><%= tag.name%>
-          </label>  
-        </li>
-      <%end%>
-
-
-        
-
-
-
-        <% @categories.each do |tag| %>
-        <li >
-          <%= link_to (tag.name), category_path(:category => tag.name, :styles => ""), class: "category-btn",method: :get, remote: true %>
+          <%= radio_button_tag 'tag',tag, @cat == tag %>
+          <%= label_tag "category_#{tag.name}", tag.name, :class=>"label" %>
         </li>
       <% end %>
     </ul>
@@ -37,47 +31,52 @@
   <div class="col-md-3">
     styles
     <ul class="list-unstyled">
-      <li ><%= link_to 'ALL', category_path(:category => "", :styles => ""), class: "category-btn", method: :get, remote: true %></li>
+
+
+      <li>all</li>
+      <li>
         <% @styles.each do |tag| %>
-        <li >
-          <%= tag.name %>
-        </li>
-      <% end %>
+        <div class="checkbox">
+          <%= check_box_tag 'tags[]', tag.name,
+                (params[:tags] || {}).include?(tag.name) %>
+        <%= label_tag "style_#{tag.name}", tag.name, class: "check_box inline" %>
+        </div>
+        
+        <% end %>
+      </li>
+
+
+
     </ul>
   </div>
   <div class="col-md-3">
     order
     <ul class="list-unstyled">
-      <li>none</li>
-      <li>ratings</li>
-      <li>price: low to high</li>
-      <li>price: high to low</li>
+      <li class="toggle">
+        <%= radio_button_tag 'order',"all", @order == "all" %>
+        <%= label_tag "none", "none", :class=>"label" %>
+      </li>
+      <li class="toggle">
+        <%= radio_button_tag 'order',"rating", @order == "rating" %>
+        <%= label_tag "rating", "rating", :class=>"label" %>
+      </li>
+      <li class="toggle">
+        <%= radio_button_tag 'order',"price", @order == "price" %>
+        <%= label_tag "price", "price", :class=>"label" %>
+      </li>
     </ul>
   </div>
   <div class="col-md-3">
-    ...
+    NAME CONTAINS
+    <%= text_field_tag 'name' %>
   </div>
 </div>
+</div>
 
-<div class="container-fluid collapsed" id="demo">
-    <div class="span8">
-  <div class="filter-block" id="category-block">
-    <%= render 'shops/category_filter' %>
-  </div>
+
 
   
-
-      <div class="transparent-s">x</div> 
-    
-      <div id ="tag-div" class="center">
-       <%= render 'shops/style_tags' %>
-      </div>
       
-      <div class="transparent-s">x</div> 
-      <div class="transparent-s">x</div>
-
-    
-      <div class="container">
         <div id="shop-feed">
           <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
         

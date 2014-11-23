@@ -334,8 +334,9 @@ footer ul li {
 /* VENDORS*/
 
 #filter-block{
-  padding: 20px;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
   > div{
     padding: 10px;
     font-family: "Tw Cen MT";
@@ -1054,23 +1055,23 @@ div.hidden {
 }
 
 
-.toggle {
-  font-family: "Tw Cen MT";
 
-}
 
 .toggle .label  {
   color: $darkGrey;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: normal;
     &:hover{
       color: $gold;
     }
 }
 
-.toggle label input {
+.toggle>input {
     display: none;
 }
 
 .label.input-checked /*, .bounds input:checked + span works for firefox and ie9 but breaks js for ie8(ONLY) */ {
-  color: $gold;
+  color: $darkGrey;
+  font-weight: bold;
+  text-decoration: underline;
 }
