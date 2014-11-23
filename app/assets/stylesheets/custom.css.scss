@@ -5,16 +5,18 @@
 
 /* mixins, variables, etc. */
 $darkGold: #5F4C0B;
-$gold: #886A08;
+$darkGold: #886A08;
+$gold: #a19376;
 $softerGold: #e8e1cb;
 $softGold: #c8b984;
 
 $evenLighterGrey: #fcfcfc;
 $lighterGrey: #eaeaea;
-$lightGrey: #D8D8D8;
+$lightGrey: #ecebe9;
 $softGrey: #cdcdcd;
 $mediumGrey: #808080;
 $grey: #666666;
+$darkGrey: #504f4f;
 
 $darkerGrey: #414141;
 
@@ -35,11 +37,22 @@ $notepadYellow:#F7F8E0;
 html {
   overflow-y: scroll;
 }
-
 body {
+    margin-top: 30px;
+    margin-left: 225px;
+    background-color: $evenLighterGrey;
+}
+
+@media(min-width:768px) {
+    body {
+        margin-top: 30px;
+        margin-left: 225px;
+    }
+}
+body/* {
   padding-top: 80px;
   background-color: $evenLighterGrey;
-}
+}*/
 
 section {
   overflow: auto;
@@ -47,6 +60,13 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+hr { 
+    size:3px;
+    color: $evenLighterGrey;
+    width: 100%;
+    color: white;
 }
 
 .center {
@@ -60,7 +80,7 @@ textarea {
 /* typography */
 
 a {
-  color: $gold;
+  color: $darkGold;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -126,11 +146,17 @@ p {
 
 }
 
+.line-divider{
 
+  width:400px;
+  height:0;
+  border-top:1px solid white;
+  font-size:0;
+}
 
 /* header */
 
-#logo {
+/*#logo {
   float: left;
   padding-left: 20px;
   font-size: 1.7em;
@@ -142,12 +168,24 @@ p {
   line-height: 1;
   font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 
+}*/
+
+#logo{
+  margin:auto;
+}
+.logo-div{
+  padding: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
 }
 
 #logo:hover {
   color:  #E65C5C;
   text-decoration: none;
 }
+
+
 .nav-header > li > a {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -177,9 +215,73 @@ p {
     opacity: 0.92;
     border-bottom: 1px $lightGrey solid;
 }
-  
-.left-nav{
-  
+
+.new-navbar-custom {
+    background-color: $darkGrey;
+    font-family: "Tw Cen MT";
+    color: $gold;
+    height: 30px;
+    padding-top: 5px;
+    font-size: 1em;
+    float: top;
+    right:0;
+    left: 225px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        z-index: 999;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 225px;
+        /*margin-left: -225px;*/
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: $lightGrey;
+        height: 100%;
+    }
+
+    .side-top{
+      height: 30px;
+      background-color: $darkerGrey;
+    }
+
+    .side-menu>ul>li>a {
+        width: 225px;
+        font-family: "Tw Cen MT";
+        text-transform: uppercase;
+        color: $darkGrey;
+        font-size: 1em;
+    }
+
+    .side-menu>ul>li{
+      margin: 15px;
+    }
+
+    .side-menu>ul{
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .side-nav ul>li a:hover,
+    .side-nav ul>li a:focus {
+        outline: none;
+        color: $gold;
+        text-decoration: none;
+    }
+}
+
+
+.side-nav>ul>li>ul>li>a:hover {
+    color: #fff;
 }
 
 .right-nav{
@@ -201,7 +303,7 @@ p {
   color: gray;
   border: 1px gray solid;
   &:hover{
-    background-color: $gold;
+    background-color: $darkGold;
   color: white;
   }
 }
@@ -307,7 +409,7 @@ aside {
 /* forms */
 
 .form-all{
-  /*border: 1px $gold solid;*/
+  /*border: 1px $darkGold solid;*/
   padding: 15px;
   /*background-color: white;*/
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
@@ -327,8 +429,8 @@ aside {
 .all-btn{
 
   background-color: white; 
-  color: $gold;
-  border: 1px $gold solid;
+  color: $darkGold;
+  border: 1px $darkGold solid;
   font-size: 1.2em; 
   width: 160px;
   text-transform: uppercase;
@@ -337,13 +439,13 @@ aside {
   border-radius: 0;
   &:hover{
     
-  background-color: $gold;
+  background-color: $darkGold;
   color: white;
   }
 }
 /* user-form*/
 .user-form-container {
-  border: 1px $gold solid;
+  border: 1px $darkGold solid;
   padding-bottom: 40px;
   padding-top: 10px;
   width: 25%;
@@ -370,8 +472,8 @@ aside {
   &:hover{
     
     background-color: white; 
-    color: $gold;
-    border: 1px $gold solid;
+    color: $darkGold;
+    border: 1px $darkGold solid;
   }
 }
 
@@ -530,13 +632,13 @@ aside {
 }
 
 .btn-signup{
-  color: $gold;
-  border: 1px $gold solid;
+  color: $darkGold;
+  border: 1px $darkGold solid;
   background-color: $darkerGrey;
   font-size: 1em;
   margin-left: 30px;
   &:hover{
-    background-color: $gold;
+    background-color: $darkGold;
   color: black;
   }
 }
@@ -795,7 +897,7 @@ div.hidden {
   border: 1px $softerGold solid;
   background-color: white;
   border-radius: 2px;
-  /*box-shadow: 1px 1px 2px $gold;*/
+  /*box-shadow: 1px 1px 2px $darkGold;*/
   /*min-height: 10rem;*/
   color: $grey;
 }
@@ -904,7 +1006,7 @@ div.hidden {
   background-color: transparent;
   border: 0;
   font-size: 1.8em;
-  color: $gold;
+  color: $darkGold;
   /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   /*font-family: Perpetua;*/
   /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/

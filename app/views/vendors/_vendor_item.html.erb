@@ -10,4 +10,7 @@
 		<li><%= image_tag("phone_icon.png", :width=> 10, :height=> 10, :border => 0, :alt => "phone icon") %> <% if vendor.phone!="" %><%= vendor.phone %><%else%> n/a <%end%></li>
 		<li><%= image_tag("email_icon.png", :width=> 10, :height=> 10, :border => 0, :alt => "email icon") %> <% if vendor.email!="" %><%= vendor.email %><%else%> n/a <%end%></li>
 		<li><%= image_tag("location_icon.png", :width=> 10, :height=> 10, :border => 0, :alt => "location icon") %> <% if vendor.address!="" %><%= vendor.address %><%else%> n/a <%end%></li>
+		<li>
+			Note: <%= vendor.note %>
+		</li>
 </ul>
