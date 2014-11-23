@@ -25,6 +25,25 @@ module Api
     	
     end
 
+    def like
+    @comment = Comment.find(params[:id])
+    if @comment.liked_by app_user
+      return render :json=> {:success => true, :message => "comment liked", :comment => @comment}
+    else
+      return render :json=> {:success => false, :message => "comment not liked"}
+    end
+  end
+
+
+  def unlike
+    @comment = Comment.find(params[:id])
+    if @comment.unliked_by app_user
+      return render :json=> {:success => true, :message => "comment unliked", :comment => @comment}
+    else
+      return render :json=> {:success => false, :message => "comment not not unliked"}
+    end
+
+  end
 
     private
     def comment_params

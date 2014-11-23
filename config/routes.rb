@@ -9,7 +9,12 @@ WeddingApp::Application.routes.draw do
     resources :articles
     resources :shops  do 
       resources :photos
-      resources :comments  
+      resources :comments do
+        member do
+          put "like", to: "comments#like"
+          put "unlike", to: "comments#unlike"
+        end
+      end
       member do
         put "rate", to: "shops#rate"
         put "unrate", to: "shops#unrate"

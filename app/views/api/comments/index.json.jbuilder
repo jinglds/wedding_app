@@ -1,4 +1,5 @@
 json.comments @comments do |comment|
+	json.id comment.id
 	json.title comment.title
   	json.content comment.content
   	json.commenter comment.user.firstname

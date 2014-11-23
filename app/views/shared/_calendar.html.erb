@@ -21,7 +21,7 @@
 	      
         <ul class="list-unstyled">
           <% tasks.each do |task| %>
-          <li><%= link_to h(task.title), event_tasks_path(task.id) %></li>
+          <li><%= link_to h(task.title), event_task_path(@event, task.id) %></li>
         <% end %>
         </ul>
 	        
