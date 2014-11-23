@@ -13,5 +13,9 @@ module Api
 	    users =  current_user.admin? ? User.all : [current_user]
 	    render json: users, status: :ok
 	end
+
+	def shops
+		@shops = current_user.shops
+	end
   end
 end

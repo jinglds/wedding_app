@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122125531) do
+ActiveRecord::Schema.define(version: 20141123072155) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -34,8 +34,22 @@ ActiveRecord::Schema.define(version: 20141122125531) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
 
+  add_index "comments", ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
+  add_index "comments", ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
+  add_index "comments", ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
+  add_index "comments", ["cached_votes_up"], name: "index_comments_on_cached_votes_up"
+  add_index "comments", ["cached_weighted_average"], name: "index_comments_on_cached_weighted_average"
+  add_index "comments", ["cached_weighted_score"], name: "index_comments_on_cached_weighted_score"
+  add_index "comments", ["cached_weighted_total"], name: "index_comments_on_cached_weighted_total"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "event_vendors", force: true do |t|
@@ -147,9 +161,23 @@ ActiveRecord::Schema.define(version: 20141122125531) do
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cover_url",   default: "default.png"
+    t.string   "cover_url",               default: "default.png"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
 
+  add_index "shops", ["cached_votes_down"], name: "index_shops_on_cached_votes_down"
+  add_index "shops", ["cached_votes_score"], name: "index_shops_on_cached_votes_score"
+  add_index "shops", ["cached_votes_total"], name: "index_shops_on_cached_votes_total"
+  add_index "shops", ["cached_votes_up"], name: "index_shops_on_cached_votes_up"
+  add_index "shops", ["cached_weighted_average"], name: "index_shops_on_cached_weighted_average"
+  add_index "shops", ["cached_weighted_score"], name: "index_shops_on_cached_weighted_score"
+  add_index "shops", ["cached_weighted_total"], name: "index_shops_on_cached_weighted_total"
   add_index "shops", ["user_id", "created_at"], name: "index_shops_on_user_id_and_created_at"
   add_index "shops", ["user_id"], name: "index_shops_on_user_id"
 

@@ -8,6 +8,7 @@ module Api
  # before_filter :set_date, only: [:create, :update]
 
     def create
+        params[:event][:date] = Chronic.parse(params[:event][:date])
         @event = app_user.events.build(event_params)
       if  @event.save
         return render :json=> {:success => true, :event => @event}

@@ -21,7 +21,7 @@ module Api
 
     def index
     	@shop = Shop.find(params[:shop_id])
-    	@comments = @shop.comments
+    	@comments = @shop.comments.order(cached_votes_score: :desc, created_at: :desc)
     	
     end
 
