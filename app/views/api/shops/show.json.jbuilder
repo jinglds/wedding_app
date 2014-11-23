@@ -5,6 +5,7 @@ json.shop do
   json.description @shop.description
   json.phone @shop.phone
   json.email @shop.email
+  json.website @shop.website
   json.address @shop.address
   json.details @shop.details
   json.rating @ratings
