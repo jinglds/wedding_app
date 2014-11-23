@@ -7,7 +7,6 @@ module Api
      before_filter :correct_user, only: [:destroy, :update]
 
      def tags
-       
       @styles = Shop.style_counts
       @categories = Shop.category_counts
      end
