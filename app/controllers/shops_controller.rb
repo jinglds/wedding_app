@@ -52,7 +52,7 @@ class ShopsController < ApplicationController
 
   def index
     @categories = Shop.category_counts
-      
+    
 
     @cat_title = "All Vendors"
     @c=""
@@ -92,7 +92,7 @@ class ShopsController < ApplicationController
       # @type = Shop.select(:shop_type).map(&:shop_type).uniq
       @shops = @q.result(distinct: true)
 
-    @styles = @shops.tag_counts_on(:styles)
+    @styles = @shops.style_counts
       # else
         # @shops = Shop.all
       # end

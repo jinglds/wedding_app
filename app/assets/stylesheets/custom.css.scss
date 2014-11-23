@@ -39,9 +39,12 @@ html {
 }
 body {
     margin-top: 30px;
-    margin-left: 225px;
+    margin-left: 200px;
     background-color: $evenLighterGrey;
+    
 }
+
+
 
 @media(min-width:768px) {
     body {
@@ -94,8 +97,8 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
   color: $darkerGrey;
-  /*font-family: Perpetua;*/
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  font-family: "Tw Cen MT";
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
 }
 
 h2 {
@@ -105,8 +108,8 @@ h2 {
   text-align: center;
   font-weight: normal;
   color: $darkerGrey;
-  /*font-family: Perpetua;*/
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  font-family: "Tw Cen MT";
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
 
 }
@@ -117,8 +120,8 @@ h3 {
   font-weight: normal;
   color: $grey;
   margin-bottom: 10px;
-  /*font-family: Perpetua;*/
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  font-family: "Tw Cen MT";
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
 
 }
@@ -130,11 +133,11 @@ h4 {
   color: $grey;
   margin-bottom: 5px;
   line-height: 0.8;
-  /*font-family: Perpetua;*/
+  font-family: "Tw Cen MT";
   /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
-  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
-  
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+  text-decoration: none
 }
 
 
@@ -144,6 +147,13 @@ p {
   line-height: 1.7em;
   /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
 
+}
+
+.small{
+  font-size:  0.8em;
+}
+.full-width{
+  right: 0;
 }
 
 .line-divider{
@@ -156,19 +166,6 @@ p {
 
 /* header */
 
-/*#logo {
-  float: left;
-  padding-left: 20px;
-  font-size: 1.7em;
-  color:  #818181;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  margin-right: 20px;
-  font-weight: bold;
-  line-height: 1;
-  font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
-
-}*/
 
 #logo{
   margin:auto;
@@ -186,35 +183,6 @@ p {
 }
 
 
-.nav-header > li > a {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
-  /*font-family: Perpetua;*/
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
-  font-size: 1.5em;
-  color:  gray;
-  /*border-radius: 2px;*/
-  margin-top: 25px;
-  margin-left:6px;
-  margin-right: 6px;
-
-    &:hover{
-    color:    #5F4C0B;
-    background-color: white;
-    
-  }
-}
-
-
-.navbar-custom {
-    background-color: white;
-    padding: 3px;
-    opacity: 0.92;
-    border-bottom: 1px $lightGrey solid;
-}
 
 .new-navbar-custom {
     background-color: $darkGrey;
@@ -263,7 +231,8 @@ p {
     }
 
     .side-menu>ul>li{
-      margin: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
 
     .side-menu>ul{
@@ -277,36 +246,50 @@ p {
         color: $gold;
         text-decoration: none;
     }
+    .side-menu ul>li>ul>li>a{
+        width: 225px;
+        font-family: "Tw Cen MT";
+        text-transform: uppercase;
+        color: $darkGrey;
+        font-size: 0.8em;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        &:hover{
+          color: $softGold;
+        }
+    }
+    .side-menu ul>li>ul>li{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      /*border-top: 1px $lightGrey solid ;*/
+      background-color: $softGrey;
+      &:hover{
+        background-color: $mediumGrey;
+        
+      }
+    }
+
+    .log-menu{
+      font-size: 1em;
+    }
+
+    .log-btn{
+      border: 1px $darkGrey solid;
+      color: $darkGrey;
+      padding: 3px;
+      width: 120px;
+      background-color: transparent;
+      font-family: "Tw Cen MT";
+      text-transform: uppercase;
+      &:hover{
+        /*border: 1px $gold solid;
+        color: $gold;*/
+        background-color: $darkGrey;
+        color: $lightGrey;
+      }
+    }
 }
 
-
-.side-nav>ul>li>ul>li>a:hover {
-    color: #fff;
-}
-
-.right-nav{
-  padding-right: 30px;
-  font-size: 0.8em;
-}
-
-#signin-btn{
-  border-style: solid ;
-  border-width: 1px;
-  border-color:   white;
-  &:hover{
-    border-color: #5F4C0B;
-    color: #5F4C0B
-  }
-
-}
-#signup-btn{
-  color: gray;
-  border: 1px gray solid;
-  &:hover{
-    background-color: $darkGold;
-  color: white;
-  }
-}
 
 /* footer */
 
@@ -343,8 +326,25 @@ footer ul li {
 }
 
 
+/* HOME */
+.heading-img{
+  width: 100%;
+}
+
 /* VENDORS*/
 
+#filter-block{
+  padding: 20px;
+  margin-bottom: 50px;
+  > div{
+    padding: 10px;
+    font-family: "Tw Cen MT";
+    text-transform: uppercase;
+    > ul>li{
+      text-transform: lowercase;
+    }
+  }
+}
 .filter-bar{
   border-top: 1px solid #EEEEEE;
   border-bottom: 1px solid #EEEEEE;
@@ -575,7 +575,7 @@ aside {
 }
 
 #home-block {
-  background-image: url(image-path('flower-bg-light.jpg'));
+  background-image: url(image-path('new_heading.png'));
   background-size: cover;
 
   &:hover {
@@ -987,8 +987,6 @@ div.hidden {
   background-color: $lightMint;
 }
 
-.container{
-}
 
 .gallery-thumb{
   background-color: white;
@@ -1046,4 +1044,33 @@ div.hidden {
   font-size: 0.4em;
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   
+}
+
+
+.category-block{
+  border: 1px $mediumGrey solid;
+  font-size: 2em;
+  padding: 20px;
+}
+
+
+.toggle {
+  font-family: "Tw Cen MT";
+
+}
+
+.toggle .label  {
+  color: $darkGrey;
+  font-size: 0.9em;
+    &:hover{
+      color: $gold;
+    }
+}
+
+.toggle label input {
+    display: none;
+}
+
+.label.input-checked /*, .bounds input:checked + span works for firefox and ie9 but breaks js for ie8(ONLY) */ {
+  color: $gold;
 }

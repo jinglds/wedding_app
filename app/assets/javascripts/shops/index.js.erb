@@ -19,7 +19,12 @@ $(function() {
 	    $(this).parent('li').addClass('active-category')
 
     e.preventDefault();
-})
+	})
+
+	$('.label').click(function(){
+	    $(this).addClass('input-checked');
+	    $(this).parent('.toggle').siblings('.toggle').children('.label').removeClass('input-checked');
+	});
 
 
 
