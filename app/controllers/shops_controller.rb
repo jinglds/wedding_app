@@ -31,8 +31,8 @@ class ShopsController < ApplicationController
       end
       
       @shops= @shops.search(params[:name_query]) unless params[:name_query]==""
-      @count = @shops.count
-      @shops= @shops.paginate(page: params[:page]).order(params[:order])
+      @count = "/ " + @shops.count.to_s + " RESULTS"
+      @shops= @shops.order(params[:order])
     respond_to do |format|
       format.html 
       format.js
@@ -107,7 +107,7 @@ class ShopsController < ApplicationController
   def show
     @user = current_user
     @shop = Shop.find(params[:id])
-    @ratings = (@shop.get_upvotes.sum(:vote_weight).to_f / @shop.get_upvotes.size)
+    @ratings = (@shop.cached_weighted_total.to_f / @shop.cached_votes_total)
     if @ratings.nan?
       @ratings = 0.0
     end

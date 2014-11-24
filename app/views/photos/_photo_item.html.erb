@@ -1,11 +1,21 @@
-<li class="col-md-2">
-<%= link_to image_tag(photo.image.thumb('180x180#').url, alt: photo.title, class: 'img-thumbnail'),
+<div class="photo-item col-md-6 center">
+	<%= link_to image_tag(photo.image.thumb('600x600#').url, alt: photo.title, class: 'img-thumbnail'),
                   photo.image.url, target: '_blank' %><br>
-<% if (current_user==@shop.user) %>
-	<%= link_to "Set as Cover ", shop_set_cover_path(@shop, :id =>photo.id), method: :put %> |
-    <%= link_to "edit", edit_shop_photo_path(@shop, photo) %> | 
-    <%= link_to "delete", shop_photo_path(@shop, photo), method: :delete,
-                                         data: { confirm: "You sure?" },
-                                         title: photo.title %>
-<% end %>
-</li>
+	<div class="pull-right">
+		<% if (current_user==@shop.user) %>
+			<% if photo.cover==true %>
+				Current Cover
+			<% else %>
+				<%= link_to "Set as Cover ", shop_set_cover_path(@shop, :id =>photo.id), method: :put %>
+			<% end %> |
+		    <%= link_to "edit", edit_shop_photo_path(@shop, photo) %> | 
+		    <%= link_to "delete", shop_photo_path(@shop, photo), method: :delete,
+		                                         data: { confirm: "You sure?" },
+		                                         title: photo.title %>
+		<% end %>
+	</div>
+	
+	
+
+	
+</div>

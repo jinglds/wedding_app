@@ -2,5 +2,5 @@ $("#shop-feed").hide();
 $("#shop-feed").html("<div class='row'><%= escape_javascript(render @shops ) %></div>")
 $("#shop-feed").fadeIn();
 $("#filter-params").hide();
-$("#filter-params").html(" : <%= @c %> <%= @s %> <%= @o %> <%= @n %>")
+$("#filter-params").html(" : <%= @c %> <%= @s %> <%= @o %> <%= @n %> <%= @count %>")
 $("#filter-params").fadeIn();

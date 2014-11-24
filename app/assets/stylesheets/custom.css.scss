@@ -44,7 +44,9 @@ body {
     
 }
 
-
+.container{
+  padding: 20px;
+}
 
 @media(min-width:768px) {
     body {
@@ -464,11 +466,13 @@ aside {
   color: $darkGold;
   border: 1px $darkGold solid;
   font-size: 1.2em; 
-  width: 160px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 0;
+  font-family: "Tw Cen MT";
   &:hover{
     
   background-color: $darkGold;
@@ -863,11 +867,15 @@ div.hidden {
 
 
 .shop-block {
- display: inline-block;
  /*background-color: $darkGrey;*/
- height: 350px;
+ height: 370px;
  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   font-family: "Tw Cen MT";
+  &:hover{
+
+    >div{
+    }
+  }
 }
 
 .shop-block-content{
@@ -877,11 +885,14 @@ div.hidden {
   padding-bottom: 5px;
 
 }
-.shop-block-title{
-  font-size: 1.3em;
-  font-style: bold;
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
-
+.shop-block-title {
+  padding: 0;
+  margin: 0;
+  > a{
+    font-size: 1.3em;
+    font-style: bold;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  }
 }
 
 .shop-contact-block{
@@ -909,9 +920,17 @@ div.hidden {
   /*min-height: 10rem;*/
   color: $grey;
 }
+.photo-item{
+  margin-top: 10px;
+  margin-bottom: 10px;
 
+  font-family: "Tw Cen MT";
+  text-transform: lowercase;
+
+}
 #photos-list {
   padding: 0;
+
   margin: 0;
   margin-top: 30px;
   clear: both;

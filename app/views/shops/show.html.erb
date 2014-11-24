@@ -27,7 +27,7 @@
         <% end %>
       
       <span id="shop-main-rating">
-        <%= render 'shops/main_rating' %>
+        <%= render 'shops/main_rating', locals:{:h=>18, :w=>18} %>
       </span>
       <%= link_to '#reviews' do %>
         <%= @comments.count %> Reviews

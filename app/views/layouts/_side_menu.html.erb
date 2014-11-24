@@ -68,6 +68,7 @@
               <a data-toggle="collapse" data-parent="#user-menu" href="#my-articles-nav" aria-expanded="true" aria-controls="my-articles-nav">
                 Articles <b class="caret"></b>
               <ul id="my-articles-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="my-articles">
+                <li><%= link_to "New Article", new_article_path %></li>
                 <li><%= link_to "Manage Articles",articles_path %></li>
               </ul>
             </li>
@@ -85,14 +86,14 @@
           <%end%>
         </li>
         <li>
-          <%= button_to "Sign out", signout_path, method: "delete", class:"log-btn" %>
+          <%= button_to "Sign out", signout_path, method: "delete", class: "log-btn" %>
         </li>
       </ul>
 
      <% else %>
-          <ul >
-              <li><%= link_to "Log In",    signin_path, id: "signin-btn" %></li>
-              <li><%= link_to "Register",    signup_path, id: "signup-btn" %></li>
+          <ul class="list-unstyled log-menu">
+              <li><%= button_to "Log In",    signin_path, method: :get, class: "log-btn" %></li>
+              <li><%= button_to "Register",    signup_path, method: :get, class: "log-btn" %></li>
           </ul>
         <% end %>
       
