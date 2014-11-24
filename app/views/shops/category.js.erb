@@ -1,2 +1,6 @@
-$("#shop-feed").html("<h3><%= @cat_title.capitalize %> : <%= @s %></h3><div class='pin-row'><%= escape_javascript(render @shops ) %></div>")
-$("#tag-div").html("<%= escape_javascript(render :partial =>'shops/style_tags', :locals => { :results => @results, :c => @c}) %>")
+$("#shop-feed").hide();
+$("#shop-feed").html("<div class='row'><%= escape_javascript(render @shops ) %></div>")
+$("#shop-feed").fadeIn();
+$("#filter-params").hide();
+$("#filter-params").html(" : <%= @c %> <%= @s %> <%= @o %> <%= @n %>")
+$("#filter-params").fadeIn();

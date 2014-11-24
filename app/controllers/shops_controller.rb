@@ -9,40 +9,30 @@ class ShopsController < ApplicationController
   def category
     
     @categories = Shop.category_counts
-      
+    @styles = Shop.style_counts
 
-    @c=params[:category].to_s if params[:category]
-    @s=params[:styles].to_s if params[:styles]
-    
-    sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
-    
-    if params[:category]=="" && params[:styles] ==""
+    @c=params[:category] ?  params[:category].to_s  : "all categories"
+    @s=params[:styles] ? "/ " + params[:styles].join(" , ") : "/ all styles"
+    @o=params[:order] ? "/ Order by " + params[:order].to_s  : ""
+    @n='/ "' + params[:name_query].to_s + '"' unless params[:name_query]==""
+
+    if (params[:category]=="" || params[:category].nil?) && (params[:styles] =="" || params[:styles].nil?)
         @shops = Shop.all
-        @c = ""
-        @s = ""
         @cat_title = "All"
-        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-      elsif params[:category]!="" && params[:styles] ==""
+      elsif params[:category]!="" && (params[:styles] =="" || params[:styles].nil?)
         @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
         @cat_title = params[:category]
-        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
       elsif (params[:category]=="" || params[:category].nil?) && params[:styles]!=""
-        @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
-        @c = ""
+        @shops = Shop.tagged_with(params[:styles], :on => :styles, :all => true)
         @cat_title = "All"
-        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-
       else
-        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
+        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :all => true)
         @cat_title = params[:category]
-        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
-    
       end
-
-    @styles = @shops.tag_counts_on(:styles)
       
-    @results = ActiveRecord::Base.connection.execute(sql)
-
+      @shops= @shops.search(params[:name_query]) unless params[:name_query]==""
+      @count = @shops.count
+      @shops= @shops.paginate(page: params[:page]).order(params[:order])
     respond_to do |format|
       format.html 
       format.js
@@ -52,55 +42,9 @@ class ShopsController < ApplicationController
 
   def index
     @categories = Shop.category_counts
-    
-
-    @cat_title = "All Vendors"
-    @c=""
-    @s=params[:styles].to_s if params[:styles]
-    
-    sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-      
-    if (params[:category]=="" || params[:category].nil?) && (params[:styles] =="" || params[:styles].nil?) 
-        @shops = Shop.all
-        @c = ""
-        @s = ""
-        @cat_title = "All"
-        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-      elsif params[:category]!="" && params[:styles] ==""
-        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true)
-        @cat_title = params[:category].to_s
-        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
-    
-      elsif (params[:category]=="" || params[:category].nil?) && params[:styles]!=""
-        @shops = Shop.tagged_with(params[:styles], :on => :styles, :any => true)
-        @c = ""
-        @cat_title = "All"
-        sql = "select distinct name, taggings_count as count from tags where id in (select tag_id from taggings where context like 'styles')"
-
-      else
-        @shops = Shop.tagged_with(params[:category], :on => :categories, :any => true).tagged_with(params[:styles], :on => :styles, :any => true)
-        @cat_title = params[:category].to_s
-        sql = "select distinct name, taggings_count as count from tags where id in (select distinct tag_id from taggings where ( taggable_id in (select distinct taggable_id from taggings where (select tag_id from tags where name like '#{@c}')) and context like 'styles'))"
-    
-      end
-
-      
-      @cat_title = @cat_title.intern
-      @results = ActiveRecord::Base.connection.execute(sql)
-      @results = @results
-      @q = Shop.ransack(params[:q])
-      # @type = Shop.select(:shop_type).map(&:shop_type).uniq
-      @shops = @q.result(distinct: true)
-
-    @styles = @shops.style_counts
-      # else
-        # @shops = Shop.all
-      # end
-      @shops = @shops.paginate(page: params[:page])
-
-  @categories = Shop.category_counts
-
-respond_to do |format|
+    @styles = Shop.style_counts
+    @shops= Shop.all.paginate(page: params[:page]).order(params[:order])
+    respond_to do |format|
       format.html 
       format.js
     end

@@ -36,8 +36,12 @@ class Shop < ActiveRecord::Base
 	    respond_to do |format|
 	      format.html { redirect_to @shop }
 	      format.js
-    end
-  end
+	    end
+	end
+
+	def self.search(query)
+	  where("name like ?", "%#{query}%") 
+	end
 
 end
 

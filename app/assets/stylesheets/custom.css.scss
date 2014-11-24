@@ -155,6 +155,11 @@ p {
 .full-width{
   right: 0;
 }
+.full-height{
+  /*height: 100%;*/
+  height: auto;
+
+}
 
 .line-divider{
 
@@ -333,39 +338,65 @@ footer ul li {
 
 /* VENDORS*/
 
-#filter-block{
-  padding-bottom: 50px;
-  padding-left: 50px;
-  padding-right: 50px;
-  > div{
-    padding: 10px;
+.filter-btn-div{
+  padding: 20px;
+  >a{
     font-family: "Tw Cen MT";
     text-transform: uppercase;
-    > ul>li{
-      text-transform: lowercase;
+    /*font-weight: bold;*/
+    color: $darkGrey;
+    font-size: 1.1em;
+    &:hover{
+      text-decoration: none;
+      color: $gold;
     }
   }
 }
-.filter-bar{
-  border-top: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
-  
+
+#filter-block{
+  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-bottom: 20px;
+  > div{
+    padding-left: 40px;
+    padding-bottom: 10px;
+    font-family: "Tw Cen MT";
+    text-transform: uppercase;
+    font-weight: bold;
+    
+  background-color: $lightGrey;
+    > ul>li{
+      text-transform: lowercase;
+      font-weight: none;
+    }
+  }
 }
-.filter-btn >li{
-  border-left: 1px solid #EEEEEE;
-  margin-top: 10px;
-  margin-bottom: 10px;
+#filter-params{
+  text-transform: capitalize;
+}
+.filter-div{
+  background-color: $lightGrey;
+}
+
+#filter-submit-btn {
+  border: 1px;
+  border-color: $darkGrey;
+  border-style:  double;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 130px;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  vertical-align: bottom;
+  &:hover{
+    background-color: $darkGrey;
+    color: $lightGrey;
+  }
 
 }
-
-.impact{
-  font-family: impact;
-}
-
-.tahoma{
-  font-family: Lucida Sans Unicode;
-}
-
 /* miscellaneous */
 
 .debug_dump {
@@ -559,12 +590,6 @@ aside {
   }
 }
 
-.vendors{
-
-  /*display: inline-block;
-  border: 1px solid #e8e8e8;
-  padding: 5px;*/
-}
 
 
 #tag_cloud {
@@ -836,31 +861,13 @@ div.hidden {
 *, *:before, *:after {box-sizing:  border-box !important;}
 
 
-.pin-row {
- -moz-column-width: 250px;
- -webkit-column-width: 250px;
- -moz-column-gap: 1em;
- -webkit-column-gap:1em; 
-  
-}
-
-.item {
- display: inline-block;
- /*padding:  .2rem;*/
- width:  100%; 
-}
 
 .shop-block {
- position:relative;
- display: block;
- background-color: white;
- /*border:1px $lighterGrey solid;*/
-
-  box-shadow: 1px 1px 2px $lighterGrey;
-  /*border-radius: 2px;*/
-  padding: 0;
-  margin-bottom: 2em;
- font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+ display: inline-block;
+ /*background-color: $darkGrey;*/
+ height: 350px;
+ /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  font-family: "Tw Cen MT";
 }
 
 .shop-block-content{
