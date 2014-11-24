@@ -104,7 +104,39 @@ namespace :db do
                                               event_type: event_type.sample
                                               ) }
     end
-  end
+    events = Event.all
+    30.times do
+      side=["bride", "groom"]
+      name = Faker::Name.name
+      prefix = ["Mr.", "Mrs.", "Miss"]
+      adults = [0,0,1,1,2,3],
+      children = [0,0,0,0,1,2,2,3]
+      phone =  Faker::PhoneNumber.cell_phone
+      address = Faker::Address.city
+      gender= ["Male", "Female"]
+      invitation_sent=[true, true, true, false]
+      attending=[true, true, false]
+      group = ["highschool", "university", "elementary", "vip", "family"]
+      table_no = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+      note=""
+      events.each { |event| event.guests.create!(
+                                              side:side.sample,
+                                              name:name,
+                                              prefix:prefix.sample,
+                                              adults:adults.sample,
+                                              children:children.sample,
+                                              phone:phone,
+                                              address:address,
+                                              gender:gender.sample,
+                                              invitation_sent:invitation_sent.sample,
+                                              attending:attending.sample,
+                                              group:group.sample,
+                                              table_no:table_no.sample,
+                                              note:note,
+                                              user_id: event.user_id
+                                              ) }
+    end
+end
 end
 
 

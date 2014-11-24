@@ -2,19 +2,19 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder:"E.g. Hotel Ballroom, Wedding Dress.."  %>
 
     <%= f.label :expense_type %>
-    <%= f.text_field :expense_type %>
+    <%= f.text_field :expense_type, placeholder:"E.g. food, venue, attire.." %>
 
-    <%= f.label :amount %>
-    <%= f.text_field :amount %>
+    <%= f.label :amount %> <span class="small">(No comma)</span>
+    <%= f.text_field :amount, placeholder:"E.g. 1000, 25000.."  %>
 
     <%= f.label :receiver %>
-    <%= f.text_field :receiver %>
+    <%= f.text_field :receiver, placeholder:"E.g. Mr.Joe, Miss Lucy.."  %>
 
-    <%= f.label :status %>
-    <%= f.text_field :status %>
+    <%= f.label :paid %>
+    <%= f.select :paid, [['Paid', true], ['Unpaid', false]] %>
   </div>
   <%= f.submit "Submit", class: "btn all-btn btn-large" %>
 <% end %>

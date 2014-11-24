@@ -1,0 +1,37 @@
+
+<div class=" form-all">
+<%= form_for @vendor  do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <% unless @shop.nil? %>
+      <%= f.hidden_field :shop_id, :value => @shop.id%>
+    <%end%>
+
+     <%= f.hidden_field :event_id, :value => @event.id%>
+    <%= f.label :name %>
+    <%= f.text_field :name,  value: @shop ? @shop.name : nil %>
+
+    <%= f.label :contact, "Contact Person" %>
+    <%= f.text_field :contact  %>
+
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, value: @shop ? @shop.phone : nil %>
+
+
+    <%= f.label :address %>
+    <%= f.text_field :address,  value: @shop ? @shop.address : nil %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email,  value: @shop ? @shop.email : nil %>
+
+    <%= f.label :note %>
+    <%= f.text_area :note, class: "form-field" %>
+
+  </div></br>
+  <%= f.submit "Submit", class: "btn btn-large all-btn"%></span>
+<% end %>
+
+
+
+</div>

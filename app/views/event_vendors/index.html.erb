@@ -1,0 +1,18 @@
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<h3>Event Vendors</h3>
+			<%= render partial: 'events/vendor', collection: @vendors, as: :vendor %>
+		</div>
+		<div class="col-md-4">
+			<h3>New Vendor</h3>
+				<%= render 'events/vendor_form' %>
+			
+		</div>
+		
+	</div>
+</div>

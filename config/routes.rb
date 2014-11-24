@@ -23,6 +23,7 @@ WeddingApp::Application.routes.draw do
     end
     get "tags", to: "shops#tags"
     resources :events do
+      get "vendors", to: "events#vendors"
       resources :tasks do
         put "complete", to: "tasks#complete"
         put "decomplete", to: "tasks#decomplete"

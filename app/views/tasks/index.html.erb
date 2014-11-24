@@ -1,7 +1,9 @@
 <% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
 <div class="container">
-<h2><%= @event.name.titleize %> 's Tasks</h2>
-
+<div class="row">
+	<%= render 'events/event_menu' %>
+</div>
 
 <div class="row">
 	<div class="col-md-6">

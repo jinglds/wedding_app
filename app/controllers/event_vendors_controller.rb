@@ -8,6 +8,12 @@ class EventVendorsController < ApplicationController
     # @task = Task.find(params[:task_id])
     @event_vendor = EventVendor.new
   end
+  def index
+    @event = Event.find(params[:event_id])
+    @vendors = @event.vendors
+    @vendor = Vendor.new
+    @events = current_user.events
+  end
 
 	def create
 		
@@ -22,8 +28,8 @@ class EventVendorsController < ApplicationController
       # @vendor.event = @event
 
       if EventVendor.create(:vendor_id => @vendor.id, :event_id => @event.id)
-         flash[:success] = "Event Vendor added!"
-         redirect_to :vendors
+         flash[:success] = "Vendor added to event!"
+         redirect_to event_vendors_path(:event_id=>@event.id)
         
       else
         flash[:success] = "Error!"
@@ -33,12 +39,12 @@ class EventVendorsController < ApplicationController
 
 	def destroy
   	
-    @vendor = Vendor.find(params[:vendor_id])
+    @vendor = Vendor.find(params[:id])
     @event = Event.find(params[:event_id])
   	EventVendor.where(vendor_id: @vendor.id, event_id: @event.id).first.destroy
     
 
-  	flash[:success] = "Event vender deleted!"
-    redirect_to @event
+  	flash[:success] = "Vendor removed from event!"
+    redirect_to event_vendors_path(:event_id=>@event.id)
 	end
 end

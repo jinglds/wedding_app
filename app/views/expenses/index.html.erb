@@ -1,7 +1,9 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-
+<%= render 'events/heading' %>
 <div class="container">
-	<h2>Expenses</h2>
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
 	<div class="row">
 		<div class="col-md-9">
 			<h3>Expenses Balance</h3><br>

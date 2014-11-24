@@ -13,6 +13,8 @@ class EventsController < ApplicationController
     end
   end
 
+  
+
   def my_tasks
     @event = Event.find(params[:event_id])
     if params[:filter] =="week"

@@ -5,4 +5,7 @@ class Guest < ActiveRecord::Base
 
   	validates :user_id, presence: true
   	validates :event_id, presence: true
+
+  	scope :attendees, -> { where(attending: 't') }
+  	scope :inviteds, -> { where(invitation_sent: 't') }
 end

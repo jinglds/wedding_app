@@ -27,7 +27,7 @@ class VendorsController < ApplicationController
         @vendor = current_user.vendors.create!(vendor_params)
         if EventVendor.create(:vendor_id => @vendor.id, :event_id => @event.id)
           flash[:success] = "Vendor added!"
-          redirect_to @event
+          redirect_to event_vendors_path(:event_id=>@event.id)
         else
           flash[:success] = "Error!"
           render 'new'

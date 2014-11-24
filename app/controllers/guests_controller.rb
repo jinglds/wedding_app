@@ -69,7 +69,7 @@ class GuestsController < ApplicationController
 			                  	:phone,
 			                  	:address,
 			                  	:gender,
-	                            :invitation_status,
+	                            :invitation_sent,
 	                            :attending,
 			                  	:group,
                             	:table_no,
