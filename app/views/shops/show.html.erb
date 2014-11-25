@@ -1,17 +1,17 @@
 <div class="container">
 <% provide(:title, @shop.name) %>
 <div class="transparent">x</div>
-  <div class="row all-block">
-    <div class ="col-md-6 col-md-offset-1 ">
+  <div class="row ">
+    <div class ="col-md-7 ">
       <% if !@cover.nil? %> 
-      <%= link_to image_tag(@cover.image.thumb('600x400#').url, alt: @cover.title, class: 'img-thumbnail'),
+      <%= link_to image_tag(@cover.image.thumb('600x400#').url, alt: @cover.title),
                   @cover.image.url, target: '_blank' %>
 
       <% else %>
               <%= image_tag("default-thumb.jpg", alt: "cover photo", class: 'img-thumbnail') %>
       <% end %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <h3 class = "shop-title"><%= @shop.name %>
         <% if @favorite.nil? %>
             <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), favorite_shops_path(shop_id: @shop), method: :post, remote: true %>
@@ -66,7 +66,11 @@
     <% if @shop.user == current_user %>
       <%= link_to "Edit Photos", shop_photos_path(@shop) %>
     <% end %>
-    <h3> <%= @shop.name %>'s Gallery</h3>
+    <h3> 
+      <%= link_to shop_photos_path(@shop) do %>
+        <%= @shop.name %>'s Gallery
+      <% end %>
+    </h3>
     <%= render 'photos/gallery', object: @photos %>
   </div>
 
@@ -75,7 +79,7 @@
     <h3>You might be interested in...</h3>
     <% if @recommendations.any? %>
       <ul >
-        	<%= render partial: 'shops/recommendation', collection: @recommendations %>
+        	<%= render partial: 'shops/shop', collection: @recommendations %>
     	</ul>
     <% end %>
   </div>

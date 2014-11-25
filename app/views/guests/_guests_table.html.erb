@@ -1,0 +1,55 @@
+<table class="table table-condensed ">
+	<tr>
+		<th>Name</th>
+		<th>Side</th>
+		<th>Gender</th>
+		<th>Adults</th>
+		<th>Children</th>
+		<th>Group</th>
+		<th>Table No.</th>
+		<th>Note</th>
+		<th>Attending</th>
+		<th>Invitation</th>
+	</tr>
+		<% @guests.each do |g| %>
+		<tr class="<%= 'warning' if g.invitation_sent==false %>">
+			<td style="padding-left:35px;">
+				<%= g.name %>
+			</td>
+			<td><%= g.side %></td>
+			<td><%= g.gender %></td>
+			<td><%= g.adults %></td>
+			<td><%= g.children %></td>
+			<td><%= g.group %></td>
+			<td><% if g.table_no==0 %>
+						Not Set
+					<%else %>
+						<%= g.table_no %>
+					<%end%></td>
+			<td><%= g.note %></td>
+			<td>
+					<% if g.attending==true %>
+						Yes
+					<%else %>
+						No
+					<%end%>
+				
+			</td>
+			<td>
+					<% if g.invitation_sent==true %>
+						Sent
+					<%else %>
+						Not sent
+					<%end%>
+				
+			</td>
+
+			<td>
+				| <%= link_to "edit", edit_event_guest_path(@event, g.id) %> | 
+    			<%= link_to "delete", event_guest_path(@event, g.id), method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: g.name %>
+			</td>
+		</tr>
+	<% end %>
+</table>

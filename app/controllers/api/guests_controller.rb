@@ -72,16 +72,16 @@ module Api
                     :name,
                     :prefix,
                     :adults,
-                            :children,
-                            :phone,
-                            :address,
-                            :gender,
-                            :invitation_status,
-                            :attending,
-                            :group,
-                            :table_no,
-                            :note,
-                            :user_id)
+                    :children,
+                    :phone,
+                    :address,
+                    :gender,
+                    :invitation_status,
+                    :attending,
+                    :group,
+                    :table_no,
+                    :note,
+                    :user_id)
 
       end
 

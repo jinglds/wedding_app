@@ -235,6 +235,7 @@ p {
     }
 
     .side-top{
+      width: 225px;
       height: 30px;
       background-color: $darkerGrey;
     }
@@ -992,7 +993,7 @@ div.hidden {
 .photo-item{
   margin-top: 10px;
   margin-bottom: 10px;
-
+  /*width: 580px;*/
   font-family: "Tw Cen MT";
   text-transform: lowercase;
 
@@ -1085,8 +1086,6 @@ div.hidden {
 
 
 .gallery-thumb{
-  background-color: white;
-  box-shadow: 1px 1px 2px $lighterGrey;
   padding: 5px;
   &:hover{
 

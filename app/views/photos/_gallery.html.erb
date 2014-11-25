@@ -1,9 +1,30 @@
 <ul class="row" id="photos-list">
   <% @photos.each do |photo| %>
-    <li class="col-xs-2">
-      <%= link_to image_tag(photo.image.thumb('180x180#').url, alt: photo.title, class: ' gallery-thumb'),
+  	<%= link_to '#photo-'+ photo.id.to_s, :data => {:toggle=>"modal"}, :class=>"btn" do %>
+	    <li class="col-xs-2">
+	      <%= image_tag(photo.image.thumb('180x180#').url, alt: photo.title, class: ' gallery-thumb') %>
+	      <p><%= photo.title %></p>
+		
+	    </li>
+    <%end%>
+
+
+    <div class="modal fade" id="photo-<%= photo.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%=photo.title%></h4>
+      </div>
+      <div class="modal-body">
+        <%= link_to image_tag(photo.image.thumb('x800').url, alt: photo.title, class: 'img-thumbnail'),
                   photo.image.url, target: '_blank' %>
-      <p><%= photo.title %></p>
-    </li>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   <% end %>
 </ul>

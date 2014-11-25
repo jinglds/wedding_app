@@ -107,9 +107,9 @@ namespace :db do
     events = Event.all
     30.times do
       side=["bride", "groom"]
-      name = Faker::Name.name
+      name = ["Lovely Wedding", "Garden Engagement", "Tying the Knot", "The Vow"]
       prefix = ["Mr.", "Mrs.", "Miss"]
-      adults = [0,0,1,1,2,3],
+      adults = [1,1,2,3]
       children = [0,0,0,0,1,2,2,3]
       phone =  Faker::PhoneNumber.cell_phone
       address = Faker::Address.city
@@ -121,7 +121,7 @@ namespace :db do
       note=""
       events.each { |event| event.guests.create!(
                                               side:side.sample,
-                                              name:name,
+                                              name:name.sample,
                                               prefix:prefix.sample,
                                               adults:adults.sample,
                                               children:children.sample,

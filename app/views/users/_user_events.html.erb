@@ -13,7 +13,10 @@
           <%= e.tasks.done.count %>/<%= e.tasks.count %> tasks completed
           <br>
           
-          <%= e.guest_amt %> Guests
+          <%= e.guest_amt %> Approx.Guests <br>
+          <%= e.guests.attendees.count %> Guests Attending <br>
+          <%= e.guests.inviteds.count %> Invitation Sent <br>
+
         
           <% if (current_user==e.user) %>
             <div class="block-action pull-right"> <%= link_to "Edit", edit_event_path(e.id) %> | 

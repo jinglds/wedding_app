@@ -55,6 +55,8 @@ module Api
         else
           @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
         end
+        @shops= @shops.search(params[:tags][:name_query]) unless params[:tags][:name_query]==""
+      
         return render :json=> {:message => "No match found"} if @shops.blank?
       end
     end

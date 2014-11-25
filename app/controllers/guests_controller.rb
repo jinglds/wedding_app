@@ -4,6 +4,8 @@ class GuestsController < ApplicationController
 	    @event = Event.find(params[:event_id])
 	    @guests = @event.guests
 	    @total = @event.guests.count
+	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
+	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
 	  end
 
 	  def show

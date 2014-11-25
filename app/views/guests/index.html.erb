@@ -3,5 +3,51 @@
 	<div class="row">
 		<%= render 'events/event_menu' %>
 	</div>
-	<%= render @guests %>
+	<div class="row">
+		<div class="col-md-10">
+		<%= link_to "new guest", new_event_guest_path(@event) %>
+		<%= render 'guests/guests_table' %>
+		</div>
+		<div class="col-md-2">
+			
+
+		<ul class="list-unstyled" id="guest-menu" role="tablist" aria-multiselectable="true">
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-side-nav" aria-expanded="true" aria-controls="my-events-nav">
+              SIDE <b class="caret"></b>
+            </a>
+            <ul id="guest-side-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-side">
+              <li><%= link_to @event.bride_name, '#' %></li>
+              <li><%= link_to @event.groom_name, '#' %></li>
+            </ul>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-group-nav" aria-expanded="true" aria-controls="guest-group-nav">
+              GROUP <b class="caret"></b>
+            </a>
+            <ul id="guest-group-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
+				<%  @groups.each do |x| %>
+				  <li><%= link_to x, '#' %></li>
+				<% end %>
+              
+            </ul>
+          </li>
+
+
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-table-nav" aria-expanded="true" aria-controls="guest-table-nav">
+              TABLE NO <b class="caret"></b>
+            </a>
+            <ul id="guest-table-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
+				<%  @tables.each do |x| %>
+				  <li><%= link_to x, '#' %></li>
+				<% end %>
+              
+            </ul>
+          </li>
+		</ul>
+		</div>
+	</div>
+	
 </div>

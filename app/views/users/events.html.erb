@@ -1,5 +1,11 @@
-<div class="container">
+
 <% provide(:title, "My Events") %>
-<h2>My Events</h2>
+<div class="heading-block">
+	
+	<h1 class="elegant">My Events</h1>
+
+</div>
+<div class="container">
+
 <%= render partial: 'users/user_events', collections: @events, :as => :item %>
 </div>

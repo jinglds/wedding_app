@@ -1,7 +1,7 @@
 module Api
   class ExpensesController < Api::BaseController
     skip_before_filter :verify_authenticity_token, only: [:create]
-    before_filter :correct_user, only: [:destroy, :update, :pay, :unpay]
+    # before_filter :correct_user, only: [:destroy, :update, :pay, :unpay]
 
     def pay
       @expense = Expense.find(params[:expense_id])
