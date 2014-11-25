@@ -17,7 +17,9 @@ class TasksController < ApplicationController
   def timeline
     @event = Event.find(params[:event_id])
     @tasks = @event.tasks
-    @jans= @tasks.month_of("November 1, 2014");
+    @first = @tasks.order(:due_date).first
+    @jans= @tasks.of_month(@first.due_date);
+    @months = (@event.date.year * 12 + @event.date.month) - (@first.due_date.year * 12 + @first.due_date.month)
   end
 
   def remove_vendor

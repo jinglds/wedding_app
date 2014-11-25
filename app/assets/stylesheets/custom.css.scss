@@ -1187,16 +1187,14 @@ div.hidden {
 /*   trial  */
 
 
-.jumbotron {
-  margin-top: 80px;
-}
+
  
 ul.affix {
   position: fixed; 
   top: 60px;
   /*left: 62px;*/
-  width: 360px;
-  right: 0;
+  width: 150px;
+  right: 80px;
 }
 ul.affix-top {
   position: static;
@@ -1250,6 +1248,6 @@ ul.affix-bottom {
   padding-left: 30px;
   font-size: 90%;
 }
-#content {
+#timeline-content {
   margin-top:20px;
 }

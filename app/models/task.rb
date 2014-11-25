@@ -30,9 +30,14 @@ class Task < ActiveRecord::Base
   	# 	where("EXTRACT(MONTH FROM due_date)) = ?", Date.today.month )
   	# end
 
-    def self.month_of(params)
+    def self.of_month(params)
       self.where("due_date >= ? AND due_date <= ?", 
-  Chronic.parse("#{params}").beginning_of_month, Chronic.parse("#{params}").end_of_month).order('due_date')
+      Chronic.parse("#{params}").beginning_of_month, Chronic.parse("#{params}").end_of_month).order('due_date')
+    end
+
+    def self.of_date(params)
+      self.where("due_date >= ? AND due_date <= ?", 
+      Chronic.parse("#{params}").beginning_of_day, Chronic.parse("#{params}").end_of_day).order('due_date')
     end
 
     def self.today(params)
@@ -53,7 +58,7 @@ class Task < ActiveRecord::Base
     end
 
     def self.completed?
-      self.completed = true
+      self.completed == true
     end
 
 end
