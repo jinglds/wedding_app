@@ -1,4 +1,6 @@
 class Shop < ActiveRecord::Base
+
+	before_save :lowercase_params
 	acts_as_taggable
   	acts_as_taggable_on :categories, :styles
   	# acts_as_token_authenticatable
@@ -26,6 +28,10 @@ class Shop < ActiveRecord::Base
   	def comment_feed
 	    Comment.where("shop_id =?", id)
 	end
+
+	def lowercase_params
+  		self.name.downcase!
+  	end
 
 
 	def rate(params)
