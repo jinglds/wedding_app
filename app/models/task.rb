@@ -30,6 +30,11 @@ class Task < ActiveRecord::Base
   	# 	where("EXTRACT(MONTH FROM due_date)) = ?", Date.today.month )
   	# end
 
+    def self.month_of(params)
+      self.where("due_date >= ? AND due_date <= ?", 
+  Chronic.parse("#{params}").beginning_of_month, Chronic.parse("#{params}").end_of_month).order('due_date')
+    end
+
     def self.today(params)
       @date = params[:date]
       @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day).order('due_date')

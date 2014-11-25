@@ -14,6 +14,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def timeline
+    @event = Event.find(params[:event_id])
+    @tasks = @event.tasks
+    @jans= @tasks.month_of("November 1, 2014");
+  end
+
   def remove_vendor
     @task = Task.find(params[:task_id])
 

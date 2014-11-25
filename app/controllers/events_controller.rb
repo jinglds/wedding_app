@@ -65,6 +65,8 @@ class EventsController < ApplicationController
   end
 
   def update
+    
+    params[:event][:date] = Chronic.parse(params[:event][:date])
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       redirect_to @event, notice: "Successfully updated event"

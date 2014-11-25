@@ -34,6 +34,8 @@ module Api
     end
 
     def update
+
+      params[:event][:date] = Chronic.parse(params[:event][:date])
       if @event.update_attributes(event_params)
         return render :json=> {:success => true, :event => @event}
       else

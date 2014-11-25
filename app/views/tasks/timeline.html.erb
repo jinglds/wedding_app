@@ -1,0 +1,80 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
+
+<div class="row">
+	<%= render @jans %>
+</div>
+<div class="row">
+	<body data-spy="scroll" data-target="#affix-nav">
+		<div class="container">
+			<div class="row">
+
+				<section id="content" class="col-md-8 col-sm-8 col-xs-12">
+				    <article id="january">
+				    <h2><a href="#" target="_blank">January</a></h2>
+				    
+				        <section id="sweetjelly"><h3>Sweet jelly</h3></section>
+				        <section id="tiramisu"><h3>Tiramisu</h3></section>
+				        <section id="pie"><h3>Pie</h3></section>
+				    </article>
+				    <br>
+				    <article id="febuary">
+				        <h2><a href="#" target="_blank">Febuary</a></h2>
+				        
+				        <section id="coriander"><h3>Coriander</h3></section>
+				        <section id="kohlrabi"><h3>Kohlrabi</h3></section>
+				        <section id="amaranth"><h3>Amaranth</h3></section>
+				        <section id="soybean"><h3>Soybean</h3></section>
+				      </article>
+				    <br>  
+				    <article id="march">
+				    	<h2><a href="#" target="_blank">March</a></h2>
+				                
+				        <section id="meatball"><h3>Meatball</h3></section>        
+				        <section id="prosciutto"><h3>Prosciutto</h3></section>        
+				        <section id="brisket"><h3>Brisket</h3></section>        
+				        <section id="steak"><h3>Steak</h3></section>
+				     </article>
+				</section>
+
+				<nav id="affix-nav" class="sidebar col-md-4 col-sm-4 hidden-xs">
+				    <ul class="nav sidenav navbar-right" data-spy="affix" data-offset-top="330">
+				        <li class="active"><a href="#january">January</a>
+					        <ul class="nav">
+						        <li><a href="#sweetjelly">Sweet Jelly</a></li>
+						        <li><a href="#tiramisu">Tiramisu</a></li>
+						        <li><a href="#pie">Pie</a></li>
+					        </ul>
+				        </li>
+				        <li><a href="#febuary">Febuary</a>
+					        <ul class="nav">   
+						        <li><a href="#coriander">Coriander</a></li>
+						        <li><a href="#kohlrabi">Kohlrabi</a></li>
+						        <li><a href="#amaranth">Amaranth</a></li>
+						        <li><a href="#soybean">Soybean</a></li>        
+					        </ul>
+				        </li>
+				        <li><a href="#march">March</a>
+					        <ul class="nav">   
+						        <li><a href="#meatball">Meatball</a></li>
+						        <li><a href="#prosciutto">Prosciutto</a></li>
+						        <li><a href="#brisket">Brisket</a></li>
+						        <li><a href="#steak">Steak</a></li>        
+					        </ul>
+				        </li>
+				    </ul>
+				</nav>
+			</div>
+		</div><!-- end of container -->
+	 
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+	</body>
+
+</div>

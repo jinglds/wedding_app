@@ -56,7 +56,7 @@ WeddingApp::Application.routes.draw do
   resources :events do
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"
-    
+    get "timeline", to: "tasks#timeline"
     resources :expenses do
       put "pay", to: "expenses#pay"
       put "unpay", to: "expenses#unpay"
