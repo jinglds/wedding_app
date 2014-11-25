@@ -5,7 +5,7 @@
       <%= image_tag ("shop-default.png") %>
     </div>
     <div class="shop-block-content">
-      <div class="shop-block-title"><%= link_to shop.name, shop %></div>
+      <div class="shop-block-title"><%= link_to shop.name.titleize, shop %></div>
       <% if (shop.cached_weighted_total.to_f / shop.cached_votes_total).nan?  %>
         <% @ratings=0.0 %>
       <% else %>

@@ -1,6 +1,6 @@
 json.shop do
   json.id @shop.id
-  json.name @shop.name
+  json.name @shop.name.titleize
   json.price_range @shop.price_range
   json.description @shop.description
   json.phone @shop.phone
