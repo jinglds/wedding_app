@@ -3,10 +3,20 @@
 	<div class="row">
 		<%= render 'events/event_menu' %>
 	</div>
+
+  <div class="row">
+      <% @guests.order(:table_no).pluck(:table_no).uniq.each do |t| %>
+    
+      <%= render partial:'guests/table', locals:{t: t, guests: @guests.where(:table_no=>t)}%>
+    <% end %>
+    
+    
+  </div>
+
 	<div class="row">
 		<div class="col-md-10">
 		<%= link_to "new guest", new_event_guest_path(@event) %>
-		<%= render 'guests/guests_table' %>
+		<%= render partial:'guests/guests_table',  locals:{guests: @guests} %>
 		</div>
 		<div class="col-md-2">
 			

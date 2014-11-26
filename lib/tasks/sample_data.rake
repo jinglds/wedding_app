@@ -85,7 +85,7 @@ namespace :db do
 
     end
     2.times do
-      name = Faker::Name.name
+      name = ["Lovely Wedding", "Garden Engagement", "Tying the Knot", "The Vow"]
       date =  DateTime.new(2014, 11, 30, 18, 30, 00)
       time = DateTime.new(2014, 11, 30, 18, 30, 00)
       budget = 500000
@@ -94,7 +94,7 @@ namespace :db do
       guest_amt = [100, 200, 150, 250, 300]
       event_type = ["Evening Party", "Budhist Ceremory","Christian Ceremony", "Chinese Ceremony"]
       users.each { |user| user.events.create!(
-                                              name: name,
+                                              name: name.sample,
                                               date: date,
                                               time: time,
                                               budget: budget,
@@ -107,7 +107,7 @@ namespace :db do
     events = Event.all
     30.times do
       side=["bride", "groom"]
-      name = ["Lovely Wedding", "Garden Engagement", "Tying the Knot", "The Vow"]
+      name = Faker::Name.name
       prefix = ["Mr.", "Mrs.", "Miss"]
       adults = [1,1,2,3]
       children = [0,0,0,0,1,2,2,3]
@@ -117,11 +117,11 @@ namespace :db do
       invitation_sent=[true, true, true, false]
       attending=[true, true, false]
       group = ["highschool", "university", "elementary", "vip", "family"]
-      table_no = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+      table_no = [0,1,2,3,4,5,6,7,8,9,10]
       note=""
       events.each { |event| event.guests.create!(
                                               side:side.sample,
-                                              name:name.sample,
+                                              name:name,
                                               prefix:prefix.sample,
                                               adults:adults.sample,
                                               children:children.sample,

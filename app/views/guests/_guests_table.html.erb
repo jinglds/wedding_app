@@ -10,8 +10,9 @@
 		<th>Note</th>
 		<th>Attending</th>
 		<th>Invitation</th>
+		<th>Actions</th>
 	</tr>
-		<% @guests.each do |g| %>
+		<% guests.each do |g| %>
 		<tr class="<%= 'warning' if g.invitation_sent==false %>">
 			<td style="padding-left:35px;">
 				<%= g.name %>

@@ -134,6 +134,14 @@ class EventsController < ApplicationController
     redirect_to root_url
   end
 
+  def clear_tasks
+    @event = Event.find(params[:event_id])
+    Task.destroy_all(:event_id=>@event.id)
+    redirect_to @event
+    
+  end
+
+
   def create_default_tasks
     @event = Event.find(params[:event_id])
     @date = @event.date

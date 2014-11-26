@@ -116,7 +116,7 @@ class ExpensesController < ApplicationController
   end
 
     def correct_user
-        @expense = current_user.expenses.find_by(id: params[:expense_id])
+        @expense = current_user.expenses.find_by(id: params[:expense_id] || params[:id])
         redirect_to root_url if @expense.nil?
-  end
+    end
 end

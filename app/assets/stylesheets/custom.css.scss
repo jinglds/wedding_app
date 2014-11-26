@@ -1251,3 +1251,32 @@ ul.affix-bottom {
 #timeline-content {
   margin-top:20px;
 }
+
+.timeline-left{
+  left:0;
+  float: left;
+  width: 50%;
+  /*margin-right: 50%;*/
+  border-right: 1px $darkGrey solid;
+  padding: 20px;
+  height: 200px;
+}
+.timeline-right{
+  float: right;
+  width: 50%;
+  /*margin-left: 50%;*/
+  right: 0;
+  border-left: 1px $darkGrey solid;
+  padding: 20px;
+  height: 200px;
+}
+
+
+/* TABLE */
+.guest-table-no-div{
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
+  display: inline-block;
+  width: 510px;
+  margin: 15px;
+}

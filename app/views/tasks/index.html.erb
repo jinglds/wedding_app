@@ -5,6 +5,21 @@
 	<%= render 'events/event_menu' %>
 </div>
 
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+	<h3 class="pull-right"><%= @completed.count %> / <%= @tasks.count %> tasks completed!</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="progress">
+		  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
+		    <%= @progress %>%
+		  </div>
+		</div>
+	</div>
+</div>
 <div class="row">
 	<%= link_to "Timeline", event_timeline_path(@event) %>
 	<div class="col-md-6">
@@ -54,20 +69,7 @@
 <div class="transparent">x</div>
 
 
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-	<h3 class="pull-right"><%= @completed.count %> / <%= @tasks.count %> tasks completed!</h3>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-	<div class="progress">
-	  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
-	    <%= @progress %>%
-	  </div>
-	</div>
-</div>
-</div>
+
 
 
 <div class="col-md-6">

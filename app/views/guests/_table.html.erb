@@ -1,0 +1,31 @@
+<div class=" guest-table-no-div ">
+	<h3>Table <%=t ? t : "not set"%> 
+		<span class="small">
+			(<%=guests.sum(:adults)%> adults, <%=guests.sum(:children)%> children)
+		</span> 
+	</h3>
+	<table class="table table-condensed ">
+		<tr>
+			<th>Name</th>
+			<th>Adults</th>
+			<th>Children</th>
+			<th>Group</th>
+			<th>Note</th>
+			<th>Actions</th>
+		</tr>
+			<% guests.each do |g| %>
+			<tr class="<%= 'warning' if g.invitation_sent==false %>">
+				<td style="padding-left:35px;">
+					<%= g.name %>
+				</td>
+				<td><%= g.adults %></td>
+				<td><%= g.children %></td>
+				<td><%= g.group %></td>
+				<td><%= g.note %></td>
+				<td>
+					<%= link_to "remove", edit_event_guest_path(@event, g.id) %> 
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>

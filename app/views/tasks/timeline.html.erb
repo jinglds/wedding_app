@@ -13,6 +13,40 @@
 			<div class="row">
 
 				<section id="timeline-content" class="col-md-10 col-sm-10 col-xs-12">
+
+				<h2><%= @event.created_at.strftime('%B %d %Y') %></h2>
+					<% @tasks.pluck(:due_date).uniq.each do |a| %>
+						<div class="row">
+							<% if @tasks.pluck(:due_date).uniq.index(a)%2==0 %>
+								<div class="timeline-right">
+									<h3><%=  a.strftime("%A %d %B %Y") %></h3>
+									<% @tasks.of_date(a).each do |u| %>
+										<%= u.title %>
+										<%= u.due_date.strftime( '%d %B %Y') %> <br>
+									<% end %>
+								</div>
+								<div class="timeline-left"></div>
+						
+							<%else %>
+								<div class="timeline-right"></div>
+
+								<div class="timeline-left">
+									<h3><%=  a.strftime("%A %d %B %Y") %></h3>
+								<% @tasks.of_date(a).each do |u| %>
+									<%= u.title %>
+									<%= u.due_date.strftime( '%d %B %Y') %> <br>
+								<% end %>
+								</div>
+							<%end %>
+							</div>
+						
+					<%end%>
+				
+				<h2><%= @event.date.strftime('%B %d %Y') %></h2>
+
+
+
+
 					<% (0..@months).each do |x| %>
 						<% @m = @first.due_date.beginning_of_month + x.months %>
 						<article id="<%= @m.strftime('%B%y').downcase%>">
@@ -26,8 +60,7 @@
 									<h4><%=  @d.strftime("%A, #{(@d).day.ordinalize}") %></h4>
 
 									<div class="col-md-6">
-										
-									<%= render @tasks.of_date(@d) %>
+										x
 									</div>
 								</section>
 						    <%end%>
@@ -43,6 +76,14 @@
 
 					    </article>
 				    <% end %>
+
+
+				
+
+
+					
+
+						    	
 				</section>
 
 				<nav id="affix-nav" class="sidebar col-md-2 col-sm-2 hidden-xs">
