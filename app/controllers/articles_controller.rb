@@ -1,6 +1,33 @@
 class ArticlesController < ApplicationController
 	before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
+
+	def publish
+		@articles = Article.all
+	    @article = Article.find(params[:article_id])
+	    @article.update_attributes(:published => true) 
+
+	    # respond_to do |format|
+	    #   format.html { render :layout => false }
+	    #   format.js
+	    # end
+	    redirect_to articles_path
+	  end
+
+	  def unpublish
+
+		@articles = Article.all
+	    @article = Article.find(params[:article_id])
+	    @article.update_attributes(:published => false) 
+
+	    # respond_to do |format|
+	    #   format.html { render :layout => false }
+	    #   format.js
+	    # end
+
+	    redirect_to articles_path
+	  end
+
 	def new
 		@article = Article.new
 	end
@@ -17,7 +44,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles = Article.all
+		@articles = Article.all.order(updated_at: :desc)
 		
 	end
 
@@ -55,7 +82,8 @@ class ArticlesController < ApplicationController
   		params.require(:article).permit(:user_id,
   								:title,
                                 :content,
-                                :category)
+                                :category,
+                                :published)
   	end
 
   	def admin_user

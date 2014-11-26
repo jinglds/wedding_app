@@ -9,4 +9,8 @@ class StaticPagesController < ApplicationController
       @shops = Shop.all.paginate(page: params[:page])
     end
   end
+
+  def information
+  	@articles = Article.all
+  end
 end

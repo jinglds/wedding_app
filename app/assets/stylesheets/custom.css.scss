@@ -843,26 +843,27 @@ border-radius: 5px;
 /* calendar */
 #my-calendar table {
   border-collapse: collapse;
-  width: 100%;
-  height:80%;
 }
 
 #my-calendar td,
 #my-calendar th {
-  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+
+  font-family: "Tw Cen MT";
   font-size: 0.8;
-  padding: 6px;
-  border: 1px solid #999;
+  padding: 5px;
+  border: 1px solid $grey;
 }
 
 #my-calendar th {
-  background: #DDD;
-  color: #666;
+  background: $darkGrey;
+  color: white;
   text-align: center;
   width: 14.2857142857143%;
 }
 
 #my-calendar td {
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
   background: #FFF;
   color: #777;
   height: 80px;
@@ -878,7 +879,7 @@ border-radius: 5px;
   width: 100%;
 }
 
-#my-calendar .notmonth {
+#my-calendar .notmonth > a {
   color: #CCC;
 }
 
@@ -1279,4 +1280,16 @@ ul.affix-bottom {
   display: inline-block;
   width: 510px;
   margin: 15px;
+}
+
+.article-panel{
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
+}
+
+.article-title{
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+
+  /*font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+  
 }

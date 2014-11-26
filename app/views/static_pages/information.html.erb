@@ -1,0 +1,33 @@
+<div class="heading-block">
+  
+  <h4 class="cursive center">Event Management</h4>
+  <h1 class="elegant">Frequently Asked Questions</h1>
+
+</div>
+
+<div class="container">
+  <div class="panel-group article-panel" id="article-parent" role="tablist" aria-multiselectable="true">
+
+    <% @articles.each do |a| %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="article-<%= a.id %>">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#article-parent" href="#article-content-<%= a.id %>" aria-expanded="true" aria-controls="article-content-<%= a.id %>" class="article-title">
+            <%= a.title %>
+          </a>
+        </h4>
+      </div>
+      <div id="article-content-<%= a.id %>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="article-<%= a.id %>">
+        <div class="panel-body">
+          <%= h (a.content).gsub(/\n/, '<br>').html_safe %>
+          <br> <i class="small pull-right"><%= link_to "See Article as One Page", a %></i>
+        </div>
+      </div>
+    </div>
+
+    <%end%>
+
+  </div>
+  
+</div>

@@ -1,4 +1,48 @@
 <div class="container">
+
+	<h1>All Articles</h1>
 	<%= link_to "New articles", new_article_path %>
-	<%= render @articles %>
+
+
+
+	<table class="table table-condensed ">
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Category</th>
+			<th>Status</th>
+			<th>Created At</th>
+			<th>Last Update</th>
+			<th>Actions</th>
+		</tr>
+			<% @articles.each do |a| %>
+			<tr class="<%= 'warning' if a.published==false %>">
+				<td style="padding-left:35px;">
+					<%= link_to a.title, a %>
+				</td>
+				<td><%= a.user.firstname %></td>
+				<td><%= a.category %></td>
+				<td>
+					<% if a.published==true %>
+					Published
+					<%else %>
+					Draft
+					<%end%>
+				</td>
+				<td><%= a.created_at.to_formatted_s(:db)    %></td>
+				<td><%= a.updated_at.to_formatted_s(:db) %></td>
+				<td>
+					<% if a.published==false %>
+					<%= link_to "publish", article_publish_path(a), method: :put %> | 
+					<%else %>
+					<%= link_to "unpublish",  article_unpublish_path(a), method: :put%> | 
+					<%end%>
+					<%= link_to "edit", edit_article_path(a) %> | 
+					<%= link_to "delete", article_path(a), method: :delete,
+			                                         data: { confirm: "You sure?" },
+			                                         title: a.title %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
 </div>

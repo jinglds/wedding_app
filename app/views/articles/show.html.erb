@@ -1,7 +1,9 @@
 <div class="container">
-	<h3><%= @article.title %></h3>
-	<%= @article.content %><br>
-	<%= @article.user.firstname %>
+	<h3><%= @article.title %> <i><span class="small">Posted by <%= @article.user.firstname %> (<%= @article.created_at.strftime('%d/%m/%Y')%>)</span></i> </h3>
+	<%= h (@article.content).gsub(/\n/, '<br>').html_safe  %><br>
+	<br>
+
+<%= link_to "Back To All Articles", information_path, class:  "pull-left" %>
 
 </div>
 	

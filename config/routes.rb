@@ -53,7 +53,10 @@ WeddingApp::Application.routes.draw do
       put "set_admin"
     end
   end
-  resources :articles
+  resources :articles do
+    put "publish", to: "articles#publish"
+    put "unpublish", to: "articles#unpublish"
+  end
   resources :vendors
   resources :event_vendors
   resources :events do
@@ -106,6 +109,8 @@ WeddingApp::Application.routes.draw do
     match "delete_user", to: "devise/registrations#destroy", via: 'delete'
   end
   match '/vendors',    to: 'static_pages#vendors',    via: 'get'
+
+  match '/information',    to: 'static_pages#information',    via: 'get'
   match '/myshops', to: 'users#shops', via: 'get'
   match '/myevents', to: 'users#events', via: 'get'
 

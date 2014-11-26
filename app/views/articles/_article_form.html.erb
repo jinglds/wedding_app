@@ -6,10 +6,15 @@
     <%= f.text_field :title %>
 
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content,  :rows=>"30" %>
 
     <%= f.label :category %>
     <%= f.text_field :category %>
+
+
+    <%= f.label :published %>
+    <%= f.select :published, [['Publish', true], ['Draft', false]] %>
+
   </div>
   <%= f.submit "Submit", class: "btn all-btn btn-large" %>
 <% end %>

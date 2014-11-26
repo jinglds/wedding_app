@@ -21,15 +21,14 @@
 	      
         <ul class="list-unstyled">
           <% tasks.each do |task| %>
-          <li><%= link_to h(task.title), event_task_path(@event, task.id) %></li>
+          <li><%= h(task.title) %></li>
         <% end %>
         </ul>
 	        
       <% else %>
       <ul class="list-unstyled">
-      	<li><%= link_to h(tasks.first.title.capitalize.truncate(18, :omission => "...")), event_tasks_path(tasks.first.id) %></li>
-      	<li><%= link_to h(tasks.second.title.capitalize.truncate(18, :omission => "...")), event_tasks_path(tasks.second.id) %></li>
-        <li>See <%= tasks.count %> more</li>
+      	<li><%=  h(tasks.first.title.capitalize.truncate(32, :omission => "..")) %></li>
+        <li>See all <%= tasks.count %> task</li>
       </ul>
       	
       <% end %>
