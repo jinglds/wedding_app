@@ -1,0 +1,114 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
+
+<div class="row">
+	<%= render @checklists %>
+</div>
+<div class="row">
+	<body data-spy="scroll" data-target="#affix-nav">
+		<div class="container">
+			<div class="row">
+
+				<section id="timeline-content" class="col-md-10 col-sm-10 col-xs-12">
+
+				<h2><%= @event.created_at.strftime('%B %d %Y') %></h2>
+					<% @tasks.pluck(:due_date).uniq.each do |a| %>
+						<div class="row">
+							<% if @tasks.pluck(:due_date).uniq.index(a)%2==0 %>
+								<div class="timeline-right">
+									<h3><%=  a.strftime("%A %d %B %Y") %></h3>
+									<% @tasks.of_date(a).each do |u| %>
+										<%= u.title %>
+										<%= u.due_date.strftime( '%d %B %Y') %> <br>
+									<% end %>
+								</div>
+								<div class="timeline-left"></div>
+						
+							<%else %>
+								<div class="timeline-right"></div>
+
+								<div class="timeline-left">
+									<h3><%=  a.strftime("%A %d %B %Y") %></h3>
+								<% @tasks.of_date(a).each do |u| %>
+									<%= u.title %>
+									<%= u.due_date.strftime( '%d %B %Y') %> <br>
+								<% end %>
+								</div>
+							<%end %>
+							</div>
+						
+					<%end%>
+				
+				<h2><%= @event.date.strftime('%B %d %Y') %></h2>
+
+
+
+
+					<% (0..@months).each do |x| %>
+						<% @m = @first.due_date.beginning_of_month + x.months %>
+						<article id="<%= @m.strftime('%B%y').downcase%>">
+							<h2>
+								<a href="#" target="_blank"><%= @m.strftime("%B %Y")%></a>
+							</h2>
+						    
+						    <% (0...@m.end_of_month.day).each do |z| %>
+						    	<% @d = @m + z.day %>
+							    <section id="task-<%= @d.strftime("%d-%m-%y") %>">
+									<h4><%=  @d.strftime("%A, #{(@d).day.ordinalize}") %></h4>
+
+									<div class="col-md-6">
+										x
+									</div>
+								</section>
+						    <%end%>
+
+						    	<% @tasks.of_month(@m.strftime("%B")).pluck(:due_date).uniq.each do |t| %>
+						    		<section id="task-<%= t.strftime("%d-%m-%y") %>">
+						    			<h3><%=  t.strftime("%A %d") %></h3>
+						    			
+
+
+						    		</section>
+						    	<% end %>
+
+					    </article>
+				    <% end %>
+
+
+				
+
+
+					
+
+						    	
+				</section>
+
+				<nav id="affix-nav" class="sidebar col-md-2 col-sm-2 hidden-xs">
+				    <ul class="nav sidenav navbar-right" data-spy="affix" data-offset-top="330">
+
+				    	<% (0..@months).each do |x| %>
+							<li ><a href="#<%= (@first.due_date + x.months).strftime("%B%y").downcase%>"><%= (@first.due_date + x.months).strftime("%B %Y")%></a>
+						        <ul class="nav">
+							        <li><a href="#sweetjelly">Sweet Jelly</a></li>
+							        <li><a href="#tiramisu">Tiramisu</a></li>
+							        <li><a href="#pie">Pie</a></li>
+						        </ul>
+					        </li>
+				    	<% end %>
+
+				    </ul>
+				</nav>
+			</div>
+		</div><!-- end of container -->
+	 
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+	</body>
+
+</div>

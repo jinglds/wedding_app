@@ -27,6 +27,10 @@ WeddingApp::Application.routes.draw do
       put "default_tasks", to: "events#create_default_tasks"
       put "clear_tasks", to: "events#clear_tasks"
       get "vendors", to: "events#vendors"
+      resources :checklists do
+        put "complete", to: "checklists#complete"
+        put "decomplete", to: "checklists#decomplete"
+      end
       resources :tasks do
         put "complete", to: "tasks#complete"
         put "decomplete", to: "tasks#decomplete"
@@ -64,6 +68,10 @@ WeddingApp::Application.routes.draw do
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"
     get "timeline", to: "tasks#timeline"
+    resources :checklists do
+      put "complete", to: "checklists#complete"
+      put "decomplete", to: "checklists#decomplete"
+    end
     resources :expenses do
       put "pay", to: "expenses#pay"
       put "unpay", to: "expenses#unpay"

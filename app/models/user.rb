@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	has_many :articles
 	has_many :tasks, dependent: :destroy
+	has_many :checklists, dependent: :destroy
 	has_many :expenses, dependent: :destroy
 	has_many :comments
 	has_many :events, dependent: :destroy

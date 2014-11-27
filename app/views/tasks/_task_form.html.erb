@@ -7,12 +7,15 @@
 
     <%= f.hidden_field :rank, :value =>0 %>
 
+
+    <%= f.hidden_field :checklist_id, :value =>@checklist.id %>
+
     <%= f.label :title %>
-    <%= f.text_field :title, class: "form-field" %>
+    <%= f.text_field :title, class: "form-field", value: (@checklist ? @checklist.title : nil) %>
 
     <%= f.label :due_date %>
     <div class="input-group date" id="datetimepicker5">
-      <%= f.text_field :due_date, class: 'form-control form-field', value: (@date ? @date.strftime('%m/%d/%Y %I:%M %p') : nil) %>
+      <%= f.text_field :due_date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }, value: ( (@date ? @date.strftime('%m/%d/%Y %I:%M %p') : nil) || (@checklist ? @event.date - @checklist.time_range.days : nil).strftime('%m/%d/%Y %I:%M %p'))%>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 
@@ -24,7 +27,7 @@
     <%= f.text_field :optional, class: "form-field" %>
 
     <%= f.label :completed %>
-    <%= f.text_field :completed, class: "form-field" %>
+    <%= f.select :completed, [['Yes', true], ['No', false]] %>
 
     <%= f.label :note %>
     <%= f.text_area :note, class: "form-field" %>

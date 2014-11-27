@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :user_signed_in?, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+  after_filter :create_checklist, only: [:create]
+      
   # before_filter :set_date, only: [:create, :update]
 
   
@@ -42,11 +44,92 @@ class EventsController < ApplicationController
   	@event = current_user.events.build(event_params)
     if @event.save
   		flash[:success] = "Event created!"
+
   		redirect_to event_new_cont_path(@event)
   	else
   		render 'new'
   	end
   end
+
+  def create_checklist
+      @user = current_user
+      @event.checklists.create([{:title => "Create a Guest List",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Choose a theme for the Wedding",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Choose Attire",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+
+                        {:title => "Choose & Book Makeup Artist and Hairstylist",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+
+
+                        # 2months before
+
+                        {:title => "Confirm number of guest",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Book Wedding Venue",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Choose Menus",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Fitting Day",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        # 1 week before
+
+                        {:title => "Confirm event date and number of guests with Wedding Venue",
+                        :time_range => 7,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Confirm Menu and number of Guests with Caterer",
+                        :time_range => 7,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Setup Wedding Cake",
+                        :time_range => 7,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id}
+                        ])
+
+                        
+  end
+
 
   def new_cont
     @shops = Shop.all

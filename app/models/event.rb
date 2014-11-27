@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 	belongs_to :user
 	has_many :expenses, dependent: :destroy
 	has_many :tasks, dependent: :destroy
+	has_many :checklists, dependent: :destroy
 	has_many :event_vendors
 	has_many :guests
   	has_many :vendors, through: :event_vendors

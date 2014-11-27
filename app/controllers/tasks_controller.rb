@@ -16,9 +16,10 @@ class TasksController < ApplicationController
 
   def timeline
     @event = Event.find(params[:event_id])
+    @checklists = @event.checklists
     @tasks = @event.tasks
     @first = @tasks.order(:due_date).first
-    @jans= @tasks.of_month(@first.due_date);
+    # @jans= @tasks.of_month(@first.due_date) ;
     @months = (@event.date.year * 12 + @event.date.month) - (@first.due_date.year * 12 + @first.due_date.month)
   end
 
@@ -94,6 +95,8 @@ class TasksController < ApplicationController
 
  def create
       @event = Event.find(params[:event_id])
+      
+
 
       if params[:task][:parent_id]!=""
         @parent = Task.find(params[:task][:parent_id])
@@ -112,8 +115,14 @@ class TasksController < ApplicationController
 
         # respond_to do |format|
       if @task.save
+
+        if params[:task][:checklist_id]!=""
+          @checklist = Checklist.find(params[:task][:checklist_id])
+          @checklist.update_attributes(:task_id => @task.id) 
+        end
+
          flash[:success] = "Task created!"
-         redirect_to @event
+         redirect_to event_tasks_path(@event)
         
       else
         flash[:success] = "Error!"
@@ -125,6 +134,10 @@ class TasksController < ApplicationController
       @event = Event.find(params[:event_id])
       unless params[:date].nil?
         @date= Chronic.parse(params[:date])
+      end
+
+      unless params[:checklist_id].nil? 
+        @checklist = Checklist.find(params[:checklist_id])
       end
       # @task = @event.tasks.new
       # @task = Task.new(:parent_id => params[:parent_id])

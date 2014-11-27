@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123072155) do
+ActiveRecord::Schema.define(version: 20141127080007) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20141123072155) do
 
   add_index "articles", ["published", "category"], name: "index_articles_on_published_and_category"
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+
+  create_table "checklists", force: true do |t|
+    t.integer  "event_id"
+    t.boolean  "completed",  default: false
+    t.string   "title"
+    t.integer  "time_range"
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.string   "title"

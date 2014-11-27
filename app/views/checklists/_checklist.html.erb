@@ -1,0 +1,10 @@
+
+	<%= checklist.title %>
+	<%= checklist.time_range %> | 
+	<%= link_to "Add to task", new_event_task_path(@event, :checklist_id=>checklist.id) %> |
+	<% if checklist.completed == false%>
+		<%= link_to "Complete", event_checklist_complete_path(@event, checklist), method: :put%>
+	<%else%>
+		<%= link_to "DeComplete", event_checklist_decomplete_path(@event, checklist), method: :put%>
+	<%end%>
+
