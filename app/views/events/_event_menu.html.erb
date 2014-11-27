@@ -1,6 +1,6 @@
 <ul class="nav nav-pills event-menu">
 	<li class="<%= 'current' if current_page?(@event)%>"><%= link_to "Summary", @event %></li>
-	<li class="<%= 'current' if (current_page?(event_tasks_path(@event)) ||  current_page?(event_timeline_path(@event))  )%>"><%= link_to "Tasks", event_tasks_path(@event) %></li>
+	<li class="<%= 'current' if current_page?(event_tasks_path(@event)) %>"><%= link_to "Tasks", event_tasks_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_expenses_path(@event)) %>"><%= link_to "Expenses", event_expenses_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_guests_path(@event))%>"><%= link_to "Guests", event_guests_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_vendors_path(:event_id=>@event.id))%>"><%= link_to "Vendors", event_vendors_path(:event_id=>@event.id) %> </li>
