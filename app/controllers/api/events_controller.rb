@@ -66,7 +66,7 @@ module Api
     @event = Event.find(params[:event_id])
     @date = @event.date
     @user = app_user
-    @event.tasks.create([{:title => "Choose a theme for the Wedding",
+    if @event.tasks.create([{:title => "Choose a theme for the Wedding",
                         :due_date => @date.months_ago(6),
                         :completed => false,
                         :redo => false,
