@@ -15,7 +15,7 @@
 
     <%= f.label :due_date %>
     <div class="input-group date" id="datetimepicker5">
-      <%= f.text_field :due_date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }, value: ( (@date ? @date.strftime('%m/%d/%Y %I:%M %p') : nil) || (@checklist ? @event.date - @checklist.time_range.days : nil).strftime('%m/%d/%Y %I:%M %p'))%>
+      <%= f.text_field :due_date, class: 'form-control form-field', value: ( (@date ? @date.strftime('%m/%d/%Y %I:%M %p') : nil) || (@checklist ? @event.date - @checklist.time_range.days : nil).strftime('%m/%d/%Y %I:%M %p'))%>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 

@@ -69,4 +69,16 @@ class ChecklistsController < ApplicationController
 	    	redirect_to event_checklists_path
 	    end
 	end
+
+
+	def checklist_params
+        params.require(:checklist).permit(:title,
+                                    :event_id,
+                                    :completed,
+                                    :time_range,
+                                    :task_id,
+                                    :user_id)
+
+
+      end
 end
