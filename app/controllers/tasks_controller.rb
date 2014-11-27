@@ -14,14 +14,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def timeline
-    @event = Event.find(params[:event_id])
-    @checklists = @event.checklists
-    @tasks = @event.tasks
-    @first = @tasks.order(:due_date).first
-    # @jans= @tasks.of_month(@first.due_date) ;
-    @months = (@event.date.year * 12 + @event.date.month) - (@first.due_date.year * 12 + @first.due_date.month)
-  end
+  
 
   def remove_vendor
     @task = Task.find(params[:task_id])

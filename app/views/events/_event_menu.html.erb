@@ -4,4 +4,5 @@
 	<li class="<%= 'current' if current_page?(event_expenses_path(@event)) %>"><%= link_to "Expenses", event_expenses_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_guests_path(@event))%>"><%= link_to "Guests", event_guests_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_vendors_path(:event_id=>@event.id))%>"><%= link_to "Vendors", event_vendors_path(:event_id=>@event.id) %> </li>
+	<li class="<%= 'current' if current_page?(event_checklists_path(:event_id=>@event.id))%>"><%= link_to "Checklist", event_checklists_path(:event_id=>@event.id) %> </li>
 </ul>

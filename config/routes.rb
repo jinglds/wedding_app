@@ -67,7 +67,6 @@ WeddingApp::Application.routes.draw do
     put "clear_tasks", to: "events#clear_tasks"
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"
-    get "timeline", to: "tasks#timeline"
     resources :checklists do
       put "complete", to: "checklists#complete"
       put "decomplete", to: "checklists#decomplete"

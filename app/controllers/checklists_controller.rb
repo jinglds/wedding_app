@@ -1,5 +1,14 @@
 class ChecklistsController < ApplicationController
 
+	def index
+    @event = Event.find(params[:event_id])
+    @checklists = @event.checklists
+    @tasks = @event.tasks
+    @first = @tasks.order(:due_date).first
+    # @jans= @tasks.of_month(@first.due_date) ;
+    @months = (@event.date.year * 12 + @event.date.month) - (@first.due_date.year * 12 + @first.due_date.month)
+  end
+
 
 	def create
       @event = Event.find(params[:event_id])
@@ -51,7 +60,7 @@ class ChecklistsController < ApplicationController
 	    
 	    # @checklist.toggle!(:completed)
 	    if @checklist.update_attributes(:completed => true) 
-	    	redirect_to event_timeline_path
+	    	redirect_to event_checklists_path
 	    end
 	end
 	def decomplete
@@ -60,7 +69,7 @@ class ChecklistsController < ApplicationController
 	    
 	    # @checklist.toggle!(:completed)
 	    if @checklist.update_attributes(:completed => false) 
-	    	redirect_to event_timeline_path
+	    	redirect_to event_checklists_path
 	    end
 	end
 end
