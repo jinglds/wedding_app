@@ -837,7 +837,15 @@ border-radius: 5px;
 }
 
 .fifty-percent {
-  width: 50%;
+  width: 49%;
+}
+
+.thirty-percent {
+  width: 29%;
+}
+
+.seventy-percent {
+  width: 69%;
 }
 
 /* calendar */
@@ -1284,10 +1292,17 @@ ul.affix-bottom {
 /* TABLE */
 .guest-table-no-div{
   font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
-  
+  padding-top: 0;
   display: inline-block;
-  width: 510px;
+  width: 380px;
   margin: 15px;
+}
+
+.guest-no-table-no-div{
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  padding-top: 0;
+  margin: 15px;
+
 }
 
 .article-panel{
@@ -1300,4 +1315,83 @@ ul.affix-bottom {
 
   /*font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
   
+}
+.checklist-title{
+  color: $darkGold;
+}
+
+.completed-checklist{
+  font-family: "Tw Cen MT";
+  color: $softGrey;
+  &:hover{
+  color: $softGold;
+  }
+
+}
+.uncompleted-checklist{
+  font-family: "Tw Cen MT";
+  color: $darkerGrey;
+  &:hover{
+  color: $darkGold;
+  }
+}
+
+
+
+
+.guest-nav {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding-top:    10px;
+  padding-bottom: 10px;
+  background-color: #f7f5fa;
+  border-radius: 5px;
+
+  font-size: 1.2em;
+  font-family: "Tw Cen MT";
+}
+
+ 
+/* All levels of nav */
+.guest-nav  > .nav > li > a {
+  display: block;
+  color: #716b7a;
+  padding: 5px 20px;
+}
+.guest-nav >.nav > li > a:hover,
+.guest-nav >.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #e5e3e9;
+}
+.guest-nav >.nav > .active > a,
+.guest-nav >.nav > .active:hover > a,
+.guest-nav > .nav > .active:focus > a {
+  font-weight: bold;
+  color: #563d7c;
+  background-color: transparent;
+}
+ 
+/* Nav: second level */
+.guest-nav >.nav > li> .nav {
+  display: none;
+}
+.guest-nav >.nav > li> .nav > li.active .nav {
+  display:block;
+}
+.guest-nav >.nav > li> .nav {
+  margin-bottom: 8px;
+}
+.guest-nav >.nav > li> .nav  > li > a {
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
+  padding-top:    3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  font-size: 80%;
+}
+
+.set-table-btn{
+  padding: 2px;
+  font-size: 1em;
+  width: 60px;
 }

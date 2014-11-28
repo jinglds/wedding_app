@@ -4,7 +4,12 @@ class ChecklistsController < ApplicationController
     @event = Event.find(params[:event_id])
     @checklists = @event.checklists
     @tasks = @event.tasks
+
+    respond_to do |format|
+      format.html 
+      format.js
     end
+  end
 
 
 	def create

@@ -1,8 +1,32 @@
 class GuestsController < ApplicationController
 
+	def set_table
+	    @event = Event.find(params[:event_id])
+	    @guest = Guest.find(params[:guest_id])
+		@guest.update_attributes(:table_no => params[:table_no])
+		redirect_to event_guests_path
+	end
+
+	def clear_table
+	    @event = Event.find(params[:event_id])
+		@guests = @event.guests
+		@guests.update_all(:table_no => params[:table_no])
+		redirect_to event_guests_path
+	end
+
 	def index
+		@new = Guest.new
 	    @event = Event.find(params[:event_id])
 	    @guests = @event.guests
+
+	    unless params[:group].nil? || params[:group]==""
+	    	@guests = @guests.where(:group =>params[:group])
+	    end
+
+	    unless params[:side].nil? || params[:side] ==""
+	    	@guests = @guests.where(:side =>params[:side])
+	    end
+	    @unsets = @guests.where(:table_no=>0).order(:name)
 	    @total = @event.guests.count
 	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
 	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
@@ -32,7 +56,7 @@ class GuestsController < ApplicationController
 
 	  def new
 	      @event = Event.find(params[:event_id])
-	      @guest = Guest.new
+	      @new = Guest.new
 	  end
 
 	  def destroy

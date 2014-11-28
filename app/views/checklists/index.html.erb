@@ -6,23 +6,24 @@
 
 	</div>
 	<div class="row">
-		
-	<h2>Event Checklist</h2>
+
 	</div>
 
 <div class="row">
+
 	<body data-spy="scroll" data-target="#affix-nav">
 		<div class="container">
 			<div class="row">
 
 				<section id="timeline-content" class="col-md-9 col-sm-9 col-xs-12">
-
+					
+	<h2>Event Checklist</h2>
 					<% @checklists.pluck(:time_range).uniq.each do |a| %>
 						<article id="days-<%= a%>">
 							<div class="row">
 								<% if @checklists.pluck(:time_range).uniq.index(a)%2==0 %>
 									<div class="timeline-right">
-										<h3><%=  a %> Days Before</h3>
+										<h3 class="checklist-title"><%=  a %> Days Before</h3>
 										<% @checklists.where(:time_range=>a).each do |u| %>
 											<section id="checklist-<%= u.id %>">
 												<%= render u %>
@@ -35,12 +36,10 @@
 									<div class="timeline-right"></div>
 
 									<div class="timeline-left">
-										<h3><%=  a %> Days Before</h3>
+										<h3 class="checklist-title"><%=  a %> Days Before</h3>
 									<% @checklists.where(:time_range=>a).each do |u| %>
 										<section id="checklist-<%= u.id %>">
-												<%= u.title %>
-												<%= u.time_range %> 
-												<%= link_to "Add to task", new_event_task_path(@event, :checklist_id=>u.id) %><br>
+												<%= render u %>
 										</section>
 									<% end %>
 									</div>
@@ -49,8 +48,7 @@
 						</article>
 					<%end%>
 				
-				<h3 class="center"><%= @event.date.strftime('%B %d %Y') %></h3>
-
+				
 
 
 

@@ -1,45 +1,62 @@
-<%= form_for([@event, @guest]) do |f| %>
+<%= form_for [@event, @new], html:{class: "form-all"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <span class="pull-left thirty-percent">
+        <%= f.label :prefix %>
+        <%= f.select :prefix, [['Mr.', 'Mr.'], ['Mrs.', 'Mrs.'], ['Miss.', 'Miss.'], ['Dr.', 'Dr.'], ['Prof.', 'Prof.']], {prompt: "Prefix"} %>
+    </span>
+    <span class="pull-right seventy-percent">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder:"Guest Name" %>
+    </span>
 
-    <%= f.label :prefix %>
-    <%= f.text_field :prefix %>
-
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :side %>
-    <%= f.text_field :side %>
-
-    <%= f.label :adults %>
-    <%= f.text_field :adults %>
-
-    <%= f.label :children %>
-    <%= f.text_field :children %>
-
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-
-    <%= f.label :gender %>
-    <%= f.text_field :gender %>
-
-    <%= f.label :group %>
-    <%= f.text_field :group %>
-
-    <%= f.label :table_no %>
-    <%= f.text_field :table_no %>
-
+    <span class="pull-left thirty-percent">
+        <%= f.label :gender %>
+        <%= f.select :gender,[['Male', 'male'],['Female', 'female']] %>
+    </span>
+    <span class="pull-right seventy-percent">
+        <%= f.label :side %>
+        <%= f.select :side, [[@event.bride_name, @event.bride_name], [@event.groom_name, @event.groom_name]] %>
+    </span>
+    <span class="pull-left fifty-percent">
+        <%= f.label :adults, "Total Adults" %>
+        <%= f.text_field :adults, value: 1  %>
+    </span>
+    
+    <span class="pull-right fifty-percent">
+        <%= f.label :children, "Total Children" %>
+        <%= f.text_field :children, value: 0 %>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+        
+        <%= f.label :phone, "Contact" %>
+        <%= f.text_field :phone, placeholder:"Guest's Phone No."  %>
+        <%= f.text_field :address, placeholder:"Guest's Address"  %>
+ 
+        </div>
+       
+    </div>
+    
+    
+    <span class="pull-left fifty-percent">
+        <%= f.label :group %>
+        <%= f.text_field :group %>
+    </span>
+    <span class="pull-right fifty-percent">
+        <%= f.label :table_no %>
+        <%= f.text_field :table_no, value: 0 %>
+    </span>
     <%= f.label :note %>
     <%= f.text_field :note %>
-
-    <%= f.label :attending %>
-    <%= f.text_field :attending %>
-
-    <%= f.label :invitation_sent %>
-    <%= f.text_field :invitation_sent %>
+    <span class="pull-left fifty-percent">
+        <%= f.label :attending %>
+        <%= f.select :attending,[['Confirmed', true],['Not Confirmed', false]] %>
+    </span>
+    <span class="pull-right fifty-percent">
+        <%= f.label :invitation_sent, 'Invitation Status' %>
+        <%= f.select :invitation_sent,[['Sent', true],['Not Sent', false]] %>
+    </span>
   </div>
   <%= f.submit "Submit", class: "btn all-btn btn-large" %>
 <% end %>
