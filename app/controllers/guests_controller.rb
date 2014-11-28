@@ -18,6 +18,7 @@ class GuestsController < ApplicationController
 		@new = Guest.new
 	    @event = Event.find(params[:event_id])
 	    @guests = @event.guests
+	    @all_guests = @event.guests
 
 	    unless params[:group].nil? || params[:group]==""
 	    	@guests = @guests.where(:group =>params[:group])
