@@ -8,6 +8,7 @@
       </h2>
         <p><%= @user.role %>
         <p><%= @user.email %>
+          <%= link_to "edit profile", edit_user_registration_path(@user) %>
     </section>
   </aside>
   <div class="span8">

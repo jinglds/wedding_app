@@ -554,23 +554,25 @@ aside {
 /* user-form*/
 .user-form-container {
   border: 1px $darkGold solid;
-  padding-bottom: 40px;
-  padding-top: 10px;
-  width: 25%;
-  margin-top: 20px;
+  padding: 10px;
+  margin-top: 70px;
+  background-color: white;
+  margin-bottom: 70px;
 
 }
 
 .user-form{
   /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
-
-  width: 70%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 10px;
 }
 
 
 
 .user-submit-btn{
-  width: 160px;
+  width: 140px;
   font-size: 1.2em;
   background-color: $darkGold;
   color: white;
