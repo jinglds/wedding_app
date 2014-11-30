@@ -114,7 +114,7 @@ class GuestsController < ApplicationController
 	  end
 
 	  def edit
-	    @guest = Guest.find(params[:id])
+	    @new = Guest.find(params[:id])
 	    @event = Event.find(params[:event_id])
 	  end
 

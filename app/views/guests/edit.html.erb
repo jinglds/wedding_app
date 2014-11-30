@@ -1,4 +1,16 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
 <div class="container">
-	<h3>Edit Guest</h3>
-	<%= render 'guests/guest_form' %>
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h3>Edit Guest</h3>
+			<%= render 'guests/guest_form' %>
+			<%= link_to "< Back to Guests", event_guests_path(@event) %>
+		</div>
+
+	</div>
+	
 </div>

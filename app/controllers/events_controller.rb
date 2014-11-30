@@ -227,7 +227,7 @@ class EventsController < ApplicationController
   def clear_tasks
     @event = Event.find(params[:event_id])
     Task.where(:event_id=>@event.id, :optional =>true).destroy_all
-    redirect_to @event
+    redirect_to event_tasks_path(@event)
     
   end
 

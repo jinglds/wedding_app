@@ -863,8 +863,12 @@ border-radius: 5px;
 }
 
 /* calendar */
+#my-calendar{
+  width: 100%;
+}
 #my-calendar table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 #my-calendar td,
@@ -1100,6 +1104,10 @@ div.hidden {
 .task-late{
   /*border: 1px #F8E0E6 solid;*/
   background-color: $lightPink;
+}
+
+#late-task-btn{
+  color: #B40404;
 }
 
 .task-warning{

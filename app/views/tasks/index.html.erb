@@ -7,25 +7,84 @@
 
 
 
+	
 	<div class="row">
-		<h3>
-			<% if @lates.any? %>
-				<%= link_to '#', id:"late-task-btn" do %>
-					See <%= @lates.count %> Late Tasks
-			<%end%>
+		<div class="col-md-9">
+			<div class="row">
+				<div id="calendar-div">
+					<%= render 'shared/calendar' %>
+				</div>
 				
-			<%else %>
-				No Late task
-			<%end%>
+			</div>
 
-		</h3>
-		<div id="late-tasks-div" class="col-md-12">
-			<% if @lates.any? %>
-			<%= render @lates %> 
-			<% else %>
-				No late tasks
-			<% end %>
+			<div class="row">
+					<div id="today-div">
+						<%= render 'tasks/today' %>
+					</div>
+			</div>
+			
+			<div class="row">
+				<div id="week-div">
+					<%= render 'tasks/week' %>
+				</div>
+			</div>
+			<div class="row">
+				<div id="late-tasks-div" class="col-md-12">
+					<% if @lates.any? %>
+					<%= render @lates %> 
+					<% else %>
+						No late tasks
+					<% end %>
+				</div>
+				<div id="all-tasks-div">
+					<%= render @tasks %>
+				</div>
+				<div id="complete-tasks-div">
+					<%= render @done %>
+				</div>
+			</div>
 		</div>
+		<div class="col-md-3 ">
+	      
+	      <div class="guest-nav">
+	        <ul class="list-unstyled nav" id="guest-menu" role="tablist" aria-multiselectable="true">
+	          	<li>
+		          	<% if @lates.any? %>
+						<%= link_to '#', id:"late-task-btn" do %>
+							<%= @lates.count %> Late Tasks
+					<%end%>
+					<%else %>
+						No Late task
+					<%end%>
+				</li>
+				<li>
+					<%= link_to '#', id:"all-task-btn" do %>
+						<%= @tasks.count %> All Tasks
+					<%end%>
+				</li>
+				<li>
+					<%= link_to '#', id:"completed-task-btn" do %>
+						<%= @done.count %> Completed Tasks
+					<%end%>
+				</li>
+	          	<li>
+		            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-side-nav" aria-expanded="true" aria-controls="my-events-nav">
+		              SIDE <b class="caret"></b>
+		            </a>
+		            <ul id="guest-side-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-side">
+		              <li>sdf</li>
+		            </ul>
+	          	</li>
+	        </ul>
+	      </div>
+
+			<div class="panel">
+				<ul class="list-unstyled">
+					<li><%= link_to "default task", event_default_tasks_path(@event), method: :post %></li>
+					<li><%= link_to "clear task", event_clear_tasks_path(@event), method: :put %></li>
+				</ul>
+			</div>
+  		</div>
 	</div>
 		
 
@@ -33,52 +92,7 @@
 
 
 
-<div class="row">
-	<div class="col-md-6">
-		<div id="calendar-div">
-			<%= render 'shared/calendar' %>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="transparent">x</div>
-		<div id="today-div">
-			<%= render 'tasks/today' %>
-		</div>
-	</div>
+
+
 	
-</div>
-
-
-<div id="week-div">
-<%= render 'tasks/week' %>
-</div>
-
-<div class="transparent">x</div>
-
-
-
-
-
-<div class="col-md-6">
-	<h3>
-		<%= link_to '#', id:"all-task-btn" do %>
-			See <%= @tasks.count %> All Tasks
-		<%end%>
-	</h3>
-	<div id="all-tasks-div">
-	  <%= render @tasks %>
-	</div>
-</div>
-
-<div class="col-md-6">
-	<h3>
-		<%= link_to '#', id:"completed-task-btn" do %>
-			See <%= @done.count %> Completed Tasks
-		<%end%>
-	</h3>
-	<div id="complete-tasks-div">
-	  <%= render @done %>
-	</div>
-</div>
-
 </div>
