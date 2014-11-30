@@ -1,21 +1,10 @@
-<h3><%= @date.to_formatted_s(:long) %> (<%= @today.count %> tasks)</h3>
+<h3>
 <%= link_to "<", calendar_path(:event_id => @event.id, :day => (@date - 1.day), :week => (@date - 1.day).strftime("%Y-%m-%d"), :month => (@date - 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
 
-<% if @date == Date.today %>
-	Today
-<%else %>
-<%= @date.strftime("%Y-%m-%d") %>
-<% end %>
+<%= @date.to_formatted_s(:long) %> (<%= @today.count %> tasks)
+
 <%= link_to ">", calendar_path(:event_id => @event.id, :day => (@date + 1.day), :week => (@date + 1.day).strftime("%Y-%m-%d"), :month => (@date + 1.day).strftime("%Y-%m-%d")), method: :get, remote: true %>
-<%= link_to "New Task", new_event_task_path(@event, :date => @date) %>
-
-
-      <a data-toggle="collapse"  href="#task-form" aria-expanded="true" aria-controls="guest-form">
-              <h4 class="center">New Task <b class="caret"></b></h4>
-      </a>
-      <div id="task-form" class="collapse ">
-          
-      </div>
+</h3>
 
 	<% if @today.any? %>
 	<%= render @today %>

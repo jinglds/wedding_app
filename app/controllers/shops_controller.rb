@@ -150,14 +150,13 @@ class ShopsController < ApplicationController
   end
   private
   def shop_params
-    params.require(:shop).permit(:shop_type,
+    params.require(:shop).permit(
                   :name,
                   :description,
                   :phone,
                   :address,
                   :details,
                   :email,
-                  :tag_list,
                   :category_list,
                   :style_list)
                   # photos_attributes: [:shop_id, :image])

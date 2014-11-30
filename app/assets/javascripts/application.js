@@ -16,7 +16,6 @@
 //= require bootstrap
 //= require jquery.countdown.js
 //= require_tree .
-//= require_tree ./shops/.
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker

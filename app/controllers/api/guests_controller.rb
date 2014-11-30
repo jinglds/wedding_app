@@ -3,22 +3,23 @@ module Api
     skip_before_filter :verify_authenticity_token, only: [:create]
     before_filter :correct_user, only: [:destroy, :update, :pay, :unpay]
 
-    def pay
+    def attending
+      @event = Event.find(params[:event_id])
       @guest = Guest.find(params[:guest_id])
-      
-      if (@guest.update_attributes(:paid => true))
-        return render :json=> {:success => true, :message => "guest paid successfully"}
+      if @guest.update_attributes(:attending => params[:attending]) 
+        return render :json=> {:success => true, :message => "guest attending/not attending successfully"}
       else
-        return render :json=> {:success => false, :message => "guest paid  unsuccessfully"}
+        return render :json=> {:success => false, :message => "guest attending/not attending  unsuccessfully"}
       end
     end
 
-    def unpay 
+    def invitation_sent
+      @event = Event.find(params[:event_id])
       @guest = Guest.find(params[:guest_id])
-      if (@guest.update_attributes(:paid => false))
-        return render :json=> {:success => true, :message => "guest unpaid  successfully"}
+      if @guest.update_attributes(:invitation_sent => params[:invitation_sent])
+        return render :json=> {:success => true, :message => "guest invitation sent / not sent successfully"}
       else
-        return render :json=> {:success => false, :message => "guest unpaid  unsuccessfully"}
+        return render :json=> {:success => false, :message => "guest invitation sent / not sent unsuccessfully"}
       end
       
     end

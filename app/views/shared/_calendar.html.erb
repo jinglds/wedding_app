@@ -27,7 +27,7 @@
 	        
       <% else %>
       <ul class="list-unstyled">
-      	<li><%=  h(tasks.first.title.capitalize.truncate(32, :omission => "..")) %></li>
+      	<li><%=  h(tasks.first.title.capitalize.truncate(60, :omission => "..")) %></li>
         <li>See all <%= tasks.count %> task</li>
       </ul>
       	

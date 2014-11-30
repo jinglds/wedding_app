@@ -4,9 +4,8 @@
 	    $('#late-div').html('<%= j render @lates %>');
 	    $('#all-div').html('<%= j render @tasks %>');
 	    $('#done-div').html('<%= j render @done %> ');
-	    $('.add-vendor-block-div').hide();
-
-$('.whole-task-item').hover(
+		$('.add-vendor-block-div').hide();
+		$('.whole-task-item').hover(
 		function(event){
 	    // $(this).('.add-vendor-block-div').fadeIn()
 	    $(this).children().children('.add-vendor-block-div').fadeIn()

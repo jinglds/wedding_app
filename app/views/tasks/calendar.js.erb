@@ -4,3 +4,14 @@ $("#today-div").html("<%= escape_javascript(render 'tasks/today' ) %>")
 
 $("#day_<%= @date.strftime('%d') %>").addClass('selected');
 // $("[id=day_<%= @date.strftime('%d') %>][class!='notmonth']").addClass('selected');
+$('.add-vendor-block-div').hide();
+$('.whole-task-item').hover(
+		function(event){
+	    // $(this).('.add-vendor-block-div').fadeIn()
+	    $(this).children().children('.add-vendor-block-div').fadeIn()
+		},
+		function(event){
+	    $(this).children().children('.add-vendor-block-div').fadeOut()
+		}
+
+	);

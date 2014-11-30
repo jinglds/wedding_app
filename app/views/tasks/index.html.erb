@@ -10,37 +10,54 @@
 	
 	<div class="row">
 		<div class="col-md-9">
-			<div class="row">
-				<div id="calendar-div">
+			<div class="row" >
+				<div id="calendar-div" class="calendar-div">
 					<%= render 'shared/calendar' %>
 				</div>
 				
 			</div>
 
 			<div class="row">
-					<div id="today-div">
+					<div id="today-div" class="calendar-div">
 						<%= render 'tasks/today' %>
 					</div>
 			</div>
 			
 			<div class="row">
-				<div id="week-div">
+				<div id="week-div" class="calendar-div">
 					<%= render 'tasks/week' %>
 				</div>
 			</div>
 			<div class="row">
-				<div id="late-tasks-div" class="col-md-12">
+				<div id="late-tasks-div" class=" tasks-div">
+					<h3>Late Tasks</h3>
 					<% if @lates.any? %>
-					<%= render @lates %> 
+						<div id="late-div">
+							<%= render @lates %> 
+						</div>	
 					<% else %>
 						No late tasks
 					<% end %>
 				</div>
-				<div id="all-tasks-div">
-					<%= render @tasks %>
+				<div id="all-tasks-div" class=" tasks-div">
+					<h3>All Tasks</h3>
+					<% if @tasks.any? %>
+						<div id="all-div">
+							<%= render @tasks %> 
+						</div>
+					<% else %>
+						No tasks
+					<% end %>
 				</div>
-				<div id="complete-tasks-div">
-					<%= render @done %>
+				<div id="complete-tasks-div" class=" tasks-div">
+					<h3>Completed Tasks</h3>
+					<% if @done.any? %>
+						<div id="done-div">
+							<%= render @done %> 
+						</div>
+					<% else %>
+						No tasks completed
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -48,18 +65,17 @@
 	      
 	      <div class="guest-nav">
 	        <ul class="list-unstyled nav" id="guest-menu" role="tablist" aria-multiselectable="true">
+	        	<li>
+	        		<%= link_to "Calendar", '#', id:"calendar-div-btn" %>
+	        	</li>
 	          	<li>
-		          	<% if @lates.any? %>
-						<%= link_to '#', id:"late-task-btn" do %>
+		          	<%= link_to '#', id:"late-task-btn" do %>
 							<%= @lates.count %> Late Tasks
-					<%end%>
-					<%else %>
-						No Late task
 					<%end%>
 				</li>
 				<li>
 					<%= link_to '#', id:"all-task-btn" do %>
-						<%= @tasks.count %> All Tasks
+						<%= @tasks.count %> Total Tasks 
 					<%end%>
 				</li>
 				<li>
@@ -67,32 +83,29 @@
 						<%= @done.count %> Completed Tasks
 					<%end%>
 				</li>
-	          	<li>
-		            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-side-nav" aria-expanded="true" aria-controls="my-events-nav">
-		              SIDE <b class="caret"></b>
-		            </a>
-		            <ul id="guest-side-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-side">
-		              <li>sdf</li>
-		            </ul>
-	          	</li>
+	          	
 	        </ul>
 	      </div>
 
-			<div class="panel">
+			<div class="panel tools-panel center">
 				<ul class="list-unstyled">
-					<li><%= link_to "default task", event_default_tasks_path(@event), method: :post %></li>
-					<li><%= link_to "clear task", event_clear_tasks_path(@event), method: :put %></li>
+					<li><%= link_to "create default tasks", event_default_tasks_path(@event), method: :post %></li>
+					<li><%= link_to "clear all tasks", event_clear_tasks_path(@event), method: :put %></li>
 				</ul>
+			</div>
+
+			<div class="panel ">
+				<a data-toggle="collapse"  href="#task-form" aria-expanded="true" aria-controls="guest-form">
+	            <h4 class="center">New Task <b class="caret"></b></h4>
+	      		</a>
+	      		<div id="task-form" class="collapse ">
+	         		<%= render 'tasks/task_form' %>
+	     	 	</div>
+			</div>
+	     
+				
 			</div>
   		</div>
 	</div>
 		
-
-
-
-
-
-
-
-	
 </div>

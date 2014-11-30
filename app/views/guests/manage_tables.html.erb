@@ -110,9 +110,10 @@
         </ul>
       </div>
       
-      <div class="panel">
-        <h5 class="center"><i><%= link_to "Reset All Guest Table", clear_table_event_guests_path(@event, :table_no=>0), :method => :put %></i> </h5>
-        <br>
+      <div class="panel tools-panel center">
+        <i><%= link_to "reset all guest tables", clear_table_event_guests_path(@event, :table_no=>0), :method => :put %></i> 
+      </div>
+      <div class="panel ">
         <a data-toggle="collapse"  href="#guest-form" aria-expanded="true" aria-controls="guest-form">
                 <h4 class="center">New Guest <b class="caret"></b></h4>
         </a>

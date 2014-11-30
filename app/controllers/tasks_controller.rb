@@ -6,8 +6,22 @@ class TasksController < ApplicationController
   def add_vendor
     @task = Task.find(params[:task_id])
     @event = Event.find(params[:event_id])
-    @vendors =@event.vendors
 
+    @vendor = Vendor.find(params[:task][:vendor_id])
+    @vendors =@event.vendors
+    @tasks = @event.tasks
+    @done = @event.tasks.done
+    @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @date = params[:day] ? Date.parse(params[:day]) : Date.today
+    @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
+    
+    @today = @event.tasks.today(:date=>@date)
+    @done = @event.tasks.done
+    @now = @event.tasks.now
+
+    @lates = @tasks.lates.not_done
+    @task.update_attributes(:vendor_id=>params[:task][:vendor_id])
     respond_to do |format|
       format.html { render :layout => false }
       format.js
@@ -18,11 +32,26 @@ class TasksController < ApplicationController
 
   def remove_vendor
     @task = Task.find(params[:task_id])
+    @event = Event.find(params[:event_id])
 
-    if @task.update_attributes(:vendor_id=>nil)
-      redirect_to @task.event notice: "Successfully remove vendor"
-    else
-      render :edit
+    @vendors =@event.vendors
+    @tasks = @event.tasks
+    @done = @event.tasks.done
+    @month_date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @week_date = params[:week] ? Date.parse(params[:week]) : Date.today
+    @date = params[:day] ? Date.parse(params[:day]) : Date.today
+    @week_dates = (@week_date.at_beginning_of_week..@week_date.at_end_of_week).map
+    
+    @today = @event.tasks.today(:date=>@date)
+    @done = @event.tasks.done
+    @now = @event.tasks.now
+
+    @lates = @tasks.lates.not_done
+
+    @task.update_attributes(:vendor_id=>nil)
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.js
     end
     
   end
@@ -144,7 +173,7 @@ class TasksController < ApplicationController
       @task.destroy
 
       flash[:success] = "Task deleted!"
-         redirect_to @event
+         redirect_to event_tasks_path
   end
 
   def edit

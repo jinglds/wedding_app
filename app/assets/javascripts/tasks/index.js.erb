@@ -1,39 +1,64 @@
 $(function() {
-
-$("#late-task-btn").effect( "pulsate", 
+	$("#late-task-btn").effect( "pulsate", 
           {times:25}, 20000 );
   
 	$('#week-div').hide();
 	$('#late-tasks-div').hide();
 	$('#complete-tasks-div').hide();
 	$('#all-tasks-div').hide();
+	$('.add-vendor-block-div').hide();
+
+	$('.whole-task-item').hover(
+		function(event){
+	    // $(this).('.add-vendor-block-div').fadeIn()
+	    $(this).children().children('.add-vendor-block-div').fadeIn()
+		},
+		function(event){
+	    $(this).children().children('.add-vendor-block-div').fadeOut()
+		}
+
+	);
+
+	$('#calendar-div-btn').click(function(event){
+	    event.preventDefault();
+
+	    
+		$('.tasks-div').hide();
+		$('.calendar-div').fadeIn();
+	});
+
 	var show = false;
 	$('#completed-task-btn').click(function(event){
 	    event.preventDefault();
 	    
-	    if(show == true){
-	    	show = false
-	    	$('#complete-tasks-div').fadeOut();
-	    }
-		else{
-			show = true
-			$('#complete-tasks-div').fadeIn();
-		}
-	
+	 //    if(show == true){
+	 //    	show = false
+	 //    	$('#complete-tasks-div').fadeOut();
+	 //    }
+		// else{
+		// 	show = true
+		// 	$('#complete-tasks-div').fadeIn();
+		// }
+
+		$('.calendar-div').hide();
+		$('.tasks-div').hide();
+		$('#complete-tasks-div').fadeIn();
     });
 	var showl = false;
     $('#late-task-btn').click(function(event){
 	    event.preventDefault();
 	    
-	    if(showl == true){
-	    	showl = false
-	    	$('#late-tasks-div').fadeOut();
-	    }
-		else{
-			showl = true
-			$('#late-tasks-div').fadeIn();
-		}
-	
+	 //    if(showl == true){
+	 //    	showl = false
+	 //    	$('#late-tasks-div').fadeOut();
+	 //    }
+		// else{
+		// 	showl = true
+		// 	$('#late-tasks-div').fadeIn();
+		// }
+		$('.calendar-div').hide();
+		$('.tasks-div').hide();	
+		$('#late-tasks-div').fadeIn();
     });
 
 
@@ -41,16 +66,19 @@ $("#late-task-btn").effect( "pulsate",
     $('#all-task-btn').click(function(event){
 	    event.preventDefault();
 	    
-	    if(showa == true){
-	    	showa = false
-	    	$('#all-tasks-div').fadeOut();
-	    }
-		else{
-			showa = true
-			$('#all-tasks-div').fadeIn();
-		}
+	 //    if(showa == true){
+	 //    	showa = false
+	 //    	$('#all-tasks-div').fadeOut();
+	 //    }
+		// else{
+		// 	showa = true
+		// 	$('#all-tasks-div').fadeIn();
+		// }
+		$('.calendar-div').hide();
+		$('.tasks-div').hide();
+		$('#all-tasks-div').fadeIn();	
 	
     });
 
-    $('[data-toggle="tooltip"]').tooltip()
+    
 });

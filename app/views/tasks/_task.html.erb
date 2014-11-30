@@ -1,4 +1,4 @@
-<div class=" task-block-inline">
+<div class=" task-block-inline whole-task-item">
 	<div class="row">
 		<div  class="task-block task-<%= Task.status(:task_id=>task.id) %> col-md-8" >
 			<h5><%= link_to task.title.capitalize, event_task_path(task.event, task) %></h5>
@@ -22,12 +22,21 @@
 				<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_event_task_path(@event,  task), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"edit task"%>
 
 				<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_task_path(@event, task), :data => {:toggle=>"tooltip", :placement=>"top",confirm: "You sure?"}, :title=>"delete task", method: :delete %>
+				<!--  
 			    <% unless !task.vendor.nil? %>
-			    	<%= link_to "Add Vendor", event_task_add_vendor_path(@event, task), remote:true %>
-			    <% end %>
+			    	<%= link_to "Add Vendor", '#', id:"add-vender-btn" %>
+			    <% end %> -->
 			</div>
 		</div>
-		<% unless task.vendor.nil? %>
+		<% if task.vendor.nil? %>
+			<div id="add-vendor-form" class=" add-vendor-block-div col-md-4">
+				<div class="vendor-block">
+					<i class="center">No Vendor</i>
+					<br>
+					<%= render partial:'tasks/add_vendor', locals: {:t=>task, :vendors=>@event.vendors} %>
+				</div>
+			</div>
+		<%else %>
 			<div id="vendor-block-div-<%= task.id%>"  class="vendor-block-div  col-md-4">
 				
 					<%= render partial: 'tasks/vendor', locals: {:vendor =>task.vendor, :task=>task} %>

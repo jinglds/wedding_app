@@ -1,7 +1,7 @@
 <div class="vendor-block">
 	<%= render partial:'vendors/vendor_item', locals:{:vendor=>vendor} %>
 	<div class="block-action">
-		<%= link_to "edit", edit_vendor_path(vendor) %>
-		| <%= link_to "remove", event_task_remove_vendor_path(task.event, task), method: :put %>
+		<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_vendor_path(vendor), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"edit task"%>
+		<%= link_to "remove", event_task_remove_vendor_path(task.event, task), method: :put, remote: :true %>
 	</div> 
 </div> 

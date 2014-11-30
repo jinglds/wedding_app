@@ -24,6 +24,7 @@ $lightPink: #FBEFF5;
 $lightYellow: #FBFBEF;
 $lightMint: #EFFBF5;
 $lightPurple: #E6E0F8;
+$lighterPurple: #f7f5fa;
 $notepadYellow:#F7F8E0;
 
 @mixin box_sizing {
@@ -939,7 +940,7 @@ border-radius: 5px;
 #my-calendar li {
   margin: 0;
   padding: 0;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: center;
 }
 
@@ -1388,7 +1389,7 @@ ul.affix-bottom {
   margin-bottom: 30px;
   padding-top:    10px;
   padding-bottom: 10px;
-  background-color: #f7f5fa;
+  background-color: $lighterPurple;
   border-radius: 5px;
 
   font-size: 1.2em;
@@ -1449,4 +1450,14 @@ ul.affix-bottom {
   font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   letter-spacing: -1px;
   
+}
+
+.tools-panel{
+  background-color: $lightMint;
+  padding-top:10px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Tw Cen MT";
+
 }

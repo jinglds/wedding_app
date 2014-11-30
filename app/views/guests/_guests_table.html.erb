@@ -60,17 +60,17 @@
 			<td><%= g.note %></td>
 			<td>
 					<% if g.attending==true %>
-						Yes
+						Yes <%= link_to "/no?", event_guest_attending_path(:guest_id=>g.id, :attending=>false), method: :put	 %>
 					<%else %>
-						No
+						No <%= link_to "/yes?", event_guest_attending_path(:guest_id=>g.id, :attending=> true), method: :put	%>
 					<%end%>
 				
 			</td>
 			<td>
 					<% if g.invitation_sent==true %>
-						Sent
+						Sent <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>false), method: :put %>
 					<%else %>
-						Not sent
+						Not sent <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>true), method: :put %>
 					<%end%>
 				
 			</td>

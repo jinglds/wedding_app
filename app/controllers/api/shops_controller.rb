@@ -117,7 +117,10 @@ module Api
                   :details,
                   :email,
                   :website,
-                  :price_range)
+                  :price_range,
+                  :category_list,
+                  :style_list)
+
       end
 
       def query_params

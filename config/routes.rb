@@ -39,7 +39,10 @@ WeddingApp::Application.routes.draw do
         put "pay", to: "expenses#pay"
         put "unpay", to: "expenses#unpay"
       end
-      resources :guests
+      resources :guests do
+        put "attending", to: "guests#attending"
+        put "invitation_sent", to: "guests#invitation_sent"
+      end
     end
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
@@ -83,11 +86,13 @@ WeddingApp::Application.routes.draw do
   # match "complete", to: "tasks#complete", via: 'get'
       put "decomplete", to: "tasks#decomplete"
 
-      get "add_vendor", to: "tasks#add_vendor"
+      put "add_vendor", to: "tasks#add_vendor"
       put "remove_vendor", to: "tasks#remove_vendor"
       get "js_tasks", to: "tasks#js_tasks" 
     end
     resources :guests do
+      put "attending", to: "guests#attending"
+      put "invitation_sent", to: "guests#invitation_sent"
       put "set_table", to: "guests#set_table"
       put "clear_table", to: "guests#clear_table", :on => :collection
     end

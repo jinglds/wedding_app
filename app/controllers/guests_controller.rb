@@ -1,5 +1,19 @@
 class GuestsController < ApplicationController
 
+	def attending
+	    @event = Event.find(params[:event_id])
+	    @guest = Guest.find(params[:guest_id])
+	    @guest.update_attributes(:attending => params[:attending]) 
+	    redirect_to event_guests_path
+	end
+
+	def invitation_sent
+	    @event = Event.find(params[:event_id])
+	    @guest = Guest.find(params[:guest_id])
+	    @guest.update_attributes(:invitation_sent => params[:invitation_sent]) 
+	    redirect_to event_guests_path
+	end
+
 	def update_all
 	    @event = Event.find(params[:event_id])
 		params["guest"].keys.each do |id|
