@@ -8,48 +8,43 @@
 	<%= link_to "Edit event", edit_event_path(@event) %>
 
 	<div class="row">
-		<div id="event-date-div" class="col-md-6">
+		<div id="event-date-div" class="col-md-7">
 			<% if @event.date.nil? %>
 				<%= render partial: 'events/datetime_form', locals:{:event=> @event } %>	
 			<% else %>
 				<% if Date.today <= @event.date %>
-					<%= render partial: 'events/countdown', locals:{:event=> @event } %>
+				<div>
+					<%= render partial: 'events/countdown', locals:{:event=> @event } %> 
+				</div>
+					<div>
+						<h3>til the Event!</h3>
+					</div>
 				<% else %>
 					<%= render 'events/lift_off' %>
 				<% end %>
 			<% end %>
 		</div>
-		<div class="col-md-6">
-			<h4><%= @lates.count %> Late Task</h4>
-			<h4><%= @today.count %> Tasks Today</h4>
-			<h4><%= @upcoming.count %> Upcoming Task</h4>
-
-			<div class="progress">
-			  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
-			    <%= @completed.count %> / <%= @tasks.count %> tasks completed
-			  </div>
-			</div>
-		</div>
-	</div>
-	
-
-	<div class="row">
-		<div class="co-md-8">
+		<div class="col-md-5 panel">
+				<h4><%= @guests.count %> total Guest</h4>
+				<h4><%= @guests.inviteds.count %> Guests invited</h4>
+				<h4><%= @guests.attendees.count %> Guests joining</h4>
 			
 		</div>
-		<div class="col-md-4">
-			<%= pie_chart @expense_chart %>
+	</div>
+
+	<div class="row">
+
+		
+		<div class="col-md-6">
+			<div class="progress">
+			  <div class="progress-bar progress-bar-striped  progress-bar-warning active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
+			    <%= @checklists.done.count %> / <%= @checklists.count %>
+			  </div>
+			</div>
+			<h3>Budget Usage</h3>
+			<%= pie_chart @expense_chart, library: {backgroundColor: "transparent"} %>
 		</div>
 	</div>
-	<div class="row">
-		<%= link_to "new gueste", new_event_guest_path(@event) %>
-		<%= link_to "guest list", event_guests_path(@event) %>
-		<%= @event.guests.count %>
-		<%= @event.guests.attendees.count %> Guests Attending
-		<%= @event.guests.inviteds.count %> Guests Invited
-
-	</div>
-
 
 
 	<div class="transparent">x</div>
@@ -61,26 +56,8 @@
 
 	</div>
 
-	<div class="transparent">x</div>
-	<div class="row">
-		<div class="container">
-		<hr>
-		<h2><%= link_to "Expenses", event_expenses_path(@event) %></h2>
-	   		<%= render partial: 'events/expenses', locals:{:expenses=>@expenses} %>
-		</div>
-	</div>
+	
 
-	<div class="transparent">x</div>
-	<div class="row">
-		<div class="container">
-		<hr>
-		<h3>Vendors</h3>
-		<%= link_to "New Vendor", new_vendor_path(:event_id=>@event.id) %>
-		<div class="">
-			<%= render partial: 'events/vendor', collection: @event.vendors, as: :vendor %>
-		</div>
-		</div>
-	</div>
 
 
 </div>

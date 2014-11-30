@@ -20,12 +20,14 @@ module Api
     end
 
     def index
+      @user = app_user
     	@shop = Shop.find(params[:shop_id])
     	@comments = @shop.comments.order(cached_votes_score: :desc, created_at: :desc)
     	
     end
 
     def like
+
     @comment = Comment.find(params[:id])
     if @comment.liked_by app_user
       return render :json=> {:success => true, :message => "comment liked", :comment => @comment}

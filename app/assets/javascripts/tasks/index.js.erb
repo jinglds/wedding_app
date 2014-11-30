@@ -1,6 +1,9 @@
 $(function() {
+
+
+  
 	$('#week-div').hide();
-	$('#late-tasks-div').hide();
+	// $('#late-tasks-div').hide();
 	$('#complete-tasks-div').hide();
 	$('#all-tasks-div').hide();
 	var show = false;
@@ -47,4 +50,6 @@ $(function() {
 		}
 	
     });
+
+    $('[data-toggle="tooltip"]').tooltip()
 });

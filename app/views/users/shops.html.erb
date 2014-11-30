@@ -1,6 +1,10 @@
 <% provide(:title, "My Shops") %>
+<div class="heading-block">
+	
+	<h1 class="elegant">My Shops</h1>
+
+</div>
 <div class="container">
 
-	<h2>My Shops</h2>
 	<%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
 </div>

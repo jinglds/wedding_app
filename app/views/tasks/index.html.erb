@@ -6,43 +6,31 @@
 </div>
 
 
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-	<h3 class="pull-right"><%= @completed.count %> / <%= @tasks.count %> tasks completed!</h3>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div class="progress">
-		  <div class="progress-bar progress-bar-striped  progress-bar-info active" role="progressbar" aria-valuenow=<%= @progress %> aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%;">
-		    <%= @progress %>%
-		  </div>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-6">
+
+	<div class="row">
 		<h3>
 			<% if @lates.any? %>
 				<%= link_to '#', id:"late-task-btn" do %>
 					See <%= @lates.count %> Late Tasks
-				<%end%>
+			<%end%>
 				
 			<%else %>
 				No Late task
 			<%end%>
 
 		</h3>
-		<div id="late-tasks-div">
+		<div id="late-tasks-div" class="col-md-12">
 			<% if @lates.any? %>
 			<%= render @lates %> 
 			<% else %>
 				No late tasks
 			<% end %>
 		</div>
-</div>
+	</div>
+		
 
-</div>
+
+
 
 
 <div class="row">

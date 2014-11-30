@@ -4,7 +4,28 @@
 		<%= render 'events/event_menu' %>
 	</div>
 
+<div class="ro">
+  <%= form_for :guest, :url => update_all_path, :html => { :method => :put } do %>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>table</th>
+    </tr>
+    <% @unsets.each do |u| %>
+      <%= fields_for "guest[]", guest do |guest_fields| %>
+    <tr>
+      <td><%= guest_fields.text_field :name %></td>
+      <td><%= guest_fields.text_field :table_no %></td>
+    </tr>
+      <% end %>
+    <% end %>
+  </table>
 
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+</div>
   
   <div class="row">
     <div class="col-md-9">
@@ -28,7 +49,7 @@
             <th>Side</th>
             <th>Group</th>
             <th>Note</th>
-            <th>Actions</th>
+            <th>Set Table</th>
           </tr>
             <% @unsets.each do |g| %>
             <tr class="<%= 'warning' if g.invitation_sent==false %>">
@@ -41,7 +62,7 @@
               <td><%= g.group %></td>
               <td><%= g.note %></td>
               <td >
-
+    
                 <%= form_tag(event_guest_set_table_path(@event, g), method: :put,  html:{class: "form-all"} ) do %>
                   <span >
                     <%= text_field_tag :table_no, 0, class: "fifty-percent" %>

@@ -1,5 +1,16 @@
 class GuestsController < ApplicationController
 
+	def update_all
+	    @event = Event.find(params[:event_id])
+		params['guest'].keys.each do |id|
+			@guest = @event.guests.find(id.to_i)
+			@guest.update_attributes(user_params(id))
+		end
+			redirect_to event_guests_path
+		end
+
+
+
 	def set_table
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
@@ -86,6 +97,12 @@ class GuestsController < ApplicationController
 	  end
 
 	  private
+
+	  def guest_params(id)
+params.require(:guest).fetch(id).permit( 
+  								:name,
+  								:table_no)
+end
 	  def guest_params
 	  	params.require(:guest).permit(:event_id,
   								:side,

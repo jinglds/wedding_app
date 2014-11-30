@@ -10,6 +10,13 @@
 <%= link_to "New Task", new_event_task_path(@event, :date => @date) %>
 
 
+      <a data-toggle="collapse"  href="#task-form" aria-expanded="true" aria-controls="guest-form">
+              <h4 class="center">New Task <b class="caret"></b></h4>
+      </a>
+      <div id="task-form" class="collapse ">
+          <%= render 'tasks/task_form' %>
+      </div>
+
 	<% if @today.any? %>
 	<%= render @today %>
 <% else %>

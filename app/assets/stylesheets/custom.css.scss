@@ -152,7 +152,19 @@ h4 {
   text-decoration: none
 }
 
-
+h5 {
+  font-size: 1.3em;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: $grey;
+  margin-bottom: 5px;
+  line-height: 0.8;
+  font-family: "Tw Cen MT";
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+  text-decoration: none
+}
 
 p {
   font-size: 1.1em;
@@ -1066,8 +1078,9 @@ div.hidden {
   
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   /*font-family:Century Gothic;*/
-  font-size: 1.1em;
+  font-size: 0.9em;
   color: $darkerGrey;
+  margin-bottom: 25px;
   
 }
 .date{
@@ -1078,6 +1091,9 @@ div.hidden {
   margin-top: 10px;
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   font-size: 0.9em;
+  position: absolute; 
+    bottom: 10px; 
+    right: 15px;
 }
 .task-late{
   /*border: 1px #F8E0E6 solid;*/
@@ -1120,16 +1136,35 @@ div.hidden {
 
 .task-block{
   /*border: 1px $softerGold solid;*/
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   border-radius: 3px;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   box-shadow: 1px 1px 2px $lightGrey;
+  font-size: 1em;
+  min-height: 130px;
+
 }
+.task-block-inline{
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  padding-top: 0;
+  display: inline-block;
+  width: 45%;
+  margin: 15px;
+}
+
+.forty-five{
+
+}
+
+.task-calendar-block{
+  width: 50%;
+}
+
+
 .vendor-block{
-  margin-top: 10px;
   background-color: $notepadYellow;
   padding-right: 12px;
   padding-left: 12px;
@@ -1137,8 +1172,7 @@ div.hidden {
   padding-bottom: 8px;
   font-size: 0.9em;
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
-  margin-top: 10px;
-
+  margin-top: 1px;
   box-shadow: 1px 1px 2px $lightGrey;
 }
 

@@ -48,9 +48,9 @@ class TasksController < ApplicationController
       @progress = ((@completed.count.to_f/@tasks.count.to_f)*100).to_i
     end
     # @now = @event.tasks.this_week
-    @lates = @tasks.lates.not_done.limit(2)
+    @lates = @tasks.lates.not_done
     # @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
-    @upcoming = @tasks.upcomings.not_done.limit(4)
+    @upcoming = @tasks.upcomings.not_done
 
     # @today = params[:date] ? Task.today(param[:date]) : nil
     # @today_tasks = Task.where(:due_date => @date.beginning_of_day..@date.end_of_day)
@@ -185,13 +185,14 @@ class TasksController < ApplicationController
     @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
     @upcoming = @tasks.upcomings.not_done.limit(4)
 
-    respond_to do |format|
-      format.html { render :layout => false }
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html { render :layout => false }
+    #   format.js
+    # end
     # flash[:success] = "Task completed!"
     #      redirect_to @event
     #    end
+    redirect_to event_tasks_path
   end
 
   def decomplete
@@ -217,10 +218,11 @@ class TasksController < ApplicationController
  @done = @event.tasks.done
     @now = @event.tasks.now
 
-    respond_to do |format|
-      format.html { render :layout => false }
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html { render :layout => false }
+    #   format.js
+    # end
+    redirect_to event_tasks_path
     
   end
 

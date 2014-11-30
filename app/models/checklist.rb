@@ -6,4 +6,7 @@ class Checklist < ActiveRecord::Base
 
   	validates :user_id, presence: true
   	validates :event_id, presence: true
+
+  	scope :done, -> { where(completed: 't').order('due_date') }
+  	scope :not_done, -> { where(completed: 'f').order('due_date') }
 end

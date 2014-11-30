@@ -131,6 +131,7 @@ WeddingApp::Application.routes.draw do
   get "/style_tags" => 'shops#style_tags', as: 'style_tags'
   match "user_category", to: "users#category", via: 'get'
   
+      match 'guests/all' => 'guests#update_all', :as => :update_all, :via => :put
   
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -161,6 +161,7 @@ class EventsController < ApplicationController
   def show
     @user = current_user
     @event = Event.find(params[:id])
+    @guests = @event.guests
     @expenses = @event.expenses;
     @total = @event.expenses.sum(:amount)
     @tasks = @event.tasks
@@ -172,12 +173,18 @@ class EventsController < ApplicationController
     @lates = @tasks.lates.not_done.limit(2)
     @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
     @upcoming = @tasks.upcomings.not_done.limit(4)
+    @checklists = @event.checklists
 
-    if (@completed.count==0 || @tasks.count==0)
-      @progress = 0
-    else
-      @progress = ((@completed.count.to_f/@tasks.count.to_f)*100).to_i
+    unless @checklists.nil?
+      if @checklists.done.count==0
+        @progress = 0
+      else
+        @progress = ((@checklists.done.count.to_f/@checklists.count.to_f)*100).to_i
+      end
     end
+
+
+
     # @days = @event.date + @event.time
 
     # hash = {}

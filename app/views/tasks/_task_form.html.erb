@@ -8,7 +8,7 @@
     <%= f.hidden_field :rank, :value =>0 %>
 
 
-    <%= f.hidden_field :checklist_id, :value =>@checklist.id %>
+    <%= f.hidden_field :checklist_id, :value =>(@checklist ? @checklist.id : nil) %>
 
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-field", value: (@checklist ? @checklist.title : nil) %>
