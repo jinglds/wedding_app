@@ -64,6 +64,7 @@ WeddingApp::Application.routes.draw do
   resources :vendors
   resources :event_vendors
   resources :events do
+    match 'guests/manage_tables' => 'guests#manage_tables', :via => :get
     put "clear_tasks", to: "events#clear_tasks"
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"
@@ -131,7 +132,8 @@ WeddingApp::Application.routes.draw do
   get "/style_tags" => 'shops#style_tags', as: 'style_tags'
   match "user_category", to: "users#category", via: 'get'
   
-      match 'guests/all' => 'guests#update_all', :as => :update_all, :via => :put
+  match 'guests/all' => 'guests#update_all', :as => :update_all, :via => :put
+  
   
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

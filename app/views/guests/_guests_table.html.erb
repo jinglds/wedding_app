@@ -1,29 +1,59 @@
-<table class="table table-condensed ">
+
+<table class="table table-condensed guest-list-table">
 	<tr>
-		<th>Name</th>
-		<th>Side</th>
-		<th>Gender</th>
-		<th>Adults</th>
-		<th>Children</th>
-		<th>Group</th>
-		<th>Table #</th>
-		<th>Note</th>
-		<th>Attending</th>
-		<th>Invitation</th>
-		<th>Actions</th>
+		<th><%= link_to "Name", :sort=>'name' %></th>
+      	<th><%= link_to "Gender", :sort=>'gender' %></th>
+      	<th><%= link_to "Side", :sort=>'side' %></th>
+      	<th><%= link_to "Adults", :sort=>'adults' %></th>
+      	<th><%= link_to "Children", :sort=>'children' %></th>
+      	<th><%= link_to "Group", :sort=>'"group"' %></th>
+      	<th><%= link_to "Table", :sort=>'table_no' %></th>
+      	<th>Note</th>
+      	<th><%= link_to "Attending", :sort=>'attending' %></th>
+      	<th><%= link_to "Invitation", :sort=>'invitation_sent' %></th>
+      	<th>Phone</th>
+      	<th>Address</th>
+      	<th>Action</th>
 	</tr>
-		<% guests.each do |g| %>
+
+	<tr>
+		<%= form_for [@event, @new], html:{class: "form-all"} do |f| %>
+		<div class="field">
+		<td>
+			<span class="pull-left thirty-percent">
+				<%= f.select :prefix, [['Mr.', 'Mr.'], ['Mrs.', 'Mrs.'], ['Miss.', 'Miss.'], ['Dr.', 'Dr.'], ['Prof.', 'Prof.']] %>
+			</span>
+			<span class="pull-right seventy-percent">
+        		<%= f.text_field :name %>	
+			</span>
+		</td>
+		<td><%= f.select :gender,[['M -  male', 'male'],['F - female', 'female']], :class=>"number-field" %></td>
+		<td><%= f.select :side, [[@event.bride_name, @event.bride_name], [@event.groom_name, @event.groom_name]] %></td>
+		<td><%= f.number_field :adults, value: 1, :class=>"number-field"  %></td>
+		<td><%= f.number_field :children, value: 0, :class=>"number-field" %></td>
+		<td><%= f.text_field :group %></td>
+		<td><%= f.text_field :table_no, value: 0, :class=>"number-field" %></td>
+		<td><%= f.text_field :note %></td>
+		<td><%= f.select :attending,[['Confirmed', true],['Not Confirmed', false]] %></td>
+		<td><%= f.select :invitation_sent,[['Sent', true],['Not Sent', false]] %></td>
+		<td><%= f.phone_field :phone %></td>
+		<td><%= f.text_field :address  %></td>
+		<td><%= f.submit "Submit", class: "btn all-btn btn-large" %></td>
+		</div>
+		<% end %>
+	</tr>
+	<% guests.each do |g| %>
 		<tr class="<%= 'warning' if g.invitation_sent==false %>">
-			<td style="padding-left:35px;">
+			<td style="padding-left:10px;">
 				<%= g.name %>
 			</td>
+			<td><%= g.gender.chars.first.capitalize %></td>
 			<td><%= g.side %></td>
-			<td><%= g.gender %></td>
 			<td><%= g.adults %></td>
 			<td><%= g.children %></td>
 			<td><%= g.group %></td>
 			<td><% if g.table_no==0 %>
-						Not Set
+						#
 					<%else %>
 						<%= g.table_no %>
 					<%end%></td>
@@ -44,9 +74,11 @@
 					<%end%>
 				
 			</td>
+			<td><%= g.phone %></td>
+			<td><%= g.address %></td>
 
 			<td>
-				| <%= link_to "edit", edit_event_guest_path(@event, g.id) %> | 
+				<%= link_to "edit", edit_event_guest_path(@event, g.id) %> | 
     			<%= link_to "delete", event_guest_path(@event, g.id), method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: g.name %>

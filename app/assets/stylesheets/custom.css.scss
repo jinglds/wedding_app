@@ -853,11 +853,11 @@ border-radius: 5px;
 }
 
 .thirty-percent {
-  width: 29%;
+  width: 33%;
 }
 
 .seventy-percent {
-  width: 69%;
+  width: 65%;
 }
 
 /* calendar */
@@ -1428,4 +1428,15 @@ ul.affix-bottom {
   padding: 2px;
   font-size: 1em;
   width: 60px;
+}
+
+.number-field{
+  width: 33px;
+}
+
+.guest-list-table{
+  font-size: 1em;
+  font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  letter-spacing: -1px;
+  
 }

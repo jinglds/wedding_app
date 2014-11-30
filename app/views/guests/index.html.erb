@@ -4,100 +4,20 @@
 		<%= render 'events/event_menu' %>
 	</div>
 
-<div class="ro">
-  <%= form_for :guest, :url => update_all_path, :html => { :method => :put } do %>
-  <table>
-    <tr>
-      <th>First Name</th>
-      <th>table</th>
-    </tr>
-    <% @unsets.each do |u| %>
-      <%= fields_for "guest[]", guest do |guest_fields| %>
-    <tr>
-      <td><%= guest_fields.text_field :name %></td>
-      <td><%= guest_fields.text_field :table_no %></td>
-    </tr>
-      <% end %>
-    <% end %>
-  </table>
-
-  <div class="actions">
-    <%= submit_tag %>
-  </div>
-<% end %>
-</div>
-  
   <div class="row">
     <div class="col-md-9">
-
-      <div class=" guest-no-table-no-div panel panel-danger">
-        <div class="panel-heading" role="tab" id="table-0">
-          <a data-toggle="collapse"  href="#table-content-0" aria-expanded="true" aria-controls="table-content-0" class="table-title">
-            <h3 class="panel-title"> <%= params[:group] ? params[:group].titleize : nil%><%= params[:side] ? params[:side].titleize + "'s" : nil%>  Guests: No Table
-              <span >
-                (<%=@unsets.sum(:adults)%> adults, <%=@unsets.sum(:children)%> children)
-              </span> 
-            </h3>
-          </a>
-        </div>
-        <div id="table-content-0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="table-content-0">
-        <table class="table table-condensed ">
-          <tr>
-            <th>Name</th>
-            <th>Adults</th>
-            <th>Children</th>
-            <th>Side</th>
-            <th>Group</th>
-            <th>Note</th>
-            <th>Set Table</th>
-          </tr>
-            <% @unsets.each do |g| %>
-            <tr class="<%= 'warning' if g.invitation_sent==false %>">
-              <td style="padding-left:10px;">
-                <%= g.name %>
-              </td>
-              <td><%= g.adults %></td>
-              <td><%= g.children %></td>
-              <td><%= g.side %></td>
-              <td><%= g.group %></td>
-              <td><%= g.note %></td>
-              <td >
-    
-                <%= form_tag(event_guest_set_table_path(@event, g), method: :put,  html:{class: "form-all"} ) do %>
-                  <span >
-                    <%= text_field_tag :table_no, 0, class: "fifty-percent" %>
-                      <%= submit_tag "set table", class: "btn set-table-btn fifty-percent" %>
-                    </span>
-
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-
-
-
-    </div>
-
-
-
-
-      <% @all_guests.order(:table_no).pluck(:table_no).uniq.each do |t| %>
-        <%= render partial:'guests/table', locals:{t: t, guests: @all_guests.where(:table_no=>t)}%>
-      <% end %>
-
-
-
-    <hr>
-      <h3>All <%= params[:group] ? params[:group].titleize : nil%><%= params[:side] ? params[:side].titleize + "'s" : nil%> Guests (<%= @guests.count %>)</h3>
+    <h3>All <%= params[:group] ? params[:group].titleize : nil%><%= params[:side] ? params[:side].titleize + "'s" : nil%> Guests (<%= @guests.count %>)</h3>
     <%= render partial:'guests/guests_table',  locals:{guests: @guests} %>
-    
-
-
-    </div>
+  </div>
 
     <div class="col-md-3 ">
+      <div class="panel">
+        <ul class="list-unstyled">
+          
+          <li><%= link_to  'Guest List', event_guests_path(@event) %> </li>
+          <li><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(:event_id=>@event.id) %></li>
+        </ul>
+      </div>
       <div class="guest-nav">
         <ul class="list-unstyled nav" id="guest-menu" role="tablist" aria-multiselectable="true">
           <li><%= link_to "All", event_guests_path %></li>
@@ -130,7 +50,7 @@
             </a>
             <ul id="guest-table-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
               <%  @tables.each do |x| %>
-                <li><%= link_to x, '#' %></li>
+                <li><%= link_to x, :table=>x %></li>
               <% end %>
               
             </ul>
@@ -139,7 +59,6 @@
       </div>
       
     <div class="panel">
-      <h5 class="center"><i><%= link_to "Reset All Guest Table", clear_table_event_guests_path(@event, :table_no=>0), :method => :put %></i> </h5>
       <a data-toggle="collapse"  href="#guest-form" aria-expanded="true" aria-controls="guest-form">
               <h4 class="center">New Guest <b class="caret"></b></h4>
       </a>

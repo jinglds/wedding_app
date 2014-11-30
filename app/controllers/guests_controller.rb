@@ -2,12 +2,13 @@ class GuestsController < ApplicationController
 
 	def update_all
 	    @event = Event.find(params[:event_id])
-		params['guest'].keys.each do |id|
-			@guest = @event.guests.find(id.to_i)
-			@guest.update_attributes(user_params(id))
+		params["guest"].keys.each do |id|
+			@guest = Guest.find(id.to_i)
+			@guest.update_attributes(guests_params(id))
 		end
-			redirect_to event_guests_path
-		end
+			
+		redirect_to event_guests_manage_tables_path(:event_id=>@event.id)
+	end
 
 
 
@@ -15,16 +16,40 @@ class GuestsController < ApplicationController
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
 		@guest.update_attributes(:table_no => params[:table_no])
-		redirect_to event_guests_path
+		redirect_to event_guests_manage_tables_path(:event_id=>@event.id)
+
 	end
 
 	def clear_table
 	    @event = Event.find(params[:event_id])
 		@guests = @event.guests
 		@guests.update_all(:table_no => params[:table_no])
-		redirect_to event_guests_path
+		redirect_to event_guests_manage_tables_path(:event_id=>@event.id)
 	end
+	def manage_tables
+		@new = Guest.new
+	    @event = Event.find(params[:event_id])
+	    @guests = @event.guests
+	    @all_guests = @event.guests
 
+	    unless params[:group].nil? || params[:group]==""
+	    	@guests = @guests.where(:group =>params[:group])
+	    end
+
+	    unless params[:side].nil? || params[:side] ==""
+	    	@guests = @guests.where(:side =>params[:side])
+	    end
+
+	    
+	    @unsets = @guests.where(:table_no=>0)
+	    if params[:sort].nil? || params[:sort]==""
+	    	@unsets = @unsets.order(:name)
+	    else
+	    	@unsets = @unsets.order(params[:sort])
+	    end
+	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
+	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
+	end
 	def index
 		@new = Guest.new
 	    @event = Event.find(params[:event_id])
@@ -38,11 +63,19 @@ class GuestsController < ApplicationController
 	    unless params[:side].nil? || params[:side] ==""
 	    	@guests = @guests.where(:side =>params[:side])
 	    end
-	    @unsets = @guests.where(:table_no=>0).order(:name)
+
+	    unless params[:table].nil? || params[:table] ==""
+	    	@guests = @guests.where(:table_no =>params[:table])
+	    end
+	    if params[:sort].nil? || params[:sort]==""
+	    	@guests = @guests.order(:name)
+	    else
+	    	@guests = @guests.order(params[:sort])
+	    end
 	    @total = @event.guests.count
 	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
 	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
-	  end
+	end
 
 	  def show
 	    @event = Event.find(params[:event_id])
@@ -98,11 +131,22 @@ class GuestsController < ApplicationController
 
 	  private
 
-	  def guest_params(id)
-params.require(:guest).fetch(id).permit( 
+	  def guests_params(id)
+		params.require(:guest).fetch(id).permit( :side,
   								:name,
-  								:table_no)
-end
+  								:prefix,
+  								:adults,
+			                  	:children,
+			                  	:phone,
+			                  	:address,
+			                  	:gender,
+	                            :invitation_sent,
+	                            :attending,
+			                  	:group,
+                            	:table_no,
+                            	:note)
+
+	end
 	  def guest_params
 	  	params.require(:guest).permit(:event_id,
   								:side,

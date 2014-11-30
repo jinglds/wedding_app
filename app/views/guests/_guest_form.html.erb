@@ -20,18 +20,18 @@
     </span>
     <span class="pull-left fifty-percent">
         <%= f.label :adults, "Total Adults" %>
-        <%= f.text_field :adults, value: 1  %>
+        <%= f.number_field :adults, value: 1  %>
     </span>
     
     <span class="pull-right fifty-percent">
         <%= f.label :children, "Total Children" %>
-        <%= f.text_field :children, value: 0 %>
+        <%= f.number_field :children, value: 0 %>
     </span>
     <div class="row">
         <div class="col-md-12">
         
         <%= f.label :phone, "Contact" %>
-        <%= f.text_field :phone, placeholder:"Guest's Phone No."  %>
+        <%= f.phone_field :phone, placeholder:"Guest's Phone No."  %>
         <%= f.text_field :address, placeholder:"Guest's Address"  %>
  
         </div>
