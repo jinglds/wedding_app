@@ -1,42 +1,51 @@
-<% provide(:title, "Edit Event") %>
+<% provide(:title, @event.name) %>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= render 'events/heading' %>
 <div class="container">
-	<h2>Edit <%= @event.name %></h2>
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>
+	<div class="row">
+		<h2>Edit <%= @event.name %></h2>
 
-<div class="col-md-4 col-md-offset-4">
-	<%= form_for @event, :html=>{:class=>"form-all"} do |f| %>
-		<%= render 'shared/error_messages', object: f.object %>
-		<div class="field ">
-		  	<%= f.label :event_type %>
-		    <%= f.text_field :event_type, class: "form-field", placeholder: "E.g. Evening party, Engagement Ceremony, etc." %>
+		<div class="col-md-4 col-md-offset-4">
+			<%= form_for @event, :html=>{:class=>"form-all"} do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field ">
+				  	<%= f.label :event_type %>
+				    <%= f.text_field :event_type, class: "form-field", placeholder: "E.g. Evening party, Engagement Ceremony, etc." %>
 
-			<%= f.label :name, "Event Name" %>
-		    <%= f.text_field :name, class: "form-field", placeholder: "E.g. My Wedding Ceremory, P & P Wedding, etc." %>
-			<%= f.label :bride_name %>
-		    <%= f.text_field :bride_name, class: "form-field", placeholder:"" %>
+					<%= f.label :name, "Event Name" %>
+				    <%= f.text_field :name, class: "form-field", placeholder: "E.g. My Wedding Ceremory, P & P Wedding, etc." %>
+					<%= f.label :bride_name %>
+				    <%= f.text_field :bride_name, class: "form-field", placeholder:"" %>
 
-		   	<%= f.label :groom_name %>
-		    <%= f.text_field :groom_name, class: "form-field" %>
-		    
-		  	<div class="">
-			    <%= f.label :date %>
-			    <div class="input-group date" id="datetimepicker5">
-			      <%= f.text_field :date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }%>
-			      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-			    </div>
-		 	</div>
-		   
-		 	<%= f.label :budget, "Budget (amount only, no comma)" %>
-		    <%= f.text_field :budget, class: "form-field", placeholder: "E.g. 100000, 250000, etc." %>
+				   	<%= f.label :groom_name %>
+				    <%= f.text_field :groom_name, class: "form-field" %>
+				    
+				  	<div class="">
+					    <%= f.label :date %>
+					    <div class="input-group date" id="datetimepicker5">
+					      <%= f.text_field :date, class: 'form-control form-field', data: { date_format: 'YYYY/MM/DD' }%>
+					      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					    </div>
+				 	</div>
+				   
+				 	<%= f.label :budget, "Budget (amount only, no comma)" %>
+				    <%= f.text_field :budget, class: "form-field", placeholder: "E.g. 100000, 250000, etc." %>
 
 
-		 	<%= f.label :guest_amt, "Approximate number of Guests" %>
-		    <%= f.text_field :guest_amt, class: "form-field", placeholder: "E.g. 100, 150, 200 etc." %>
+				 	<%= f.label :guest_amt, "Approximate number of Guests" %>
+				    <%= f.text_field :guest_amt, class: "form-field", placeholder: "E.g. 100, 150, 200 etc." %>
 
-		   	<%= f.submit "Update Event", class: "btn btn-large all-btn" %></span>
+				   	<%= f.submit "Update Event", class: "btn btn-large all-btn" %></span>
+				</div>
+			<% end %>
+			<%= link_to "< Back to Event", @event %>
 		</div>
-	<% end %>
 	</div>
 </div>
+	
    
 <script type="text/javascript">
   $(function () {

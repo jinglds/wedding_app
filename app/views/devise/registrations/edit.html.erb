@@ -1,6 +1,20 @@
-<div class="container">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+ <% provide(:title, @user.firstname) %>
+<div class="heading-block">
+  
+  <h1 class="elegant"> <%= @user.firstname %> <%= @user.lastname %></h1>
 
+</div>
+
+<div class="container">
+<div class="row">
+  <ul class="nav nav-pills event-menu">
+    <li class="<%= 'current' if current_page?(@user)%>"><%= link_to "Profile", user_path(@user) %></li>
+    <li class="<%= 'current' if current_page?(edit_user_registration_path(@user)) %>"><%= link_to "Edit Account", edit_user_registration_path(@user) %></li>
+    <li class="<%= 'current' if current_page?(@user) %>"><%= link_to "My Favorited Shops", '#' %></li>
+  </ul>
+</div>
+
+<div class="row">
       <%= devise_error_messages! %>
   <div class=" user-form form-all ">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -112,4 +126,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

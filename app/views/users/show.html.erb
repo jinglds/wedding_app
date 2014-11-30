@@ -1,45 +1,83 @@
-<div class="container">
-  <% provide(:title, @user.firstname) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h2>
-        <%= @user.firstname %>
-      </h2>
-        <p><%= @user.role %>
-        <p><%= @user.email %>
-          <%= link_to "edit profile", edit_user_registration_path(@user) %>
-    </section>
-  </aside>
-  <div class="span8">
-    <% if @user.shops.any? %>
-      <h3>Shops (<%= @user.shops.count %>)</h3>
-      <ol class="microposts">
-        <%= render @shops %>
-      </ol>
-      <%= will_paginate @shops %>
-    <% end %>
-    <% if @user.events.any? %>
-      <h3>Events (<%= @user.events.count %>)</h3>
-      <ol class="microposts">
-        <%= render @events %>
-      </ol>
-    <% end %>
-      <h3>My Rated Shop (<%= @rated.size %>)</h3>
-      <ol class="microposts">
-        <%= render @rated %>
-      </ol>
-    
-    <% if @favorites.any? %>
-      <h3>My Favorite Shop (<%= @favorites.size %>)</h3>
-      <ol class="microposts">
-        <%= render @favorites %>
-      </ol>
-      
-    <% end %>
-  </div>
-
-
+ <% provide(:title, @user.firstname) %>
+<div class="heading-block">
+  
+  <h1 class="elegant"> <%= @user.firstname %> <%= @user.lastname %></h1>
 
 </div>
+
+<div class="container">
+<div class="row">
+  <ul class="nav nav-pills event-menu">
+    <li class="<%= 'current' if current_page?(@user)%>"><%= link_to "Profile", user_path(@user) %></li>
+    <li class="<%= 'current' if current_page?(edit_user_registration_path(@user)) %>"><%= link_to "Edit Account", edit_user_registration_path(@user) %></li>
+    <li class="<%= 'current' if current_page?('#') %>"><%= link_to "My Favorited Shops", '#' %></li>
+  </ul>
+</div>
+  
+ 
+<!--   <div class="row">
+      <h2 class="">
+        <%= @user.firstname %> <%= @user.lastname %>
+      </h2>
+  </div>  
+ -->
+
+  <div class="row user-details">
+    <div class="col-md-4 col-md-offset-1">
+      <h3>Information</h3>
+      <hr>
+      <%= image_tag("member_icon.png", :height=>18, :width=> 20, :border => 0, :alt => "email icon") %> <%= @user.role %>
+      <br><%= image_tag("email_icon.png", :height=>18, :width=> 18, :border => 0, :alt => "email icon") %> <%= @user.email %>
+      <br><%= image_tag("phone_icon.png", :height=>18, :width=> 18, :border => 0, :alt => "phone icon") %> <%= @user.phone %>
+      <br><%= image_tag("location_icon.png", :height=>18, :width=> 18, :border => 0, :alt => "location icon") %> <%= @user.address %>
+        
+<!--     </div>
+   
+    <div class="col-md-4"> -->
+      
+      <div class="transparent-s">x</div>
+      <h3>Activities</h3>
+      <hr>
+      <% if  @user.find_voted_items.any? %>
+        <%= link_to  '#' do %>
+          <%= @user.find_voted_items.count %> Ratings
+        <% end %>
+      <% else %>
+        n/a
+      <% end %>
+      <br>
+      <% if  @user.comments.any? %>
+        <%= link_to  '#' do %>
+          <%= @user.comments.count %> Comments
+        <% end %>
+      <% else %>
+        n/a
+      <% end %>
+    </div>
+
+    <div class="col-md-4 col-md-offset-1">
+      <h3>Owner of </h3>
+      <hr>
+      <% if @user.shops.any? %>
+         <% @shops.each do |s| %>
+          <li>
+            <%= link_to s.name.titleize, s %>
+          </li>
+          <%end %>
+      <% end %>
+    </div>
+     
+
+    
+    
+
+
+
+           
+
+   
+</div>
+
+
+
 </div>

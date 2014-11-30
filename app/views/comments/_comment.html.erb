@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       
-      <b><%= comment.user.firstname %> <%= comment.user.lastname %></b>
+      <b><%= comment.user.firstname %> <%= comment.user.lastname %></b> 
+      <% if comment.user == @shop.user %>
+      <span class="small">(shop owner)</span>
+      <%end%>
       <% if comment.title!="" %>
         <i>"<%= comment.title %>"</i>
       <% end %>
