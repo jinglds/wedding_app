@@ -6,7 +6,11 @@ class ExpensesController < ApplicationController
     @event = Event.find(params[:event_id])
     @expense = Expense.find(params[:expense_id])
     @expense.update_attributes(:paid => true) 
-    @expenses = @event.expenses
+    if params[:sort].nil?
+      @expenses = @event.expenses.order(:paid)
+    else
+      @expenses = @event.expenses.order(params[:sort])
+    end
     @total = @event.expenses.sum(:amount)
     @ex = @event.expenses.group(:expense_type).sum(:amount)
     
@@ -19,7 +23,11 @@ class ExpensesController < ApplicationController
   def unpay 
     @event = Event.find(params[:event_id])
     @expense = Expense.find(params[:expense_id])
-    @expenses = @event.expenses
+    if params[:sort].nil?
+      @expenses = @event.expenses.order(:paid)
+    else
+      @expenses = @event.expenses.order(params[:sort])
+    end
     @total = @event.expenses.sum(:amount)
     @ex = @event.expenses.group(:expense_type).sum(:amount)
     
@@ -33,7 +41,12 @@ class ExpensesController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id])
-    @expenses = @event.expenses
+    if params[:sort].nil?
+      @expenses = @event.expenses.order(:paid)
+    else
+      @expenses = @event.expenses.order(params[:sort])
+    end
+    @sort = params[:sort]
     @expense = Expense.new
     @ex = @event.expenses.group(:expense_type).sum(:amount)
     @expense_chart = {}

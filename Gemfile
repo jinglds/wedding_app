@@ -30,6 +30,7 @@ gem "chartkick"
 gem 'jquery-countdown-rails'
 gem 'chronic'
 gem 'fullcalendar-rails' 
+gem 'rails4-autocomplete'
 
 
 group :development, :test do

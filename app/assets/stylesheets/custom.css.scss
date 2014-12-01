@@ -472,6 +472,10 @@ footer ul li {
   font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 
 }
+
+.red-font{
+  color: #DF013A;
+}
 /* miscellaneous */
 
 .debug_dump {
@@ -685,12 +689,16 @@ aside {
   }
 }
 
+
+
 .heading-block {
-  background-color: #3B170B;
+  /*background-color: #F79F81; */
+
+  background-color: #F78181;
   padding-right: 30px;
   padding-left: 30px;
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 25px;
+  padding-bottom: 20px;
   margin:0;
   > h1, h2, h3, h4{
     color: $lightYellow;
@@ -709,7 +717,7 @@ aside {
 #home-block-title {
   color:white;
   font-size: 5em;
-  /*font-family: Perpetua;*/
+  /*font-family: Perpetua;
   font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 }
 #home-block-subtitle{
