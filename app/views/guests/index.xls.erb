@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Side</Data></Cell>
+        <Cell><Data ss:Type="String">Group</Data></Cell>
+        <Cell><Data ss:Type="String">Table #</Data></Cell>
+        <Cell><Data ss:Type="String">Adults</Data></Cell>
+        <Cell><Data ss:Type="String">Children</Data></Cell>
+        <Cell><Data ss:Type="String">Phone</Data></Cell>
+        <Cell><Data ss:Type="String">Address</Data></Cell>
+        <Cell><Data ss:Type="String">Attending</Data></Cell>
+        <Cell><Data ss:Type="String">Invitation Status</Data></Cell>
+
+      </Row>
+    <% @guests.each do |g| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= g.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= g.side %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= g.group %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= g.table_no %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= g.adults %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= g.children %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= g.phone %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= g.address %></Data></Cell>
+        <Cell><Data ss:Type="String"><% if g.attending==true %>yes<% else %>no<% end %></Data></Cell>
+        <Cell><Data ss:Type="String"><% if g.invitation_sent==true %>sent<% else %>not sent<% end %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

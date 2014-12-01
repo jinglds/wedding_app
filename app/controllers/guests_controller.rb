@@ -109,6 +109,13 @@ class GuestsController < ApplicationController
 	    @total = @event.guests.count
 	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
 	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
+
+
+	    respond_to do |format|
+	      format.html
+	      format.csv { send_data @guests.to_csv }
+	      format.xls 
+	    end
 	end
 
 	  def show

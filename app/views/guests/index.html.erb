@@ -20,6 +20,7 @@
           
           <li><h5><%= link_to  'Guest List', event_guests_path(@event) %></h5> </li>
           <li> <h5><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(:event_id=>@event.id) %></h5> </li>
+          <li><h5><%= link_to "Download as Excel", event_guests_path(@event, format: "xls") %></h5></li>
         </ul>
       </div>
       <div class="guest-nav">
