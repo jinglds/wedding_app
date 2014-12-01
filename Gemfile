@@ -31,7 +31,7 @@ gem 'jquery-countdown-rails'
 gem 'chronic'
 gem 'fullcalendar-rails' 
 gem 'rails4-autocomplete'
-
+gem 'zeroclipboard-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

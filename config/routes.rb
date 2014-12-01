@@ -44,6 +44,7 @@ WeddingApp::Application.routes.draw do
         put "invitation_sent", to: "guests#invitation_sent"
       end
     end
+
      devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
     
   end
@@ -91,6 +92,8 @@ WeddingApp::Application.routes.draw do
       get "js_tasks", to: "tasks#js_tasks" 
     end
     resources :guests do
+      get "invitation_form", to: "guests#invitation_form"
+      put "attending_rsvp", to: "guests#attending_rsvp"
       put "attending", to: "guests#attending"
       put "invitation_sent", to: "guests#invitation_sent"
       put "set_table", to: "guests#set_table"

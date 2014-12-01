@@ -1,0 +1,19 @@
+$(function() {
+	$('#thank-you-yes-box').hide();
+	$('#thank-you-no-box').hide();
+  	$('.rsvp-yes-btn').click(function(event){
+	    event.preventDefault();
+	    $('#invitation-box').hide();
+	    $('#thank-you-yes-box').fadeIn(2000);
+    });
+  	$('.rsvp-no-btn').click(function(event){
+	    event.preventDefault();
+	    $('#invitation-box').hide();
+	    $('#thank-you-no-box').fadeIn(2000);
+    });
+    
+
+
+
+});
+

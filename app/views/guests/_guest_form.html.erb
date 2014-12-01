@@ -49,14 +49,17 @@
     </span>
     <%= f.label :note %>
     <%= f.text_field :note %>
-    <span class="pull-left fifty-percent">
-        <%= f.label :attending %>
-        <%= f.select :attending,[['Confirmed', true],['Not Confirmed', false]] %>
-    </span>
+    
     <span class="pull-right fifty-percent">
         <%= f.label :invitation_sent, 'Invitation Status' %>
         <%= f.select :invitation_sent,[['Sent', true],['Not Sent', false]] %>
     </span>
+    <span class="pull-left fifty-percent">
+        <%= f.label :invited_via, 'Invited via' %>
+        <%= f.select :invited_via,[['postal', 'postal'],['email', 'email'], ['link', 'link'], ['others', 'others']] %>
+    </span>
+        <%= f.label :attending %>
+        <%= f.select :attending,[['Confirmed', true],['Not Confirmed', false]] %>
   </div>
   <%= f.submit "Submit", class: "btn all-btn btn-large" %>
 <% end %>

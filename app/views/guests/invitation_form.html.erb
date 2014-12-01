@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row center" >
+		<div class="col-md-6 col-md-offset-3" id="invitation-box">
+		<h3>
+			You are officially invited to <%= @event.bride_name %>'s and <%= @event.bride_name %>'s event!
+		</h3>
+		<h5>
+			Please tell us whether you are able to join us on our important day? 
+		</h5> <br>
+		<span class="fifty-percent"><%= button_to "Yes", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=> true, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-yes-btn fifty-percent"	%></span>
+		<span class="fifty-percent"><%= button_to "No", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=>false, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-no-btn fifty-percent"	 %></span>
+		</div>
+		
+	</div>
+
+	<div class="row center" id="thank-you-yes-box">
+		<div class="col-md-6 col-md-offset-3" id="invitation-box">
+		<h3>
+			Thank you for your respond!
+		</h3>
+		<h5>
+			We are looking forward to see you on that day!
+		</h5> <br>
+
+		</div>
+	</div>
+
+
+	<div class="row center" id="thank-you-no-box">
+		<div class="col-md-6 col-md-offset-3" id="invitation-box">
+		<h3>
+			Thank you for your respond!
+		</h3>
+		<h5>
+			Please do tell us if you changed your mind.
+		</h5> <br>
+		</div>
+	</div>
+	
+</div>
+

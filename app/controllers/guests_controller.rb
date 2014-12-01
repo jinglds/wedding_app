@@ -1,9 +1,29 @@
 class GuestsController < ApplicationController
 
+	def invitation_form
+	    @event = Event.find(params[:event_id])
+	    @guest = Guest.find(params[:guest_id])
+
+	    respond_to do |format|
+	      format.html 
+	      format.js
+    	end
+	end
+
+	def attending_rsvp
+	    @guest = Guest.find(params[:guest_id])
+	    @guest.update_attributes(:attending => params[:attending], :invitation_sent => params[:invitation_sent]) 
+	    respond_to do |format|
+	      format.html {render nothing: true}
+	      format.js
+    	end
+	end
+
+
 	def attending
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
-	    @guest.update_attributes(:attending => params[:attending]) 
+	    @guest.update_attributes(:attending => params[:attending], :invitation_sent => params[:invitation_sent]) 
 	    redirect_to event_guests_path
 	end
 

@@ -11,6 +11,7 @@
       	<th>Note</th>
       	<th><%= link_to "Attending", :sort=>'attending' %></th>
       	<th><%= link_to "Invitation", :sort=>'invitation_sent' %></th>
+      	<th><%= link_to "via", :sort=>'invitation_sent' %></th>
       	<th>Phone</th>
       	<th>Address</th>
       	<th>Action</th>
@@ -36,6 +37,7 @@
 		<td><%= f.text_field :note %></td>
 		<td><%= f.select :attending,[['Confirmed', true],['Not Confirmed', false]] %></td>
 		<td><%= f.select :invitation_sent,[['Sent', true],['Not Sent', false]] %></td>
+		<td><%= f.select :invited_via,[['postal', 'postal'],['email', 'email'], ['link', 'link']] %></td>
 		<td><%= f.phone_field :phone %></td>
 		<td><%= f.text_field :address  %></td>
 		<td><%= f.submit "Submit", class: "btn all-btn btn-large" %></td>
@@ -74,6 +76,7 @@
 					<%end%>
 				
 			</td>
+			<td><%= g.invited_via %></td>
 			<td><%= g.phone %></td>
 			<td><%= g.address %></td>
 
@@ -82,6 +85,10 @@
     			<%= link_to "delete", event_guest_path(@event, g.id), method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: g.name %>
+                 <a class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click me to copy to clipboard.'>
+				   link
+				  </a>
+                <span id="invite-link-<%= g.id %>" class="hidden"><%= root_url + "events/" + @event.id.to_s + "/guests/" + g.id.to_s + "/invitaion_form" %></span>
 			</td>
 		</tr>
 	<% end %>

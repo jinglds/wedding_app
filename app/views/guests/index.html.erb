@@ -4,6 +4,10 @@
 		<%= render 'events/event_menu' %>
 	</div>
 
+
+
+
+
   <div class="row">
     <div class="col-md-9">
     <h3>All <%= params[:group] ? params[:group].titleize : nil%><%= params[:side] ? params[:side].titleize + "'s" : nil%> Guests (<%= @guests.count %>)</h3>
@@ -67,8 +71,21 @@
       </div>
     </div>
   </div>
-    
-    
-
-
 </div>
+
+<div class="link-copied-div">
+  Invitation Link copied to Clipboard
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.link-copied-div').hide();
+    var clip = new ZeroClipboard($(".invite-link-btn"))
+
+    clip.on( 'aftercopy', function(event) {
+          $('.link-copied-div').fadeIn(1500).show(2000).fadeOut(1500);
+        } );
+  });
+
+
+</script>

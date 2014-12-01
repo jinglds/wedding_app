@@ -474,7 +474,7 @@ footer ul li {
 }
 
 .red-font{
-  color: #DF013A;
+  color: #FF0000;
 }
 /* miscellaneous */
 
@@ -1473,4 +1473,24 @@ ul.affix-bottom {
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   font-size: 1.2em;
   
+}
+
+.link-copied-div{
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  background-color: $lightYellow;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  font-size: 1.2em;
+  border: 1px $notepadYellow solid;
+  border-radius: 2px;
+  padding: 4px;
+  
+}
+
+#invitation-box{
+  padding: 20px;
+  background-color: white;
+  border: 1px $gold solid;
+  margin-top: 90px;
 }
