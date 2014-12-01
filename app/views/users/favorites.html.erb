@@ -1,0 +1,21 @@
+ <% provide(:title, @user.firstname) %>
+<div class="heading-block">
+  
+  <h1 class="elegant"> <%= @user.firstname %> <%= @user.lastname %></h1>
+
+</div>
+
+<div class="container">
+	<div class="row">
+	  <ul class="nav nav-pills event-menu">
+	    <li class="<%= 'current' if current_page?(@user)%>"><%= link_to "Profile", user_path(@user) %></li>
+	    <li class="<%= 'current' if current_page?(edit_user_registration_path(@user)) %>"><%= link_to "Edit Account", edit_user_registration_path(@user) %></li>
+	    <li class="<%= 'current' if current_page?('#') %>"><%= link_to "My Favorited Shops", '#' %></li>
+	  </ul>
+	</div>
+
+	<div class="row">
+		<% if @favorites.any? %>
+		<%= render @favorites %>
+	</div>
+</div>

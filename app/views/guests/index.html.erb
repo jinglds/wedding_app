@@ -14,8 +14,8 @@
       <div class="panel">
         <ul class="list-unstyled">
           
-          <li><%= link_to  'Guest List', event_guests_path(@event) %> </li>
-          <li><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(:event_id=>@event.id) %></li>
+          <li><h5><%= link_to  'Guest List', event_guests_path(@event) %></h5> </li>
+          <li> <h5><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(:event_id=>@event.id) %></h5> </li>
         </ul>
       </div>
       <div class="guest-nav">

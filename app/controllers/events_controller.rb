@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     if @event.save
   		flash[:success] = "Event created!"
 
-  		redirect_to event_new_cont_path(@event)
+  		redirect_to @event
   	else
   		render 'new'
   	end
@@ -801,7 +801,7 @@ class EventsController < ApplicationController
       # @task.each.user = current_user
     # if @task.save
          flash[:success] = "Task created!"
-         redirect_to @event
+         redirect_to event_tasks_path(@event)
         
     #   else
     #     flash[:success] = "Error!"
