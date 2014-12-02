@@ -23,6 +23,8 @@ WeddingApp::Application.routes.draw do
 
     end
     get "tags", to: "shops#tags"
+    resources :vendors
+    resources :event_vendors
     resources :events do
       put "default_tasks", to: "events#create_default_tasks"
       put "clear_tasks", to: "events#clear_tasks"
