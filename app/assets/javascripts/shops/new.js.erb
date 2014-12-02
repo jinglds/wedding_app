@@ -1,4 +1,20 @@
 $(function() {
+
+
+	$("#shop_categories").tokenInput("/shops/categories.json", {
+	    prePopulate:       $("#shop_categories").data("pre"),
+	    preventDuplicates: true,
+	    noResultsText:     "No results, needs to be created.",
+	    animateDropdown:   false
+	  });
+	$("#shop_styles").tokenInput("/shops/styles.json", {
+	    prePopulate:       $("#shop_styles").data("pre"),
+	    preventDuplicates: true,
+	    noResultsText:     "No results, needs to be created.",
+	    animateDropdown:   false,
+	    theme: 'facebook'
+	  });
+
 	$('#shop-form-tags-div').hide();
 	$('#shop-form-contact-div').hide();
 

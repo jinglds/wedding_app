@@ -6,6 +6,21 @@ class ShopsController < ApplicationController
   # before_filter :set_search, only: :index
 
 
+  def categories
+  @categories = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%").where("tags.id IN (SELECT taggings.tag_id FROM taggings WHERE taggings.context LIKE 'categories')")
+  respond_to do |format|
+    # format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
+    format.json { render :json => @categories.collect{|t| {:id => t.name, :name => t.name }}}
+    end
+  end
+
+  def styles
+  @styles = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%").where("tags.id IN (SELECT taggings.tag_id FROM taggings WHERE taggings.context LIKE 'styles')")
+  respond_to do |format|
+    format.json { render :json => @styles.map{|t| {:id => t.name, :name => t.name }}}
+  end
+end
+
   def category
     
     @categories = Shop.category_counts

@@ -102,6 +102,9 @@ WeddingApp::Application.routes.draw do
   end
   resources :favorite_shops, only: [:create, :destroy]
   # resources :photos
+  get "shops/categories" => "shops#categories", :as => :categories
+  get "shops/styles" => "shops#styles", :as => :styles
+  
   resources :shops do
       resources :photos
       get "new_gallery", to: "photos#new_gallery"
@@ -141,7 +144,9 @@ WeddingApp::Application.routes.draw do
   match "user_category", to: "users#category", via: 'get'
   
   match 'guests/all' => 'guests#update_all', :as => :update_all, :via => :put
-  
+
+
+    
   
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

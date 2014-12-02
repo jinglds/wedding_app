@@ -21,4 +21,5 @@
 //= require bootstrap-datetimepicker
 //= require jquery-ui
 //= require jquery-ui/effect.all
+//= require autocomplete-rails
 //= require zeroclipboard
