@@ -85,7 +85,7 @@
     			<%= link_to "delete", event_guest_path(@event, g.id), method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: g.name %>
-                 <a class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click me to copy to clipboard.'>
+                 <a id="invite-link-btn-<%= g.id %>" class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click to Copy Invitation Link' name ="<%= g.name %>">
 				   link
 				  </a>
                 <span id="invite-link-<%= g.id %>" class="hidden"><%= root_url + "events/" + @event.id.to_s + "/guests/" + g.id.to_s + "/invitation_form" %></span>

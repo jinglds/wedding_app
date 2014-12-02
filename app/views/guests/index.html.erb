@@ -75,17 +75,27 @@
 </div>
 
 <div class="link-copied-div">
-  Invitation Link copied to Clipboard
+  Invitation Link copied to Clipboard.
+  Ctrl+V or Cmd+V to send it to you
 </div>
 
 <script>
   $(document).ready(function() {
     $('.link-copied-div').hide();
-    var clip = new ZeroClipboard($(".invite-link-btn"))
+     $(".invite-link-btn").on("click", function(){
+      var mystring = $(this).attr("name");
+     $(".link-copied-div").html( "Invitation Link copied to Clipboard. <br> Ctrl+V or Cmd+V to send it to " + mystring);
+      });
+     
+
+    var clip = new ZeroClipboard($(".invite-link-btn"));
+
 
     clip.on( 'aftercopy', function(event) {
-          $('.link-copied-div').fadeIn(1500).show(2000).fadeOut(1500);
+          $('.link-copied-div').fadeIn(1500).show(2000).fadeOut(3000);
         } );
+
+
   });
 
 

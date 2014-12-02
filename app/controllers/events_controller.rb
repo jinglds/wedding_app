@@ -170,9 +170,8 @@ class EventsController < ApplicationController
     @completed = @event.tasks.done
     # @now = @event.tasks.now
     @now = @event.tasks.this_week
-    @lates = @tasks.lates.not_done.limit(2)
-    @today = @tasks.today(:date=>Time.zone.now).not_done.limit(2)
-    @upcoming = @tasks.upcomings.not_done.limit(4)
+    @lates = @tasks.lates.not_done
+    @today = @tasks.today(:date=>Time.zone.now).not_done
     @checklists = @event.checklists
 
     unless @checklists.nil?
@@ -184,35 +183,8 @@ class EventsController < ApplicationController
     end
 
 
-
-    # @days = @event.date + @event.time
-
-    # hash = {}
-    # @expenses.all.each do |e|
-    #   hash[e.expense_type] = e.amount
-    # end
-    @ex = @event.expenses.group(:expense_type).sum(:amount)
+    @ex_percentage = ((@expenses.sum(:amount) / @event.budget) * 100).to_i
     
-    @expense_chart = {}
-    @expense_chart["Used"]= @expenses.sum(:amount)
-    if @expenses.sum(:amount) >= @event.budget
-      @expense_chart["Current Balance"]=0
-    else
-      @expense_chart["Current Balance"]=@event.budget - @expenses.sum(:amount)
-    end
-    # @expense_chart = @event.expenses.group(:expense_type).sum(:amount)
-    
-    # @expense_chart[:all] = @event.budget - @expenses.sum(:amount)
-    # @ex.each do |e|
-    #   hash[e.expense_type] = e.amount
-    # end
-
-
-
-# Table.where(:type => 1).sum(:price)
-
-
-
     respond_to do |format|
       format.html 
       format.js

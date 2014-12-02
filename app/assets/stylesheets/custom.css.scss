@@ -1482,7 +1482,7 @@ ul.affix-bottom {
   position: fixed;
   right: 50px;
   bottom: 50px;
-  background-color: $lightYellow;
+  background-color: $lightMint;
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   font-size: 1.2em;
   border: 1px $notepadYellow solid;
@@ -1496,4 +1496,15 @@ ul.affix-bottom {
   background-color: white;
   border: 1px $gold solid;
   margin-top: 90px;
+}
+#notification-box{
+  background-color: white; 
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
+.no-text{
+  color: $grey;
+  font-style: italic;
 }

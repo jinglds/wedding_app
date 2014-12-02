@@ -23,10 +23,30 @@
 					<%= render 'events/lift_off' %>
 				<% end %>
 			<% end %>
+
+		</div>
+	</div>
+
+	<div class="row center">
+		<div class="col-md-6 col-md-offset-3">
+
+			<h2>Summary</h2>
+			<h4><%= pluralize(@lates.count, 'Late Task', 'Late Tasks') %> </h4>
+			<h4><%= pluralize(@today.count, 'Task', 'Tasks')  %> Today</h4>
+			<hr>
+			<h4><%= @ex_percentage %>% of Budget Used</h4>
+			<hr>
+			<h4><%= @guests.inviteds.count %> out of <%= @guests.count %>Invitations Sent</h4>
+			<h4><%= @guests.attendees.count %> out of <%= @guests.count %>Guests Attending</h4>
+			<hr>
+			<h4><%= @progress%>% of the Checklist done</h4>
+			<h4><%= %></h4>
+			<h4><%= %></h4>
 		</div>
 	</div>
 
 
+			
 
 	
 
