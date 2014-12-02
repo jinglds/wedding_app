@@ -2,6 +2,7 @@ WeddingApp::Application.routes.draw do
 
   root  'static_pages#home'
   namespace :api, defaults: {format: 'json'}  do
+    put "event_vendors/remove_from_event", to: "event_vendors#remove_from_event"
     resources :users
     get "my_shops", to: "users#shops"
     match "get_shop", to: "shops#get_shop", via: 'post'
@@ -24,7 +25,7 @@ WeddingApp::Application.routes.draw do
     end
     get "tags", to: "shops#tags"
     resources :vendors
-    resources :event_vendors
+    resources :event_vendors 
     resources :events do
       put "default_tasks", to: "events#create_default_tasks"
       put "clear_tasks", to: "events#clear_tasks"
@@ -36,6 +37,8 @@ WeddingApp::Application.routes.draw do
       resources :tasks do
         put "complete", to: "tasks#complete"
         put "decomplete", to: "tasks#decomplete"
+        put "add_vendor", to: "tasks#add_vendor"
+        put "remove_vendor", to: "tasks#remove_vendor"
       end
       resources :expenses do
         put "pay", to: "expenses#pay"

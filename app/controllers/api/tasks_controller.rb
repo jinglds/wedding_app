@@ -3,6 +3,28 @@ module Api
     skip_before_filter :verify_authenticity_token, only: [:create]
     before_filter :correct_user, only: [:destroy, :update, :pay, :unpay]
 
+
+    def add_vendor
+      @task = Task.find(params[:task_id])
+      @vendor = Vendor.find(params[:task][:vendor_id])
+      if @task.update_attributes(:vendor_id=>params[:task][:vendor_id])
+        return render :json=> {:success => true, :message => "vendor added successfully"}
+      else
+        return render :json=> {:success => false, :message => "vendor added unsuccessfully"}
+      end
+    end
+
+
+    def remove_vendor
+      @task = Task.find(params[:task_id])
+      @vendor = Vendor.find(params[:task][:vendor_id])
+      if @task.update_attributes(:vendor_id=>nil)
+        return render :json=> {:success => true, :message => "vendor removed successfully"}
+      else
+        return render :json=> {:success => false, :message => "vendor removed unsuccessfully"}
+      end
+    end
+
     def complete
       @task = Task.find(params[:task_id])
       
