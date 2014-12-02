@@ -5,8 +5,6 @@
 	<div class="row">
 		<%= render 'events/event_menu' %>
 	</div>	
-	<%= link_to "Edit event", edit_event_path(@event) %>
-
 	<div class="row center">
 		<div id="event-date-div" class="col-md-8 col-md-offset-2">
 			<% if @event.date.nil? %>
@@ -14,6 +12,7 @@
 			<% else %>
 				<% if Date.today <= @event.date %>
 				<div>
+					<h2>Counting to the event...</h2>
 					<%= render partial: 'events/countdown', locals:{:event=> @event } %> 
 				</div>
 					<div>
@@ -28,20 +27,27 @@
 	</div>
 
 	<div class="row center">
-		<div class="col-md-6 col-md-offset-3">
+		<h2>Summary</h2>
+		<div class="col-md-4 col-md-offset-4 no-text">
 
-			<h2>Summary</h2>
-			<h4><%= pluralize(@lates.count, 'Late Task', 'Late Tasks') %> </h4>
-			<h4><%= pluralize(@today.count, 'Task', 'Tasks')  %> Today</h4>
+			<%= link_to event_tasks_path(@event) do %>
+			<div><%= pluralize(@lates.count, 'Late Task', 'Late Tasks') %> </div>
+			<div><%= pluralize(@today.count, 'Task', 'Tasks')  %> Today</div>
+			<%end%>
 			<hr>
-			<h4><%= @ex_percentage %>% of Budget Used</h4>
+			<%= link_to event_expenses_path(@event) do %>
+			<div><%= @ex_percentage %>% of Budget Used</div>
+			<%end%>
 			<hr>
-			<h4><%= @guests.inviteds.count %> out of <%= @guests.count %>Invitations Sent</h4>
-			<h4><%= @guests.attendees.count %> out of <%= @guests.count %>Guests Attending</h4>
+			<%= link_to event_guests_path(@event) do %>
+			<div><%= @guests.inviteds.count %> out of <%= @guests.count %> Invitations Sent</div>
+			<div><%= @guests.attendees.count %> out of <%= @guests.count %> Guests Attending</div>
+			<div><%= @guests.respondeds.count %> out of <%= @guests.count %> Guests Responded via Link</div>
+			<%end%>
 			<hr>
-			<h4><%= @progress%>% of the Checklist done</h4>
-			<h4><%= %></h4>
-			<h4><%= %></h4>
+			<%= link_to event_checklists_path(@event) do %>
+			<div><%= @progress%>% of the Checklist done</div>
+			<%end%>
 		</div>
 	</div>
 

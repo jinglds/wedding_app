@@ -1,6 +1,6 @@
 <div class="col-md-8 col-md-offset-2">
     <%= f.label :guest_amt, "Approximate number of Guests" %>
-    <%= f.text_field :guest_amt, class: "form-field", placeholder: "E.g. 100, 150, 200 etc." %>
+    <%= f.number_field :guest_amt, value:nil, in: 0...10000, class: "form-field", placeholder: "E.g. 100, 150, 200 etc." %>
     <span class="pull-left"><%= button_to "< Previous", '#', id: "event-back-btn5", class: "all-btn btn", remote:true %></span>
     <span class="pull-right">
   <%= f.submit "Create Event", class: "btn btn-large all-btn", id:"event-submit-btn", name:"mysubmit", remote:true %></span>

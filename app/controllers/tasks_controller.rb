@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user,   only: :destroy
-
-
+  before_action :correct_user, except: [:index, :create, :calendar]
+  before_action :event_user, only: [:index, :create]
   def add_vendor
     @task = Task.find(params[:task_id])
     @event = Event.find(params[:event_id])
@@ -185,7 +184,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(task_params)
-      redirect_to event_task_path(@task.event, @task), notice: "Successfully updated event"
+      redirect_to event_tasks_path(:event_id=>@event.id), notice: "Successfully updated event"
     else
       render :edit
     end
@@ -277,7 +276,12 @@ class TasksController < ApplicationController
   end
 
     def correct_user
-        @task = current_user.tasks.find_by(id: params[:id])
+        @task = current_user.tasks.find_by(id: params[:id] || params[:task_id])
         redirect_to root_url if @task.nil?
-  end
+    end
+
+    def event_user
+      @event = current_user.events.find_by(id: params[:id] || params[:event_id])
+      redirect_to root_url if @event.nil?
+    end
 end

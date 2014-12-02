@@ -26,7 +26,7 @@
 
 		<tr class="<%= 'red-font' if t.paid==false %>">
 			<td style="padding-left:35px;">
-				<%= link_to t.title.capitalize, event_expense_path(@event, t) %>
+				<%= t.title.capitalize %>
 			</td>
 			<td><%= t.expense_type %></td>
 			<td>
@@ -45,23 +45,17 @@
 			</td>
 			<td>
 					<% if t.paid==true %>
-						Paid
+						Paid / <%= link_to "Unpay?", event_expense_unpay_path(@event, t.id, :sort=>@sort), method: :put, remote: true, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"expense paid?" %>
 					<%else %>
-						Unpaid
+						Unpaid / <%= link_to "Pay?", event_expense_pay_path(@event, t.id, :sort=>@sort), method: :put, remote: true, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"expense not yet paid?" %>
 					<%end%>
 				
 			</td>
 
 			<td>
-				<% if t.paid==true %>
-						<%= link_to "unpay", event_expense_unpay_path(@event, t.id, :sort=>@sort), method: :put, remote: true %>
-					<%else %>
-						<%= link_to "pay", event_expense_pay_path(@event, t.id, :sort=>@sort), method: :put, remote: true %>
-					<%end%>
-				| <%= link_to "edit", edit_event_expense_path(@event, t.id) %> | 
-    			<%= link_to "delete", event_expense_path(@event, t.id), method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: t.title %>
+					<%= link_to  image_tag("edit_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "edit icon"), edit_event_expense_path(@event, t.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit budget"  %>
+
+					<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_expense_path(@event, t.id), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete expense", method: :delete %>
 			</td>
 		</tr>
 		<% end %>
@@ -86,7 +80,7 @@
 <br>
 
 
-<table class="table table-condensed expense-table">
+<!-- <table class="table table-condensed expense-table">
 	<tr>
 		<th>Title</th>
 		<th>Amount</th>
@@ -175,4 +169,4 @@
 		<td></td>
 		<td></td>
 	</tr>
-</table>
+</table> -->

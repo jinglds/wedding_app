@@ -1,4 +1,7 @@
 class GuestsController < ApplicationController
+	before_filter :authenticate_user!, except: [:attending_rsvp, :invitation_form]
+	before_action :correct_user,   only: [:destroy, :edit, :update, :attending, :invitation_sent]
+	before_action :event_user, only: [:index, :create, :manage_tables, :invitation, :update_all, :set_table, :clear_table]
 
 	def invitation_form
 	    @event = Event.find(params[:event_id])
@@ -12,7 +15,7 @@ class GuestsController < ApplicationController
 
 	def attending_rsvp
 	    @guest = Guest.find(params[:guest_id])
-	    @guest.update_attributes(:attending => params[:attending], :invitation_sent => params[:invitation_sent]) 
+	    @guest.update_attributes(:adults=>params[:adults], :children=>params[:children], :attending => params[:attending], :invitation_sent => params[:invitation_sent], :responded=>true) 
 	    respond_to do |format|
 	      format.html {render nothing: true}
 	      format.js
@@ -24,14 +27,14 @@ class GuestsController < ApplicationController
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
 	    @guest.update_attributes(:attending => params[:attending], :invitation_sent => params[:invitation_sent]) 
-	    redirect_to event_guests_path
+	    redirect_to event_guests_invitation_path
 	end
 
 	def invitation_sent
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
 	    @guest.update_attributes(:invitation_sent => params[:invitation_sent]) 
-	    redirect_to event_guests_path
+	    redirect_to event_guests_invitation_path
 	end
 
 	def update_all
@@ -83,6 +86,52 @@ class GuestsController < ApplicationController
 	    end
 	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
 	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
+	end
+
+	def invitation
+		@new = Guest.new
+	    @event = Event.find(params[:event_id])
+	    @guests = @event.guests
+	    @all_guests = @event.guests
+
+
+	    unless params[:status].nil? || params[:status]==""
+	    	if params[:status]=="invited"
+	    		@guests = @guests.inviteds
+	    	elsif params[:status]=="attending"
+	    		@guests = @guests.attendees
+	    	elsif params[:status]=="declined"
+	    		@guests = @guests.declines
+	    	else 
+	    		@guests = @guests.respondeds
+	    	end
+	    end
+	    unless params[:group].nil? || params[:group]==""
+	    	@guests = @guests.where(:group =>params[:group])
+	    end
+
+	    unless params[:side].nil? || params[:side] ==""
+	    	@guests = @guests.where(:side =>params[:side])
+	    end
+
+	    unless params[:table].nil? || params[:table] ==""
+	    	@guests = @guests.where(:table_no =>params[:table])
+	    end
+	    if params[:sort].nil? || params[:sort]==""
+	    	@guests = @guests.order(:name)
+	    else
+	    	@guests = @guests.order(params[:sort])
+	    end
+	    @total = @event.guests.count
+	    @groups = Guest.where(:event_id=>@event.id).uniq.pluck(:group)
+	    @tables = Guest.where(:event_id=>@event.id).order(:table_no).uniq.pluck(:table_no)
+
+
+	    respond_to do |format|
+	      format.html
+	      format.csv { send_data @guests.to_csv }
+	      format.xls 
+	    end
 	end
 	def index
 		@new = Guest.new
@@ -199,6 +248,7 @@ class GuestsController < ApplicationController
 			                  	:address,
 			                  	:gender,
 	                            :invitation_sent,
+	                            :invited_via,
 	                            :attending,
 			                  	:group,
                             	:table_no,
@@ -207,8 +257,12 @@ class GuestsController < ApplicationController
 
 	  end
 
-	    def correct_user
-	        @guest = current_user.guests.find_by(id: params[:id])
+	def correct_user
+	        @guest = current_user.guests.find_by(id: params[:id] || params[:guest_id])
 	        redirect_to root_url if @guest.nil?
-	  end
+	end
+	def event_user
+      @event = current_user.events.find_by(id: params[:id] || params[:event_id])
+      redirect_to root_url if @event.nil?
+    end
 end

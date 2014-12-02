@@ -8,7 +8,9 @@ class Guest < ActiveRecord::Base
   	validates :event_id, presence: true
 
   	scope :attendees, -> { where(attending: 't') }
+    scope :declines, -> { where(attending: 't') }
   	scope :inviteds, -> { where(invitation_sent: 't') }
+    scope :respondeds, -> { where(responded: 't') }
   	scope :bride, -> { where(side: 'bride') }
   	scope :groom, -> { where(side: 'groom') }
 

@@ -11,17 +11,17 @@
 
 				
 				<% if !task.completed? %>
-					<%= link_to image_tag("done_icon_grey.png",  :border => 0, :width=> 15, :height=>15, :alt => "done icon"), event_task_complete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"left"}, :title=>"completed!"%>
+					<%= link_to image_tag("done_icon_grey.png",  :border => 0, :width=> 15, :height=>15, :alt => "done icon"), event_task_complete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"completed!"%>
 
 				<% else %>
-					<%= link_to  image_tag("undo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "undo icon"), event_task_decomplete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"uncomplete!"}, :title=>"uncomplete"  %> |
-					<%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put, remote: true %> |
+					<%= link_to  image_tag("undo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "undo icon"), event_task_decomplete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"uncomplete"  %> |
+				<!-- 	<%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put, remote: true %> | -->
 				<% end %>
-				<%= link_to image_tag("add_task_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "add task icon"), new_event_task_path(@event, :parent_id => task), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"add to task"%>
+			<!-- 	<%= link_to image_tag("add_task_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "add task icon"), new_event_task_path(@event, :parent_id => task), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add to task"%> -->
 				
-				<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_event_task_path(@event,  task), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"edit task"%>
+				<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_event_task_path(@event,  task), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit task"%>
 
-				<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_task_path(@event, task), :data => {:toggle=>"tooltip", :placement=>"top",confirm: "You sure?"}, :title=>"delete task", method: :delete %>
+				<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_task_path(@event, task), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete task", method: :delete %>
 				<!--  
 			    <% unless !task.vendor.nil? %>
 			    	<%= link_to "Add Vendor", '#', id:"add-vender-btn" %>

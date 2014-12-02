@@ -1,7 +1,7 @@
 <div class="container">
 <% provide(:title, 'All users') %>
 <h1>Manage Users</h1>
-<b><ul class="nav nav-tabs" id="user-nav">
+<ul class="nav nav-tabs  cus-tabs" id="user-nav">
 	<li role="presentation" class="active">
 		<%= link_to  users_path(:filter => ""), method: :get, remote: true, id:"all-users-btn" do %>
 		All (<%= User.all.count %>)
@@ -28,7 +28,7 @@
 	</li>
 
 </ul>
-</b>
+
 <div id="user-table-div">
 	<%= render partial:'users/users_table', locals:{:users=>@users, :filter=>@filter} %>
 </div>

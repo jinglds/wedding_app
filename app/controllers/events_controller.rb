@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :user_signed_in?, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  # before_action :user_signed_in?, only: [:create, :destroy]
+  before_action :correct_user, only: [:destroy, :update, :edit, :clear_tasks, :create_default_tasks]
   after_filter :create_checklist, only: [:create]
       
   # before_filter :set_date, only: [:create, :update]
@@ -15,7 +15,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def invitation_card
+      @event = Event.find(params[:event_id])
+      @event.update_attributes(:invitation_card=> params[:invitation_card]) 
+      redirect_to event_guests_invitation_path(@event)
   
+  end
 
   def my_tasks
     @event = Event.find(params[:event_id])
@@ -43,6 +48,7 @@ class EventsController < ApplicationController
     params[:event][:date] = Chronic.parse(params[:event][:date])
   	@event = current_user.events.build(event_params)
     if @event.save
+      :create_checklist
   		flash[:success] = "Event created!"
 
   		redirect_to @event
@@ -791,11 +797,12 @@ class EventsController < ApplicationController
   								:budget,
   								:bride_name,
   								:groom_name,
-                  :guest_amt)
+                  :guest_amt,
+                  :invitation_card)
   end
 
   def correct_user
-        @event = current_user.events.find_by(id: params[:id])
+        @event = current_user.events.find_by(id: params[:id] || params[:event_id])
         redirect_to root_url if @event.nil?
   end
 

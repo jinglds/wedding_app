@@ -10,6 +10,8 @@
 	
 	<div class="row">
 		<div class="col-md-9">
+			<br>
+       <span class="no-text">You can add vendor to task only if you have added the vendor to the event the task belongs to.</span> 
 			<div class="row" >
 				<div id="calendar-div" class="calendar-div">
 					<%= render 'shared/calendar' %>
@@ -23,11 +25,11 @@
 					</div>
 			</div>
 			
-			<div class="row">
+			<!-- <div class="row">
 				<div id="week-div" class="calendar-div">
 					<%= render 'tasks/week' %>
 				</div>
-			</div>
+			</div> -->
 			<div class="row">
 				<div id="late-tasks-div" class=" tasks-div">
 					<h3>Late Tasks</h3>
@@ -36,7 +38,7 @@
 							<%= render @lates %> 
 						</div>	
 					<% else %>
-						No late tasks
+						<span class="no-text">(No late tasks)</span>
 					<% end %>
 				</div>
 				<div id="all-tasks-div" class=" tasks-div">
@@ -46,7 +48,7 @@
 							<%= render @tasks %> 
 						</div>
 					<% else %>
-						No tasks
+						<span class="no-text">(No tasks)</span> 
 					<% end %>
 				</div>
 				<div id="complete-tasks-div" class=" tasks-div">
@@ -56,7 +58,7 @@
 							<%= render @done %> 
 						</div>
 					<% else %>
-						No tasks completed
+						<span class="no-text">(No tasks completed)</span>
 					<% end %>
 				</div>
 			</div>
@@ -89,8 +91,9 @@
 
 			<div class="panel tools-panel center">
 				<ul class="list-unstyled">
-					<li><%= link_to "create default tasks", event_default_tasks_path(@event), method: :post %></li>
-					<li><%= link_to "clear all tasks", event_clear_tasks_path(@event), method: :put %></li>
+					<li><%= link_to "create default tasks", event_default_tasks_path(@event), method: :post, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"Create recommended set of tasks for the event" %></li>
+					<hr>
+					<li><%= link_to "clear all default tasks", event_clear_tasks_path(@event), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom", confirm: "Are you sure you want to delete all default tasks? Tasks you added will not be deleted"}, :title=>"delete task", :title=>"Tasks you added will not be deleted"  %></li>
 				</ul>
 			</div>
 

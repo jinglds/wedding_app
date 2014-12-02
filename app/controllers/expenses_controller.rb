@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
-  before_action :user_signed_in?, only: [:create, :destroy]
-  before_action :correct_user,   only: [:destroy, :update, :pay, :unpay]
+  before_filter :authenticate_user!
+  before_action :correct_user,   except: [:create, :index]
+  before_action :event_user, only: [:index, :create]
 
   def pay
     @event = Event.find(params[:event_id])
@@ -131,5 +132,9 @@ class ExpensesController < ApplicationController
     def correct_user
         @expense = current_user.expenses.find_by(id: params[:expense_id] || params[:id])
         redirect_to root_url if @expense.nil?
+    end
+    def event_user
+      @event = current_user.events.find_by(id: params[:id] || params[:event_id])
+      redirect_to root_url if @event.nil?
     end
 end

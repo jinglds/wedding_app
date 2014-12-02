@@ -1,16 +1,42 @@
 <div class="container">
 	<div class="row center" >
 		<div class="col-md-6 col-md-offset-3" id="invitation-box">
-		<h3>
-			You are officially invited to <%= @event.bride_name %>'s and <%= @event.bride_name %>'s event!
-		</h3>
-		<h5>
-			Please tell us whether you are able to join us on our important day? 
-		</h5> <br>
-		<span class="fifty-percent"><%= button_to "Yes", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=> true, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-yes-btn fifty-percent"	%></span>
-		<span class="fifty-percent"><%= button_to "No", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=>false, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-no-btn fifty-percent"	 %></span>
+			<i><h4>Dear <%= @guest.name %></i></h4>
+		<% if @event.invitation_card.nil? || @event.invitation_card=="" %>
+			<h3>
+				You are officially invited to <%= @event.bride_name %>'s and <%= @event.bride_name %>'s event!
+			</h3>
+			<h5>
+				Please tell us whether you are able to join us on our important day.
+			</h5> <br>
+		<% else%>
+			<h4><%= h (@event.invitation_card).gsub(/\n/, '<br>').html_safe %></h4>
+		
+		<%end%>
+		<%= form_tag(event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=> true, :invitation_sent=>true), method: :put, remote: true ) do %>
+		<div class="row">
+			<div class="col-md-5 col-md-offset-1">
+				<br>
+				<%= submit_tag "Yes, I'm joining with total of ", class:"btn all-btn rsvp-yes-btn" %>
+			</div>
+			<div class="col-md-2">
+				<%= label_tag :adults, 'Adults',  class:"small" %>
+				<%= number_field_tag :adults, 1, in: 1...100, class: "number-field" %>
+			</div>
+			<div class="col-md-2">
+				<%= label_tag :children, 'Children', class:"small" %>
+				<%= number_field_tag :children, 0, in: 0...100, class: "number-field"  %>
+			</div>
 		</div>
 		
+		<%end%>
+
+	<!-- 	<%= button_to "Yes", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=> true, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-yes-btn fifty-percent "	%></span> -->
+	<div class="row">
+		<div class="col-md-5 col-md-offset-1">
+			<%= button_to "No, I am unable to join", event_guest_attending_rsvp_path(:guest_id=>@guest.id, :attending=>false, :invitation_sent=>true), method: :put, remote:true, class:"rsvp-no-btn btn btn-warning"	 %>
+		</div>
+	</div>
 	</div>
 
 	<div class="row center" id="thank-you-yes-box">

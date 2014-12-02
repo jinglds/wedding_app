@@ -19,12 +19,12 @@
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
 
-    <%= f.label :redo %>
+   <!--  <%= f.label :redo %>
     <%= f.text_field :redo, class: "form-field" %>
 
 
     <%= f.label :optional %>
-    <%= f.text_field :optional, class: "form-field" %>
+    <%= f.text_field :optional, class: "form-field" %> -->
 
     <%= f.label :completed %>
     <%= f.select :completed, [['Yes', true], ['No', false]] %>
@@ -32,17 +32,17 @@
     <%= f.label :note %>
     <%= f.text_area :note, class: "form-field" %>
 
-    <%= f.label :reminder %>
+ <!--    <%= f.label :reminder %>
     <div class="input-group date" id="datetimepicker2">
       <%= f.text_field :reminder, class: 'form-control form-field' %>
       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-    </div>
+    </div> -->
 
-    <%= f.label :importance %>
-    <%= f.text_field :importance, class: "form-field" %>
+  <!--   <%= f.label :importance %>
+    <%= f.text_field :importance, class: "form-field" %> -->
 
-  <%= f.label :tag_list, "Style Tags (separated by commas)" %><br />
-  <%= f.text_field :tag_list %>
+<!--   <%= f.label :tag_list, "Style Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list %> -->
 
   <% unless @vendors.nil? %>
    <%= f.collection_select :vendor_id, @vendors, :id, :name, {:prompt => "Please select a vendor" } %>
@@ -50,7 +50,7 @@
 
 
   </div></br>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-large all-btn" %>
 <% end %>
 
    <script type="text/javascript">

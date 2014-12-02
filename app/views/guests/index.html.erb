@@ -5,30 +5,30 @@
 	</div>
 
 
-
+<ul class="nav nav-tabs cus-tabs" role="tablist">
+     <li role="presentation" class="<%= 'active' if current_page?(event_guests_path(@event))%>"><%= link_to 'Guest List', event_guests_path(@event) %></li>
+    <li role="presentation" class="<%= 'active' if current_page?(event_guests_manage_tables_path(@event))%>"><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(@event) %></li>
+    <li role="presentation" class="<%= 'active' if current_page?(event_guests_invitation_path(@event))%>"><%= link_to 'Manage Invitation', event_guests_invitation_path(@event) %></li>
+  </ul>
 
 
   <div class="row">
     <div class="col-md-9">
+      <br>
+       <span class="no-text">You can filter guest from the menu on the right.</span> <br> <br>
+     <span class="no-text">Click on 'download as excel' to download guest information in excel format.</span> <br> 
     <h3>All <%= params[:group] ? params[:group].titleize : nil%><%= params[:side] ? params[:side].titleize + "'s" : nil%> Guests (<%= @guests.count %>)</h3>
     <%= render partial:'guests/guests_table',  locals:{guests: @guests} %>
   </div>
 
     <div class="col-md-3 ">
-      <div class="panel">
-        <ul class="list-unstyled">
-          
-          <li><h5><%= link_to  'Guest List', event_guests_path(@event) %></h5> </li>
-          <li> <h5><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(:event_id=>@event.id) %></h5> </li>
-          <li><h5><%= link_to "Download as Excel", event_guests_path(@event, format: "xls") %></h5></li>
-        </ul>
-      </div>
+      
       <div class="guest-nav">
         <ul class="list-unstyled nav" id="guest-menu" role="tablist" aria-multiselectable="true">
           <li><%= link_to "All", event_guests_path %></li>
           <li>
             <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-side-nav" aria-expanded="true" aria-controls="my-events-nav">
-              SIDE <b class="caret"></b>
+              Side <b class="caret"></b>
             </a>
             <ul id="guest-side-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-side">
               <li><%= link_to @event.bride_name, :side=> @event.bride_name %></li>
@@ -38,7 +38,7 @@
 
           <li>
             <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-group-nav" aria-expanded="true" aria-controls="guest-group-nav">
-              GROUP <b class="caret"></b>
+              Group <b class="caret"></b>
             </a>
             <ul id="guest-group-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
               <%  @groups.each do |x| %>
@@ -51,7 +51,7 @@
 
           <li>
             <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-table-nav" aria-expanded="true" aria-controls="guest-table-nav">
-              TABLE NO <b class="caret"></b>
+              Table No. <b class="caret"></b>
             </a>
             <ul id="guest-table-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
               <%  @tables.each do |x| %>
@@ -62,7 +62,12 @@
           </li>
         </ul>
       </div>
-      
+       <div class="panel tools-panel center">
+        <ul class="list-unstyled">
+          <li><%= link_to "download as excel", event_guests_path(@event, format: "xls") %></li>
+        </ul>
+       
+      </div>
     <div class="panel">
       <a data-toggle="collapse"  href="#guest-form" aria-expanded="true" aria-controls="guest-form">
               <h4 class="center">New Guest <b class="caret"></b></h4>
@@ -74,29 +79,8 @@
   </div>
 </div>
 
-<div class="link-copied-div">
-  Invitation Link copied to Clipboard.
-  Ctrl+V or Cmd+V to send it to you
-</div>
 
-<script>
-  $(document).ready(function() {
-    $('.link-copied-div').hide();
-     $(".invite-link-btn").on("click", function(){
-      var mystring = $(this).attr("name");
-     $(".link-copied-div").html( "Invitation Link copied to Clipboard. <br> Ctrl+V or Cmd+V to send it to " + mystring);
-      });
-     
-
-    var clip = new ZeroClipboard($(".invite-link-btn"));
-
-
-    clip.on( 'aftercopy', function(event) {
-          $('.link-copied-div').fadeIn(1500).show(2000).fadeOut(3000);
-        } );
-
-
-  });
-
-
-</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

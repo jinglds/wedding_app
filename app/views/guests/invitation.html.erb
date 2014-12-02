@@ -1,0 +1,187 @@
+<%= render 'events/heading' %>
+<div class="container">
+  <div class="row">
+    <%= render 'events/event_menu' %>
+  </div>
+
+
+  <ul class="nav nav-tabs cus-tabs" role="tablist">
+    <li role="presentation" class="<%= 'active' if current_page?(event_guests_path(@event))%>"><%= link_to 'Guest List', event_guests_path(@event) %></li>
+    <li role="presentation" class="<%= 'active' if current_page?(event_guests_manage_tables_path(@event))%>"><%= link_to 'Manage Guest Table', event_guests_manage_tables_path(@event) %></li>
+    <li role="presentation" class="<%= 'active' if current_page?(event_guests_invitation_path(@event))%>"><%= link_to 'Manage Invitation', event_guests_manage_tables_path(@event) %></li>
+  </ul>
+
+  <div class="row">
+    <div class="col-md-9">
+      <br>
+      <span class="no-text">Click on 'link' to copy the invitation card link of selected guest. Ctrl+V or Cmd+V to paste the link to send it to your guest.</span>
+      <div class=" guest-no-table-no-div panel panel-danger">
+        <div class="panel-heading" role="tab" id="table-0">
+          <a data-toggle="collapse"  href="#table-content-0" aria-expanded="true" aria-controls="table-content-0" class="table-title">
+            <h3 class="panel-title"> Guest Invitation Status  
+            </h3>
+          </a>
+        </div>
+        <div id="table-content-0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="table-content-0">
+  
+          <table class="table table-condensed ">
+            <tr>
+              <th><%= link_to "Name", :sort=>'name' %></th>
+              <th><%= link_to "Group", :sort=>'"group"' %></th>
+              <th><%= link_to "Adults", :sort=>'adults' %></th>
+              <th><%= link_to "Children", :sort=>'"Children"' %></th>
+              <th><%= link_to "Attending", :sort=>'attending' %></th>
+              <th><%= link_to "Invitation Status", :sort=>'invitation_sent' %></th>
+              <th><%= link_to "via", :sort=>'invited_via' %></th>
+              <th>Invitation Link</th>
+              <th><%= link_to "Responded", :sort=>'responed' %></th>
+            </tr>
+
+             <% @guests.each do |g| %>
+              <%= fields_for "guest[]", g do |guest_fields| %>
+                <tr class="<%= 'warning' if g.responded==false %>">
+                  <td style="padding-left:10px;">
+                    <%= g.name %>
+                  </td>
+                  <td><%= g.group %></td>
+                  <td><%= g.adults %></td>
+                  <td><%= g.children %></td>
+                  <td>
+                    <% if g.attending==true %>
+                      Yes / <%= link_to "no?", event_guest_attending_path(:guest_id=>g.id, :attending=>false), method: :put   %>
+                    <%else %>
+                      No / <%= link_to "yes?", event_guest_attending_path(:guest_id=>g.id, :attending=> true), method: :put  %>
+                    <%end%>
+                  </td>
+                  <td>
+                      <% if g.invitation_sent==true %>
+                        Sent / <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>false), method: :put %>
+                      <%else %>
+                        Not sent / <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>true), method: :put %>
+                      <%end%>
+                    
+                  </td>
+                  <td></td>
+                  <td>
+                    <a id="invite-link-btn-<%= g.id %>" class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click to Copy Invitation Link' name ="<%= g.name %>">
+                       link
+                      </a>
+                            <span id="invite-link-<%= g.id %>" class="hidden"><%= root_url + "events/" + @event.id.to_s + "/guests/" + g.id.to_s + "/invitation_form" %></span>
+                  </td>
+                  <td>
+                    <% if g.responded == true%>
+                      Yes
+                    <%else%>
+                      No
+                    <%end%>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+    </div>
+    
+    </div>
+    
+
+    <div class="col-md-3 ">
+
+      <div class="guest-nav">
+        <ul class="list-unstyled nav" id="guest-menu" role="tablist" aria-multiselectable="true">
+
+          <li><%= link_to "All (" + @guests.count.to_s + ")", event_guests_invitation_path %></li>
+
+          <li><%= link_to "Invited (" + @guests.inviteds.count.to_s + ")", :status => 'invited' %>
+          </li>
+          <li><%= link_to "Attending (" + @guests.attendees.count.to_s + ")", :status => 'attending' %></li>
+          <li><%= link_to "Declined (" + @guests.declines.count.to_s + ")", :status => 'declined' %></li>
+          <li><%= link_to "Responded (" + @guests.respondeds.count.to_s + ")", :status => 'responded' %></li>
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-side-nav" aria-expanded="true" aria-controls="my-events-nav">
+              SIDE <b class="caret"></b>
+            </a>
+            <ul id="guest-side-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-side">
+              <li><%= link_to @event.bride_name, :side=> @event.bride_name %></li>
+              <li><%= link_to @event.groom_name, :side=> @event.bride_name %></li>
+            </ul>
+          </li>
+
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-group-nav" aria-expanded="true" aria-controls="guest-group-nav">
+              GROUP <b class="caret"></b>
+            </a>
+            <ul id="guest-group-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
+              <%  @groups.each do |x| %>
+                <li><%= link_to x, :group=>x %></li>
+              <% end %>
+                    
+            </ul>
+          </li>
+
+
+          <li>
+            <a data-toggle="collapse" data-parent="#guest-menu" href="#guest-table-nav" aria-expanded="true" aria-controls="guest-table-nav">
+              TABLE NO <b class="caret"></b>
+            </a>
+            <ul id="guest-table-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="guest-group">
+              <%  @tables.each do |x| %>
+                <li><%= link_to x, '#' %></li>
+              <% end %>
+              
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="panel">
+        <%= form_tag(event_invitation_card_path(@event), method: :put) do %>
+        <%= label_tag :invitation_card, "Invitation Card Text" %>
+        <%= text_area_tag :invitation_card, (if @event.invitation_card!="" then  @event.invitation_card else ("E.g. You are officially invited to " + @event.bride_name + "'s and " + @event.bride_name + "'s event!") end), rows: 5, class: "form-field" %>
+        <%= submit_tag "Update Invitation Card", class: "all-btn"  %>
+        <% end%>
+
+        
+      </div>
+      
+      <div class="panel ">
+        <a data-toggle="collapse"  href="#guest-form" aria-expanded="true" aria-controls="guest-form">
+                <h4 class="center">New Guest <b class="caret"></b></h4>
+        </a>
+        <div id="guest-form" class="collapse ">
+            <%= render 'guests/guest_form' %>
+        </div>
+      </div>
+
+
+
+  </div>
+</div> 
+
+<div class="link-copied-div">
+  Invitation Link copied to Clipboard.
+  Ctrl+V or Cmd+V to send it to you
+</div>
+<script>
+  $(document).ready(function() {
+    $('.link-copied-div').hide();
+     $(".invite-link-btn").on("click", function(){
+      var mystring = $(this).attr("name");
+     $(".link-copied-div").html( "Invitation Link copied to Clipboard. <br> Ctrl+V or Cmd+V to send it to " + mystring);
+      });
+     
+
+    var clip = new ZeroClipboard($(".invite-link-btn"));
+
+
+    clip.on( 'aftercopy', function(event) {
+          $('.link-copied-div').fadeIn(2000).show(2000).fadeOut(5000);
+        } );
+
+
+  });
+
+
+</script>

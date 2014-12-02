@@ -1,9 +1,8 @@
 <div class="vendor-block vendor-index col-md-3">
 	<%= render partial:'vendors/vendor_item', locals:{:vendor=>vendor} %>
-	<div class="block-action">
-		<%= link_to "edit", edit_vendor_path(vendor) %> |
-		<%= link_to "remove from event", event_vendor_path(:event_id=>@event.id, :id=>vendor.id), method: :delete,
-		                                         data: { confirm: "You sure?" },
-		                                         title: vendor.name %>
+	<div class="action-btn">
+		<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_vendor_path(vendor), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit vendor"%>
+
+		<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_vendor_path(:event_id=>@event.id, :id=>vendor.id), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"remove vendor from event", method: :delete %>
 	</div> 
 </div> 

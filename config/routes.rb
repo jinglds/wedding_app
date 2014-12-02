@@ -73,7 +73,9 @@ WeddingApp::Application.routes.draw do
   resources :vendors
   resources :event_vendors
   resources :events do
+    put "invitation_card", to: "events#invitation_card"
     match 'guests/manage_tables' => 'guests#manage_tables', :via => :get
+    match 'guests/invitation' => 'guests#invitation', :via => :get
     put "clear_tasks", to: "events#clear_tasks"
     post "default_tasks", to: "events#create_default_tasks"
     get "new_cont", to: "events#new_cont"

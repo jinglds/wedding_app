@@ -19,12 +19,14 @@
 
         
           <% if (current_user==e.user) %>
-            <div class="block-action pull-right"> <%= link_to "Edit", edit_event_path(e.id) %> | 
-              <%= link_to "Delete", e, method: :delete,
-                                               data: { confirm: "You sure?" },
-                                               title: e.name %>
-            </div>
-           
+            <div class="action-btn ">
+  <span>
+    <%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_event_path(e), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"edit task", class: "inline-block"%>
+  </span>
+  <span>
+    <%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), e, :data => {:toggle=>"tooltip", :placement=>"top",confirm: "You sure?"}, :title=>"delete task", method: :delete,class: "inline-block" %>
+  </span>
+     </div>      
           <% end %>
         
       </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201174705) do
+ActiveRecord::Schema.define(version: 20141202203945) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20141201174705) do
     t.datetime "date"
     t.datetime "time"
     t.integer  "guest_amt"
+    t.string   "invitation_card"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"
@@ -135,6 +136,7 @@ ActiveRecord::Schema.define(version: 20141201174705) do
     t.boolean  "attending",       default: false
     t.boolean  "invitation_sent", default: false
     t.string   "invited_via"
+    t.boolean  "responded",       default: false
   end
 
   add_index "guests", ["event_id"], name: "index_guests_on_event_id"

@@ -20,12 +20,12 @@
     </span>
     <span class="pull-left fifty-percent">
         <%= f.label :adults, "Total Adults" %>
-        <%= f.number_field :adults, value: 1  %>
+        <%= f.number_field :adults, value: 1, in: 1...100  %>
     </span>
     
     <span class="pull-right fifty-percent">
         <%= f.label :children, "Total Children" %>
-        <%= f.number_field :children, value: 0 %>
+        <%= f.number_field :children, value: 0, in: 0...100 %>
     </span>
     <div class="row">
         <div class="col-md-12">
@@ -45,7 +45,7 @@
     </span>
     <span class="pull-right fifty-percent">
         <%= f.label :table_no %>
-        <%= f.text_field :table_no, value: 0 %>
+        <%= f.text_field :table_no, value: 0, in: 0...100 %>
     </span>
     <%= f.label :note %>
     <%= f.text_field :note %>

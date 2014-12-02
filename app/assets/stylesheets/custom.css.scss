@@ -206,6 +206,24 @@ p {
   margin-bottom: 40px;
 
 }
+.logo{
+    /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+   font-family: Perpetua;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+  color: $darkerGrey;
+  font-size: 2.3em;
+  line-height: 70%;
+  letter-spacing: -1px;
+}
+.logo-h{
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+   font-family: Perpetua;
+  /*font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;*/
+  color: $darkerGrey;
+  font-size: 2.7em;
+  line-height: 70%;
+  letter-spacing: -1px;
+}
 
 #logo:hover {
   color:  #E65C5C;
@@ -250,7 +268,7 @@ p {
     .side-top{
       width: 225px;
       height: 30px;
-      background-color: $darkerGrey;
+      background-color: $mediumGrey;
     }
 
     .side-menu>ul>li>a {
@@ -542,17 +560,18 @@ aside {
 
 .all-btn{
 
-  background-color: white; 
-  color: $darkGold;
-  border: 1px $darkGold solid;
+  background-color: $gold; 
+  color: white;
+  border: 1px $gold solid;
   font-size: 1.2em; 
   padding-left: 10px;
   padding-right: 10px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 0;
   font-family: "Tw Cen MT";
+  border-radius: 3px;
   &:hover{
     
   background-color: $darkGold;
@@ -697,7 +716,7 @@ aside {
 .heading-block {
   /*background-color: #F79F81; */
 
-  background-color: #F78181;
+  background-color: #55281a;
   padding-right: 30px;
   padding-left: 30px;
   padding-top: 25px;
@@ -1113,6 +1132,11 @@ div.hidden {
     bottom: 10px; 
     right: 15px;
 }
+
+.action-btn{
+  margin-right: 10px;
+    text-align: right;
+}
 .task-late{
   /*border: 1px #F8E0E6 solid;*/
   background-color: $lightPink;
@@ -1384,6 +1408,15 @@ ul.affix-bottom {
   }
 
 }
+
+.save-btn{
+  /*width: 200px;*/
+  margin-left: 79%;
+  width: 20%;
+  margin-bottom: 6px;
+  margin-top: 6px;
+
+}
 .uncompleted-checklist{
   font-family: "Tw Cen MT";
   color: $darkerGrey;
@@ -1437,7 +1470,8 @@ ul.affix-bottom {
 .guest-nav >.nav > li> .nav {
   margin-bottom: 8px;
 }
-.guest-nav >.nav > li> .nav  > li > a {
+
+.guest-nav >ul>li>ul{
   font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   
   padding-top:    3px;
@@ -1480,14 +1514,14 @@ ul.affix-bottom {
 
 .link-copied-div{
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  left: 50%;
+  bottom: 50%;
   background-color: $lightMint;
   font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
-  font-size: 1.2em;
+  font-size:2em;
   border: 1px $notepadYellow solid;
   border-radius: 2px;
-  padding: 4px;
+  padding: 10px;
   
 }
 
@@ -1507,4 +1541,27 @@ ul.affix-bottom {
 .no-text{
   color: $grey;
   font-style: italic;
+}
+
+.align-left{
+  left: 0;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.cus-tabs{
+
+  font-family: "Tw Cen MT";
+  font-size: 1.2em;
+  background-color: transparent;
+  >li.active>a{
+    background-color: $evenLighterGrey;
+    &:hover{
+      background-color: $evenLighterGrey;
+    }
+  
+  }
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+  
 }

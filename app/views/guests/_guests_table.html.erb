@@ -17,7 +17,7 @@
       	<th>Action</th>
 	</tr>
 
-	<tr>
+	<!-- <tr>
 		<%= form_for [@event, @new], html:{class: "form-all"} do |f| %>
 		<div class="field">
 		<td>
@@ -43,7 +43,7 @@
 		<td><%= f.submit "Submit", class: "btn all-btn btn-large" %></td>
 		</div>
 		<% end %>
-	</tr>
+	</tr> -->
 	<% guests.each do |g| %>
 		<tr class="<%= 'warning' if g.invitation_sent==false %>">
 			<td style="padding-left:10px;">
@@ -62,17 +62,17 @@
 			<td><%= g.note %></td>
 			<td>
 					<% if g.attending==true %>
-						Yes <%= link_to "/no?", event_guest_attending_path(:guest_id=>g.id, :attending=>false), method: :put	 %>
+						Yes
 					<%else %>
-						No <%= link_to "/yes?", event_guest_attending_path(:guest_id=>g.id, :attending=> true), method: :put	%>
+						No 
 					<%end%>
 				
 			</td>
 			<td>
 					<% if g.invitation_sent==true %>
-						Sent <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>false), method: :put %>
+						Sent 
 					<%else %>
-						Not sent <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>true), method: :put %>
+						Not sent 
 					<%end%>
 				
 			</td>
@@ -81,14 +81,9 @@
 			<td><%= g.address %></td>
 
 			<td>
-				<%= link_to "edit", edit_event_guest_path(@event, g.id) %> | 
-    			<%= link_to "delete", event_guest_path(@event, g.id), method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: g.name %>
-                 <a id="invite-link-btn-<%= g.id %>" class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click to Copy Invitation Link' name ="<%= g.name %>">
-				   link
-				  </a>
-                <span id="invite-link-<%= g.id %>" class="hidden"><%= root_url + "events/" + @event.id.to_s + "/guests/" + g.id.to_s + "/invitation_form" %></span>
+                 <%= link_to  image_tag("edit_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "edit icon"), edit_event_guest_path(@event, g.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit guest"  %>
+
+					<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), event_guest_path(@event, g.id), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete guest", method: :delete %>
 			</td>
 		</tr>
 	<% end %>
