@@ -24,7 +24,7 @@ class Shop < ActiveRecord::Base
 	validates :address, presence: true
 	validates :details, presence: true
 
-	validates :attachment, presence: true
+	# validates :attachment, presence: true
 	validates_size_of :attachment, maximum: 1024.kilobytes,
                   message: "should be no more than 1024 KB", if: :attachment_changed?
  	validates_property :ext, of: :attachment, in: [:jpeg, :jpg, :png, :bmp, :pdf], case_sensitive: false,
