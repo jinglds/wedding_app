@@ -38,7 +38,7 @@ class ChecklistsController < ApplicationController
       @checklist.destroy
 
       flash[:success] = "Checklist deleted!"
-         redirect_to @event
+         redirect_to event_checklists_path
   end
 
   def edit
@@ -50,7 +50,7 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.find(params[:id])
 
     if @checklist.update_attributes(checklist_params)
-      redirect_to event_checklist_path(@checklist.event, @checklist), notice: "Successfully updated event"
+      redirect_to event_checklists_path, notice: "Successfully updated event"
     else
       render :edit
     end

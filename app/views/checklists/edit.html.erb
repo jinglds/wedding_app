@@ -1,0 +1,17 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+<div class="row">
+	<%= render 'events/event_menu' %>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h2>Edit Checklist</h2>
+			<%= render 'checklists/checklist_form' %>
+		<%= link_to "<Back to Checklists", event_checklists_path(@event) %>
+		</div>
+	</div>
+
+</div>
