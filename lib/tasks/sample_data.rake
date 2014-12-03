@@ -19,6 +19,15 @@ namespace :db do
                  password: "12345678",
                  password_confirmation: "12345678",
                  approval: "f")
+     User.create!(firstname: "Aj Om",
+                lastname: "M",
+                address: "Bangkok",
+                phone: "12345678",
+                role: "admin",
+                 email: "aj.om@email.com",
+                 password: "12345678",
+                 password_confirmation: "12345678",
+                 approval: "f")
     66.times do |n|
       firstname  = Faker::Name.first_name
       lastname  = Faker::Name.last_name
