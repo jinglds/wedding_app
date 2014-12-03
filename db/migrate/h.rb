@@ -1,5 +1,5 @@
 class DropShopTag < ActiveRecord::Migration
   def change
-  	drop_table :table_name
+  	drop_table :shop_tags
   end
 end

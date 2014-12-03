@@ -38,9 +38,9 @@ module Api
   		@shop = Shop.find(params[:shop_id])
 	    @photo = Photo.new(photo_params)
 	    if @photo.save
-	      render :json=> {:success => true, :photos => @photo.url}
+	      render :json=> {:success => true, :photos => "yay"}
 	    else
-	      render :json=> {:success => false, :photos => @photo.url}
+	      render :json=> {:success => false, :photos => "nay"}
 	    end
 	  end
 
