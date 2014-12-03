@@ -11,7 +11,7 @@
       <% end %>
       <br>
       <div class="shop-comment-rating-<%= comment.user.id %>">
-        <%= render 'shops/rating_form', :locals => {:user => comment.user, :shop => @shop, :h => 10, :w=> 10} %>
+        <%= render 'shops/rating_form', :locals => {:user => comment.user, :shop => @shop, :hh => 10, :ww=> 10} %>
       </div>
       <p><%= comment.content %>
     </div>

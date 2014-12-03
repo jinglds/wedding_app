@@ -1,11 +1,17 @@
+<% provide(:title, 'Manage Articles') %>
+<div class="heading-block">
+	
+	<h1 class="elegant">Manage Articles</h1>
+	
+</div>
+
 <div class="container">
 
-	<h1>All Articles</h1>
-	<%= link_to "New articles", new_article_path %>
+	<%= link_to "+ New articles", new_article_path, class: " btn all-btn pull-right" %> <br> <br>
 
 
 
-	<table class="table table-condensed ">
+	<table class="table table-condensed all-table">
 		<tr>
 			<th>Title</th>
 			<th>Author</th>
@@ -23,26 +29,25 @@
 				<td><%= a.user.firstname %></td>
 				<td><%= a.category %></td>
 				<td>
-					<% if a.published==true %>
-					Published
+					<% if a.published==false %>
+					Draft / <%= link_to "publish?", article_publish_path(a), method: :put %> 
 					<%else %>
-					Draft
+					Published / <%= link_to "unpublish?",  article_unpublish_path(a), method: :put%>  
 					<%end%>
 				</td>
 				<td><%= a.created_at.to_formatted_s(:db)    %></td>
 				<td><%= a.updated_at.to_formatted_s(:db) %></td>
 				<td>
-					<% if a.published==false %>
-					<%= link_to "publish", article_publish_path(a), method: :put %> | 
-					<%else %>
-					<%= link_to "unpublish",  article_unpublish_path(a), method: :put%> | 
-					<%end%>
-					<%= link_to "edit", edit_article_path(a) %> | 
-					<%= link_to "delete", article_path(a), method: :delete,
-			                                         data: { confirm: "You sure?" },
-			                                         title: a.title %>
+					
+					<%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit article icon"), edit_article_path(a), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit task"%>
+
+					<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete article icon"), article_path(a), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete task", method: :delete %>
 				</td>
 			</tr>
 		<% end %>
 	</table>
 </div>
+
+
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

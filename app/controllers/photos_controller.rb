@@ -54,7 +54,7 @@ class PhotosController < ApplicationController
   		@photo = Photo.find(params[:id])
 	    if @photo.update(photo_params)
 	    	flash[:success] = "photo updated!"
-	      redirect_to shop_edit_gallery_path(@shop)
+	      redirect_to shop_photos_path(@shop)
 	    end 
 	  
 	end
@@ -118,7 +118,7 @@ class PhotosController < ApplicationController
 
 	private
 	def photo_params
-	    params.require(:photo).permit(:image)
+	    params.require(:photo).permit(:image, :title)
 	end
 
 	def no_cover?

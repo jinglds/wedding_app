@@ -237,6 +237,12 @@ Devise.setup do |config|
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
+
+
+  require "custom_failure_app"
+  config.warden do |manager|
+    manager.failure_app = CustomFailureApp
+  end
   #
   # config.warden do |manager|
   #   manager.intercept_401 = false

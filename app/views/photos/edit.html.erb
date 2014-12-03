@@ -1,1 +1,18 @@
-<%= render 'photo_form', collections: @photos %>
+<div class="container">
+	<div class="col-md-6 col-md-offset-3">
+		<h2>Edit Photo Caption</h2>
+		<%= image_tag(@photo.image.thumb('515x515#').url, alt: @photo.title, class: 'gallery-thumb') %>
+<br> <br>
+		<%= form_for [@shop, @photo] do |f| %>
+			<%= render 'shared/error_messages', object: @photo %>
+			<div class="form-group">
+				<%= f.label :title, "Photo Caption" %>
+				<%= f.text_field :title,  required: true, class: "form-field"  %>
+			</div>
+		  	<div class="actions">
+		    	<%= f.submit 'Upload', class: 'btn all-btn pull-right' %>
+		  	</div>
+		<% end %>
+	</div>
+	
+</div>

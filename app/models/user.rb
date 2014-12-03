@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_many :favorite_shops, through: :favorites, source: :favorited, source_type: 'Shop'
 	has_many :guests
 	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable
+	     :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 	validates :firstname, presence: true
 	validates :lastname, presence: true
 	# validates :address, presence: true
@@ -44,6 +44,16 @@ class User < ActiveRecord::Base
 	# end
 
 	# def my_comments
+
+
+
+	def timeout_in
+	    if self.role=='admin'
+	      7.days
+	    else
+	      2.days
+	    end
+	end
 	#     Comment.where("user_id =?", id)
 	# end
   def find_by_authentication_token(authentication_token = nil)

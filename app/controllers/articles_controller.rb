@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-	before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
-
+	before_filter :authenticate_user!
+	before_filter :admin_user
 
 	def publish
 		@articles = Article.all

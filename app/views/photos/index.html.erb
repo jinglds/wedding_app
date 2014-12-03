@@ -1,10 +1,10 @@
 <div class="container">
 <div class="transparent-s">x</div>
-<h1><%= @shop.name %>'s Gallery</h1>
-<%= link_to '< Back to Shop', shop_path(@shop), class: 'btn all-btn pull-left' %>
+<h1><%= @shop.name.titleize %>'s Gallery</h1>
+<%= link_to '< Back to Shop', shop_path(@shop), class: 'btn back-btn pull-left' %>
 <% if (current_user==@shop.user) %>
 	<%= link_to new_shop_photo_path(:shop_id => @shop.id), class: 'btn all-btn pull-right' do %> 
-		<%= image_tag("add_icon.png",  :width=>18, :height=>18, :border => 0, :alt => "add icon") %> ADD PHOTO
+		+ ADD PHOTO
 	<%end%>
 <% end %>
 <div class="transparent-s">x</div>
@@ -12,3 +12,6 @@
   <%= render partial: "photos/photo_item", collection: @photos, as: :photo, locals: {:shop => @shop} %>
 </ul>
 </div>
+
+ <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

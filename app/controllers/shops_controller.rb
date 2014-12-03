@@ -1,8 +1,8 @@
 class ShopsController < ApplicationController
-  before_filter :store_location, only: [:create, :destroy, :index, :show, :edit]
-  before_filter :authenticate_user!
-  before_action :correct_user,   only: [:destroy, :edit]
-  before_action :client_user, only: [:new, :create, :destroy]
+  # before_filter :store_location, only: [:create, :destroy, :index, :show, :edit]
+  before_filter :authenticate_user!, except: [:index, :show, :category]
+  before_action :correct_user,   only: [:destroy, :edit, :update]
+  before_action :client_user, only: [:new, :create, :destroy,  :edit, :update]
   # before_filter :set_search, only: :index
 
 
@@ -28,7 +28,11 @@ end
 
     @c=params[:category] ?  params[:category].to_s  : "all categories"
     @s=params[:styles] ? "/ " + params[:styles].join(" , ") : "/ all styles"
+
     @o=params[:order] ? "/ Order by " + params[:order].to_s  : ""
+    if params[:order] == 'cached_weighted_average'
+        @o = '/Order by Rating'
+      end
     @n='/ "' + params[:name_query].to_s + '"' unless params[:name_query]==""
 
     if (params[:category]=="" || params[:category].nil?) && (params[:styles] =="" || params[:styles].nil?)
@@ -48,6 +52,7 @@ end
       @shops= @shops.search(params[:name_query]) unless params[:name_query]==""
       @count = "/ " + @shops.count.to_s + " RESULTS"
       @shops= @shops.order(params[:order])
+     
     respond_to do |format|
       format.html 
       format.js
@@ -132,7 +137,8 @@ end
     @photos = @shop.photos.all
     @cover = Photo.is_cover(:shop_id => @shop.id)
     @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
-    @favorite = @user.favorites.find_by(favorited_id: @shop.id)
+    @favorite = @user ? @user.favorites.find_by(favorited_id: @shop.id) : nil
+    @vendor = @user ? @user.vendors.find_by(shop_id: @shop.id) : nil
   end
 
   def rate

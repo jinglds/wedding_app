@@ -1,31 +1,31 @@
-<%= link_to '#photo-'+ photo.id.to_s, :data => {:toggle=>"modal"}, :class=>"btn" do %>
-<div class="photo-item col-md-6 center">
-	<%= image_tag(photo.image.thumb('550x550#').url, alt: photo.title, class: 'gallery-thumb') %>
+<%= link_to '#photo-'+ photo.id.to_s, :data => {:toggle=>"modal"} do %>
+<div class="photo-item  ">
+	<%= image_tag(photo.image.thumb('530x530#').url, alt: photo.title, :class =>(if photo.cover==false then "gallery-thumb" else "gallery-thumb-cover" end ))  %>
 
      
      <br>
-	<div class="pull-right">
+	<div class="action-block pull-right">
 		<% if (current_user==@shop.user) %>
 			<% if photo.cover==true %>
 				Current Cover
 			<% else %>
 				<%= link_to "Set as Cover ", shop_set_cover_path(@shop, :id =>photo.id), method: :put %>
-			<% end %> |
-		    <%= link_to "edit", edit_shop_photo_path(@shop, photo) %> | 
-		    <%= link_to "delete", shop_photo_path(@shop, photo), method: :delete,
-		                                         data: { confirm: "You sure?" },
-		                                         title: photo.title %>
+			<% end %> 
+
+		    <%= link_to image_tag("edit_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit icon"), edit_shop_photo_path(@shop, photo), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit caption"%>
+
+			<%= link_to image_tag("delete_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete icon"), shop_photo_path(@shop, photo), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete photo", method: :delete %>
 		<% end %>
 </div>
 	
 <% end %>
 <!-- Modal -->
 <div class="modal fade" id="photo-<%= photo.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"><%=photo.title%></h4>
+        <h3 class="modal-title center" id="myModalLabel"><%=photo.title%></h3>
       </div>
       <div class="modal-body">
         <%= link_to image_tag(photo.image.thumb('x800').url, alt: photo.title, class: 'img-thumbnail'),

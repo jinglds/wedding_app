@@ -13,18 +13,31 @@
     </div>
     <div class="col-md-5">
       <h3 class = "shop-title"><%= @shop.name.titleize %>
-        <% if @favorite.nil? %>
-            <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), favorite_shops_path(shop_id: @shop), method: :post, remote: true %>
-        <% else %>
-          <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true %>
-        <% end %> 
-        <span class="small-link"><%= link_to "add vendor", new_vendor_path(:shop_id => @shop.id) %></span>
-        </h3>
-        <% if @shop.user == current_user %>
+        <% if @user.nil? %>
+          <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), '#', method: :post, remote: true, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"login to add this shop to favorite!"%>
+        <%else %>
+          <% if @favorite.nil? %>
+              <%= link_to image_tag("fav_icon_outline.png", :border => 0, :width => 30, :height => 30, :alt => "fav icon", :id => "fav-btn"), favorite_shops_path(shop_id: @shop), method: :post, remote: true, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add to favorite!"%>
+
+          <% else %>
+            <%= link_to image_tag('fav_icon.png', :border => 0, :width => 30, :height => 30, :alt => 'unfav icon', :id => 'unfav-btn'), favorite_shop_path(:shop_id => @shop.id), method: :delete, remote: true, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"remove from favorite!"%>
+          <% end %> 
+        <%end%>
+        
+        <% unless @user.nil? %>
+          <% if @vendor.nil? %>
+            <%= link_to image_tag('add_icon.png', :border => 0, :width => 27, :height => 27, :alt => 'add icon', :id => 'unfav-btn'), new_vendor_path(:shop_id => @shop.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add to my vendor"%>
+          <% else%>
+            <span class="small"> <small><%= link_to "Added to Vendor", vendors_path %></small> </span>
+          <%end%>
+         <%end%>
+         <% if @shop.user == current_user %>
           <span class="pull-right">
-            <%= link_to "Edit Shop Info", edit_shop_path(@shop) %>
+            <%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit shop icon"), edit_shop_path(@shop), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit shop"%>
           </span>
         <% end %>
+        </h3>
+        
       
       <span id="shop-main-rating">
         <%= render 'shops/main_rating', locals:{:h=>18, :w=>18} %>
@@ -33,12 +46,12 @@
         <%= @comments.count %> Reviews
       <% end %>
     
-      <p class="lead"><%= @shop.description %><p>
+      <p class="all-table"><i><%= @shop.description %></i><p>
 
       <%= button_to "Packages", '#', id: "request-btn", class: "all-btn" %>
       
       <div id="request-div">
-        <%= @shop.details %>
+        <%= h (@shop.details).gsub(/\n/, '<br>').html_safe %>
       </div>
 
       <div class="shop-contact-block">
@@ -63,12 +76,16 @@
 
   <div class="row">
     <div class="transparent">x</div>
-    <% if @shop.user == current_user %>
-      <%= link_to "Edit Photos", shop_photos_path(@shop) %>
-    <% end %>
+    
     <h3> 
       <%= link_to shop_photos_path(@shop) do %>
-        <%= @shop.name %>'s Gallery
+        <%= @shop.name.titleize %>'s Gallery
+        <% if @shop.user == current_user %>
+          <%= link_to image_tag("gallery_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "gallery icon"), shop_photos_path(@shop), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit gallery"%>
+        <%else %>
+          <%= link_to image_tag("gallery_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "gallery icon"), shop_photos_path(@shop), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"see gallery"%>
+        <% end %>
+       
       <% end %>
     </h3>
     <%= render 'photos/gallery', object: @photos %>
@@ -76,11 +93,11 @@
 
   <div class="row">
     <div class="transparent">x</div>
-    <h3>You might be interested in...</h3>
+    <h3>You might also be interested in...</h3>
     <% if @recommendations.any? %>
-      <ul >
+      
         	<%= render partial: 'shops/shop', collection: @recommendations %>
-    	</ul>
+    	
     <% end %>
   </div>
 
@@ -91,15 +108,22 @@
       <div id="comment-div">
         <%= render @comments %>
       </div>
+      <% unless @user.nil? %>
       <h3>Rate this shop
         <span id="shop-rating-form">
-            <%= render 'shops/rating_form', :locals => {:user => @user, :shop => @shop, :h => 15, :w=> 15} %>
+            <%= render 'shops/rating_form', :locals => {:user => @user, :shop => @shop, :hh => 20, :ww=> 20} %>
         </span>
         <span class="small-link"><%= link_to "unrate", unrate_shop_path(@shop), method: :put %>    </span>
       </h3>
       <div id="comment-form-div">
         <%= render 'comments/comment_form' %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+
+
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

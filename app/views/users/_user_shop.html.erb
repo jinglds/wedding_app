@@ -1,17 +1,17 @@
 <% @shops.each do |s| %>
 <div class="col-md-6">
   <%= link_to s do %> 
-    <div class="shop-block">
+    <div class="user-shop-block">
       <div class="item">
           <div class="center">
             <% if s.photos.is_cover(:shop_id => s.id)%>
-            <%= link_to image_tag(s.photos.is_cover(:shop_id => s.id).image.thumb('600x400#').url, alt: s.photos.is_cover(:shop_id => s.id).title, class: 'img-thumbnail'), s %>
+            <%= link_to image_tag(s.photos.is_cover(:shop_id => s.id).image.thumb('520x400#').url, alt: s.photos.is_cover(:shop_id => s.id).title, class: 'shop-img'), s %>
             <% else %>
               <%= link_to image_tag("default-thumb.jpg", alt: "cover photo", class: 'img-thumbnail'), s %>
             <% end %>
           </div>
-          <div class="shop-block-content">
-            <span class="shop-block-title"><%= link_to s.name, s %></span>
+          <div class="user-shop-block-content">
+            <span class="user-shop-block-title"><%= link_to s.name.titleize, s %></span>
             <br> Favorites: <%= Favorite.where(:favorited_id =>s.id).count %>
             <br> Rating: 
               <% if (s.get_upvotes.sum(:vote_weight).to_f / s.get_upvotes.size).nan? %> 
@@ -19,18 +19,24 @@
               <% else %>
                 <%= (s.get_upvotes.sum(:vote_weight).to_f / s.get_upvotes.size)%>
               <% end %>
-
             <br>
-            <% if (current_user==s.user) %>
-              <%= link_to "Edit Photos", shop_photos_path(s) %> |
-              <%= link_to "Edit", edit_shop_path(s.id) %> | 
-              <%= link_to "Delete", s, method: :delete,
-                                               data: { confirm: "You sure?" },
-                                               title: s.name %>
+            Comments: <%= s.comments.count %>
+            <br>
+            <div class="block-action">
+              <% if (current_user==s.user) %>
+               <%= link_to image_tag("gallery_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit shop icon"), shop_photos_path(s), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit shop gallery"%>
+              <%= link_to image_tag("edit_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit shop icon"), edit_shop_path(s.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit shop"%>
+
+              <%= link_to image_tag("delete_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete task icon"), s, :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete shop", method: :delete %>
             <% end %>
+            </div>
+            
           </div>
       </div>
     </div>
   <% end %>
   </div>
 <% end %>
+
+ <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202203945) do
+ActiveRecord::Schema.define(version: 20141203092036) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(version: 20141202203945) do
     t.integer  "cached_weighted_score",   default: 0
     t.integer  "cached_weighted_total",   default: 0
     t.float    "cached_weighted_average", default: 0.0
+    t.boolean  "approval",                default: true
+    t.string   "attachment"
   end
 
   add_index "shops", ["cached_votes_down"], name: "index_shops_on_cached_votes_down"

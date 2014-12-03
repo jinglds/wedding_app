@@ -494,7 +494,7 @@ footer ul li {
 
 /* EXPENSE */
 
-.expense-table{
+.all-table{
 
   font-family: Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 
@@ -1006,23 +1006,42 @@ div.hidden {
 .shop-block {
  /*background-color: $darkGrey;*/
  height: 370px;
+ width: 265px;
  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
   font-family: "Tw Cen MT";
-  &:hover{
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
 
+  /*box-shadow: 2px 2px 3px $softerGold;*/
+  border: 1px $softerGold solid;
+  &:hover{
+      /*background-color: $lightYellow;*/
+      box-shadow: 1px 1px 3px $softerGold;
     >div{
     }
   }
 }
 
+.user-shop-block-content{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  
+
+}
 .shop-block-content{
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-
+  
+  font-family: "Tw Cen MT";
 }
 .shop-block-title {
+  font-family: "Tw Cen MT";
   padding: 0;
   margin: 0;
   > a{
@@ -1034,12 +1053,30 @@ div.hidden {
 
 .shop-contact-block{
   font-size: 1.1em;
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+
+  font-family: "Tw Cen MT";
 }
+
+
 .shop-title{
     font-size: 2.3em;
-  font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
 
+  font-family: "Tw Cen MT";
+
+}
+
+
+.user-shop-block-title {
+  font-family: "Tw Cen MT";
+  padding: 0;
+  margin: 0;
+  > a{
+    font-size: 1.3em;
+    font-style: bold;
+  /*font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;*/
+  }
 }
 .comment-item{
   font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
@@ -1058,11 +1095,11 @@ div.hidden {
   color: $grey;
 }
 .photo-item{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  /*width: 580px;*/
+  width: 540px;
   font-family: "Tw Cen MT";
   text-transform: lowercase;
+  display: inline-block;
+  margin: 10px;
 
 }
 #photos-list {
@@ -1167,9 +1204,10 @@ div.hidden {
 
 .gallery-thumb{
   padding: 5px;
+  box-shadow: 2px 2px 3px $softerGold;
   &:hover{
 
-  box-shadow: 2px 2px 3px $softerGold;
+  box-shadow: 2px 2px 3px $gold;
 
   }
 
@@ -1573,4 +1611,40 @@ ul.affix-bottom {
   }
   /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
   
+}
+
+.back-btn{
+  color: $gold;
+  font-family: "Tw Cen MT";
+  font-style: italic;
+  font-size: 1.2em;
+  /*font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;*/
+  &:hover{
+    color: $darkGold;
+    text-decoration: none;
+  }
+  
+}
+
+.my-shop{
+  background-color: $lighterPurple;
+  border: 0;
+}
+.user-shop-block{
+  background-color: white;
+  margin-top: 10px;
+}
+.shop-img{
+  margin: 5px;
+}
+
+.gallery-thumb-cover{
+  padding: 5px;
+  box-shadow: 3px 3px 3px $lightPurple;
+  &:hover{
+
+  box-shadow: 2px 2px 3px $gold;
+
+  }
+
 }

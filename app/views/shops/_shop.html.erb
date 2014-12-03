@@ -1,10 +1,10 @@
 
 <%= link_to shop do %> 
-  <div class="shop-block col-md-3">
+  <div class="shop-block <%= 'my-shop' if (current_user==shop.user) %>">
     <div class="center">
       <%= image_tag ("shop-default.png") %>
     </div>
-    <div class="shop-block-content">
+    <div class="shop-block-content ">
       <div class="shop-block-title"><%= link_to shop.name.titleize, shop %></div>
       <% if (shop.cached_weighted_total.to_f / shop.cached_votes_total).nan?  %>
         <% @ratings=0.0 %>
@@ -16,12 +16,12 @@
       <%= render partial: 'shops/main_rating' %>
       <br>Style: <%= raw shop.style_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
       <br>Categories: <%= raw shop.category_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-      <% if (current_user==shop.user) %>
+     <!--  <% if (current_user==shop.user) %>
         <%= link_to "edit", edit_shop_path(shop.id) %> | 
         <%= link_to "delete", shop, method: :delete,
                                          data: { confirm: "You sure?" },
                                          title: shop.name %>
-      <% end %>
+      <% end %> -->
     </div>
   </div>
 <% end %>
