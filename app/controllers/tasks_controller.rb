@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user, except: [:index, :create, :calendar]
+  before_action :correct_user, except: [:index, :create, :calendar, :new]
   before_action :event_user, only: [:index, :create]
   def add_vendor
     @task = Task.find(params[:task_id])

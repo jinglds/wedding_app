@@ -1,6 +1,14 @@
-<div class="container">
 <% provide(:title, 'All users') %>
-<h1>Manage Users</h1>
+<div class="heading-block">
+	
+	<h1 class="elegant">Manage Users</h1>
+	
+</div>
+
+
+<div class="container">
+
+
 <ul class="nav nav-tabs  cus-tabs" id="user-nav">
 	<li role="presentation" class="active">
 		<%= link_to  users_path(:filter => ""), method: :get, remote: true, id:"all-users-btn" do %>
@@ -34,3 +42,6 @@
 </div>
 
 </div>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

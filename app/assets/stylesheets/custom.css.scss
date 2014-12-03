@@ -4,9 +4,11 @@
 @import 'bootstrap-datetimepicker';
 
 /* mixins, variables, etc. */
-$darkGold: #5F4C0B;
-$darkGold: #886A08;
+$darkerGold: #5F4C0B; 
+$darkGold: #725f3b;
 $gold: #a19376;
+$lightGold: #C9BA9E;
+$lighterGold: #E6DBC8;
 $softerGold: #e8e1cb;
 $softGold: #c8b984;
 
@@ -233,9 +235,11 @@ p {
 
 
 .new-navbar-custom {
-    background-color: $darkGrey;
+    /*background-color: $darkGrey;*/
+    background-color: $gold;
     font-family: "Tw Cen MT";
-    color: $gold;
+    /*color: $gold;*/
+    color: white;
     height: 30px;
     padding-top: 5px;
     font-size: 1em;
@@ -261,14 +265,17 @@ p {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: $lightGrey;
+        /*background-color: $lightGrey;*/
+        background-color: $softerGold;
+        /*background-color: $lighterGold;*/
         height: 100%;
     }
 
     .side-top{
       width: 225px;
       height: 30px;
-      background-color: $mediumGrey;
+      /*background-color: $mediumGrey;*/
+      background-color: $lightGold;
     }
 
     .side-menu>ul>li>a {
@@ -311,9 +318,11 @@ p {
       padding-top: 5px;
       padding-bottom: 5px;
       /*border-top: 1px $lightGrey solid ;*/
-      background-color: $softGrey;
+      /*background-color: $softGrey;*/
+      background-color: $gold;
       &:hover{
-        background-color: $mediumGrey;
+        background-color: $darkGold;
+        color: $softGold;
         
       }
     }

@@ -53,21 +53,23 @@
 
           <% if admin?(current_user) %>
 
+            
+
+            <li>
+              <a data-toggle="collapse" data-parent="#user-menu" href="#my-articles-nav" aria-expanded="true" aria-controls="my-articles-nav">
+                Manage Articles <b class="caret"></b>
+              <ul id="my-articles-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="my-articles">
+                <li><%= link_to "New Article", new_article_path %></li>
+                <li><%= link_to "Manage Articles",articles_path %></li>
+              </ul>
+            </li>
+
             <li>
               <a data-toggle="collapse" data-parent="#user-menu" href="#users-nav" aria-expanded="true" aria-controls="my-shops-nav">
                 Manage Users <b class="caret"></b>
               </a>
               <ul id="users-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="users">
                 <li><%= link_to "All Users",    users_path %></li>
-              </ul>
-            </li>
-
-            <li>
-              <a data-toggle="collapse" data-parent="#user-menu" href="#my-articles-nav" aria-expanded="true" aria-controls="my-articles-nav">
-                Articles <b class="caret"></b>
-              <ul id="my-articles-nav" class="collapse list-unstyled" role="tabpanel" aria-labelledby="my-articles">
-                <li><%= link_to "New Article", new_article_path %></li>
-                <li><%= link_to "Manage Articles",articles_path %></li>
               </ul>
             </li>
 

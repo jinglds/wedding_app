@@ -14,7 +14,26 @@
 	<body data-spy="scroll" data-target="#affix-nav">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-9">
+					<span class="no-text">Here is a checklist guide for your event. 
+						Click on <%= link_to image_tag("done_icon_grey.png",  :border => 0, :width=> 15, :height=>15, :alt => "done icon"), '#',  :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"completed!"%> to check the item out. 
+						Click on <%= link_to  image_tag("undo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "undo icon"), '#', :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"uncomplete"  %> to undo the item. <br>
 
+						You can add them to your tasklist by clicking on the <%= link_to image_tag("add_task_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "add task icon"), '#', :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add to task!"%> button!</span> 
+				</div>
+
+				<div class="col-md-3">
+					<div class="panel">
+						<a data-toggle="collapse"  href="#checklist-form" aria-expanded="true" aria-controls="checklist-form">
+			            <h4 class="center">New Checklist<b class="caret"></b></h4>
+			      		</a>
+			      		<div id="checklist-form" class="collapse ">
+			         		sdf
+			     	 	</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<section id="timeline-content" class="col-md-9 col-sm-9 col-xs-12">
 					
 	<h2>Event Checklist</h2>
@@ -92,8 +111,6 @@
 
 		</div><!-- end of container -->
 	 
-	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
 	</body>
