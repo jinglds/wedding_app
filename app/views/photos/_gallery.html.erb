@@ -16,7 +16,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h3 class="modal-title center" id="myModalLabel"><%=photo.title%></h3>
       </div>
-      <div class="modal-body">
+      <div class="modal-body center">
         <%= link_to image_tag(photo.image.thumb('x800').url, alt: photo.title, class: 'img-thumbnail'),
                   photo.image.url, target: '_blank' %>
       </div>

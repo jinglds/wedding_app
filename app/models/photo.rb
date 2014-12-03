@@ -1,5 +1,7 @@
 class Photo < ActiveRecord::Base
-	dragonfly_accessor :image
+	dragonfly_accessor :image do
+	    default 'assets/images/shop-default.jpg'
+	  end
 	belongs_to :shop
 
 	# validates :title, presence: true, length: {minimum: 2, maximum: 20}

@@ -61,8 +61,9 @@ namespace :db do
       name = Faker::Company.name
       phone =  Faker::PhoneNumber.cell_phone
       address = Faker::Address.city
-      details = ["auto", "non-auto"]
+      details = ["Package A", "Package B"]
       email = "shop@abc.com"
+      approval = [true, false]
       # cover_url = ["default-s.jpg", "default-w.jpg", "default-l.jpg", "default-m.jpg", "default.jpg"]
       category_list = ["attire, music", "photography, card", "music, decoration, photography", "decoration, attire", "photography"]
       style_list =["vintage, beauty, classic", "luxury, classic", "vintage", "modern, pop", "modern, luxury", "beauty, modern", "pastel, light", "beauty, modern, creative"]
@@ -78,7 +79,8 @@ namespace :db do
                                               # cover_url: cover_url.sample,
                                               details: details.sample,
                                               website: website,
-                                              description: description
+                                              description: description,
+                                              approval: approval.sample
                                               ) }
 
 
@@ -130,7 +132,7 @@ namespace :db do
                                               address:address,
                                               gender:gender.sample,
                                               invitation_sent:invitation_sent.sample,
-                                              via: via.sample,
+                                              invited_via: via.sample,
                                               attending:attending.sample,
                                               group:group.sample,
                                               table_no:table_no.sample,

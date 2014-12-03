@@ -15,6 +15,8 @@
 <%= f.text_field :style_list,
                  :id => "shop_styles",
                  "data-pre" => @shop.styles.map(&:attributes).to_json, class: "form-field" %>
+<br>
+                  
 
 <span class="pull-left"><%= button_to "< Previous", '#', id: "shop-back-btn2", class: "all-btn btn", remote:true %></span>
     <span class="pull-right">

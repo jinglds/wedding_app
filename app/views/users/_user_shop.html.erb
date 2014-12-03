@@ -11,7 +11,7 @@
             <% end %>
           </div>
           <div class="user-shop-block-content">
-            <span class="user-shop-block-title"><%= link_to s.name.titleize, s %></span>
+            <span class="user-shop-block-title"><%= link_to s.name.titleize, s %></span> <span class="no-text">(<% if s.approval==true %> Approval in Process.. <%else%> Approved <%end%>)</span>
             <br> Favorites: <%= Favorite.where(:favorited_id =>s.id).count %>
             <br> Rating: 
               <% if (s.get_upvotes.sum(:vote_weight).to_f / s.get_upvotes.size).nan? %> 

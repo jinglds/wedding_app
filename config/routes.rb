@@ -112,8 +112,14 @@ WeddingApp::Application.routes.draw do
   get "shops/categories" => "shops#categories", :as => :categories
   get "shops/styles" => "shops#styles", :as => :styles
   
+  match 'pending_shops', to: 'shops#pending', via: 'get'
+
   resources :shops do
       resources :photos
+      member do
+        put "approve"
+        put "disapprove"
+      end
       get "new_gallery", to: "photos#new_gallery"
       get "edit_gallery", to: "photos#edit_gallery"
       put "set_cover", to: "photos#set_as_cover"
@@ -151,8 +157,6 @@ WeddingApp::Application.routes.draw do
   match "user_category", to: "users#category", via: 'get'
   
   match 'guests/all' => 'guests#update_all', :as => :update_all, :via => :put
-
-
     
   
 # The priority is based upon order of creation: first created -> highest priority.

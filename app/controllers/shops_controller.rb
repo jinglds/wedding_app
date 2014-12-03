@@ -3,8 +3,27 @@ class ShopsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :category]
   before_action :correct_user,   only: [:destroy, :edit, :update]
   before_action :client_user, only: [:new, :create, :destroy,  :edit, :update]
+  before_action :admin_user, only: [:approve, :disapprove, :pending]
   # before_filter :set_search, only: :index
+  def approve
+      @shop = Shop.find(params[:id])
+      @shop.update_attributes(:approval => false)
 
+      redirect_to pending_shops_path
+    end
+
+  def disapprove
+    @shop = Shop.find(params[:id])
+    @shop.update_attributes(:approval => true)
+
+    redirect_to pending_shops_path
+  end
+
+  def pending
+    @shops = Shop.all
+      @shops = @shops.paginate(page: params[:page]).order(params[:sort])
+    
+  end
 
   def categories
   @categories = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%").where("tags.id IN (SELECT taggings.tag_id FROM taggings WHERE taggings.context LIKE 'categories')")
@@ -63,7 +82,7 @@ end
   def index
     @categories = Shop.category_counts
     @styles = Shop.style_counts
-    @shops= Shop.all.paginate(page: params[:page]).order(params[:order])
+    @shops= Shop.approved.paginate(page: params[:page]).order(params[:order])
     respond_to do |format|
       format.html 
       format.js
@@ -179,7 +198,9 @@ end
                   :details,
                   :email,
                   :category_list,
-                  :style_list)
+                  :style_list,
+                  :attachment,
+                  :approval)
                   # photos_attributes: [:shop_id, :image])
   end
 
@@ -193,6 +214,9 @@ end
       redirect_to root_url if (current_user.role =="client")
   end
 
+  def admin_user
+    redirect_to root_url unless (current_user.role =="admin")
+  end
 
   def set_search
     @q=Shop.ransack(params[:q])

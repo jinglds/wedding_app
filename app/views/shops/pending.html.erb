@@ -1,0 +1,76 @@
+<% provide(:title, 'Manage Shops') %>
+<div class="heading-block">
+	
+	<h1 class="elegant">Manage Shops</h1>
+	
+</div>
+
+<div class="container">
+	 <div class="row">
+            <%= will_paginate @shops, renderer: BootstrapPagination::Rails  %>
+          </div>
+	
+<%= table_for @shops,:html=>{:class=>"table table-hover all-table"} do |t| %>
+  <%= t.head do %>
+    <%= t.r do %>
+      <%= t.h do %>
+        <%= link_to "Name", pending_shops_path(:sort => "name"), :class=>"sort-btn"%>
+      <% end %>
+       <%= t.h do %>
+        <%= link_to "Owner", pending_shops_path(:sort => "user"), :class=>"sort-btn" %>
+      <% end %>
+      <%= t.h do %>
+        <%= link_to "Date added", pending_shops_path(:sort => "created_at"), :class=>"sort-btn" %>
+      <% end %>
+      <%= t.h('Attachment') %>
+      <%= t.h do %>
+        <%= link_to "Approval", pending_shops_path(:sort => "approval"), :class=>"sort-btn"%>
+      <% end %>
+      <%= t.h('Action') %>
+    <% end %>
+  <% end %>
+  <%= t.body do |shop| %>
+    <%= t.r(:class => ('warning' if shop.approval==true)) do %>
+   		<%= t.d(:class => 'name') do %>
+      		<%= link_to  shop do %>
+      			<%= shop.name.titleize %> 
+      		<% end %>
+    	<% end %>
+    	<%= t.d(:class => 'name') do %>
+    		<%= link_to shop.user do %>
+				<%= shop.user.firstname %> <%= shop.user.lastname %> 
+	    	<% end %>
+	    <% end %>
+	    <%= t.d(:class => 'name') do %>
+      			<%= shop.created_at.to_formatted_s(:db) %> 
+    	<% end %>
+		<%= t.d(:class => 'name') do %>
+			<% if shop.attachment.nil? %>
+			n/a
+		<% else %>
+      			<%= link_to "attachment", shop.attachment.url %>
+	      	<% end %>
+	    <% end %>
+
+      	<%= t.d(:class => 'name') do %>
+      		<% if shop.approval==true %>
+			     	Not Approved / <%= link_to "Approve?", approve_shop_path(shop, :filter => @filter), :id=>"approve-btn",  :method => :put %>
+    			<% else %>
+    			 	Approved / <%= link_to "Disapprove?", disapprove_shop_path(shop, :filter => @filter), :id=>"approve-btn",  :method => :put %>
+			<% end %>
+      	<% end %>
+		<%= t.d(:class => 'name') do %>
+      		<%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete user icon"), shop, :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "Are you sure you want to delete this shop?"}, :title=>"delete shop", method: :delete %>
+      	<% end %>
+
+  
+   		 
+    <% end %>
+  <% end %>
+<% end %>
+
+</div>
+
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

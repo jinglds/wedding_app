@@ -1,0 +1,15 @@
+<h3>1. Basic Information</h3>
+    <hr>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-field",  placeholder:"Shop Name" %>
+
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-field",  placeholder:"Some description for your shop.." %>
+
+      <%= f.label :details, "Packages" %>
+      <%= f.text_area :details, class: "form-field",  placeholder:"E.g. Photo Book + On Event photography", rows: 5 %>
+
+      <span class="pull-left"><%= button_to "< Previous", '#', id: "shop-back-btn-p", class: "all-btn btn", remote:true %></span>
+
+      <span class="pull-right"><%= button_to "Next >", '#', id: "shop-next-btn1", class: "all-btn btn pull-right", remote:true %></span>

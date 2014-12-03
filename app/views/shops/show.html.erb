@@ -1,3 +1,4 @@
+<% if (@shop.approval==false) || ((@shop.approval ==true )&& (current_user.role=='admin' || current_user==@shop.user) )%>
 <div class="container">
 <% provide(:title, @shop.name.titleize) %>
 <div class="transparent">x</div>
@@ -123,6 +124,15 @@
   </div>
 </div>
 
+<%else%>
+
+<div class="container">
+  <div class="transparent">x</div>
+  <h2>Sorry</h2>
+  <h1>This Shop Has Not Been Through the Approval Process Yet...</h1>
+</div>
+
+<%end%>
 
 
       <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -2,20 +2,20 @@
 <%= form_for @shop, :method => :post, :html=>{:id=>"shop-form"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field ">
-  <div id="shop-form-basic-div">
-    <h3>1. Basic Information</h3>
+
+  <div id="shop-form-attachment-div">
+    <h4 class="center">To create a Shop, please upload</h4>
+      <h4 class="center"> the proof of your shop existence.</h4> <br>
+      <p class="no-text center">(Your shop page will be available for public as soon as it has been approved.)</p>
     <hr>
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-field",  placeholder:"Shop Name" %>
+      <%= f.label :attachment %> <span class="small">(Only .jpeg, .jpg, .png, .bmp, .pdf file formats allowed)</span>
+      <%= f.file_field :attachment, required: true %>
 
-
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-field",  placeholder:"Some description for your shop.." %>
-
-      <%= f.label :details, "Packages" %>
-      <%= f.text_area :details, class: "form-field",  placeholder:"E.g. Photo Book + On Event photography", rows: 5 %>
-
-      <%= button_to "Next >", '#', id: "shop-next-btn1", class: "all-btn btn pull-right", remote:true %>
+      <%= button_to "Next >", '#', id: "shop-next-btn-p", class: "all-btn btn pull-right", remote:true %>
+  </div>
+  <div id="shop-form-basic-div">
+    
+    <%= render partial: 'shops/shop_form_basic', locals: { f: f }%>
 
   </div>
 

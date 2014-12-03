@@ -17,6 +17,26 @@ $(function() {
 
 	$('#shop-form-tags-div').hide();
 	$('#shop-form-contact-div').hide();
+	$('#shop-form-basic-div').hide();
+
+	$('#shop-next-btn-p').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#shop-form-basic-div').fadeIn();
+	    
+		$('#shop-form-attachment-div').hide();
+		
+	
+    });
+    $('#shop-back-btn-p').click(function(event){
+	    event.preventDefault();
+	    
+	    $('#shop-form-attachment-div').fadeIn();
+	    
+		$('#shop-form-basic-div').hide();
+		
+	
+    });
 
   	$('#shop-next-btn1').click(function(event){
 	    event.preventDefault();
