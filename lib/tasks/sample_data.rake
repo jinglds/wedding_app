@@ -24,7 +24,7 @@ namespace :db do
                 address: "Bangkok",
                 phone: "12345678",
                 role: "admin",
-                 email: "aj.om@email.com",
+                 email: "aj_om@email.com",
                  password: "12345678",
                  password_confirmation: "12345678",
                  approval: "f")
