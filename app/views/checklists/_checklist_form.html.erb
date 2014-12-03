@@ -1,0 +1,25 @@
+<div class=" form-all">
+
+<%= form_for([@event, @checklist]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+   
+    <%= f.label :title %>
+    <%= f.text_field :title, required:true, class: "form-field" %>
+
+
+    <%= f.label :time_range %> <br> <span class="small">(About how many days before the event)</span>
+    <%= f.number_field :time_range, required:true, in: 1...9999999, class: "form-field" %>
+
+
+    <%= f.label :completed %>
+    <%= f.select :completed, [['Yes', true], ['No', false]] %>
+
+
+
+  </div></br>
+  <%= f.submit "Submit", class: "btn btn-large all-btn" %>
+<% end %>
+
+  
+</div>

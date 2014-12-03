@@ -4,6 +4,7 @@ class ChecklistsController < ApplicationController
     @event = Event.find(params[:event_id])
     @checklists = @event.checklists
     @tasks = @event.tasks
+    @checklist= Checklist.new
 
     respond_to do |format|
       format.html 
@@ -23,11 +24,11 @@ class ChecklistsController < ApplicationController
         # respond_to do |format|
       if @checklist.save
          flash[:success] = "Checklist created!"
-         redirect_to @event
+         redirect_to event_checklists_path(@event)
         
       else
-        flash[:success] = "Error!"
-          render 'new'
+        flash[:danger] = "Error!"
+          render event_checklists_path(@event)
       end
   end
 
