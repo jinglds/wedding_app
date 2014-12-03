@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203145824) do
+ActiveRecord::Schema.define(version: 20141203172807) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.string   "content"
+    t.text     "content",    limit: 255
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",  default: false
+    t.boolean  "published",              default: false
   end
 
   add_index "articles", ["published", "category"], name: "index_articles_on_published_and_category"
@@ -125,18 +125,18 @@ ActiveRecord::Schema.define(version: 20141203145824) do
     t.integer  "adults"
     t.integer  "children"
     t.string   "phone"
-    t.string   "address"
+    t.text     "address",         limit: 255
     t.string   "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "group",           default: "none"
+    t.string   "group",                       default: "none"
     t.integer  "table_no"
     t.string   "note"
-    t.boolean  "attending",       default: false
-    t.boolean  "invitation_sent", default: false
+    t.boolean  "attending",                   default: false
+    t.boolean  "invitation_sent",             default: false
     t.string   "invited_via"
-    t.boolean  "responded",       default: false
+    t.boolean  "responded",                   default: false
   end
 
   add_index "guests", ["event_id"], name: "index_guests_on_event_id"
@@ -167,23 +167,23 @@ ActiveRecord::Schema.define(version: 20141203145824) do
     t.string   "type"
     t.string   "name"
     t.string   "price_range"
-    t.string   "description"
+    t.text     "description",             limit: 255
     t.string   "phone"
     t.string   "email"
-    t.string   "address"
+    t.text     "address",                 limit: 255
     t.string   "website"
-    t.string   "details"
+    t.text     "details",                 limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cover_url",               default: "default.png"
-    t.integer  "cached_votes_total",      default: 0
-    t.integer  "cached_votes_score",      default: 0
-    t.integer  "cached_votes_up",         default: 0
-    t.integer  "cached_votes_down",       default: 0
-    t.integer  "cached_weighted_score",   default: 0
-    t.integer  "cached_weighted_total",   default: 0
-    t.float    "cached_weighted_average", default: 0.0
-    t.boolean  "approval",                default: true
+    t.string   "cover_url",                           default: "default.png"
+    t.integer  "cached_votes_total",                  default: 0
+    t.integer  "cached_votes_score",                  default: 0
+    t.integer  "cached_votes_up",                     default: 0
+    t.integer  "cached_votes_down",                   default: 0
+    t.integer  "cached_weighted_score",               default: 0
+    t.integer  "cached_weighted_total",               default: 0
+    t.float    "cached_weighted_average",             default: 0.0
+    t.boolean  "approval",                            default: true
     t.string   "attachment_uid"
   end
 
@@ -243,22 +243,22 @@ ActiveRecord::Schema.define(version: 20141203145824) do
   create_table "users", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
-    t.string   "address"
+    t.text     "address",                limit: 255
     t.string   "phone"
-    t.string   "role",                   default: "client"
-    t.string   "email",                  default: "",       null: false
-    t.string   "encrypted_password",     default: "",       null: false
+    t.string   "role",                               default: "client"
+    t.string   "email",                              default: "",       null: false
+    t.string   "encrypted_password",                 default: "",       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,        null: false
+    t.integer  "sign_in_count",                      default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "approval",               default: false
+    t.boolean  "approval",                           default: false
     t.string   "authentication_token"
   end
 
