@@ -8,21 +8,31 @@
 <div class="container">
 	<div class="row">
 		<h3>My Events</h3>
-
+<% if @events.any? %>
 <%= render partial: 'users/user_events', locals:{:user_events=>@events}%>
-
+<%else%>
+	<span class="no-text">(No event)</span>
+<br> <br>
+	<%= link_to "+ New Event", new_event_path, class:"all-btn" %>
+<%end%>
 	</div>
 
 	<div class="row">
-		<h3>Collaborated Events</h3>
+		<h3>Collaborating Events</h3>
+		<% if @collaborations.any? %>
 <%= render partial: 'users/user_events', locals:{:user_events=>@collaborations}%>
-
+<%else%>
+	<span class="no-text">(No collaborating)</span>
+<%end%>
 
 	</div>
 <div class="row">
-	<h3>Request Events</h3>
+	<h3>Request for Collaboration</h3>
+<% if @requests.any? %>
 <%= render partial: 'collaborations/requests', locals:{:requests=>@requests}%>
-
+<%else%>
+	<span class="no-text">(No request)</span>
+<%end%>
 </div>
 </div>
 

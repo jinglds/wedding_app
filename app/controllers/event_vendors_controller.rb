@@ -51,4 +51,15 @@ class EventVendorsController < ApplicationController
   	flash[:success] = "Vendor removed from event!"
     redirect_to event_vendors_path(:event_id=>@event.id)
 	end
+
+  private
+     def collaborator
+    @myevent = current_user.events.find_by( params[:event_id])
+    @event = Event.find_by(Collaboration.where(:id=> (params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    redirect_to root_url if (@event.nil? && @myevent.nil?)
+  end
+    def correct_user
+          @event_vendor = current_user.event_vendors.find_by(id: params[:id] || params[:event_vendor_id])
+          redirect_to root_url if @event_vendor.nil?
+  end
 end
