@@ -20,7 +20,8 @@ class CollaborationsController < ApplicationController
 			flash[:danger] = "No user with that email"
         	redirect_to new_collaboration_path(:event_id=>@event.id)
       	else
-      		if Collaboration.where(:user_id=>@user.id).where(:event_id=>@event.id).nil?
+      		@col = Collaboration.where(:user_id=>@user.id, :event_id=>@event.id)
+      		if @col.nil?
       			if @user ==current_user
 			    	flash[:danger] = "You are the owner of the event!"
 			        redirect_to new_collaboration_path(:event_id=>@event.id)
@@ -34,7 +35,7 @@ class CollaborationsController < ApplicationController
 			        	render 'new'
 			      	end
 			     end
-		    elsif	
+		    else
 		    	flash[:danger] = "Request already sent to that email!"
 		         redirect_to new_collaboration_path(:event_id=>@event.id)
 		    end

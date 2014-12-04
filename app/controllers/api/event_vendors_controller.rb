@@ -6,6 +6,13 @@ module Api
       @vendors = @event.vendors
     end
 
+
+  def get_event_vendors
+    @event = Event.find(params[:event_vendor][:event_id])
+    @vendors = @event.vendors
+    @vendor = Vendor.new
+  end
+
   	def create
   		
         # @task = Task.find(params[:task_id])
