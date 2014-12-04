@@ -7,7 +7,7 @@ WeddingApp::Application.routes.draw do
     get "my_shops", to: "users#shops"
     match "get_shop", to: "shops#get_shop", via: 'post'
 
-    match "get_event_vendors", to: "event_vendor#get_event_vendors", via: 'post'
+    match "get_event_vendors", to: "event_vendors#get_event_vendors", via: 'post'
     resources :favorite_shops, only: [:create, :destroy, :unfav]
     resources :favorites, only: [:destroy]
     resources :articles
