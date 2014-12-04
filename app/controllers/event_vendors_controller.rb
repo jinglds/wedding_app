@@ -15,7 +15,12 @@ class EventVendorsController < ApplicationController
     @vendor = Vendor.new
     @events = current_user.events
   end
-
+  def get_event_vendors
+    @event = Event.find(params[:event_id])
+    @vendors = @event.vendors
+    @vendor = Vendor.new
+    @events = current_user.events
+  end
 	def create
 		
       # @task = Task.find(params[:task_id])

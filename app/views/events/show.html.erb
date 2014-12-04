@@ -48,6 +48,9 @@
 			<%= link_to event_checklists_path(@event) do %>
 			<div><%= @progress%>% of the Checklist done</div>
 			<%end%>
+
+			<hr>
+			<%= link_to "share event", new_collaboration_path(:event_id=>@event.id)%>
 		</div>
 	</div>
 

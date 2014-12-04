@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
 	has_many :checklists, dependent: :destroy
 	has_many :expenses, dependent: :destroy
 	has_many :comments
+	has_many :collaborations
 	has_many :events, dependent: :destroy
+	# has_many :events, through: :collaborations
 	has_many :shops, dependent: :destroy
 	has_many :vendors, dependent: :destroy
 	has_many :favorites

@@ -6,6 +6,11 @@ class Event < ActiveRecord::Base
 	has_many :event_vendors
 	has_many :guests
   	has_many :vendors, through: :event_vendors
+
+  	has_many :collaborations
+  	# has_many :users, through: :collaborations
+
+# 
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true
 	validates :event_type, presence: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203172807) do
+ActiveRecord::Schema.define(version: 20141204154238) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20141203172807) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "collaborations", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "accepted",   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collaborations", ["user_id", "event_id"], name: "index_collaborations_on_user_id_and_event_id"
 
   create_table "comments", force: true do |t|
     t.string   "title"
