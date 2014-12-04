@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user, except: [:index, :create, :calendar, :new]
-  before_action :event_user, only: [:index, :create]
+  before_action :correct_user, only: [:destroy]
+  before_action :collaborator, except: [:calendar,  :destroy]
+  # before_action :event_user, only: [:index, :create]
   def add_vendor
     @task = Task.find(params[:task_id])
     @event = Event.find(params[:event_id])
@@ -279,7 +280,11 @@ class TasksController < ApplicationController
         @task = current_user.tasks.find_by(id: params[:id] || params[:task_id])
         redirect_to root_url if @task.nil?
     end
-
+def collaborator
+    @myevent = current_user.events.find_by( params[:event_id])
+    @event = Event.find(Collaboration.where(:event_id=> (params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    redirect_to root_url if (@event.nil? && @myevent.nil?)
+  end
     def event_user
       @event = current_user.events.find_by(id: params[:id] || params[:event_id])
       redirect_to root_url if @event.nil?

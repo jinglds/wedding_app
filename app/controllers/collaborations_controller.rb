@@ -1,5 +1,12 @@
 class CollaborationsController < ApplicationController
 
+	def accept
+	    @collaboration = Collaboration.find(params[:collaboration_id])
+	    
+	    @collaboration.update_attributes(:accepted => true) 
+	    redirect_to event_path(@collaboration.event)
+	end
+
 	def new
 	    @event = Event.find(params[:event_id])
 	    @collaboration = Collaboration.new
@@ -20,12 +27,13 @@ class CollaborationsController < ApplicationController
 			flash[:danger] = "No user with that email"
         	redirect_to new_collaboration_path(:event_id=>@event.id)
       	else
-      		@col = Collaboration.where(:user_id=>@user.id, :event_id=>@event.id)
+      		@col = Collaboration.where(:user_id=>@user.id, :event_id=>@event.id).first
       		if @col.nil?
       			if @user ==current_user
 			    	flash[:danger] = "You are the owner of the event!"
 			        redirect_to new_collaboration_path(:event_id=>@event.id)
 			    else
+			    	params[:collaboration][:user_id] = @user.id
 			        if Collaboration.create!(collaboration_params)
 			        	flash[:success] = "Collaboration request sent!"
 			        	redirect_to event_path(@event)
@@ -44,13 +52,11 @@ class CollaborationsController < ApplicationController
 
 	def destroy
   	
-    @user = User.find(params[:id])
-    @event = Event.find(params[:event_id])
-  	Collaboration.where(user_id: @user.id, event_id: @event.id).first.destroy
+  	Collaboration.where(:id=>params[:id]).first.destroy
     
 
   	flash[:success] = "User removed from event!"
-    redirect_to collaborations_path(:event_id=>@event.id)
+    redirect_to myevents_path
 	end
 
 	private

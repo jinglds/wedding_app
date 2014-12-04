@@ -1,4 +1,8 @@
 class EventVendorsController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :correct_user,   only: [:destroy]
+  before_action :collaborator, except: [:destroy, :new]
+  
 
 	def new
 

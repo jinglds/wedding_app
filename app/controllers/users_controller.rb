@@ -64,6 +64,10 @@ class UsersController < ApplicationController
 
   	def events
   		@events = current_user.events
+      @col_ids = Collaboration.where(:user_id=> current_user.id).joined.pluck(:event_id).uniq
+      @collaborations = Event.where('id in (?)', @col_ids)
+      @req_ids = Collaboration.where(:user_id=> current_user.id).requests.pluck(:event_id).uniq
+      @requests = Event.where('id in (?)', @req_ids)
   	end
   	
   	def pendings

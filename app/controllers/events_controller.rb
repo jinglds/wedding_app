@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
   # before_action :user_signed_in?, only: [:create, :destroy]
-  before_action :correct_user, only: [:destroy, :update, :edit, :clear_tasks, :create_default_tasks]
+  before_action :correct_user, only: [:destroy]
   after_filter :create_checklist, only: [:create]
+  before_action :collaborator, only: [:update, :edit, :clear_tasks, :create_default_tasks, :show]
       
   # before_filter :set_date, only: [:create, :update]
 
@@ -804,6 +805,12 @@ class EventsController < ApplicationController
   def correct_user
         @event = current_user.events.find_by(id: params[:id] || params[:event_id])
         redirect_to root_url if @event.nil?
+  end
+
+  def collaborator
+    @myevent = current_user.events.find_by(id: params[:id] || params[:event_id])
+    @event = Event.find_by(Collaboration.where(:id=> (params[:id] || params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    redirect_to root_url if (@event.nil? && @myevent.nil?)
   end
 
   def set_date

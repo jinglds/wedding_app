@@ -1,8 +1,10 @@
 class GuestsController < ApplicationController
 	before_filter :authenticate_user!, except: [:attending_rsvp, :invitation_form]
-	before_action :correct_user,   only: [:destroy, :edit, :update, :attending, :invitation_sent]
-	before_action :event_user, only: [:index, :create, :manage_tables, :invitation, :update_all, :set_table, :clear_table]
-
+	before_action :correct_user,   only: [:destroy, :attending, :invitation_sent]
+	# before_action :event_user, only: [:index, :create, :manage_tables, :invitation, :update_all, :set_table, :clear_table]
+	
+  before_action :collaborator, only: [:index, :edit, :update, :create, :manage_tables, :invitation, :update_all, :set_table, :clear_table]
+	
 	def invitation_form
 	    @event = Event.find(params[:event_id])
 	    @guest = Guest.find(params[:guest_id])
@@ -256,7 +258,11 @@ class GuestsController < ApplicationController
 			                  	:user_id)
 
 	  end
-
+def collaborator
+    @myevent = current_user.events.find_by( params[:event_id])
+    @event = Event.find(Collaboration.where(:event_id=> (params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    redirect_to root_url if (@event.nil? && @myevent.nil?)
+  end
 	def correct_user
 	        @guest = current_user.guests.find_by(id: params[:id] || params[:guest_id])
 	        redirect_to root_url if @guest.nil?

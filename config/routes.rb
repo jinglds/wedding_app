@@ -73,7 +73,9 @@ WeddingApp::Application.routes.draw do
     put "publish", to: "articles#publish"
     put "unpublish", to: "articles#unpublish"
   end
-  resources :collaborations
+  resources :collaborations do
+        put "accept", to: "collaborations#accept"
+  end
   resources :vendors
   resources :event_vendors
   resources :events do

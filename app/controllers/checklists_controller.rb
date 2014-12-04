@@ -1,5 +1,7 @@
 class ChecklistsController < ApplicationController
-
+  before_filter :authenticate_user!
+  before_action :correct_user,   only: [:destroy]
+  before_action :collaborator, except: [:complete, :decomplete, :destroy]
 	def index
     @event = Event.find(params[:event_id])
     @checklists = @event.checklists
@@ -76,7 +78,7 @@ class ChecklistsController < ApplicationController
 	    end
 	end
 
-
+  private
 	def checklist_params
         params.require(:checklist).permit(:title,
                                     :event_id,
@@ -87,4 +89,14 @@ class ChecklistsController < ApplicationController
 
 
       end
+
+      def collaborator
+    @myevent = current_user.events.find_by( params[:event_id])
+    @event = Event.find(Collaboration.where(:event_id=> (params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    redirect_to root_url if (@event.nil? && @myevent.nil?)
+  end
+  def correct_user
+          @checklist = current_user.checklists.find_by(id: params[:id] || params[:checklist_id])
+          redirect_to root_url if @checklist.nil?
+  end
 end

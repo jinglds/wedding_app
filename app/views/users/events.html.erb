@@ -6,6 +6,27 @@
 
 </div>
 <div class="container">
+	<div class="row">
+		<h3>My Events</h3>
 
-<%= render partial: 'users/user_events', collections: @events, :as => :item %>
+<%= render partial: 'users/user_events', locals:{:user_events=>@events}%>
+
+	</div>
+
+	<div class="row">
+		<h3>Collaborated Events</h3>
+<%= render partial: 'users/user_events', locals:{:user_events=>@collaborations}%>
+
+
+	</div>
+<div class="row">
+	<h3>Request Events</h3>
+<%= render partial: 'collaborations/requests', locals:{:requests=>@requests}%>
+
 </div>
+</div>
+
+
+
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>

@@ -1,30 +1,54 @@
-<% @events.each do |e| %>
+<% user_events.each do |e| %>
   <div class="col-md-4">
     <%= link_to e do %> 
       <div class="all-block">
-        <h4><%= e.bride_name.titleize %>'s & <%= e.groom_name.titleize %>'s</h4>
-        <h3>"<%= link_to e.name, e %>"</h3> 
+        <h5><%= e.bride_name.titleize %>'s & <%= e.groom_name.titleize %>'s</h5>
+        <h3>"<%= link_to e.name.titleize, e %>"</h3> 
         <% if e.date=="" || e.date.nil? %>
           <i>Date Note Set</i><br>
         <% else %> 
           <i><%= e.date.to_formatted_s(:long_ordinal) %></i><br>
           <br>
         <% end %>
+        <div class="block-content">
           <%= e.tasks.done.count %>/<%= e.tasks.count %> tasks completed
           <br>
           
           <%= e.guest_amt %> Approx.Guests <br>
           <%= e.guests.attendees.count %> Guests Attending <br>
-          <%= e.guests.inviteds.count %> Invitation Sent <br>
+          <%= e.guests.inviteds.count %> Invitation Sent 
+          <% if e.collaborations.any? %>
+          <hr>
+          Owner: <%= link_to e.user do %>
+                <%= e.user.firstname %><%= e.user.lastname %> <br>
+              <%end%>
+          <i>
+            Shared with: 
+            <% e.collaborations.each do |u| %>
+              <%= link_to u.user do %>
+                <%= u.user.firstname %> <%= u.user.lastname %> 
+                <% if current_user==e.user %>
+                <%= link_to image_tag("remove_icon_grey.png",  :border => 0, :width=> 15, :height=>15, :alt => "remove icon"), Collaboration.where(:event_id=>e.id, :user_id=>u.user.id).first, :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"remove collaborator", method: :delete,class: "inline-block" %>
+                <%end%>
+              <%end%>
+            <%end %>
+          </i>
+          <%end%>
+        </div>
+          
 
         
           <% if (current_user==e.user) %>
             <div class="action-btn ">
+
   <span>
-    <%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit task icon"), edit_event_path(e), :data => {:toggle=>"tooltip", :placement=>"top"}, :title=>"edit task", class: "inline-block"%>
+    <%= link_to image_tag("share_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "share event icon"), new_collaboration_path(:event_id=>e.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"share event", class: "inline-block"%>
   </span>
   <span>
-    <%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete task icon"), e, :data => {:toggle=>"tooltip", :placement=>"top",confirm: "You sure?"}, :title=>"delete task", method: :delete,class: "inline-block" %>
+    <%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit event icon"), edit_event_path(e), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit event", class: "inline-block"%>
+  </span>
+  <span>
+    <%= link_to image_tag("delete_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "delete event icon"), e, :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete event", method: :delete,class: "inline-block" %>
   </span>
      </div>      
           <% end %>

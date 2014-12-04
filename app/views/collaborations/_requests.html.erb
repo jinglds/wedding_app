@@ -1,0 +1,12 @@
+<% requests.each do |r| %>
+<div class="col-md-7">
+	<div class="panel request-block">
+		<%= link_to r.user do %>
+            <%= r.user.firstname %> <%= r.user.lastname %> 
+        <%end%>
+        has sent you an invitation to collaboration in managing
+		<i><%= r.name %></i>
+		<%= link_to image_tag("done_icon_grey.png",  :border => 0, :width=> 18, :height=>18, :alt => "done icon"), collaboration_accept_path(Collaboration.where(:event_id=>r.id, :user_id=>current_user.id).first), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"accept invitation"%>
+	</div>
+</div>
+<%end%>
