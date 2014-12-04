@@ -13,4 +13,6 @@ json.guests @guests do |guest|
   json.invitation_sent  guest.invitation_sent
   json.attending  guest.attending
   json.note  guest.note
+  json.invited_via guest.invited_via
+  json.responded guest.responded
 end
