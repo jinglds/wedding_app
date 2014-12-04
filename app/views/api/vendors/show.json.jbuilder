@@ -9,6 +9,12 @@ json.vendor do
   json.email @vendor.email
   json.contact @vendor.contact
   json.note @vendor.note
+
+  json.events @vendor.events do |e|
+    json.event_id e.id
+    json.event_name e.name.titleize
+  end
+
 end
 
  
