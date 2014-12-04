@@ -3,7 +3,10 @@
 
 </div>
 <div class="container">
-	<%= link_to "New Vendor", new_vendor_path %>
+	<div class="row">
+	<%= link_to "+ New Vendor", new_vendor_path, class:"btn all-btn" %>
+		<br> <br>
+	</div>
 	<div class="row">
 		<%= render @vendors %></div>
 </div>

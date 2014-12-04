@@ -19,7 +19,7 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password", class: "form-field" %>
         <%= f.label :approval, "I want to sign up as a/an:" %> 
-        <%= f.select :approval, [['Client', false], ['Enterprise', true]], class: "form-field" %><span class="small">You will have to wait for approval if you register as an Enterprise</span> 
+        <%= f.select :approval, [['Event Organizer', false], ['Vendor', true]], class: "form-field" %><span class="small">You will have to wait for approval if you register as an Enterprise</span> 
 
         </div>
         <div class="center">

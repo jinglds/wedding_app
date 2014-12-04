@@ -3,7 +3,8 @@ class EventVendorsController < ApplicationController
 	def new
 
 	  @vendor = Vendor.find(params[:vendor_id])
-		@events = current_user.events
+    @event_vendor_ids = EventVendor.where(:vendor_id =>@vendor.id).pluck(:event_id).uniq
+		@events = current_user.events.where('id not in (?)',@event_vendor_ids)
 		# @event = Event.find(params[:event_id])
     # @task = Task.find(params[:task_id])
     @event_vendor = EventVendor.new

@@ -2,10 +2,8 @@ module Api
   class EventVendorsController < Api::BaseController
 
     def index
-      @event = Event.find(params[:event_id])
+      @event = Event.find(params[:event_vendor][:event_id])
       @vendors = @event.vendors
-      @vendor = Vendor.new
-      @events = current_user.events
     end
 
   	def create
@@ -14,7 +12,7 @@ module Api
   		@vendor = Vendor.find(params[:event_vendor][:vendor_id])
   		@event = Event.find(params[:event_vendor][:event_id])
 
-        if EventVendor.create(:vendor_id => @vendor.id, :event_id => @event.id)
+        if   EventVendor.create(:vendor_id => @vendor.id, :event_id => @event.id)
             return render :json=> {:success => true, :vendor => @vendor}
         else
           return render :json=> {:success => false, :message => "vendor not added to event"}
