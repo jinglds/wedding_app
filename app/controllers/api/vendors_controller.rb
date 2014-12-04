@@ -11,7 +11,7 @@ module Api
 
       if (!params[:vendor][:event_id].nil? && params[:vendor][:event_id]!="")
           @event = Event.find(params[:vendor][:event_id])
-          @vendor = current_user.vendors.create!(vendor_params)
+          @vendor = app_user.vendors.create!(vendor_params)
         if EventVendor.create(:vendor_id => @vendor.id, :event_id => @event.id)
           return render :json=> {:success => true, :vendor => @vendor}
         else
