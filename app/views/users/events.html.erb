@@ -22,7 +22,7 @@
 		<% if @collaborations.any? %>
 <%= render partial: 'users/user_events', locals:{:user_events=>@collaborations}%>
 <%else%>
-	<span class="no-text">(No collaborating)</span>
+	<span class="no-text">(No collaboration)</span>
 <%end%>
 
 	</div>
