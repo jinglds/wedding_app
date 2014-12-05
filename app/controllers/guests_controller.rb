@@ -259,7 +259,7 @@ class GuestsController < ApplicationController
 
 	  end
    def collaborator
-    @myevent = current_user.events.find_by( params[:event_id])
+    @myevent = current_user.events.find_by(id: params[:event_id])
     @event = Event.find_by(Collaboration.where(:id=> (params[:event_id]), :user_id=>current_user.id, :accepted=>true))
     redirect_to root_url if (@event.nil? && @myevent.nil?)
   end
