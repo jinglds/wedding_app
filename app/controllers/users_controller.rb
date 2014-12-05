@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :admin_user 
+	before_action :admin_user, except:[:shops, :events, :show, :destroy]
+  before_action :destroy, only: :destroy
 	before_action :set_users, only:[:index, :approve, :set_admin]
   def index
 
