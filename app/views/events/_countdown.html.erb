@@ -1,9 +1,8 @@
 <% unless @event.date.nil? %>
 	
-<div class="col-md-8 col-md-offset-2">
 	
 	<div id="timer" class="countdown"></div>
-</div>
+
 	<%= javascript_tag do %>
 	  event_date = '<%= j @event.date.strftime('%Y,%m,%d') %>';
 	  day = '<%= j @event.date.strftime('%d') %>';
