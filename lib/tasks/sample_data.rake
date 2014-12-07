@@ -132,7 +132,7 @@ namespace :db do
       table_no = [0,1,2,3,4,5,6,7,8,9,10]
       note=""
       events.each { |event| event.guests.create!(
-                                              side:side.sample,
+                                              side:[event.bride_name, event.groom_name].sample,
                                               name:name,
                                               prefix:prefix.sample,
                                               adults:adults.sample,
@@ -149,6 +149,24 @@ namespace :db do
                                               user_id: event.user_id
                                               ) }
     end
+    User.create!(firstname: "C Client",
+                lastname: "C",
+                address: "Bangkok",
+                phone: "12345678",
+                role: "client",
+                 email: "client@email.com",
+                 password: "12345678",
+                 password_confirmation: "12345678",
+                 approval: "f")
+    User.create!(firstname: "E Enterprise",
+                lastname: "E",
+                address: "Bangkok",
+                phone: "12345678",
+                role: "enterprise",
+                 email: "enterprise@email.com",
+                 password: "12345678",
+                 password_confirmation: "12345678",
+                 approval: "f")
 end
 end
 

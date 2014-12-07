@@ -2,6 +2,8 @@ WeddingApp::Application.routes.draw do
 
   root  'static_pages#home'
   namespace :api, defaults: {format: 'json'}  do
+    devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
+    
     put "event_vendors/remove_from_event", to: "event_vendors#remove_from_event"
     resources :users
     get "my_shops", to: "users#shops"
@@ -53,8 +55,7 @@ WeddingApp::Application.routes.draw do
       end
     end
 
-     devise_for :users , :controllers => { :registrations => "api/registrations", :sessions => "api/sessions" }
-    
+     
   end
 
 
