@@ -12,6 +12,7 @@ json.shop do
   json.favorite @favorite ? true : false
   json.category_list @shop.category_list
   json.style_list @shop.style_list
+  json.approval @shop.approval
 
 
 end

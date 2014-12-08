@@ -70,7 +70,7 @@ end
       
       @shops= @shops.search(params[:name_query]) unless params[:name_query]==""
       @count = "/ " + @shops.count.to_s + " RESULTS"
-      @shops= @shops.order(params[:order])
+      @shops= @shops.approved.order(params[:order])
      
     respond_to do |format|
       format.html 

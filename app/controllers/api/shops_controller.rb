@@ -57,13 +57,13 @@ module Api
         @categories = params[:tags][:categories]
         @styles = params[:tags][:styles]
         if @categories=="" && @styles ==""
-          @shops = Shop.all
+          @shops = Shop.approved
         elsif @categories!="" && @styles ==""
-          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true)
+          @shops = Shop.approved.tagged_with([@categories], :on => :categories, :any => true)
         elsif @categories=="" && @styles !=""
-          @shops = Shop.tagged_with([@styles], :on => :styles, :any => true)
+          @shops = Shop.approved.tagged_with([@styles], :on => :styles, :any => true)
         else
-          @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
+          @shops = Shop.approved.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
         end
         return render :json=> {:message => "No match found"} if @shops.blank?
       end
@@ -84,7 +84,7 @@ module Api
         else
           @shops = Shop.tagged_with([@categories], :on => :categories, :any => true).tagged_with([@styles], :on => :styles, :any => true)
         end
-        @shops= @shops.search(params[:tags][:name_query]) unless params[:tags][:name_query]==""
+        @shops= @shops.approved.search(params[:tags][:name_query]) unless params[:tags][:name_query]==""
       
         return render :json=> {:message => "No match found"} if @shops.blank?
       end
