@@ -53,7 +53,7 @@ module Api
   	@shop = Shop.find(params[:shop_id])
       #check if file is within picture_path
       if params[:photo][:image]["file"]
-           picture_path_params = params[:photo][:image]
+           image_params = params[:photo][:image]
            #create a new tempfile named fileupload
            tempfile = Tempfile.new("fileupload")
            tempfile.binmode
