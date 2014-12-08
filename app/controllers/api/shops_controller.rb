@@ -34,7 +34,7 @@ module Api
           
 
 
-      @shop = app_user.shops.build!(shop_params)
+      @shop = app_user.shops.build(shop_params)
 
 
       if @shop.save
