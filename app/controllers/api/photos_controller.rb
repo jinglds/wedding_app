@@ -52,19 +52,19 @@ module Api
 	 def create
   	@shop = Shop.find(params[:shop_id])
       #check if file is within picture_path
-      if params[:photo][:image_path]["file"]
-           picture_path_params = params[:photo][:image_path]
+      if params[:photo][:image]["file"]
+           picture_path_params = params[:photo][:image]
            #create a new tempfile named fileupload
            tempfile = Tempfile.new("fileupload")
            tempfile.binmode
            #get the file and decode it with base64 then write it to the tempfile
-           tempfile.write(Base64.decode64(picture_path_params["file"]))
+           tempfile.write(Base64.decode64(image_params["file"]))
      
            #create a new uploaded file
            uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => picture_path_params["filename"], :original_filename => picture_path_params["original_filename"]) 
      
            #replace picture_path with the new uploaded file
-           params[:photo][:image_path] =  uploaded_file
+           params[:photo][:image] =  uploaded_file
      
       end
   
@@ -72,9 +72,11 @@ module Api
   
       respond_to do |format|
         if @picture.save
+        	tempfile.delete
           format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
           format.json { render json: @picture, status: :created, location: @picture }
         else
+        	tempfile.delete
           format.html { render action: "new" }
           format.json { render json: @picture.errors, status: :unprocessable_entity }
         end
