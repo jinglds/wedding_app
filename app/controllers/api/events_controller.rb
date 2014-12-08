@@ -5,6 +5,7 @@ module Api
      # load_and_authorize_resource
      # before_filter :verify_token, only: [:index, :show, :create]
      before_filter :correct_user, only: [:destroy, :update]
+  after_filter :create_checklist, only: [:create]
  # before_filter :set_date, only: [:create, :update]
 
     def create
@@ -18,7 +19,12 @@ module Api
     end
 
     def index
-      @events = app_user.events.all
+      @user = app_user
+      @events = @user.events
+      @col_ids = Collaboration.where(:user_id=> @user.id).joined.pluck(:event_id).uniq
+      @collaborations = Event.where('id in (?)', @col_ids)
+      @req_ids = Collaboration.where(:user_id=> @user.id).requests.pluck(:event_id).uniq
+      @requests = Event.where('id in (?)', @req_ids)
       # @events = Event.all
       # @related = Event.tagged_with(@event.style_list, :any => true, :order_by_matching_tag_count => true).limit(5)
       
