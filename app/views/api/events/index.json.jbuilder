@@ -10,6 +10,7 @@ json.myevents @events do |event|
   if event.collaborations.any?
   	json.owner event.user.firstname + " " + event.user.lastname 
     json.collaborators event.collaborations do |u| 
+              json.user_id u.user.id
               json.name u.user.firstname + " " + u.user.lastname
     end
   end
@@ -27,7 +28,9 @@ json.collaborations @collaborations do |collaboration|
   if collaboration.collaborations.any?
   	json.owner collaboration.user.firstname + " " + collaboration.user.lastname 
     json.collaborators collaboration.collaborations do |u| 
+              json.user_id u.user.id
               json.name u.user.firstname + " " + u.user.lastname
+
     end
   end
 end
@@ -44,6 +47,7 @@ json.requests @requests do |request|
   if request.collaborations.any?
   	json.owner request.user.firstname + " " + request.user.lastname 
     json.collaborators request.collaborations do |u| 
+              json.user_id u.user.id
               json.name u.user.firstname + " " + u.user.lastname
     end
   end

@@ -42,7 +42,7 @@
             <div class="action-btn ">
 
   <span>
-    <%= link_to image_tag("add_colabo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "share event icon"), new_collaboration_path(:event_id=>e.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"share event", class: "inline-block"%>
+    <%= link_to image_tag("add_colabo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "share event icon"), new_collaboration_path(:event_id=>e.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add collaborator", class: "inline-block"%>
   </span>
   <span>
     <%= link_to image_tag("edit_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "edit event icon"), edit_event_path(e), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit event", class: "inline-block"%>
