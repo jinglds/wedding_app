@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204154238) do
+ActiveRecord::Schema.define(version: 20141208143459) do
 
   create_table "articles", force: true do |t|
     t.integer  "user_id"
@@ -164,6 +164,15 @@ ActiveRecord::Schema.define(version: 20141204154238) do
   end
 
   add_index "photos", ["shop_id"], name: "index_photos_on_shop_id"
+
+  create_table "pictures", force: true do |t|
+    t.string   "image_uid"
+    t.string   "title"
+    t.integer  "event_id"
+    t.boolean  "cover",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shop_tags", force: true do |t|
     t.string   "name"

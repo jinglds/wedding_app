@@ -1126,6 +1126,37 @@ div.hidden {
   }
 }
 
+
+.picture-item{
+  width: 330px;
+  font-family: "Tw Cen MT";
+  text-transform: lowercase;
+  display: inline-block;
+  margin: 10px;
+
+}
+#pictures-list {
+  padding: 0;
+
+  margin: 0;
+  margin-top: 30px;
+  clear: both;
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    margin-bottom: 5px;
+    text-align: center;
+    p {
+      margin: 0;
+      /*margin-top: 10px;*/
+      /*height: 40px;*/
+      overflow: hidden;
+    }
+  }
+}
+
 /* Task */
 
 .imp-task-item{

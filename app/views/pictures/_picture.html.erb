@@ -1,0 +1,43 @@
+<%= link_to '#picture-'+ picture.id.to_s, :data => {:toggle=>"modal"} do %>
+<div class="picture-item  ">
+	<%= image_tag(picture.image.thumb('320x320#').url, alt: picture.title, :class =>(if picture.cover==false then "gallery-thumb" else "gallery-thumb-cover" end ))  %>
+
+     
+     <br>
+	<div class="action-block pull-right">
+		<% if (current_user==@event.user) %>
+			<% if picture.cover==true %>
+				Current Cover
+			<% else %>
+				<%= link_to "Set as Cover ", event_set_cover_path(@event, :id =>picture.id), method: :put %>
+			<% end %> 
+
+		    <%= link_to image_tag("edit_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit icon"), edit_event_picture_path(@event, picture), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit caption"%>
+
+			<%= link_to image_tag("delete_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete icon"), event_picture_path(@event, picture), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete picture", method: :delete %>
+		<% end %>
+</div>
+	
+<% end %>
+<!-- Modal -->
+<div class="modal fade" id="picture-<%= picture.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title center" id="myModalLabel"><%=picture.title%></h3>
+      </div>
+      <div class="modal-body center">
+        <%= link_to image_tag(picture.image.thumb('x800').url, alt: picture.title, class: 'img-thumbnail'),
+                  picture.image.url, target: '_blank' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+
+	
+</div>

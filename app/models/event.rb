@@ -7,8 +7,9 @@ class Event < ActiveRecord::Base
 	has_many :guests
   	has_many :vendors, through: :event_vendors
   	
-	has_many :photos, dependent: :destroy
-
+	
+	has_many :pictures, dependent: :destroy
+	accepts_nested_attributes_for :pictures
   	has_many :collaborations
   	# has_many :users, through: :collaborations
 

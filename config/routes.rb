@@ -33,10 +33,14 @@ WeddingApp::Application.routes.draw do
     resources :collaborations
     resources :vendors
     resources :event_vendors 
+
+    put "set_cover", to: "pictures#set_as_cover"
     resources :events do
       put "default_tasks", to: "events#create_default_tasks"
       put "clear_tasks", to: "events#clear_tasks"
       get "vendors", to: "events#vendors"
+      
+    resources :pictures
       resources :checklists do
         put "complete", to: "checklists#complete"
         put "decomplete", to: "checklists#decomplete"
@@ -94,6 +98,9 @@ WeddingApp::Application.routes.draw do
       put "complete", to: "checklists#complete"
       put "decomplete", to: "checklists#decomplete"
     end
+
+      put "set_cover", to: "pictures#set_as_cover"
+    resources :pictures
     resources :expenses do
       put "pay", to: "expenses#pay"
       put "unpay", to: "expenses#unpay"

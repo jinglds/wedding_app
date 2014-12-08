@@ -1,0 +1,18 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>	
+	<%= link_to new_event_picture_path(:event_id => @event.id), class: 'btn all-btn pull-right' do %> 
+		+ ADD PICTURE
+<% end %>
+<div class="transparent-s">x</div>
+<ul class="row" id="pictures-list">
+  <%= render @pictures %>
+</ul>
+</div>
+
+ <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+</div>	

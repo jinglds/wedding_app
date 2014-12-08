@@ -1,0 +1,30 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>	
+
+	<h2>Photos for <%= @event.name %></h2>
+	<% if @event.pictures.nil? %>
+	<h3 class="center">4. Upload pictures for your event!</h3>
+	<% else %>
+	<h3 class="center">Upload pictures for your event</h3>
+	<% end %>
+	<div class=" form-all container col-md-4 col-md-offset-4">
+
+		<hr>
+		
+<%= form_for [@event, @picture] do |f| %>
+	<%= render 'shared/error_messages', object: @picture %>
+	<div class="form-group">
+		<%= f.label :images, "You can upload multiple pictures at a time" %>
+	<%= f.file_field :images, :name => 'images[]', :multiple => true, required: true, class: "form-field"  %>
+	</div>
+  	<div class="actions">
+    	<%= f.submit 'Upload', class: 'btn all-btn pull-right' %>
+  	</div>
+<% end %>
+
+	</div>
+</div>
