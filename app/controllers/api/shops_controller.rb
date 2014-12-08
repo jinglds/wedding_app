@@ -10,12 +10,38 @@ module Api
       @styles = Shop.style_counts
       @categories = Shop.category_counts
      end
+
     def create
+
+
+      if params[:shop][:attachment]["file"]
+           attachment_params = params[:photo][:attachment]
+           #create a new tempfile named fileupload
+           tempfile = Tempfile.new("fileupload")
+           tempfile.binmode
+           #get the file and decode it with base64 then write it to the tempfile
+           tempfile.write(Base64.decode64(attachment_params["file"]))
+     
+           #create a new uploaded file
+           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "shop_attachment" , :original_filename => "shop_attachment") 
+     
+           #replace picture_path with the new uploaded file
+           params[:photo][:attachment] =  uploaded_file
+     
+      end
+  
+          
+
+
       @shop = app_user.shops.build(shop_params)
+
+
       if @shop.save
         return render :json=> {:success => true, :shop => @shop}
+        tempfile.delete
       else
         return render :json=> {:success => false, :message => "shop not created"}
+        tempfile.delete
       end
     end
 
@@ -119,7 +145,9 @@ module Api
                   :website,
                   :price_range,
                   :category_list,
-                  :style_list)
+                  :style_list,
+                  :attachment,
+                  :approval)
 
       end
 
