@@ -34,14 +34,16 @@ module Api
           
 
 
-      @shop = app_user.shops.build(shop_params)
+      # @shop = app_user.shops.build(shop_params)
 
 
-      if @shop.save
+      if app_user.shops.create!(shop_params)
         return render :json=> {:success => true, :shop => @shop}
+        puts 'created'
         tempfile.delete
       else
         return render :json=> {:success => false, :message => "shop not created"}
+        puts 'not created'
         tempfile.delete
       end
     end
