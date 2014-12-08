@@ -41,6 +41,16 @@ class UsersController < ApplicationController
           render :users
       end
   end
+
+  def unset_admin 
+      @user = User.find(params[:id])
+      if @user.update_attributes(:role => "enterprise")
+        flash[:success] ="User unset as admin"
+        redirect_to :users
+      else
+          render :users
+      end
+  end
 	
 	def show
 	    @user = User.find(params[:id])

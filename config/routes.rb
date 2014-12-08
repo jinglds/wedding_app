@@ -68,6 +68,7 @@ WeddingApp::Application.routes.draw do
     member do
       put "approve"
       put "set_admin"
+      put "unset_admin"
     end
   end
   resources :articles do

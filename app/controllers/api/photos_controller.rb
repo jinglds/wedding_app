@@ -68,7 +68,7 @@ module Api
      
       end
   
-      @picture = @shop.photos.build(params[:photo])
+      @picture = @shop.photos.build(photo_params)
   
       respond_to do |format|
         if @picture.save
