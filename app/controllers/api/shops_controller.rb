@@ -20,8 +20,9 @@ module Api
            tempfile = Tempfile.new("fileupload")
            tempfile.binmode
            #get the file and decode it with base64 then write it to the tempfile
-           tempfile.write(Base64.decode64(attachment_params["file"]))
-     
+           if tempfile.write(Base64.decode64(attachment_params["file"]))
+            puts 'decoded!'
+          end
            #create a new uploaded file
            uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "shop_attachment" , :original_filename => "shop_attachment") 
      
@@ -146,8 +147,7 @@ module Api
                   :price_range,
                   :category_list,
                   :style_list,
-                  :attachment,
-                  :approval)
+                  :attachment)
 
       end
 
