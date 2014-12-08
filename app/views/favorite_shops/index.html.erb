@@ -1,4 +1,4 @@
-<% provide(:title, "My Shops") %>
+<% provide(:title, "My Favorite Shops") %>
 <div class="heading-block">
 	
 	<h1 class="elegant">My Shops</h1>
@@ -6,7 +6,7 @@
 </div>
 <div class="container">
 
-	<%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
+	<%= render  @shops %>
 </div>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->

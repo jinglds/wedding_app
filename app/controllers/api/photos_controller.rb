@@ -7,47 +7,16 @@ module Api
     	@photos = @shop.photos
   	end
 
-  	# def create
- 
+    def destroy
+      @photo = Photos.find(params[:photo_id])
+      if @photo.destroy
+        return render :json=> {:success => true, :message=> 'Photo deleted successfully.'}
+      else
+        return render :json=> {:success => false, :message=> 'Photo not deleted.'}
+      end
+  end
 
-  	# 	@shop = Shop.find(params[:shop_id])
-   #  	# @photo = @shop.photos.build(photo_params)
-
-   #  	unless params[:photo][:images].nil?
-   #          params[:photo][:images].each do |a|
-   #          	# if @shop.photos << Photo.create(:image => a)
-   #      		# @shop.photos.create(:image => a)
-	  #     #   		render 'new'
-		 #   		# end
-		 #   		@photo = @shop.photos.build(:image => a)
-		 #   		unless  @photo.save
-		   			
-	  #   			flash[:danger] = @photo.errors.full_messages.to_sentence
-		 #   		end
-
-   #      	end
-   #      	# redirect_to shop_photos_path
-   #      end
-   #      if no_cover?
-   #      	@shop.photos.first.update_attributes(:cover => true)
-   #      end
-   #  	return render :json=> {:success => true, :photos => @shop.photos}
-
-  	# end
-  	# def create
-  	# 	@shop = Shop.find(params[:shop_id])
-	  #   @photo = Photo.new(photo_params)
-	  #   if @photo.save
-	  #     render :json=> {:success => true, :photos => "yay"}
-	  #   else
-	  #     render :json=> {:success => false, :photos => "nay"}
-	  #   end
-	  # end
-	#  def create
-	#   	photo = DataFile.save(params[:upload])
-	#     render :text => "File has been uploaded successfully"
-	# end
-
+  	
 
 	 def create
   	@shop = Shop.find(params[:shop_id])

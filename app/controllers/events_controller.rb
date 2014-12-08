@@ -809,7 +809,7 @@ class EventsController < ApplicationController
 
   def collaborator
     @myevent = current_user.events.find_by(id: params[:id] || params[:event_id])
-    @event = Event.find_by(Collaboration.where(:id=> (params[:id] || params[:event_id]), :user_id=>current_user.id, :accepted=>true))
+    @event = Event.find_by(:id=> Collaboration.where(:event_id=> (params[:id] || params[:event_id]), :user_id=>current_user.id, :accepted=>true))
     redirect_to root_url if (@event.nil? && @myevent.nil?)
   end
 

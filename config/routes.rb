@@ -28,6 +28,8 @@ WeddingApp::Application.routes.draw do
 
     end
     get "tags", to: "shops#tags"
+    put "collaborations/remove", to: "collaborations#remove"
+    put "collaborations/accept", to: "collaborations#accept"
     resources :collaborations
     resources :vendors
     resources :event_vendors 

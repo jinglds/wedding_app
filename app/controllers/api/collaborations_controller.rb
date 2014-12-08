@@ -56,21 +56,27 @@ module Api
       end
     end
 
- 
+    def remove
+      @collaboration = Collaboration.where(:user_id=>params[:collaboration][:user_id], :event_id=> params[:collaboration][:event_id]).first
+      if @collaboration.destroy
+         return render :json=> {:success => true, :message => "collaboration deleted"}
+      else
+        return render :json=> {:success => false, :message => "error deleting collaboration"}
+      end
+    end
+
+    def accept
+      @collaboration = Collaboration.where(:user_id=>app_user.id, :event_id=> params[:collaboration][:event_id]).first
+      
+      @collaboration.update_attributes(:accepted => true) 
+      return render :json=> {:success => true, :message => "collaboration accepted"}
+    end
 
     private
 
       def collaboration_params
         params.require(:collaboration).permit(:user_id,
-                                :name,
-                                # :event_id,
-                                :shop_id,
-                                :task_id,
-                                :phone,
-                                :address,
-                                :email,
-                                :contact,
-                                :note)
+                                :event_id)
 
       end
 

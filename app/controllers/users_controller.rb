@@ -80,6 +80,7 @@ class UsersController < ApplicationController
   	end
 
   	def shops
+      @user = current_user
   		@shops = current_user.shops
       # @favorite = Favorite.find_by_favorited_id(@shop.id)
 

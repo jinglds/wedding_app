@@ -1,14 +1,14 @@
 <div class="heading-block">
 	<div class="action-btn ">
 	<span>
-		<%= link_to image_tag("share_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit task icon"), new_collaboration_path(:event_id=>@event.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"share event", class: "inline-block"%>
+		<%= link_to image_tag("share_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit event icon"), new_collaboration_path(:event_id=>@event.id), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"share event", class: "inline-block"%>
 
 	</span>
 	<span>
-		<%= link_to image_tag("edit_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit task icon"), edit_event_path(@event), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit task", class: "inline-block"%>
+		<%= link_to image_tag("edit_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit event icon"), edit_event_path(@event), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit event", class: "inline-block"%>
 	</span>
 	<span>
-		<%= link_to image_tag("delete_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete task icon"), event_path(@event), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete task", method: :delete,class: "inline-block" %>
+		<%= link_to image_tag("delete_icon_white.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete event icon"), event_path(@event), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete event", method: :delete,class: "inline-block" %>
 	</span>
 		
 </div>

@@ -1,22 +1,14 @@
- <% provide(:title, @user.firstname) %>
+<% provide(:title, "My Shops") %>
 <div class="heading-block">
   
-  <h1 class="elegant"> <%= @user.firstname %> <%= @user.lastname %></h1>
+  <h1 class="elegant">My Shops</h1>
 
 </div>
-
 <div class="container">
-<div class="row">
-  <ul class="nav nav-pills event-menu">
-    <li class="<%= 'current' if current_page?(@user)%>"><%= link_to "Profile", user_path(@user) %></li>
-    <li class="<%= 'current' if current_page?(edit_user_registration_path(@user)) %>"><%= link_to "Edit Account", edit_user_registration_path(@user) %></li>
-    <li class="<%= 'current' if current_page?('#') %>"><%= link_to "My Favorited Shops", '#' %></li>
-  </ul>
-</div>
 
-	<%= render @shops %>
+  <%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
 </div>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
-	
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+  
