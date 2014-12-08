@@ -1,0 +1,7 @@
+<div class="row">
+  <ul class="nav nav-pills event-menu">
+    <li class="<%= 'current' if current_page?(@user)%>"><%= link_to "Profile", user_path(@user) %></li>
+    <li class="<%= 'current' if current_page?(edit_user_registration_path(@user)) %>"><%= link_to "Edit Account", edit_user_registration_path(@user) %></li>
+    <li class="<%= 'current' if current_page?('favorite_shops_path') %>"><%= link_to "My Favorited Shops", favorite_shops_path %></li>
+  </ul>
+</div>

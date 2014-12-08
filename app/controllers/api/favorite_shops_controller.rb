@@ -20,6 +20,12 @@ module Api
         return render :json=> {:success => false, :message => "shop not added to favorite"}
       end
     end
+
+    def index
+      @fav_ids = Favorite.where(:user_id=>app_user.id).pluck(:favorited_id).uniq
+      @shops = Shop.where(:id=> @fav_ids )
+      
+    end
     
     
     

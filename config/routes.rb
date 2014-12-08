@@ -10,7 +10,7 @@ WeddingApp::Application.routes.draw do
     match "get_shop", to: "shops#get_shop", via: 'post'
 
     match "get_event_vendors", to: "event_vendors#get_event_vendors", via: 'post'
-    resources :favorite_shops, only: [:create, :destroy, :unfav]
+    resources :favorite_shops
     resources :favorites, only: [:destroy]
     resources :articles
     resources :shops  do 
@@ -116,7 +116,7 @@ WeddingApp::Application.routes.draw do
       put "clear_table", to: "guests#clear_table", :on => :collection
     end
   end
-  resources :favorite_shops, only: [:create, :destroy]
+  resources :favorite_shops
   # resources :photos
   get "shops/categories" => "shops#categories", :as => :categories
   get "shops/styles" => "shops#styles", :as => :styles
