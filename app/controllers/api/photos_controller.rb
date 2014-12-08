@@ -61,7 +61,7 @@ module Api
            tempfile.write(Base64.decode64(image_params["file"]))
      
            #create a new uploaded file
-           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => picture_path_params["filename"], :original_filename => picture_path_params["original_filename"]) 
+           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "filename", :original_filename => "original_filename") 
      
            #replace picture_path with the new uploaded file
            params[:photo][:image] =  uploaded_file
