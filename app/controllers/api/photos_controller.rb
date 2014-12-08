@@ -43,10 +43,43 @@ module Api
 	  #     render :json=> {:success => false, :photos => "nay"}
 	  #   end
 	  # end
+	#  def create
+	#   	photo = DataFile.save(params[:upload])
+	#     render :text => "File has been uploaded successfully"
+	# end
+
+
 	 def create
-	  	photo = DataFile.save(params[:upload])
-	    render :text => "File has been uploaded successfully"
-	end
+  	@shop = Shop.find(params[:shop_id])
+      #check if file is within picture_path
+      if params[:photo][:image_path]["file"]
+           picture_path_params = params[:photo][:image_path]
+           #create a new tempfile named fileupload
+           tempfile = Tempfile.new("fileupload")
+           tempfile.binmode
+           #get the file and decode it with base64 then write it to the tempfile
+           tempfile.write(Base64.decode64(picture_path_params["file"]))
+     
+           #create a new uploaded file
+           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => picture_path_params["filename"], :original_filename => picture_path_params["original_filename"]) 
+     
+           #replace picture_path with the new uploaded file
+           params[:photo][:image_path] =  uploaded_file
+     
+      end
+  
+      @picture = @shop.photos.build(params[:photo])
+  
+      respond_to do |format|
+        if @picture.save
+          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          format.json { render json: @picture, status: :created, location: @picture }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
+      end
+    end
 	  private
 	def photo_params
 	    params.require(:photo).permit(:image, :title)
