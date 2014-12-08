@@ -15,7 +15,7 @@ module Api
 
 
       if params[:shop][:attachment]["file"]
-           attachment_params = params[:photo][:attachment]
+           attachment_params = params[:shop][:attachment]
            #create a new tempfile named fileupload
            tempfile = Tempfile.new("fileupload")
            tempfile.binmode
@@ -26,7 +26,7 @@ module Api
            uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "shop_attachment" , :original_filename => "shop_attachment") 
      
            #replace picture_path with the new uploaded file
-           params[:photo][:attachment] =  uploaded_file
+           params[:shop][:attachment] =  uploaded_file
      
       end
   
