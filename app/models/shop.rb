@@ -27,8 +27,10 @@ class Shop < ActiveRecord::Base
 	# validates :attachment, presence: true
 	validates_size_of :attachment, maximum: 1024.kilobytes,
                   message: "should be no more than 1024 KB", if: :attachment_changed?
- 	validates_property :ext, of: :attachment, in: [:jpeg, :jpg, :png, :bmp, :pdf], case_sensitive: false,
-                   message: "should be either .jpeg, .jpg, .png, .bmp, .pdf", if: :attachment_changed?
+ 	# validates_property :ext, of: :attachment, in: [:jpeg, :jpg, :png, :bmp, :pdf], case_sensitive: false,
+  #                  message: "should be either .jpeg, .jpg, .png, .bmp, .pdf", if: :attachment_changed?
+  validates_property :format, of: :attachment, in: [:jpeg, :jpg, :png, :bmp, :pdf], case_sensitive: false,
+	                   message: "should be either .jpeg, .jpg, .png, .bmp, .pdf", if: :attachment_changed?
 
 
 #     validate :maximum_amount_of_tags
