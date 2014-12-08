@@ -24,7 +24,7 @@ module Api
             puts 'decoded!'
           end
            #create a new uploaded file
-           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "shop_attachment" , :original_filename => "shop_attachment") 
+           uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => "shop_attachment" , :original_filename => "shop_attachment_original") 
      
            #replace picture_path with the new uploaded file
            params[:shop][:attachment] =  uploaded_file
