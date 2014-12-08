@@ -58,11 +58,17 @@ module Api
 
     def remove
       @collaboration = Collaboration.where(:user_id=>params[:collaboration][:user_id], :event_id=> params[:collaboration][:event_id]).first
-      if @collaboration.destroy
-         return render :json=> {:success => true, :message => "collaboration deleted"}
+      
+      if @collaboration.nil?
+        return render :json=> {:success => false, :message => "no collaboration with given user_id and event_id"}
       else
-        return render :json=> {:success => false, :message => "error deleting collaboration"}
+          if @collaboration.destroy
+             return render :json=> {:success => true, :message => "collaboration deleted"}
+          else
+            return render :json=> {:success => false, :message => "error deleting collaboration"}
+          end
       end
+
     end
 
     def accept

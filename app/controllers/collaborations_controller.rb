@@ -52,11 +52,11 @@ class CollaborationsController < ApplicationController
 
 	def destroy
   	
-  	Collaboration.where(:id=>params[:id]).first.destroy
-    
+	  	Collaboration.where(:id=>params[:id]).first.destroy
+	    
 
-  	flash[:success] = "User removed from event!"
-    redirect_to myevents_path
+	  	flash[:success] = "User removed from event!"
+	    redirect_to myevents_path
 	end
 
 	private

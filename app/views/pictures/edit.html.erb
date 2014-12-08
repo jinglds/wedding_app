@@ -1,0 +1,23 @@
+<% provide(:title, @event.name) %>
+<%= render 'events/heading' %>
+<div class="container">
+	<div class="row">
+		<%= render 'events/event_menu' %>
+	</div>	
+	<div class="col-md-6 col-md-offset-3">
+		<h2>Edit Picture Caption</h2>
+		<%= image_tag(@picture.image.thumb('515x515#').url, alt: @picture.title, class: 'gallery-thumb') %>
+<br> <br>
+		<%= form_for [@event, @picture] do |f| %>
+			<%= render 'shared/error_messages', object: @picture %>
+			<div class="form-group">
+				<%= f.label :title, "Picture Caption" %>
+				<%= f.text_field :title,  required: true, class: "form-field"  %>
+			</div>
+		  	<div class="actions">
+		    	<%= f.submit 'Upload', class: 'btn all-btn pull-right' %>
+		  	</div>
+		<% end %>
+	</div>
+	
+</div>

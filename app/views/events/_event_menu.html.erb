@@ -5,5 +5,5 @@
 	<li class="<%= 'current' if current_page?(event_guests_path(@event)) || current_page?(event_guests_manage_tables_path(:event_id=>@event.id))%>"><%= link_to "Guests", event_guests_path(@event) %></li>
 	<li class="<%= 'current' if current_page?(event_vendors_path(:event_id=>@event.id))%>"><%= link_to "Vendors", event_vendors_path(:event_id=>@event.id) %> </li>
 	<li class="<%= 'current' if current_page?(event_checklists_path(:event_id=>@event.id))%>"><%= link_to "Checklist", event_checklists_path(:event_id=>@event.id) %> </li>
-	<li class="<%= 'current' if current_page?('#')%>"><%= link_to "Scrapbook", event_pictures_path(:event_id=>@event.id) %> </li>
+	<li class="<%= 'current' if current_page?(event_pictures_path(:event_id=>@event.id))%>"><%= link_to "Scrapbook", event_pictures_path(:event_id=>@event.id) %> </li>
 </ul>
