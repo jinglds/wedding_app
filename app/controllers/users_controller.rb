@@ -42,10 +42,22 @@ class UsersController < ApplicationController
       end
   end
 
+
+
   def unset_admin 
       @user = User.find(params[:id])
       if @user.update_attributes(:role => "enterprise")
         flash[:success] ="User unset as admin"
+        redirect_to :users
+      else
+          render :users
+      end
+  end
+
+  def set_client 
+      @user = User.find(params[:id])
+      if @user.update_attributes(:role => "client")
+        flash[:success] ="User set as client"
         redirect_to :users
       else
           render :users

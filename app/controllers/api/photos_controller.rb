@@ -70,17 +70,15 @@ module Api
   
       @picture = @shop.photos.build(photo_params)
   
-      respond_to do |format|
         if @picture.save
         	tempfile.delete
-          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-          format.json { render json: @picture, status: :created, location: @picture }
+          return render :json=> {:success => true, :message=> 'Picture was successfully created.'}
         else
         	tempfile.delete
-          format.html { render action: "new" }
-          format.json { render json: @picture.errors, status: :unprocessable_entity }
+          
+          return render :json=> {:success => false, :message=> 'Picture was not created.'}
         end
-      end
+      
     end
 	  private
 	def photo_params
