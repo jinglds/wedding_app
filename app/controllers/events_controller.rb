@@ -79,6 +79,24 @@ class EventsController < ApplicationController
                         :user_id => @user.id},
 
 
+                        {:title => "Choose Wedding Ring",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id}, 
+
+                        {:title => "Decide on the invitation card",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Choose wedding souvenirs",
+                        :time_range => 180,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
                         {:title => "Choose & Book Makeup Artist and Hairstylist",
                         :time_range => 180,
                         :completed => false,
@@ -107,11 +125,33 @@ class EventsController < ApplicationController
                         :event_id => @event.id,
                         :user_id => @user.id},
 
-                        {:title => "Fitting Day",
+                        {:title => "Confirm Photographers and Cinematographer",
                         :time_range => 60,
                         :completed => false,
                         :event_id => @event.id,
                         :user_id => @user.id},
+
+                        {:title => "Confirm Makeup Artist and Hairstylist",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+
+                        {:title => "Print Invitation Card",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+
+                        {:title => "Order wedding souvenirs",
+                        :time_range => 60,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+
 
                         # 1 week before
 
@@ -126,6 +166,19 @@ class EventsController < ApplicationController
                         :completed => false,
                         :event_id => @event.id,
                         :user_id => @user.id},
+
+                        {:title => "Choose people to be receptionist",
+                        :time_range => 7,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
+                        {:title => "Create an agenda for the wedding day",
+                        :time_range => 7,
+                        :completed => false,
+                        :event_id => @event.id,
+                        :user_id => @user.id},
+
 
                         {:title => "Setup Wedding Cake",
                         :time_range => 7,
