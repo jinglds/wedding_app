@@ -1,9 +1,106 @@
 <ul class="nav nav-pills event-menu">
-	<li class="<%= 'current' if current_page?(@event)%>"><%= link_to "Summary", @event %></li>
-	<li class="<%= 'current' if current_page?(event_tasks_path(@event)) %>"><%= link_to "Tasks", event_tasks_path(@event) %></li>
-	<li class="<%= 'current' if current_page?(event_expenses_path(@event)) %>"><%= link_to "Expenses", event_expenses_path(@event) %></li>
-	<li class="<%= 'current' if current_page?(event_guests_path(@event)) || current_page?(event_guests_manage_tables_path(:event_id=>@event.id))%>"><%= link_to "Guests", event_guests_path(@event) %></li>
-	<li class="<%= 'current' if current_page?(event_vendors_path(:event_id=>@event.id))%>"><%= link_to "Vendors", event_vendors_path(:event_id=>@event.id) %> </li>
-	<li class="<%= 'current' if current_page?(event_checklists_path(:event_id=>@event.id))%>"><%= link_to "Checklist", event_checklists_path(:event_id=>@event.id) %> </li>
-	<li class="<%= 'current' if current_page?(event_pictures_path(:event_id=>@event.id))%>"><%= link_to "Scrapbook", event_pictures_path(:event_id=>@event.id) %> </li>
+
+	<% if current_page?(@event)%>
+	<li class="current">
+		<%= link_to  @event do%>
+		<%= image_tag("menu_summary_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Summary
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to  @event do%>
+		<%= image_tag("menu_summary_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Summary
+		<%end%>
+	</li>
+
+	<%end%>
+
+	<% if current_page?(event_tasks_path(@event))%>
+	<li class="current">
+		<%= link_to event_tasks_path(@event) do %>
+		<%= image_tag("menu_task_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Tasks
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to event_tasks_path(@event) do %>
+		<%= image_tag("menu_task_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Tasks
+		<%end%>
+	</li>
+	<%end%>
+
+	<% if current_page?(event_expenses_path(@event))%>
+	<li class="current">
+		<%= link_to event_expenses_path(@event) do %>
+		<%= image_tag("menu_expense_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Expenses
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to event_expenses_path(@event) do %>
+		<%= image_tag("menu_expense_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Expenses
+		<%end%>
+	</li>
+
+	<%end%>
+
+	<% if current_page?(event_guests_path(@event)) || current_page?(event_guests_manage_tables_path(:event_id=>@event.id)) || current_page?(event_guests_invitation_path(:event_id=>@event.id)) %>
+	<li class="current">
+		<%= link_to  event_guests_path(@event) do %>
+		<%= image_tag("menu_guest_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Guests
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to  event_guests_path(@event) do %>
+		<%= image_tag("menu_guest_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Guests
+		<%end%>
+	</li>
+
+	<%end%>
+
+	<% if current_page?(event_vendors_path(:event_id=>@event.id))%>
+	<li class="current">
+		<%= link_to event_vendors_path(:event_id=>@event.id) do%> 
+		<%= image_tag("menu_vendor_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Vendors
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to event_vendors_path(:event_id=>@event.id) do%> 
+		<%= image_tag("menu_vendor_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Vendors
+		<%end%>
+	</li>
+
+	<%end%>
+
+	<% if current_page?(event_checklists_path(:event_id=>@event.id))%>
+	<li class="current">
+		<%= link_to  event_checklists_path(:event_id=>@event.id) do  %>
+		<%= image_tag("menu_checklist_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Checklist
+		<%end%> 
+	</li>
+	<%else %>
+	<li >
+		<%= link_to  event_checklists_path(:event_id=>@event.id) do  %>
+		<%= image_tag("menu_checklist_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Checklist
+		<%end%> 
+	</li>
+
+	<%end%>
+
+	<%  if current_page?(event_pictures_path(:event_id=>@event.id))%>
+	<li class="current">
+		<%= link_to  event_pictures_path(:event_id=>@event.id) do%> 
+		<%= image_tag("menu_photo_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Scrapbook
+		<%end%>
+	</li>
+	<%else %>
+	<li >
+		<%= link_to  event_pictures_path(:event_id=>@event.id) do%> 
+		<%= image_tag("menu_photo_icon_grey.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon")%> Scrapbook
+		<%end%>
+	</li>
+
+	<%end%>
 </ul>

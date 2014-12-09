@@ -14,7 +14,8 @@
   <div class="row">
     <div class="col-md-9">
       <br>
-      <span class="no-text">Click on 'link' to copy the invitation card link of selected guest. Ctrl+V or Cmd+V to paste the link to send it to your guest.</span>
+      <span class="no-text">Click on  <%= image_tag("link_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon", :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"invitation link", class: "inline-block") %>
+                      to copy the invitation card link of selected guest. Ctrl+V or Cmd+V to paste the link to send it to your guest.</span>
       <br> <br>
       <span class="no-text">Customize your own invitation card greetings in the space provided on the right then click on 'Update Invitation Card'.</span>
       <div class=" guest-no-table-no-div panel panel-danger">
@@ -66,8 +67,8 @@
                   <td></td>
                   <td>
                     <a id="invite-link-btn-<%= g.id %>" class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click to Copy Invitation Link' name ="<%= g.name %>">
-                       link
-                      </a>
+                       <%= image_tag("link_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon", :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"invitation link", class: "inline-block") %>
+                     </a>
                             <span id="invite-link-<%= g.id %>" class="hidden"><%= root_url + "events/" + @event.id.to_s + "/guests/" + g.id.to_s + "/invitation_form" %></span>
                   </td>
                   <td>
