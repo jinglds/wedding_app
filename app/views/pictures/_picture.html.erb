@@ -5,17 +5,12 @@
      
      <br>
 	<div class="action-block pull-right">
-		<% if (current_user==@event.user) %>
-<!-- 			<% if picture.cover==true %>
-				Current Cover
-			<% else %>
-				<%= link_to "Set as Cover ", event_set_cover_path(@event, :id =>picture.id), method: :put %>
-			<% end %>  -->
+
         <%= picture.title %>
 		    <%= link_to image_tag("edit_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "edit icon"), edit_event_picture_path(@event, picture), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"edit caption"%>
 
 			<%= link_to image_tag("delete_icon_grey.png",  :width=> 18, :height=>18, :border => 0, :alt => "delete icon"), event_picture_path(@event, picture), :data => {:toggle=>"tooltip", :placement=>"bottom",confirm: "You sure?"}, :title=>"delete picture", method: :delete %>
-		<% end %>
+
 </div>
 	
 <% end %>
