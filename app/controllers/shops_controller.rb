@@ -155,7 +155,7 @@ end
 
     @photos = @shop.photos.all
     @cover = Photo.is_cover(:shop_id => @shop.id)
-    @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).limit(4)
+    @recommendations = Shop.tagged_with(@shop.style_list, :any => true, :order_by_matching_tag_count => true).where('id !=(?)', @shop.id).limit(4)
     @favorite = @user ? @user.favorites.find_by(favorited_id: @shop.id) : nil
     @vendor = @user ? @user.vendors.find_by(shop_id: @shop.id) : nil
   end
