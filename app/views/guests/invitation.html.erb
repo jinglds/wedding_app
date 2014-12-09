@@ -42,7 +42,7 @@
 
              <% @guests.each do |g| %>
               <%= fields_for "guest[]", g do |guest_fields| %>
-                <tr class="<%= 'warning' if g.responded==false %>">
+                <tr class="<%= 'blue-font' if g.responded==true %> <%= 'warning' if g.invitation_sent==false %>">
                   <td style="padding-left:10px;">
                     <%= g.name %>
                   </td>
