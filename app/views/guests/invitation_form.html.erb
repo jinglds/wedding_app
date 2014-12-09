@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row center" >
 		<div class="col-md-6 col-md-offset-3" id="invitation-box">
-			<i><h4>Dear <%= @guest.name %></i></h4>
+			<i><h4>Dear <%= @guest.prefix %> <%= @guest.name %></i></h4>
 		<% if @event.invitation_card.nil? || @event.invitation_card=="" %>
 			<h3>
 				You are officially invited to <%= @event.bride_name %>'s and <%= @event.bride_name %>'s event!
