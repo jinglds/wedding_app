@@ -8,7 +8,7 @@ module Api
   	end
 
     def destroy
-      @photo = Photos.find(params[:id])
+      @photo = Photo.find(params[:id])
       if @photo.destroy
         return render :json=> {:success => true, :message=> 'Photo deleted successfully.'}
       else
