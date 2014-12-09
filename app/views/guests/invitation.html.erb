@@ -60,7 +60,7 @@
                       <% if g.invitation_sent==true %>
                         Sent / <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>false), method: :put %>
                       <%else %>
-                        Not sent / <%= link_to "no?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>true), method: :put %>
+                        Not sent / <%= link_to "yes?", event_guest_invitation_sent_path(:guest_id=>g.id, :invitation_sent=>true), method: :put %>
                       <%end%>
                     
                   </td>
