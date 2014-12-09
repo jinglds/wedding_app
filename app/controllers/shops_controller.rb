@@ -196,6 +196,7 @@ end
                   :phone,
                   :address,
                   :details,
+                  :website,
                   :email,
                   :category_list,
                   :style_list,
