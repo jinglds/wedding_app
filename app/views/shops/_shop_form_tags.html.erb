@@ -1,7 +1,9 @@
 
 <h3>3. Categories and Styles</h3>
+
+    <span class="center">(Limited to only 4 categories and 4 styles. If you enter more than four tags, only the first four tags will be saved.)</span> 
     <hr>
-  <%= f.label :category_list, "Shop Categories (separated by commas)" %><br />
+  <%= f.label :category_list, "Shop Categories" %> <br>
 <!--   <%= f.text_area :category_list, class: "form-field",placeholder: "E.g. photography, music, venue..." %>
  -->
 <%= f.text_field :category_list,
@@ -10,7 +12,7 @@
 
 
 
-  <%= f.label :style_list, "Shop Stlyes (separated by commas)" %><br />
+  <%= f.label :style_list, "Shop Stlyes" %><br />
 <!--   <%= f.text_area :style_list, class: "form-field", placeholder: "E.g. vintage, modern, classic..." %> -->
 <%= f.text_field :style_list,
                  :id => "shop_styles",

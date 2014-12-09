@@ -5,8 +5,14 @@
 
 </div>
 <div class="container">
-
-  <%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
+<% if @shops.any? %>
+	<%= render partial: 'users/user_shop', collections: @shops, :as => :item %>
+<%else%>
+	<span class="no-text">(No shops)</span>
+<br> <br>
+	<%= link_to "+ New Shop", new_shop_path, class:"all-btn" %>
+<%end%>
+  
 </div>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->

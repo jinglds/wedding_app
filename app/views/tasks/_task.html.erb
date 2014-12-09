@@ -14,7 +14,7 @@
 					<%= link_to image_tag("done_icon_grey.png",  :border => 0, :width=> 15, :height=>15, :alt => "done icon"), event_task_complete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"completed!"%>
 
 				<% else %>
-					<%= link_to  image_tag("undo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "undo icon"), event_task_decomplete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"uncomplete"  %> |
+					<%= link_to  image_tag("undo_icon_grey.png",  :width=> 15, :height=>15, :border => 0, :alt => "undo icon"), event_task_decomplete_path(@event, task), method: :put, :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"uncomplete"  %> 
 				<!-- 	<%= link_to "DeCompleted::cascade:false", event_task_decomplete_path(@event, task, :cascade => false), method: :put, remote: true %> | -->
 				<% end %>
 			<!-- 	<%= link_to image_tag("add_task_icon_grey.png",  :width=> 13, :height=>13, :border => 0, :alt => "add task icon"), new_event_task_path(@event, :parent_id => task), :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"add to task"%> -->
