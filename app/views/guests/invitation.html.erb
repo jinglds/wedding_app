@@ -64,7 +64,7 @@
                       <%end%>
                     
                   </td>
-                  <td></td>
+                  <td><%= g.invited_via %></td>
                   <td>
                     <a id="invite-link-btn-<%= g.id %>" class='invite-link-btn' data-clipboard-target='invite-link-<%= g.id %>' data-clipboard-text='lala' id='invite-link-btn-<%= g.id %>' title='Click to Copy Invitation Link' name ="<%= g.name %>">
                        <%= image_tag("link_icon.png",  :width=> 20, :height=>20, :border => 0, :alt => "edit event icon", :data => {:toggle=>"tooltip", :placement=>"bottom"}, :title=>"invitation link", class: "inline-block") %>
