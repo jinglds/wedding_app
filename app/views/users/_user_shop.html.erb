@@ -5,7 +5,7 @@
       <div class="item">
           <div class="center">
             <% if s.photos.is_cover(:shop_id => s.id) %>
-            <%= link_to image_tag(s.photos.is_cover(:shop_id => s.id).image.thumb('520x400#').url, alt: s.photos.is_cover(:shop_id => s.id).title, class: 'shop-img'), s %>
+            <%= link_to image_tag(s.photos.where(:cover=>true).first.image.thumb('520x400#').url, alt: s.photos.is_cover(:shop_id => s.id).title, class: 'shop-img'), s %>
             <% else %>
               <%= link_to image_tag("shop-user-default.png", alt: "cover photo", class: 'shop-img'), s %>
             <% end %>
