@@ -11,6 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def information
-  	@articles = Article.all
+  	@articles = Article.where(:published=>true)
   end
 end

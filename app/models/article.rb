@@ -6,7 +6,11 @@ class Article < ActiveRecord::Base
 	validates :content, presence: true
 	validates :category, presence: true
 
+
+
 	def lowercase_params
   		self.category.downcase!
   	end
+
+
 end
