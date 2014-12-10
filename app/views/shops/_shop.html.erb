@@ -3,8 +3,8 @@
   <div class="shop-block <%= 'my-shop' if (current_user==shop.user) %>">
     <div class="center">
       <% if shop.photos.any? %>
-       <%= link_to image_tag(shop.photos.where(:cover=>true).first.image.thumb('250x250#').url, alt: 'shop cover'),
-                  Photo.is_cover(:shop_id=>shop.id).image.url, target: '_blank' %>
+       <%= link_to image_tag(Photo.is_cover(:shop_id=>shop.id).image.thumb('250x250#').url, alt: 'shop cover'),
+                  shop, target: '_blank' %>
       <%else%>
 
           <%= image_tag ("shop-item-default.png") %>

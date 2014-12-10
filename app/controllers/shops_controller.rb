@@ -21,7 +21,9 @@ class ShopsController < ApplicationController
 
   def pending
     @shops = Shop.all
-      @shops = @shops.paginate(page: params[:page]).order(params[:sort])
+      # @shops = @shops.paginate(page: params[:page]).order(params[:sort])
+
+      @shops = @shops.order(params[:sort])
     
   end
 

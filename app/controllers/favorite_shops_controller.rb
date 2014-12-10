@@ -29,6 +29,7 @@ class FavoriteShopsController < ApplicationController
   end
 
   def index
+    @user = current_user
       @fav_ids = Favorite.where(:user_id=>current_user.id).pluck(:favorited_id).uniq
       @shops = Shop.where(:id=> @fav_ids )
     
