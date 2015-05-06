@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
 
-
+before_filter :authenticate_user!
 	def index
 		# @event = Event.find(params[:event_id])
       @vendors = current_user.vendors

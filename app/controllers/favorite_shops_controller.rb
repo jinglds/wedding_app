@@ -1,5 +1,6 @@
 class FavoriteShopsController < ApplicationController
   # before_action :set_shop
+  before_filter :authenticate_user!
   
   def create
     @shop = Shop.find(params[:shop_id])
